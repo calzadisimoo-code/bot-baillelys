@@ -16,6 +16,8 @@ module.exports = async function comandos(
         ubicacion: "Ubicación",
 
         envio: "Envío",
+		
+		talla: "Tallas",
 
         carg67w: "Cargador 67W",
 

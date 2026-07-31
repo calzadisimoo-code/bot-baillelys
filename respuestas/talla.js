@@ -39,7 +39,21 @@ La talla *${talla}* está disponible.
 
 `🔥 Sí tenemos disponible la talla *${talla}*.
 
-¿Te la separo o prefieres que te la envíe?`
+¿Te la separo o prefieres que te la envíe?`,
+
+`👟 ¡Claro! Sí manejamos la talla *${talla}*.
+
+🚀 ¿Prefieres recibirla por envío o pasar a recogerla?`,
+
+`✅ Tenemos disponible la talla *${talla}*.
+
+📍 Puedes recogerla o también hacemos envíos.
+
+¿Cuál prefieres?`,
+
+`🤩 Excelente, la talla *${talla}* sí está disponible.
+
+🚚 ¿La enviamos a tu dirección o prefieres visitarnos para probártela?`
 
     ];
 
