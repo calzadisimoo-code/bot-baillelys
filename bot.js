@@ -1,4 +1,7 @@
 const qrcode = require("qrcode-terminal");
+const fs = require("fs");
+const path = require("path");
+const envioFotos = require("./respuestas/enviofotos");
 
 const {
     default: makeWASocket,
@@ -267,6 +270,41 @@ const respuesta = responder(
 );
 
 if (!respuesta) continue;
+
+if (respuesta.startsWith("IMG_")) {
+
+    const producto = respuesta.replace("IMG_", "");
+
+    const carpeta = path.join(
+        __dirname,
+        "img",
+        producto
+    );
+
+    if (!fs.existsSync(carpeta)) continue;
+
+    const archivos = fs.readdirSync(carpeta);
+	
+	await sock.sendMessage(usuario, {
+    text: envioFotos(usuario)
+});
+
+    for (const archivo of archivos) {
+
+        await sock.sendMessage(
+            usuario,
+            {
+                image: fs.readFileSync(
+                    path.join(carpeta, archivo)
+                )
+            }
+        );
+
+    }
+
+    continue;
+
+}
 				
 				const espera =
     ESPERA_MIN +

@@ -6,6 +6,7 @@ const carg67w = require("./carg67w");
 const af1bi = require("./af1bi");
 const paris = require("./paris");
 const talla = require("./talla");
+const fotos = require("./fotos");
 
 module.exports = function (texto, usuario) {
 
@@ -28,6 +29,7 @@ module.exports = function (texto, usuario) {
         af1bi(texto, usuario) ||
         paris(texto, usuario) ||
         talla(texto, usuario) ||
+		fotos(texto, usuario) ||
         sara(texto)
     );
 
