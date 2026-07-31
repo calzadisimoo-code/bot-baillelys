@@ -29,6 +29,7 @@ module.exports = function (texto, usuario) {
         texto.includes("donde estan") ||
         texto.includes("donde quedan") ||
         texto.includes("ubicados") ||
+		texto.includes("ubicado") ||
         texto.includes("direccion del local") ||
         texto.includes("donde se ubican") ||
         texto.includes("puedo recoger") ||
