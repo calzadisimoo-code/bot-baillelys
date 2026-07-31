@@ -1,5 +1,7 @@
 module.exports = function (texto, usuario) {
 
+const { obtenerVariante } = require("../estadisticas/ab");
+const { obtener } = require("../estado");
 const estado = obtener(usuario);
 
 if (!estado?.producto) {
