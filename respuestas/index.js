@@ -5,6 +5,7 @@ const envio = require("./envio");
 const carg67w = require("./carg67w");
 const af1bi = require("./af1bi");
 const paris = require("./paris");
+const talla = require("./talla");
 
 module.exports = function (texto, usuario) {
 
@@ -19,14 +20,15 @@ module.exports = function (texto, usuario) {
         .replace(/[^\p{L}\p{N}\s]/gu, "")
         .trim();
 
-return (
-    catalogo(texto, usuario) ||
-    envio(texto, usuario) ||
-    direccion(texto, usuario) ||
-    carg67w(texto, usuario) ||
-	af1bi(texto, usuario) ||
-	paris(texto, usuario) ||
-    sara(texto)
-);
+    return (
+        catalogo(texto, usuario) ||
+        envio(texto, usuario) ||
+        direccion(texto, usuario) ||
+        carg67w(texto, usuario) ||
+        af1bi(texto, usuario) ||
+        paris(texto, usuario) ||
+        talla(texto, usuario) ||
+        sara(texto)
+    );
 
 };
