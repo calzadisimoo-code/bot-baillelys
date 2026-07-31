@@ -8,8 +8,7 @@ module.exports = function (texto, usuario) {
         texto.includes("force 1") ||
         texto.includes("af1") ||
         texto.includes("air force blancas") ||
-        texto.includes("air force blancas importadas") ||
-        texto.includes("blancas")
+        texto.includes("air force blancas importadas")
     ) {
 
         return obtenerVariante("af1bi", usuario, {
