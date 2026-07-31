@@ -4,39 +4,35 @@ module.exports = function (texto, usuario) {
 
     // El cliente está enviando su dirección
     if (
-if (
-    texto.includes("calle") ||
-    texto.includes("carrera") ||
-    texto.includes("cra") ||
-    texto.includes("cl ") ||
-    texto.includes("barrio") ||
-    texto.includes("manzana") ||
-    texto.includes("mz") ||
-    texto.includes("casa") ||
-    texto.includes("apartamento") ||
-    texto.includes("apto") ||
-    texto.includes("torre") ||
-    texto.includes("bloque") ||
-    texto.includes("#")
-) {
-    return null;
-}
+        texto.includes("calle") ||
+        texto.includes("carrera") ||
+        texto.includes("cra") ||
+        texto.includes("cl ") ||
+        texto.includes("barrio") ||
+        texto.includes("manzana") ||
+        texto.includes("mz") ||
+        texto.includes("casa") ||
+        texto.includes("apartamento") ||
+        texto.includes("apto") ||
+        texto.includes("torre") ||
+        texto.includes("bloque") ||
+        texto.includes("#")
     ) {
         return null;
     }
 
     if (
-texto === "direccion" ||
-texto === "ubicacion" ||
-texto === "ubicados" ||
-texto === "punto fisico" ||
-texto.includes("donde estan") ||
-texto.includes("donde quedan") ||
-texto.includes("ubicados") ||
-texto.includes("direccion del local") ||
-texto.includes("donde se ubican") ||
-texto.includes("puedo recoger") ||
-texto.includes("quiero recoger")
+        texto === "direccion" ||
+        texto === "ubicacion" ||
+        texto === "ubicados" ||
+        texto === "punto fisico" ||
+        texto.includes("donde estan") ||
+        texto.includes("donde quedan") ||
+        texto.includes("ubicados") ||
+        texto.includes("direccion del local") ||
+        texto.includes("donde se ubican") ||
+        texto.includes("puedo recoger") ||
+        texto.includes("quiero recoger")
     ) {
 
         return obtenerVariante("ubicacion", usuario, {
@@ -88,4 +84,4 @@ Local 291 - CALZADISIMO
 
     return null;
 
-}
+};
