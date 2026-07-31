@@ -17,7 +17,7 @@ module.exports = function (texto, usuario) {
 
             C: "⚡ Tenemos disponible el cargador de *67W*.\n\n💵 1: *$45.000*\n💵 2: *$85.000*\n💵 3: *$120.000*\n\n🚚 Hacemos envíos a toda Colombia.\n\n¿Cuántos deseas pedir?",
 
-            D: "🚀 El cargador de *67W* está disponible.\n\n🔥 Aprovecha la promoción:\n1️⃣ $45.000\n2️⃣ $85.000\n3️⃣ $120.000\n\n📲 Responde con 1, 2 o 3 y continuamos con tu pedido.",
+            D: "⚡ ¡Perfecto! Sí tenemos disponibles.\n\n💰 1 por *$45.000*\n💰 2 por *$85.000*\n💰 3 por *$120.000*\n\n👀 ¿Necesitas uno solo o quieres aprovechar la promoción?"
 
             E: "🔋 Cargador de *67W* disponible.\n\n💰 1 unidad: *$45.000*\n💰 2 unidades: *$85.000*\n💰 3 unidades: *$120.000*\n\n🚚 Envío rápido.\n\n¿Quieres 1, 2 o 3?",
 
