@@ -7,7 +7,7 @@ module.exports = function (texto, usuario) {
         texto.includes("pro 4") ||
         texto.includes("pro4") ||
         texto.includes("airpods pro 4") ||
-		texto.includes("Audifonos con cancelacion de ruido") ||
+		texto.includes("audifonos con cancelacion de ruido") ||
         texto.includes("airpod pro 4") ||
         texto.includes("audifonos pro 4")
     ) {
