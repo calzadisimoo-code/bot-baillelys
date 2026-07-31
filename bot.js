@@ -1,0 +1,313 @@
+const qrcode = require("qrcode-terminal");
+
+const {
+    default: makeWASocket,
+    DisconnectReason,
+    fetchLatestBaileysVersion,
+    useMultiFileAuthState
+} = require("@whiskeysockets/baileys");
+
+const P = require("pino");
+
+const responder = require("./respuestas");
+
+const comandos = require("./comandos");
+
+const {
+    registrarRespuesta
+} = require("./estadisticas/ab");
+
+const {
+    LIMITE_RESPUESTA,
+    LIMITE_MENSAJE,
+    ESPERA_MIN,
+    ESPERA_MAX
+} = require("./config");
+
+const ultimaRespuesta = new Map();
+const mensajesProcesados = new Set();
+
+let conectado = false;
+let reconectando = false;
+
+setInterval(() => {
+
+    const ahora = Date.now();
+
+    for (const [usuario, tiempo] of ultimaRespuesta) {
+
+        if (
+            ahora - tiempo >
+            24 * 60 * 60 * 1000
+        ) {
+
+            ultimaRespuesta.delete(usuario);
+
+        }
+
+    }
+
+}, 60 * 60 * 1000);
+
+module.exports = async function iniciarBot() {
+	
+
+    const { state, saveCreds } =
+        await useMultiFileAuthState("./sesion");
+
+    const { version } =
+        await fetchLatestBaileysVersion();
+
+    const sock = makeWASocket({
+
+        version,
+
+        auth: state,
+
+        logger: P({
+            level: "silent"
+        }),
+
+        browser: [
+            "Kyro Bot",
+            "Chrome",
+            "1.0.0"
+        ]
+
+    });
+
+    sock.ev.on(
+        "creds.update",
+        saveCreds
+    );
+
+ sock.ev.on(
+    "connection.update",
+    ({ connection, lastDisconnect, qr }) => {
+
+        if (qr) {
+
+            console.log("Escanea este QR:\n");
+
+            qrcode.generate(qr, {
+                small: true
+            });
+
+        }
+
+if (connection === "open") {
+
+    conectado = true;
+    reconectando = false;
+
+    console.log("==================================");
+    console.log("BOT CONECTADO");
+    console.log("==================================");
+
+}
+
+if (connection === "close") {
+
+    conectado = false;
+
+    const codigo =
+        lastDisconnect?.error?.output?.statusCode;
+
+    if (
+        codigo !== DisconnectReason.loggedOut &&
+        !reconectando
+    ) {
+
+        reconectando = true;
+
+        console.log("Reconectando...");
+
+        setTimeout(() => {
+
+            iniciarBot();
+
+        }, 3000);
+
+    }
+
+}
+
+    }
+);
+
+sock.ev.on(
+    "messages.upsert",
+    async ({ messages, type }) => {
+
+        if (type !== "notify") return;
+
+        for (const msg of messages) {
+
+            try {
+
+                if (!msg.message) continue;
+				
+				if (!conectado) continue;
+
+                if (msg.key.fromMe) continue;
+
+                const usuario =
+                    msg.key.remoteJid;
+
+                if (!usuario) continue;
+				
+				// Evitar responder dos veces al mismo mensaje
+const id = msg.key.id;
+
+if (id) {
+
+    if (mensajesProcesados.has(id)) continue;
+
+    mensajesProcesados.add(id);
+
+    setTimeout(() => {
+
+        mensajesProcesados.delete(id);
+
+    }, 10 * 60 * 1000);
+
+}
+
+                // Ignorar grupos
+                if (usuario.endsWith("@g.us")) continue;
+
+                // Ignorar estados
+                if (usuario === "status@broadcast") continue;
+
+                // Obtener texto
+                let texto = "";
+
+                if (msg.message.conversation) {
+
+                    texto =
+                        msg.message.conversation;
+
+                }
+
+                else if (
+                    msg.message.extendedTextMessage?.text
+                ) {
+
+                    texto =
+                        msg.message.extendedTextMessage.text;
+
+                }
+
+                else {
+
+                    continue;
+
+                }
+
+texto = texto
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^\p{L}\p{N}\s#]/gu, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+                if (!texto) continue;
+				
+				// Ignorar mensajes viejos
+const timestamp = Number(msg.messageTimestamp);
+
+const ahora = Math.floor(Date.now() / 1000);
+
+if (
+    timestamp &&
+    (ahora - timestamp) > LIMITE_MENSAJE
+) continue;
+
+const tiempoActual = Date.now();
+
+if (ultimaRespuesta.has(usuario)) {
+
+    const ultima = ultimaRespuesta.get(usuario);
+
+    if (
+        tiempoActual - ultima <
+        LIMITE_RESPUESTA
+    ) {
+
+        console.log(
+            "Respuesta omitida:",
+            usuario
+        );
+
+        continue;
+
+    }
+
+}
+
+                console.log("--------------------------------");
+                console.log("Usuario:", usuario);
+                console.log("Mensaje:", texto);
+                console.log("--------------------------------");
+
+registrarRespuesta(usuario);
+
+const ejecutado = await comandos(
+    texto,
+    usuario,
+    sock
+);
+
+if (ejecutado) continue;
+
+const respuesta = responder(
+    texto,
+    usuario
+);
+
+if (!respuesta) continue;
+				
+				const espera =
+    ESPERA_MIN +
+    Math.floor(
+        Math.random() *
+        (ESPERA_MAX - ESPERA_MIN)
+    );
+
+await new Promise(resolve =>
+    setTimeout(resolve, espera)
+);
+
+                await sock.sendMessage(
+
+                    usuario,
+
+                    {
+                        text: respuesta
+                    }
+
+                );
+				
+				ultimaRespuesta.set(
+    usuario,
+    Date.now()
+);
+
+console.log("Respuesta enviada.");
+
+            }
+
+            catch (e) {
+
+                console.log(e);
+
+            }
+
+        }
+
+    }
+
+);
+
+}

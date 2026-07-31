@@ -1,0 +1,132 @@
+{
+    "catalogo": {
+        "A": {
+            "enviados": 1,
+            "respondieron": 0
+        },
+        "B": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "C": {
+            "enviados": 2,
+            "respondieron": 2
+        },
+        "D": {
+            "enviados": 2,
+            "respondieron": 1
+        },
+        "E": {
+            "enviados": 2,
+            "respondieron": 1
+        },
+        "F": {
+            "enviados": 2,
+            "respondieron": 1
+        }
+    },
+    "ubicacion": {
+        "A": {
+            "enviados": 1,
+            "respondieron": 0
+        },
+        "B": {
+            "enviados": 2,
+            "respondieron": 0
+        },
+        "C": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "D": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "E": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "F": {
+            "enviados": 1,
+            "respondieron": 0
+        }
+    },
+    "envio": {
+        "A": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "B": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "C": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "D": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "E": {
+            "enviados": 1,
+            "respondieron": 0
+        },
+        "F": {
+            "enviados": 2,
+            "respondieron": 1
+        }
+    },
+    "af1bi": {
+        "A": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "B": {
+            "enviados": 1,
+            "respondieron": 0
+        },
+        "C": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "D": {
+            "enviados": 2,
+            "respondieron": 2
+        },
+        "E": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "F": {
+            "enviados": 1,
+            "respondieron": 0
+        }
+    },
+    "paris": {
+        "A": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "B": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "C": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "D": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "E": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "F": {
+            "enviados": 0,
+            "respondieron": 0
+        }
+    }
+}

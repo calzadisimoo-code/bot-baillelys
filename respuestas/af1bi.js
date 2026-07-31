@@ -1,0 +1,35 @@
+const { obtenerVariante } = require("../estadisticas/ab");
+
+module.exports = function (texto, usuario) {
+
+    if (
+        texto.includes("air force") ||
+        texto.includes("airforce") ||
+        texto.includes("force 1") ||
+        texto.includes("af1") ||
+        texto.includes("air force blancas") ||
+        texto.includes("air force blancas importadas") ||
+        texto.includes("blancas")
+    ) {
+
+        return obtenerVariante("af1bi", usuario, {
+
+            A: "🤍 ¡Sí están disponibles las Air Force 1 blancas importadas!\n\n💰 Precio: *$100.000*\n📦 Calidad importada.\n🚚 Envíos a toda Colombia.\n\n👟 *Responde con tu talla (35 al 40) y continuamos con tu pedido.*",
+
+            B: "🔥 ¡Qué buena elección!\n\nTenemos las Air Force 1 blancas importadas por *$100.000*.\n\n✅ Tallas disponibles del *35 al 40*.\n\n👟 *Escríbeme únicamente tu talla y te ayudo con el pedido.*",
+
+            C: "✨ Sí hay disponibilidad.\n\n🤍 Air Force 1 blancas importadas.\n💰 *$100.000*\n🚚 Envío rápido a toda Colombia.\n\n👟 *¿Cuál es tu talla? (35 al 40)*",
+
+            D: "🚀 Tenemos disponibles las Air Force 1 blancas importadas.\n\n💵 Valor: *$100.000*\n📦 Calidad importada.\n\n👟 *Envíame tu talla y te envío la información para recibirlas.*",
+
+            E: "✅ Sí están disponibles.\n\n🤍 Air Force 1 blancas importadas.\n💰 *$100.000*\n\n👟 *Responde con tu talla (35 al 40) para separar tu par.*",
+
+            F: "🔥 Las Air Force 1 blancas importadas siguen disponibles.\n\n💰 Precio: *$100.000*\n🚚 Envíos a toda Colombia.\n\n👟 *Dime tu talla y en unos minutos dejamos listo tu pedido.*"
+
+        });
+
+    }
+
+    return null;
+
+}
