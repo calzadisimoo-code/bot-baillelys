@@ -1,3 +1,4 @@
+const { guardar } = require("../estado");
 const { obtenerVariante } = require("../estadisticas/ab");
 
 module.exports = function (texto, usuario) {
@@ -10,6 +11,9 @@ module.exports = function (texto, usuario) {
         texto.includes("air force blancas") ||
         texto.includes("air force blancas importadas")
     ) {
+guardar(usuario, {
+    producto: "af1bi"
+});
 
         return obtenerVariante("af1bi", usuario, {
 

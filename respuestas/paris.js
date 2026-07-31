@@ -1,4 +1,5 @@
 const { obtenerVariante } = require("../estadisticas/ab");
+const { guardar } = require("../estado");
 
 module.exports = function (texto, usuario) {
 
@@ -7,6 +8,10 @@ module.exports = function (texto, usuario) {
         texto.includes("tenis paris") ||
         texto.includes("zapatillas paris")
     ) {
+		
+		guardar(usuario, {
+    producto: "paris"
+});
 
         return obtenerVariante("paris", usuario, {
 

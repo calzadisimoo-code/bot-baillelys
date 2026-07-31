@@ -1,4 +1,10 @@
-module.exports = function (texto) {
+module.exports = function (texto, usuario) {
+
+const estado = obtener(usuario);
+
+if (!estado?.producto) {
+    return null;
+}
 
     const tallas = [
         "35",
@@ -25,42 +31,41 @@ module.exports = function (texto) {
     if (!talla)
         return null;
 
-    const respuestas = [
+    return obtenerVariante(
+        "talla",
+        texto,
+        {
 
-`🤍 ¡Sí! Tenemos disponible la talla *${talla}*.
+A: `🤍 ¡Sí! Tenemos disponible la talla *${talla}*.
 
 🚚 ¿Te la envío por domicilio o prefieres recogerla?`,
 
-`✅ Perfecto.
+B: `✅ Perfecto.
 
 La talla *${talla}* está disponible.
 
 📦 ¿La deseas por envío o prefieres recogerla?`,
 
-`🔥 Sí tenemos disponible la talla *${talla}*.
+C: `🔥 Sí tenemos disponible la talla *${talla}*.
 
 ¿Te la separo o prefieres que te la envíe?`,
 
-`👟 ¡Claro! Sí manejamos la talla *${talla}*.
+D: `👟 ¡Claro! Sí manejamos la talla *${talla}*.
 
 🚀 ¿Prefieres recibirla por envío o pasar a recogerla?`,
 
-`✅ Tenemos disponible la talla *${talla}*.
+E: `✅ Tenemos disponible la talla *${talla}*.
 
 📍 Puedes recogerla o también hacemos envíos.
 
 ¿Cuál prefieres?`,
 
-`🤩 Excelente, la talla *${talla}* sí está disponible.
+F: `🤩 Excelente, la talla *${talla}* sí está disponible.
 
 🚚 ¿La enviamos a tu dirección o prefieres visitarnos para probártela?`
 
-    ];
+        }
 
-    const indice = Math.floor(
-        Math.random() * respuestas.length
     );
-
-    return respuestas[indice];
 
 };
