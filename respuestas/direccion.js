@@ -29,8 +29,8 @@ if (
 texto.includes("direccion") ||
     texto === "ubicacion" ||
     texto === "ubicados" ||
-    texto === "punto fisico" ||
-
+	
+    texto.includes("punto fisico") ||
     texto.includes("direccion del local") ||
 	texto.includes("ubicacion") ||
     texto.includes("direccion tienda fisica") ||
