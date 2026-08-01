@@ -1,6 +1,10 @@
 const { obtenerVariante } = require("../estadisticas/ab");
 const { guardar } = require("../estado");
 
+const {
+    registrarProducto
+} = require("../estadisticas/hoy");
+
 module.exports = function (texto, usuario) {
 
     if (
@@ -9,6 +13,7 @@ module.exports = function (texto, usuario) {
         texto.includes("zapatillas paris")
     ) {
 		
+		registrarProducto(usuario);
 		guardar(usuario, {
     producto: "paris"
 });

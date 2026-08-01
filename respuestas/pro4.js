@@ -1,5 +1,8 @@
 const { obtenerVariante } = require("../estadisticas/ab");
 const { guardar } = require("../estado");
+const {
+    registrarProducto
+} = require("../estadisticas/hoy");
 
 module.exports = function (texto, usuario) {
 
@@ -11,7 +14,8 @@ module.exports = function (texto, usuario) {
         texto.includes("airpod pro 4") ||
         texto.includes("audifonos pro 4")
     ) {
-
+		
+		registrarProducto(usuario);
         guardar(usuario, {
             producto: "pro4"
         });

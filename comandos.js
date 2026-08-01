@@ -2,6 +2,9 @@ const {
     reporte,
     reiniciar
 } = require("./estadisticas/ab");
+const {
+    reporteHoy
+} = require("./estadisticas/hoy");
 
 module.exports = async function comandos(
     texto,
@@ -68,6 +71,16 @@ module.exports = async function comandos(
         }
 
     }
+	
+	if (texto === "#hoy") {
+
+    await sock.sendMessage(usuario, {
+        text: reporteHoy()
+    });
+
+    return true;
+
+}
 
     return false;
 

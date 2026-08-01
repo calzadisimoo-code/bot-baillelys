@@ -10,6 +10,10 @@ const {
     useMultiFileAuthState
 } = require("@whiskeysockets/baileys");
 
+const {
+    registrarPersona
+} = require("./estadisticas/hoy");
+
 const P = require("pino");
 
 const responder = require("./respuestas");
@@ -156,6 +160,8 @@ sock.ev.on(
 
                 const usuario =
                     msg.key.remoteJid;
+					
+					registrarPersona(usuario);
 
                 if (!usuario) continue;
 				

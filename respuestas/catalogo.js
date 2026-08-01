@@ -1,12 +1,16 @@
 const { obtenerVariante } = require("../estadisticas/ab");
+const { registrarCatalogo } = require("../estadisticas/hoy");
 
 module.exports = function (texto, usuario) {
 
     if (
         texto === "catalogo" ||
         texto.includes("catalogo") ||
+        texto.includes("quiero de hombre y de mujer") ||
         texto.includes("modelos")
     ) {
+
+        registrarCatalogo(usuario);
 
         return obtenerVariante("catalogo", usuario, {
 

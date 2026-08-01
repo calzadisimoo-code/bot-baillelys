@@ -1,4 +1,7 @@
 const { obtener } = require("../estado");
+const {
+    registrarFotos
+} = require("../estadisticas/hoy");
 
 module.exports = function (texto, usuario) {
 
@@ -21,6 +24,8 @@ module.exports = function (texto, usuario) {
     if (!estado?.producto) {
         return null;
     }
+	
+	registrarFotos(usuario);
 
     return `IMG_${estado.producto}`;
 

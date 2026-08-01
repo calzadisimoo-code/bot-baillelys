@@ -1,4 +1,7 @@
 const { obtenerVariante } = require("../estadisticas/ab");
+const {
+    registrarDireccion
+} = require("../estadisticas/hoy");
 
 module.exports = function (texto, usuario) {
 
@@ -101,6 +104,8 @@ Local 291 - CALZADISIMO
 
     }
 
-    return null;
+registrarDireccion(usuario);
+
+return null;
 
 };

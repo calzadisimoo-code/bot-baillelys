@@ -3,6 +3,9 @@ module.exports = function (texto, usuario) {
 const { obtenerVariante } = require("../estadisticas/ab");
 const { obtener } = require("../estado");
 const estado = obtener(usuario);
+const {
+    registrarTalla
+} = require("../estadisticas/hoy");
 
 if (!estado?.producto) {
     return null;
@@ -32,6 +35,8 @@ if (!estado?.producto) {
 
     if (!talla)
         return null;
+
+     registrarTalla(usuario);
 
     return obtenerVariante(
         "talla",

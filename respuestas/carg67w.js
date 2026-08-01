@@ -1,5 +1,8 @@
 const { obtenerVariante } = require("../estadisticas/ab");
 const { guardar } = require("../estado");
+const {
+    registrarProducto
+} = require("../estadisticas/hoy");
 
 module.exports = function (texto, usuario) {
 
@@ -9,7 +12,8 @@ module.exports = function (texto, usuario) {
         texto.includes("cargador 67") ||
         texto.includes("cargador de 67")
     ) {
-
+        
+		registrarProducto(usuario);
         guardar(usuario, {
             producto: "carg67w"
         });
