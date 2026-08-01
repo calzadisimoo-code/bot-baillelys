@@ -3,12 +3,16 @@ const { registrarCatalogo } = require("../estadisticas/hoy");
 
 module.exports = function (texto, usuario) {
 
-    if (
-        texto === "catalogo" ||
-        texto.includes("catalogo") ||
-        texto.includes("quiero de hombre y de mujer") ||
-        texto.includes("modelos")
-    ) {
+if (
+    texto === "catalogo" ||
+    texto === "catalago" ||
+    texto.includes("catalogo") ||
+    texto.includes("catalago") ||
+    texto.includes("catalogo") ||
+    texto.includes("catlogo") ||
+    texto.includes("de hombre y de mujer") ||
+    texto.includes("modelos")
+) {
 
         registrarCatalogo(usuario);
 
