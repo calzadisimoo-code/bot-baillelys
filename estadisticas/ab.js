@@ -40,19 +40,69 @@ function obtenerVariante(nombre, usuario, respuestas) {
         }
 
     }
+// Fase inicial: 10 envíos por variante
+for (const letra of letras) {
 
-    const letra = letras[Math.floor(Math.random() * letras.length)];
+    if (datos[nombre][letra].enviados < 10) {
 
-    datos[nombre][letra].enviados++;
+        datos[nombre][letra].enviados++;
 
-    guardar(datos);
+        guardar(datos);
 
-    pendientes.set(usuario, {
-        test: nombre,
-        variante: letra
-    });
+        pendientes.set(usuario, {
+            test: nombre,
+            variante: letra
+        });
 
-    return respuestas[letra];
+        return respuestas[letra];
+
+    }
+
+}
+
+// Después de los primeros 10 envíos,
+// elegir la variante con mejor conversión.
+
+let mejor = letras[0];
+let mejorConversion = -1;
+
+for (const letra of letras) {
+
+    const enviados = datos[nombre][letra].enviados;
+    const respondieron = datos[nombre][letra].respondieron;
+
+    const conversion =
+    (respondieron + 1) /
+    (enviados + 2);
+
+    if (conversion > mejorConversion) {
+
+        mejorConversion = conversion;
+        mejor = letra;
+
+    }
+
+}
+
+// 10% de exploración
+if (Math.random() < 0.05) {
+
+    mejor = letras[
+        Math.floor(Math.random() * letras.length)
+    ];
+
+}
+
+datos[nombre][mejor].enviados++;
+
+guardar(datos);
+
+pendientes.set(usuario, {
+    test: nombre,
+    variante: mejor
+});
+
+return respuestas[mejor];
 
 }
 
