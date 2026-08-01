@@ -32,6 +32,7 @@ texto.includes("direccion") ||
     texto === "punto fisico" ||
 
     texto.includes("direccion del local") ||
+	texto.includes("ubicacion") ||
     texto.includes("direccion tienda fisica") ||
     texto.includes("direccion de la tienda") ||
     texto.includes("direccion del punto") ||
