@@ -21,20 +21,38 @@ module.exports = function (texto, usuario) {
         return null;
     }
 
-    if (
-        texto === "direccion" ||
-        texto === "ubicacion" ||
-        texto === "ubicados" ||
-        texto === "punto fisico" ||
-        texto.includes("donde estan") ||
-        texto.includes("donde quedan") ||
-        texto.includes("ubicados") ||
-		texto.includes("ubicado") ||
-        texto.includes("direccion del local") ||
-        texto.includes("donde se ubican") ||
-        texto.includes("puedo recoger") ||
-        texto.includes("quiero recoger")
-    ) {
+if (
+    texto === "direccion" ||
+    texto === "ubicacion" ||
+    texto === "ubicados" ||
+    texto === "punto fisico" ||
+
+    texto.includes("direccion del local") ||
+    texto.includes("direccion tienda fisica") ||
+    texto.includes("direccion de la tienda") ||
+    texto.includes("direccion del punto") ||
+    texto.includes("direccion del punto fisico") ||
+
+    texto.includes("ubicacion de la tienda") ||
+    texto.includes("ubicacion del local") ||
+    texto.includes("ubicacion del punto") ||
+
+    texto.includes("donde estan") ||
+    texto.includes("donde quedan") ||
+    texto.includes("donde queda") ||
+	texto.includes("ubicado") ||
+    texto.includes("donde se ubican") ||
+    texto.includes("donde esta la tienda") ||
+    texto.includes("donde queda la tienda") ||
+    texto.includes("como llego") ||
+
+    texto.includes("puedo recoger") ||
+    texto.includes("quiero recoger") ||
+    texto.includes("paso a recoger") ||
+    texto.includes("recoger en tienda") ||
+    texto.includes("recoger en el local") ||
+    texto.includes("recoger personalmente")
+) {
 
         return obtenerVariante("ubicacion", usuario, {
 
