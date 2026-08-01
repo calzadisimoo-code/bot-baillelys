@@ -158,35 +158,18 @@ sock.ev.on(
 
                 if (msg.key.fromMe) continue;
 
-                const usuario =
-                    msg.key.remoteJid;
-					
-					registrarPersona(usuario);
+const usuario =
+    msg.key.remoteJid;
 
-                if (!usuario) continue;
-				
-				// Evitar responder dos veces al mismo mensaje
-const id = msg.key.id;
+if (!usuario) continue;
 
-if (id) {
+// Ignorar grupos
+if (usuario.endsWith("@g.us")) continue;
 
-    if (mensajesProcesados.has(id)) continue;
+// Ignorar estados
+if (usuario === "status@broadcast") continue;
 
-    mensajesProcesados.add(id);
-
-    setTimeout(() => {
-
-        mensajesProcesados.delete(id);
-
-    }, 10 * 60 * 1000);
-
-}
-
-                // Ignorar grupos
-                if (usuario.endsWith("@g.us")) continue;
-
-                // Ignorar estados
-                if (usuario === "status@broadcast") continue;
+registrarPersona(usuario);
 
                 // Obtener texto
                 let texto = "";
