@@ -1,5 +1,6 @@
 const {
     reporte,
+	reporteTodos,
     reiniciar
 } = require("./estadisticas/ab");
 const {
@@ -12,6 +13,20 @@ module.exports = async function comandos(
     sock
 ) {
 
+    if (
+        texto === "#ab" ||
+        texto === "#abtodo" ||
+        texto === "#abproductos"
+    ) {
+
+        await sock.sendMessage(usuario, {
+            text: reporteTodos()
+        });
+
+        return true;
+
+    }
+
     const lista = {
 
         catalogo: "Catálogo",
@@ -19,12 +34,12 @@ module.exports = async function comandos(
         ubicacion: "Ubicación",
 
         envio: "Envío",
-		
-		talla: "Tallas",
-		
-		enviofotos: "Envío de fotos",
-		
-		pro4: "AirPods Pro 4",
+
+        talla: "Tallas",
+
+        enviofotos: "Envío de fotos",
+
+        pro4: "AirPods Pro 4",
 
         carg67w: "Cargador 67W",
 
@@ -33,6 +48,8 @@ module.exports = async function comandos(
         paris: "Paris"
 
     };
+
+    // ... resto del código
 
     for (const nombre of Object.keys(lista)) {
 

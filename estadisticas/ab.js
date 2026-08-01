@@ -191,9 +191,63 @@ function reporte(nombre) {
 
 }
 
+function reporteTodos() {
+
+    const datos = cargar();
+
+    if (Object.keys(datos).length === 0) {
+        return "No hay estadísticas.";
+    }
+
+    let texto = "📊 RESULTADOS A/B\n\n";
+
+    for (const nombre of Object.keys(datos)) {
+
+        texto += `━━━━━━━━━━━━━━━━━━\n`;
+        texto += `📦 ${nombre.toUpperCase()}\n\n`;
+
+        let mejor = "";
+        let mejorPorcentaje = -1;
+
+        for (const letra of Object.keys(datos[nombre])) {
+
+            const enviados = datos[nombre][letra].enviados;
+            const respondieron = datos[nombre][letra].respondieron;
+
+            const porcentaje =
+                enviados === 0
+                    ? 0
+                    : (respondieron / enviados) * 100;
+
+            texto +=
+`${letra}
+📤 Enviados: ${enviados}
+💬 Respondieron: ${respondieron}
+📈 Conversión: ${porcentaje.toFixed(1)}%
+
+`;
+
+            if (porcentaje > mejorPorcentaje) {
+
+                mejorPorcentaje = porcentaje;
+                mejor = letra;
+
+            }
+
+        }
+
+        texto += `🏆 Ganador: ${mejor} (${mejorPorcentaje.toFixed(1)}%)\n\n`;
+
+    }
+
+    return texto;
+
+}
+
 module.exports = {
     obtenerVariante,
     registrarRespuesta,
     reporte,
-	reiniciar
+    reporteTodos,
+    reiniciar
 };
