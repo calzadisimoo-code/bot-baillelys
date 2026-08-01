@@ -13,13 +13,45 @@ module.exports = async function comandos(
     sock
 ) {
 
-    if (
-        texto === "#ab" ||
-        texto === "#abtodo" ||
-        texto === "#abproductos"
-    ) {
+if (texto.startsWith("#resetab")) {
+
+    const nombre = texto
+        .replace("#resetab", "")
+        .trim();
+
+    if (!nombre) {
 
         await sock.sendMessage(usuario, {
+            text: "❌ Escribe el nombre del A/B.\n\nEjemplo:\n#resetabaf1bi"
+        });
+
+        return true;
+
+    }
+
+    const ok = reiniciar(nombre);
+
+    await sock.sendMessage(usuario, {
+        text: ok
+            ? `✅ Estadísticas de ${nombre} reiniciadas.`
+            : `❌ No existe un A/B llamado "${nombre}".`
+    });
+
+    return true;
+
+}
+
+    // ... resto del código
+
+if (texto.startsWith("#ab")) {
+
+    const nombre = texto
+        .replace("#ab", "")
+        .trim();
+
+    if (!nombre) {
+
+        await sock.sendMessage(usuario,{
             text: reporteTodos()
         });
 
@@ -27,67 +59,13 @@ module.exports = async function comandos(
 
     }
 
-    const lista = {
+    await sock.sendMessage(usuario,{
+        text: reporte(nombre)
+    });
 
-        catalogo: "Catálogo",
+    return true;
 
-        ubicacion: "Ubicación",
-
-        envio: "Envío",
-
-        talla: "Tallas",
-
-        enviofotos: "Envío de fotos",
-
-        pro4: "AirPods Pro 4",
-
-        carg67w: "Cargador 67W",
-
-        af1bi: "Air Force 1 Blanca Importada",
-
-        paris: "Paris"
-
-    };
-
-    // ... resto del código
-
-    for (const nombre of Object.keys(lista)) {
-
-        if (texto === `#ab${nombre}`) {
-
-            await sock.sendMessage(
-
-                usuario,
-
-                {
-                    text: reporte(nombre)
-                }
-
-            );
-
-            return true;
-
-        }
-
-        if (texto === `#resetab${nombre}`) {
-
-            reiniciar(nombre);
-
-            await sock.sendMessage(
-
-                usuario,
-
-                {
-                    text: `✅ Estadísticas de ${lista[nombre]} reiniciadas.`
-                }
-
-            );
-
-            return true;
-
-        }
-
-    }
+}
 	
 	if (texto === "#hoy") {
 

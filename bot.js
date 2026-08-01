@@ -272,7 +272,12 @@ if (respuesta.startsWith("IMG_")) {
 
     if (!fs.existsSync(carpeta)) continue;
 
-    const archivos = fs.readdirSync(carpeta);
+    const archivos = fs
+    .readdirSync(carpeta)
+    .filter(archivo =>
+        /\.(jpg|jpeg|png|webp)$/i.test(archivo)
+    )
+    .sort();
 	
 	await sock.sendMessage(usuario, {
     text: envioFotos(usuario)
