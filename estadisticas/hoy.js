@@ -124,14 +124,28 @@ function reporteHoy() {
 
     }
 
-    return `📊 ESTADÍSTICAS DE HOY
+    const personas = datos[hoy].personas.length;
+const catalogo = datos[hoy].catalogo.length;
+const productos = datos[hoy].productos.length;
+const fotos = datos[hoy].fotos.length;
+const tallas = datos[hoy].tallas.length;
+const direcciones = datos[hoy].direcciones.length;
 
-👤 Personas que escribieron: ${datos[hoy].personas.length}
-📚 Preguntaron catálogo: ${datos[hoy].catalogo.length}
-👟 Preguntaron producto: ${datos[hoy].productos.length}
-📸 Pidieron fotos: ${datos[hoy].fotos.length}
-📏 Enviaron talla: ${datos[hoy].tallas.length}
-📍 Enviaron dirección: ${datos[hoy].direcciones.length}`;
+const conversion =
+    productos === 0
+        ? 0
+        : ((direcciones / productos) * 100).toFixed(1);
+
+return `📊 ESTADÍSTICAS DE HOY
+
+👤 Personas que escribieron: ${personas}
+📚 Preguntaron catálogo: ${catalogo}
+👟 Preguntaron producto: ${productos}
+📸 Pidieron fotos: ${fotos}
+📏 Enviaron talla: ${tallas}
+📍 Enviaron dirección: ${direcciones}
+
+📈 Conversión a pedido: ${conversion}%`;
 
 }
 
