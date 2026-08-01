@@ -1,7 +1,7 @@
 const qrcode = require("qrcode-terminal");
 const fs = require("fs");
 const path = require("path");
-const envioFotos = require("./mensajes/enviofotos");
+const envioFotos = require("./respuestas/enviofotos");
 
 const {
     default: makeWASocket,
