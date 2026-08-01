@@ -26,6 +26,7 @@ module.exports = function (texto, usuario) {
 
 if (
     texto === "direccion" ||
+texto.includes("direccion") ||
     texto === "ubicacion" ||
     texto === "ubicados" ||
     texto === "punto fisico" ||
