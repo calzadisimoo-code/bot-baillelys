@@ -43,7 +43,7 @@ function obtenerVariante(nombre, usuario, respuestas) {
 // Fase inicial: 10 envíos por variante
 for (const letra of letras) {
 
-    if (datos[nombre][letra].enviados < 10) {
+    if (datos[nombre][letra].enviados < 5) {
 
         datos[nombre][letra].enviados++;
 
