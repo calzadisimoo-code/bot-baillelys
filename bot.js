@@ -114,7 +114,6 @@ if (connection === "open") {
 
     console.log("==================================");
     console.log("BOT CONECTADO");
-	recuperarSeguimientos(sock);
     console.log("==================================");
 
 }
