@@ -61,25 +61,34 @@ texto.includes("direccion") ||
 
         return obtenerVariante("ubicacion", usuario, {
 
-          A: `📍 Estamos ubicados en la *Calle 29 #26-30*, entrada principal del Centro Comercial Villa de las Palmas.
+A: `📍 Estamos ubicados en la *Calle 29 #26-30*, entrada recomendada del Centro Comercial Villa de las Palmas.
 
-Dentro del centro comercial estamos en el **Local 291 - CALZADISIMO**.
+➡️ Dentro del centro comercial nos encuentras en el **Local 291 - CALZADISIMO**.
 
-📌 Estamos diagonal al Banco de Bogotá.
+📌 Diagonal al Banco de Bogotá.
 
-¿Prefieres pasar por el local o te lo enviamos?`,
+🗺️ Google Maps:
+https://maps.app.goo.gl/SuGbvW8j5TourCs9A
 
-B: `📍 Sí tenemos punto físico.
+¿Prefieres pasar por el local o hacemos el envío?`,
+
+B: `📍 ¡Sí tenemos punto físico!
 
 La entrada más fácil es por la *Calle 29 #26-30*, Centro Comercial Villa de las Palmas.
 
-Dentro del centro comercial nos encuentras en el **Local 291 - CALZADISIMO**.
+➡️ Estamos dentro del centro comercial en el **Local 291 - CALZADISIMO**.
+
+🗺️ Google Maps:
+https://maps.app.goo.gl/SuGbvW8j5TourCs9A
 
 ¿Vas a pasar hoy o prefieres envío?`,
 
-C: `📍 Puedes visitarnos en la *Calle 29 #26-30*, Centro Comercial Villa de las Palmas.
+C: `📍 Puedes visitarnos ingresando por la *Calle 29 #26-30*, Centro Comercial Villa de las Palmas.
 
-Al ingresar, estamos en el **Local 291 - CALZADISIMO**.
+➡️ Dentro del centro comercial estamos en el **Local 291 - CALZADISIMO**.
+
+🗺️ Google Maps:
+https://maps.app.goo.gl/SuGbvW8j5TourCs9A
 
 ¿Vienes al local o prefieres domicilio?`,
 
@@ -87,13 +96,19 @@ D: `📍 Estamos en Palmira.
 
 La entrada recomendada es por la *Calle 29 #26-30*, Centro Comercial Villa de las Palmas.
 
-Dentro del centro comercial estamos en el **Local 291 - CALZADISIMO**.
+➡️ Dentro del centro comercial nos encuentras en el **Local 291 - CALZADISIMO**.
+
+🗺️ Google Maps:
+https://maps.app.goo.gl/SuGbvW8j5TourCs9A
 
 ¿Te esperamos o hacemos el envío?`,
 
 E: `📍 Nuestra tienda está dentro del Centro Comercial Villa de las Palmas.
 
 Ingresa por la *Calle 29 #26-30* y encontrarás el **Local 291 - CALZADISIMO**.
+
+🗺️ Google Maps:
+https://maps.app.goo.gl/SuGbvW8j5TourCs9A
 
 ¿Qué prefieres, recoger en tienda o envío?`,
 
@@ -102,12 +117,14 @@ F: `📍 Dirección:
 *Calle 29 #26-30*
 Centro Comercial Villa de las Palmas
 
-➡️ Dentro del centro comercial:
-**Local 291 - CALZADISIMO**
+➡️ **Local 291 - CALZADISIMO**
 
 📌 Diagonal al Banco de Bogotá.
 
-¿Recoges en tienda o hacemos el envío?`
+🗺️ Google Maps:
+https://maps.app.goo.gl/SuGbvW8j5TourCs9A
+
+¿Recoges en tienda o hacemos el envío?`,
 
         });
 
