@@ -49,6 +49,7 @@ texto.includes("direccion") ||
     texto.includes("donde se ubican") ||
     texto.includes("donde esta la tienda") ||
     texto.includes("donde queda la tienda") ||
+	texto.includes("es aca en Palmira") ||
     texto.includes("como llego") ||
 
     texto.includes("puedo recoger") ||
@@ -62,7 +63,7 @@ texto.includes("direccion") ||
         return obtenerVariante("ubicacion", usuario, {
 
 A: `📍 Estamos ubicados en la *Calle 29 #26-30*, entrada recomendada del Centro Comercial Villa de las Palmas.
-
+ufvii
 ➡️ Dentro del centro comercial nos encuentras en el **Local 291 - CALZADISIMO**.
 
 📌 Diagonal al Banco de Bogotá.
