@@ -9,7 +9,7 @@ const talla = require("./talla");
 const fotos = require("./fotos");
 const pro4 = require("./pro4");
 const af1ni = require("./af1ni");
-const af1ni = require("./carg120w");
+const carg120w = require("./carg120w");
 const af1b = require("./af1b");
 
 module.exports = function (texto, usuario) {
