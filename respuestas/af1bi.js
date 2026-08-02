@@ -6,14 +6,20 @@ const {
 
 module.exports = function (texto, usuario) {
 
-    if (
-        texto.includes("air force") ||
-        texto.includes("airforce") ||
-        texto.includes("force 1") ||
-        texto.includes("af1") ||
-        texto.includes("air force blancas") ||
-        texto.includes("air force blancas importadas")
-    ) {
+if (
+    texto.includes("air force .1") ||
+    texto.includes("air force importada") ||
+    texto.includes("air force blanca importada") ||
+    texto.includes("air force blancas importadas") ||
+    texto.includes("air force blanca .1") ||
+    texto.includes("air force blancas .1") ||
+    texto.includes("af1 .1") ||
+    texto.includes("af1 importada") ||
+    texto.includes("af1 blanca importada") ||
+    texto.includes("af1 blancas importadas") ||
+    texto.includes("force 1 importada") ||
+    texto.includes("force 1 .1")
+) {
 		
 		registrarProducto(usuario);
 guardar(usuario, {

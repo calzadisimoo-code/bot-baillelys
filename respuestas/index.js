@@ -9,6 +9,7 @@ const talla = require("./talla");
 const fotos = require("./fotos");
 const pro4 = require("./pro4");
 const af1ni = require("./af1ni");
+const af1b = require("./af1b");
 
 module.exports = function (texto, usuario) {
 
@@ -34,6 +35,7 @@ module.exports = function (texto, usuario) {
 		pro4(texto, usuario) ||  
         talla(texto, usuario) ||
 		fotos(texto, usuario) ||
+		af1b(texto, usuario) ||
         sara(texto)
     );
 
