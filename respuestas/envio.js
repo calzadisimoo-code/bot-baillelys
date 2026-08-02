@@ -6,8 +6,7 @@ module.exports = function (texto, usuario) {
         texto.includes("envio") ||
         texto.includes("envío") ||
         texto.includes("domicilio") ||
-        texto.includes("contra entrega") ||
-        texto.includes("contrarega") ||
+		texto.includes("domiclio") ||
         texto.includes("recibir")
     ) {
 

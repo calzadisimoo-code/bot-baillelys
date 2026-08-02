@@ -9,6 +9,7 @@ module.exports = function (texto, usuario) {
     if (
         texto.includes("air force") ||
         texto.includes("airforce") ||
+		texto.includes("for 1") ||
 		texto.includes("quiero las air force") ||
         texto.includes("force 1") ||
         texto.includes("af1")
