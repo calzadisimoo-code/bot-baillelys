@@ -4,6 +4,11 @@ const path = require("path");
 const envioFotos = require("./respuestas/enviofotos");
 
 const {
+    programarSeguimiento,
+    cancelarSeguimiento
+} = require("./seguimiento");
+
+const {
     default: makeWASocket,
     DisconnectReason,
     fetchLatestBaileysVersion,
@@ -109,6 +114,7 @@ if (connection === "open") {
 
     console.log("==================================");
     console.log("BOT CONECTADO");
+	recuperarSeguimientos(sock);
     console.log("==================================");
 
 }
@@ -245,6 +251,8 @@ if (ultimaRespuesta.has(usuario)) {
 
 registrarRespuesta(usuario);
 
+cancelarSeguimiento(usuario);
+
 const ejecutado = await comandos(
     texto,
     usuario,
@@ -311,17 +319,23 @@ await new Promise(resolve =>
     setTimeout(resolve, espera)
 );
 
-                await sock.sendMessage(
+await sock.sendMessage(
 
-                    usuario,
+    usuario,
 
-                    {
-                        text: respuesta
-                    }
+    {
+        text: respuesta
+    }
 
-                );
-				
-				ultimaRespuesta.set(
+);
+
+// Programar seguimiento si no responde
+programarSeguimiento(
+    sock,
+    usuario
+);
+
+ultimaRespuesta.set(
     usuario,
     Date.now()
 );
