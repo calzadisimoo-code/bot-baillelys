@@ -40,23 +40,30 @@ function obtenerVariante(nombre, usuario, respuestas) {
         }
 
     }
-// Fase inicial: 10 envíos por variante
-for (const letra of letras) {
+// Fase inicial: reparto equilibrado (A, B, C, D, E, F...)
 
-    if (datos[nombre][letra].enviados < 5) {
+let menor = Math.min(
+    ...letras.map(l => datos[nombre][l].enviados)
+);
 
-        datos[nombre][letra].enviados++;
+const candidatas = letras.filter(
+    l => datos[nombre][l].enviados === menor
+);
 
-        guardar(datos);
+const letra = candidatas[0];
 
-        pendientes.set(usuario, {
-            test: nombre,
-            variante: letra
-        });
+if (datos[nombre][letra].enviados < 5) {
 
-        return respuestas[letra];
+    datos[nombre][letra].enviados++;
 
-    }
+    guardar(datos);
+
+    pendientes.set(usuario, {
+        test: nombre,
+        variante: letra
+    });
+
+    return respuestas[letra];
 
 }
 
