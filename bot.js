@@ -169,9 +169,12 @@ sock.ev.on(
 
 const usuario =
     msg.key.remoteJid;
-	
-	console.log(msg.pushName);
-console.log(msg);
+
+console.log({
+    remoteJid: msg.key.remoteJid,
+    remoteJidAlt: msg.key.remoteJidAlt,
+    pushName: msg.pushName
+});
 
 if (!usuario) continue;
 
