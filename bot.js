@@ -275,28 +275,11 @@ if (ultimaRespuesta.has(usuario)) {
                 console.log("Usuario:", usuario);
                 console.log("Mensaje:", texto);
                 console.log("--------------------------------");
-
 registrarRespuesta(usuario);
 
 cancelarSeguimiento(usuario);
 
-let atendidoPorSara = false;
-
-try {
-
-    atendidoPorSara = await sara(sock, msg, texto);
-
-} catch (error) {
-
-    console.error("❌ Error en Sara:", error);
-
-    // Sara falló, pero el bot continúa funcionando.
-    atendidoPorSara = false;
-
-}
-
-if (atendidoPorSara) continue;
-
+// Primero revisar comandos del negocio
 const ejecutado = await comandos(
     texto,
     usuario,
@@ -305,12 +288,37 @@ const ejecutado = await comandos(
 
 if (ejecutado) continue;
 
+// Luego revisar respuestas del negocio
 const respuesta = responder(
     texto,
     usuario
 );
 
-if (!respuesta) continue;
+if (respuesta) {
+
+    // Si es una respuesta del negocio,
+    // continuar con el código que ya tienes más abajo.
+} else {
+
+    // Si el negocio no respondió,
+    // intentar con Sara.
+    let atendidoPorSara = false;
+
+    try {
+
+        atendidoPorSara = await sara(sock, msg, texto);
+
+    } catch (error) {
+
+        console.error("❌ Error en Sara:", error);
+
+    }
+
+    if (atendidoPorSara) continue;
+
+    continue;
+
+}
 
 if (respuesta.startsWith("IMG_")) {
 
