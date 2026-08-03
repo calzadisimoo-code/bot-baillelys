@@ -17,7 +17,8 @@ module.exports = function (texto, usuario) {
 		
 		registrarProducto(usuario);
         guardar(usuario, {
-            producto: "pro4"
+            producto: "pro4",
+			pedidoEnviado: false
         });
 
         return obtenerVariante("pro4", usuario, {

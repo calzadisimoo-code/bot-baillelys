@@ -17,7 +17,8 @@ if (
 		
 		registrarProducto(usuario);
 guardar(usuario, {
-    producto: "af1ni"
+    producto: "af1ni",
+}pedidoEnviado: false
 });
 
         return obtenerVariante("af1ni", usuario, {

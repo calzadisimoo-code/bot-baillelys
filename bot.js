@@ -4,6 +4,10 @@ const path = require("path");
 const envioFotos = require("./respuestas/enviofotos");
 
 const {
+    revisarPedido
+} = require("./pedido");
+
+const {
     programarSeguimiento,
     cancelarSeguimiento
 } = require("./seguimiento");
@@ -211,6 +215,12 @@ texto = texto
     .replace(/[^\p{L}\p{N}\s#]/gu, "")
     .replace(/\s+/g, " ")
     .trim();
+	
+	await revisarPedido(
+    sock,
+    msg,
+    texto
+);
 
                 if (!texto) continue;
 				
