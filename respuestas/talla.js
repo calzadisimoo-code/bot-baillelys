@@ -14,14 +14,11 @@ if (!estado?.producto) {
     return null;
 }
 
-    const tallas = [
-        "35",
-        "36",
-        "37",
-        "38",
-        "39",
-        "40"
-    ];
+const tallas = [];
+
+for (let i = 21; i <= 44; i++) {
+    tallas.push(i.toString());
+}
 
     let talla = null;
 
