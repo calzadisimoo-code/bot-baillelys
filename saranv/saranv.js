@@ -29,7 +29,7 @@ module.exports = async function saranv(sock, msg, texto) {
         }
 
         await sock.sendMessage(msg.key.remoteJid, {
-            text: "Estoy aprendiendo cosas nuevas para entenderte mejor, amor. ❤️ Todavía hay muchas cosas que no sé hacer, pero cada día aprenderé más para ayudarte."
+            text: "Estoy aprendiendo cosas nuevas para entenderte mejor, amor. ❤️"
         });
 
         return true;
