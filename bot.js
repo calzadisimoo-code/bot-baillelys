@@ -123,6 +123,7 @@ if (connection === "open") {
     console.log("==================================");
     console.log("BOT CONECTADO");
     console.log("==================================");
+	console.log(Object.keys(sock.contacts));
 
     iniciarEstados(sock);
 
