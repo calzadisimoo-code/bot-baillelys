@@ -1,11 +1,11 @@
-console.log("SARA SE EJECUTÓ");
-console.log("Mensaje:", texto);
-
 const funciones = require("./funciones");
 
-const MI_NUMERO = "573183676163"; // Tu número
+const MI_NUMERO = "573183676163";
 
 module.exports = async function saranv(sock, msg, texto) {
+
+    console.log("SARA SE EJECUTÓ");
+    console.log("Mensaje:", texto);
 
     const usuario = msg.key.remoteJid.replace("@s.whatsapp.net", "");
 
