@@ -8,6 +8,10 @@ const {
 } = require("./estadoAutomatico");
 
 const {
+    guardarContacto
+} = require("./contactos");
+
+const {
     revisarPedido
 } = require("./pedido");
 
@@ -186,6 +190,11 @@ if (usuario.endsWith("@g.us")) continue;
 if (usuario === "status@broadcast") continue;
 
 registrarPersona(usuario);
+
+guardarContacto(
+    usuario,
+    msg.pushName || "Sin nombre"
+);
 
                 // Obtener texto
                 let texto = "";
