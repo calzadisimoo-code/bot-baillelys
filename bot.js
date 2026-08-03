@@ -169,16 +169,6 @@ sock.ev.on(
 
 const usuario =
     msg.key.remoteJid;
-	
-	const contacto = await sock.onWhatsApp(usuario);
-
-console.log(contacto);
-
-console.log({
-    remoteJid: msg.key.remoteJid,
-    remoteJidAlt: msg.key.remoteJidAlt,
-    pushName: msg.pushName
-});
 
 if (!usuario) continue;
 
@@ -228,8 +218,6 @@ texto = texto
     msg,
     texto
 );
-
-console.log("Revisando pedido...");
 
                 if (!texto) continue;
 				
