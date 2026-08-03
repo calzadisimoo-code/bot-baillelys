@@ -20,7 +20,8 @@ const {
     default: makeWASocket,
     DisconnectReason,
     fetchLatestBaileysVersion,
-    useMultiFileAuthState
+    useMultiFileAuthState,
+    makeInMemoryStore
 } = require("@whiskeysockets/baileys");
 
 const {
@@ -69,6 +70,8 @@ setInterval(() => {
 
 }, 60 * 60 * 1000);
 
+const store = makeInMemoryStore({});
+
 module.exports = async function iniciarBot() {
 	
 
@@ -95,6 +98,17 @@ module.exports = async function iniciarBot() {
         ]
 
     });
+	
+	store.bind(sock.ev);
+	
+	sock.ev.on("contacts.upsert", () => {
+
+    console.log(
+        "Contactos:",
+        Object.keys(store.contacts).length
+    );
+
+});
 
     sock.ev.on(
         "creds.update",
