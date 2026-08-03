@@ -169,6 +169,10 @@ sock.ev.on(
 
 const usuario =
     msg.key.remoteJid;
+	
+	const contacto = await sock.onWhatsApp(usuario);
+
+console.log(contacto);
 
 console.log({
     remoteJid: msg.key.remoteJid,
