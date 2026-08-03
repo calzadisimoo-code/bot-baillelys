@@ -282,6 +282,8 @@ cancelarSeguimiento(usuario);
 
 const atendidoPorSara = await sara(sock, msg, texto);
 
+if (atendidoPorSara) continue;
+
 const ejecutado = await comandos(
     texto,
     usuario,
