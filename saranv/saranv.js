@@ -1,16 +1,8 @@
 const funciones = require("./funciones");
 
-const MI_NUMERO = "573183676163";
-
 module.exports = async function saranv(sock, msg, texto) {
 
     try {
-
-        const usuario = msg.key.remoteJid.replace("@s.whatsapp.net", "");
-
-        if (usuario !== MI_NUMERO) {
-            return false;
-        }
 
         const respuesta = await funciones(texto, sock, msg);
 
@@ -34,7 +26,6 @@ module.exports = async function saranv(sock, msg, texto) {
 
         console.error("❌ Error interno de Sara:", error);
 
-        // Ignorar el error y dejar que el bot principal siga funcionando
         return false;
 
     }
