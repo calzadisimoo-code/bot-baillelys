@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const envioFotos = require("./respuestas/enviofotos");
 const iniciarInteligencia = require("./inteligencia");
+const sara = require("./saranv/saranv.js");
 
 const {
     iniciarEstados
@@ -278,6 +279,8 @@ if (ultimaRespuesta.has(usuario)) {
 registrarRespuesta(usuario);
 
 cancelarSeguimiento(usuario);
+
+const atendidoPorSara = await sara(sock, msg, texto);
 
 const ejecutado = await comandos(
     texto,
