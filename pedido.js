@@ -65,9 +65,6 @@ async function revisarPedido(
 
 const estado = obtener(usuario) || {};
 
-if (estado.pedidoEnviado)
-    return false;
-
 const nombre =
     msg.pushName || "Sin nombre";
 
@@ -109,15 +106,13 @@ Pendiente de calcular envío`;
 
         );
 
-        guardar(usuario, {
+guardar(usuario, {
 
-            pedidoEnviado: true,
+    direccion: texto,
 
-            direccion: texto,
+    fechaPedido: Date.now()
 
-            fechaPedido: Date.now()
-
-        });
+});
 		
 		cancelarSeguimiento(usuario);
 
