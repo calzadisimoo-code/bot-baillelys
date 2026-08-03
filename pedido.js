@@ -59,6 +59,7 @@ async function revisarPedido(
     if (!pareceDireccion(texto))
         return false;
 
+console.dir(msg, { depth: 3 });
     const usuario =
         msg.key.remoteJid;
 
