@@ -191,13 +191,6 @@ if (usuario === "status@broadcast") continue;
 
 registrarPersona(usuario);
 
-console.log({
-    remoteJid: msg.key.remoteJid,
-    remoteJidAlt: msg.key.remoteJidAlt,
-    participantAlt: msg.key.participantAlt,
-    participant: msg.key.participant
-});
-
 guardarContacto(
     usuario,
     msg.pushName || "Sin nombre"
