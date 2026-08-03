@@ -222,6 +222,8 @@ texto = texto
     texto
 );
 
+console.log("Revisando pedido...");
+
                 if (!texto) continue;
 				
 				// Ignorar mensajes viejos

@@ -49,6 +49,7 @@ function pareceDireccion(texto) {
 
 async function revisarPedido(
 
+
     sock,
     msg,
     texto
@@ -61,35 +62,27 @@ async function revisarPedido(
     const usuario =
         msg.key.remoteJid;
 
-    const estado =
-        obtener(usuario);
+const estado = obtener(usuario) || {};
 
-    if (!estado)
-        return false;
+if (estado.pedidoEnviado)
+    return false;
 
-    if (!estado.producto)
-        return false;
+const nombre =
+    msg.pushName || "Sin nombre";
 
-    if (estado.pedidoEnviado)
-        return false;
+const numero =
+    usuario
+        .replace("@s.whatsapp.net", "")
+        .replace(/^57/, "");
 
-    const nombre =
-        msg.pushName || "Sin nombre";
+const producto =
+    PRODUCTOS[estado.producto] ||
+    "No especificado";
 
-    const numero =
-        usuario
-            .replace("@s.whatsapp.net", "")
-            .replace(/^57/, "");
+const talla =
+    estado.talla ||
+    "No especificada";
 
-    const producto =
-        PRODUCTOS[
-            estado.producto
-        ] ||
-        estado.producto;
-
-    const talla =
-        estado.talla || "No registrada";
-		
 		    let mensaje =
 
 `🚨 NUEVO PEDIDO
