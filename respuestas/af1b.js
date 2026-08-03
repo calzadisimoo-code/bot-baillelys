@@ -16,13 +16,13 @@ module.exports = function (texto, usuario) {
     ) {
 
         // Evitar que las búsquedas de la importada entren aquí
-        if (
-            texto.includes(".1") ||
-            texto.includes("importada") ||
-            texto.includes("1.1")
-        ) {
-            return null;
-        }
+if (
+    texto.includes(".1") ||
+    texto.includes("1.1") ||
+    texto.includes("import")
+) {
+    return null;
+}
 
         registrarProducto(usuario);
 

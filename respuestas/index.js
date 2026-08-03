@@ -22,7 +22,7 @@ module.exports = function (texto, usuario) {
         .toLowerCase()
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[^\p{L}\p{N}\s]/gu, "")
+        .replace(/[^\p{L}\p{N}\s.]/gu, "")
         .trim();
 
     return (
