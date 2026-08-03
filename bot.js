@@ -2,6 +2,7 @@ const qrcode = require("qrcode-terminal");
 const fs = require("fs");
 const path = require("path");
 const envioFotos = require("./respuestas/enviofotos");
+const iniciarInteligencia = require("./inteligencia");
 
 const {
     iniciarEstados
@@ -127,9 +128,9 @@ if (connection === "open") {
     console.log("==================================");
     console.log("BOT CONECTADO");
     console.log("==================================");
-	console.log(Object.keys(sock.contacts));
-
+     
     iniciarEstados(sock);
+	iniciarInteligencia(sock);
 
 }
 
