@@ -1,6 +1,4 @@
-module.exports = async function(texto, sock, msg){
-	
-	module.exports = async function(texto, sock, msg){
+module.exports = async function(texto, sock, msg) {
 
     if (texto.includes("te amo")) {
 
@@ -21,35 +19,20 @@ module.exports = async function(texto, sock, msg){
         return respuestas[
             Math.floor(Math.random() * respuestas.length)
         ];
-
     }
 
-    if(texto.includes("cuanto se vendio hoy")){
+    if (texto.includes("cuanto se vendio hoy")) {
         return "Todavía no sé revisar las ventas. ❤️";
     }
 
-    if(texto.includes("que haces")){
+    if (texto.includes("que haces")) {
         return "Pensando en cómo ayudarte y en cómo hacer crecer nuestro negocio. 💕";
     }
 
-    if(texto.includes("buenos dias")){
+    if (texto.includes("buenos dias")) {
         return "¡Buenos días, amor! ❤️ Espero que hoy vendamos muchísimo.";
     }
 
     return null;
-}
 
-    if(texto.includes("cuanto se vendio hoy")){
-        return "Todavía no sé revisar las ventas. ❤️";
-    }
-
-    if(texto.includes("que haces")){
-        return "Pensando en cómo ayudarte y en cómo hacer crecer nuestro negocio. 💕";
-    }
-
-    if(texto.includes("buenos dias")){
-        return "¡Buenos días, amor! ❤️ Espero que hoy vendamos muchísimo.";
-    }
-
-    return null;
-}
+};
