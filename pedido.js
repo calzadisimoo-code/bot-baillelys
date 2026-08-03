@@ -71,11 +71,6 @@ if (estado.pedidoEnviado)
 const nombre =
     msg.pushName || "Sin nombre";
 
-const numero =
-    usuario
-        .replace("@s.whatsapp.net", "")
-        .replace(/^57/, "");
-
 const producto =
     PRODUCTOS[estado.producto] ||
     "No especificado";
@@ -88,7 +83,9 @@ const talla =
 
 `🚨 NUEVO PEDIDO
 
-👤 ${nombre} ${numero}
+👤 ${nombre}
+
+📱 Cliente
 
 📦 ${producto}
 
@@ -124,10 +121,10 @@ Pendiente de calcular envío`;
 		
 		cancelarSeguimiento(usuario);
 
-        console.log(
-            "✅ Pedido detectado:",
-            numero
-        );
+console.log(
+    "✅ Pedido detectado:",
+    nombre
+);
 
         return true;
 
