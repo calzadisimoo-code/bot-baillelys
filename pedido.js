@@ -80,9 +80,7 @@ const talla =
 
 `🚨 NUEVO PEDIDO
 
-👤 ${nombre}
-
-📱 Cliente
+👤 ${nombre} 📱 
 
 📦 ${producto}
 
