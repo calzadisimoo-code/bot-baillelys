@@ -93,15 +93,18 @@ ${talla}
 
     try {
 
-        await sock.sendMessage(
+const destinatarios = [
+    "573183676163@s.whatsapp.net", // Tu número
+    "573233898981@s.whatsapp.net" // Número de la trabajadora
+];
 
-            "573183676163@s.whatsapp.net",
+for (const numero of destinatarios) {
 
-            {
-                text: mensaje
-            }
+    await sock.sendMessage(numero, {
+        text: mensaje
+    });
 
-        );
+}
 
 guardar(usuario, {
 
