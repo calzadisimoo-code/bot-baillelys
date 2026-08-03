@@ -89,8 +89,7 @@ ${talla}
 
 📍 ${texto}
 
-💰 Total:
-Pendiente de calcular envío`;
+💰 Total:`;
 
     try {
 

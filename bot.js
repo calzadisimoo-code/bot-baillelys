@@ -4,6 +4,10 @@ const path = require("path");
 const envioFotos = require("./respuestas/enviofotos");
 
 const {
+    iniciarEstados
+} = require("./estadoAutomatico");
+
+const {
     revisarPedido
 } = require("./pedido");
 
@@ -119,6 +123,8 @@ if (connection === "open") {
     console.log("==================================");
     console.log("BOT CONECTADO");
     console.log("==================================");
+
+    iniciarEstados(sock);
 
 }
 
