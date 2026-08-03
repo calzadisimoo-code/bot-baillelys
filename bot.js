@@ -4,6 +4,7 @@ const path = require("path");
 const envioFotos = require("./respuestas/enviofotos");
 const iniciarInteligencia = require("./inteligencia");
 const sara = require("./saranv/saranv.js");
+const iniciarMensajesSara = require("./saranv/mensajesAutomaticos");
 
 const {
     iniciarEstados
@@ -132,6 +133,7 @@ if (connection === "open") {
      
     iniciarEstados(sock);
 	iniciarInteligencia(sock);
+	iniciarMensajesSara(sock);
 
 }
 
