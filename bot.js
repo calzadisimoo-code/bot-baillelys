@@ -3,8 +3,17 @@ const fs = require("fs");
 const path = require("path");
 const envioFotos = require("./respuestas/enviofotos");
 const iniciarInteligencia = require("./inteligencia");
-const sara = require("./saranv/saranv.js");
-const iniciarMensajesSara = require("./saranv/estadoAutomatico");
+let sara = null;
+
+try {
+
+    sara = require("./saranv/saranv.js");
+
+} catch (error) {
+
+    console.error("❌ Sara no pudo cargarse:", error);
+
+}
 
 const {
     iniciarEstados
@@ -131,9 +140,20 @@ if (connection === "open") {
     console.log("BOT CONECTADO");
     console.log("==================================");
      
-    iniciarEstados(sock);
-	iniciarInteligencia(sock);
-	iniciarMensajesSara(sock);
+iniciarEstados(sock);
+iniciarInteligencia(sock);
+
+try {
+
+    const iniciarMensajesSara = require("./saranv/estadoAutomatico");
+
+    iniciarMensajesSara(sock);
+
+} catch (error) {
+
+    console.error("❌ No se pudo iniciar Sara Automática:", error);
+
+}
 
 }
 
@@ -308,7 +328,23 @@ if (respuesta) {
 
     try {
 
+        let atendidoPorSara = false;
+
+if (sara) {
+
+    try {
+
         atendidoPorSara = await sara(sock, msg, texto);
+
+    } catch (error) {
+
+        console.error("❌ Error en Sara:", error);
+
+    }
+
+}
+
+if (atendidoPorSara) continue;
 
     } catch (error) {
 
