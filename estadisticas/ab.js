@@ -177,7 +177,7 @@ function reporte(nombre) {
                 ? 0
                 : (respondieron / enviados) * 100;
 
-        texto +=
+texto +=
 `${letra}
 📤 Enviados: ${enviados}
 💬 Respondieron: ${respondieron}
@@ -208,6 +208,8 @@ function reporteTodos() {
 
     let texto = "📊 RESULTADOS A/B\n\n";
 
+let detalleProductos = "";
+
 let mejorProducto = "";
 let mejorProductoPorcentaje = -1;
 
@@ -230,8 +232,8 @@ const recomendaciones = [];
 
     for (const nombre of Object.keys(datos)) {
 
-        texto += `━━━━━━━━━━━━━━━━━━\n`;
-        texto += `📦 ${nombre.toUpperCase()}\n\n`;
+detalleProductos += `━━━━━━━━━━━━━━━━━━\n`;
+detalleProductos += `📦 ${nombre.toUpperCase()}\n\n`;
 
 let mejor = "";
 let mejorPorcentaje = -1;
@@ -254,7 +256,7 @@ let totalRespondieron = 0;
 totalEnviados += enviados;
 totalRespondieron += respondieron;
 
-            texto +=
+detalleProductos +=
 `${letra}
 📤 Enviados: ${enviados}
 💬 Respondieron: ${respondieron}
@@ -300,9 +302,12 @@ if (
 
  }
 
-        texto +=
-`🏆 Mejor: ${mejor} (${mejorPorcentaje.toFixed(1)}%)
-💀 Peor: ${peor} (${peorPorcentaje.toFixed(1)}%)
+        detalleProductos +=
+`🏆 Mejor: ${mejor}
+📈 ${mejorPorcentaje.toFixed(1)}%
+
+💀 Peor: ${peor}
+📉 ${peorPorcentaje.toFixed(1)}%
 
 `;
 
@@ -379,8 +384,6 @@ if (peorRespuestaGlobal) {
 
 }
 
-if (masEnviadosProducto === mejorProducto) {
-
 if (
     mejorProducto &&
     mejorProducto !== masEnviadosProducto
@@ -391,6 +394,8 @@ if (
     );
 
 }
+
+if (masEnviadosProducto === mejorProducto) {
 
     recomendaciones.push(
         `🚀 ${mejorProducto} además de convertir bien, también es el producto más consultado. Puede ser tu mejor candidato para anuncios.`
@@ -404,8 +409,20 @@ texto +=
 🏆 RESUMEN GENERAL
 
 🥇 Producto con mejor conversión:
-${mejorProducto}
-(${mejorProductoPorcentaje.toFixed(1)}%)
+${mejorProducto || "Aún no hay suficientes datos"}
+${
+mejorProducto
+? `(${mejorProductoPorcentaje.toFixed(1)}%)`
+: ""
+}
+
+📉 Producto con peor conversión:
+${peorProducto || "Aún no hay suficientes datos"}
+${
+peorProducto
+? `(${peorProductoPorcentaje.toFixed(1)}%)`
+: ""
+}
 
 💬 Producto con más respuestas:
 ${masRespuestasProducto}
@@ -416,12 +433,20 @@ ${masEnviadosProducto}
 (${masEnviados})
 
 👑 Mejor respuesta del bot:
-${mejorRespuestaGlobal}
-(${mejorRespuestaGlobalPorcentaje.toFixed(1)}%)
+${mejorRespuestaGlobal || "Aún no hay suficientes datos"}
+${
+mejorRespuestaGlobal
+? `(${mejorRespuestaGlobalPorcentaje.toFixed(1)}%)`
+: ""
+}
 
 💀 Peor respuesta del bot:
-${peorRespuestaGlobal}
-(${peorRespuestaGlobalPorcentaje.toFixed(1)}%)
+${peorRespuestaGlobal || "Aún no hay suficientes datos"}
+${
+peorRespuestaGlobal
+? `(${peorRespuestaGlobalPorcentaje.toFixed(1)}%)`
+: ""
+}
 `;
 
 texto +=
@@ -433,6 +458,8 @@ texto +=
 
 ${recomendaciones.join("\n")}
 `;
+
+texto += detalleProductos;
 
 return texto;
 
