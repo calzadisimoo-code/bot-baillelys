@@ -1,6 +1,11 @@
 module.exports = function (texto) {
-
-    texto = texto.toLowerCase();
+	
+	texto = texto
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
 
 const saludos = [
     "hola",
@@ -10,17 +15,23 @@ const saludos = [
     "holi",
     "hey",
     "buenas",
+    "bien dia",
     "buen dia",
-    "buen día",
     "buenos dias",
-    "buenos días",
     "buenas tardes",
-    "buenas noches"
+    "buenas noches",
+    "buen diaa",
+    "buen diaaa"
 ];
 
 let saludo = "👋 ¡Hola!";
 
-if (texto.includes("buenos dias") || texto.includes("buenos días") || texto.includes("buen dia") || texto.includes("buen día")) {
+if (
+    texto.includes("bien dia") ||
+    texto.includes("buen dia")
+) {
+    saludo = "☀️ ¡Buen día!";
+} else if (texto.includes("buenos dias")) {
     saludo = "☀️ ¡Buenos días!";
 } else if (texto.includes("buenas tardes")) {
     saludo = "🌤️ ¡Buenas tardes!";
@@ -29,8 +40,7 @@ if (texto.includes("buenos dias") || texto.includes("buenos días") || texto.inc
 } else if (texto.includes("buenas")) {
     saludo = "😊 ¡Buenas!";
 }
-
-if (saludos.some(s => texto.includes(s))) {
+if (saludos.some(s => new RegExp(`\\b${s}\\b`).test(texto))) {
     return `${saludo} Bienvenido a CALZADISIMO.
 
 👟 Tenemos Air Force 1, Paris, sandalias, cargadores y más.

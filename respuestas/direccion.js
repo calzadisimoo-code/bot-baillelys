@@ -73,7 +73,7 @@ if (
 
         return obtenerVariante("ubicacion", usuario, {
 
-A: `📍 Estamos ubicados en la *Calle 29 #26-30*, entrada recomendada del Centro Comercial Villa de las Palmas.
+A: `📍 Estamos ubicados en Palmira *Calle 29 #26-30*, entrada recomendada del Centro Comercial Villa de las Palmas.
 ufvii
 ➡️ Dentro del centro comercial nos encuentras en el **Local 291 - CALZADISIMO**.
 
@@ -85,7 +85,7 @@ https://maps.app.goo.gl/SuGbvW8j5TourCs9A
 
 ¿Prefieres pasar por el local o hacemos el envío?`,
 
-B: `📍 ¡Sí tenemos punto físico!
+B: `📍 ¡Sí tenemos punto físico en Palmira!
 
 La entrada más fácil es por la *Calle 29 #26-30*, Centro Comercial Villa de las Palmas.
 
@@ -97,7 +97,7 @@ https://maps.app.goo.gl/SuGbvW8j5TourCs9A
 
 ¿Vas a pasar hoy o prefieres envío?`,
 
-C: `📍 Puedes visitarnos ingresando por la *Calle 29 #26-30*, Centro Comercial Villa de las Palmas.
+C: `📍 Puedes visitarnos en Palmira por la *Calle 29 #26-30*, Centro Comercial Villa de las Palmas.
 
 ➡️ Dentro del centro comercial estamos en el **Local 291 - CALZADISIMO**.
 Preguntar por monica
@@ -119,7 +119,7 @@ https://maps.app.goo.gl/SuGbvW8j5TourCs9A
 
 ¿Te esperamos o hacemos el envío?`,
 
-E: `📍 Nuestra tienda está dentro del Centro Comercial Villa de las Palmas.
+E: `📍 Nuestra tienda está dentro del Centro Comercial Villa de las Palmas - Palmira.
 
 Ingresa por la *Calle 29 #26-30* y encontrarás el **Local 291 - CALZADISIMO**.
 Preguntar por monica
@@ -131,7 +131,7 @@ https://maps.app.goo.gl/SuGbvW8j5TourCs9A
 
 F: `📍 Dirección:
 
-*Calle 29 #26-30*
+Palmira - *Calle 29 #26-30*
 Centro Comercial Villa de las Palmas
 
 ➡️ **Local 291 - CALZADISIMO**
