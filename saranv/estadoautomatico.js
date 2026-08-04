@@ -1,8 +1,21 @@
 const cron = require("node-cron");
+const fs = require("fs");
+const path = require("path");
 
 const MI_NUMERO = "573183676163@s.whatsapp.net";
 
+const archivoEstado = path.join(__dirname, "saraestado.json");
+
 let ultimoMensaje = -1;
+
+if (fs.existsSync(archivoEstado)) {
+    try {
+        const datos = JSON.parse(fs.readFileSync(archivoEstado, "utf8"));
+        ultimoMensaje = datos.ultimoMensaje ?? -1;
+    } catch {
+        ultimoMensaje = -1;
+    }
+}
 
 module.exports = function iniciarEstadoAutomaticoSara(sock) {
 
@@ -149,6 +162,15 @@ do {
 } while (indice === ultimoMensaje && mensajes.length > 1);
 
 ultimoMensaje = indice;
+
+fs.writeFileSync(
+    archivoEstado,
+    JSON.stringify(
+        { ultimoMensaje },
+        null,
+        2
+    )
+);
 
 const mensaje = mensajes[indice];
 
