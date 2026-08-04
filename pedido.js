@@ -79,7 +79,7 @@ let mensaje =
 `👤 ${nombre} 📱
 📦 ${producto}${talla ? ` • ${talla}` : ""}
 📍 ${texto}
-💰 Total:`;
+💰 $`;
 
     try {
 
