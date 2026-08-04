@@ -1,20 +1,54 @@
 const { obtenerVariante } = require("../estadisticas/ab");
-const { guardar } = require("../estado");
+const { obtener, guardar } = require("../estado");
 const {
     registrarProducto
 } = require("../estadisticas/hoy");
 
 module.exports = function (texto, usuario) {
 
+    const estado = obtener(usuario);
+
+    if (estado?.producto === "pro4") {
+
+        const celulares = {
+            iphone: "iPhone",
+            android: "Android",
+            samsung: "Samsung",
+            xiaomi: "Xiaomi",
+            motorola: "Motorola",
+            huawei: "Huawei",
+            oppo: "Oppo",
+            realme: "Realme",
+            honor: "Honor",
+            vivo: "Vivo",
+            infinix: "Infinix",
+            tecno: "Tecno"
+        };
+
+        for (const marca in celulares) {
+
+            if (texto.includes(marca)) {
+
+                return `📱 ¡Perfecto! Son totalmente compatibles con *${celulares[marca]}*.
+
+🚚 ¿A qué ciudad o barrio sería el envío? Así te digo el costo y el tiempo de entrega.`;
+
+            }
+
+        }
+
+    } 
+
     if (
         texto.includes("pro 4") ||
         texto.includes("pro4") ||
         texto.includes("airpods pro 4") ||
-		texto.includes("audifonos con cancelacion de ruido") ||
+        texto.includes("audifonos con cancelacion de ruido") ||
         texto.includes("airpod pro 4") ||
         texto.includes("audifonos pro 4")
     ) {
-		
+
+      
 		registrarProducto(usuario);
         guardar(usuario, {
             producto: "pro4",
