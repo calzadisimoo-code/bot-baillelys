@@ -77,11 +77,8 @@ const talla = estado.talla || "";
 let mensaje =
 
 `👤 ${nombre} 📱
-
+📦 ${producto}${talla ? ` • ${talla}` : ""}
 📍 ${texto}
-
-📦 ${producto}${talla ? ` Talla: ${talla}` : ""}
-
 💰 Total:`;
 
     try {
