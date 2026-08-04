@@ -11,6 +11,7 @@ const pro4 = require("./pro4");
 const af1ni = require("./af1ni");
 const carg120w = require("./carg120w");
 const af1b = require("./af1b");
+const r4bd = require("./r4bd");
 
 module.exports = function (texto, usuario) {
 
@@ -25,20 +26,21 @@ module.exports = function (texto, usuario) {
         .replace(/[^\p{L}\p{N}\s.]/gu, "")
         .trim();
 
-    return (
-        catalogo(texto, usuario) ||
-        envio(texto, usuario) ||
-        direccion(texto, usuario) ||
-        carg67w(texto, usuario) ||
-        af1bi(texto, usuario) ||
-        paris(texto, usuario) ||
-		carg120w(texto, usuario) ||
-		af1ni(texto, usuario) ||
-		pro4(texto, usuario) ||  
-        talla(texto, usuario) ||
-		fotos(texto, usuario) ||
-		af1b(texto, usuario) ||
-        sara(texto)
-    );
+return (
+    catalogo(texto, usuario) ||
+    envio(texto, usuario) ||
+    direccion(texto, usuario) ||
+    carg67w(texto, usuario) ||
+    af1bi(texto, usuario) ||
+    paris(texto, usuario) ||
+    carg120w(texto, usuario) ||
+    af1ni(texto, usuario) ||
+    pro4(texto, usuario) ||
+    talla(texto, usuario) ||
+    fotos(texto, usuario) ||
+    af1b(texto, usuario) ||
+    r4bd(texto, usuario) ||
+    sara(texto)
+);
 
 };
