@@ -72,17 +72,14 @@ const producto =
     PRODUCTOS[estado.producto] ||
     "No especificado";
 
-const talla =
-    estado.talla ||
-    "No especificada";
+const talla = estado.talla || "";
 
-		    let mensaje =
+let mensaje =
 
 `📍 ${texto}
 
 👤 ${nombre} 📱
-📦 ${producto} Talla: ${talla}
-
+📦 ${producto}${talla ? ` Talla: ${talla}` : ""}
 
 💰 Total:`;
 
