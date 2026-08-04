@@ -13,9 +13,7 @@ function iniciarProgramador(sock) {
                 {
 
                     text:
-`🧠 KYRO AI
-
-📊 Ya estoy analizando el rendimiento del día.
+`Amor ya estoy analizando el rendimiento del día.
 
 Muy pronto aquí recibirás automáticamente:
 
