@@ -145,7 +145,7 @@ iniciarInteligencia(sock);
 
 try {
 
-    const iniciarMensajesSara = require("./saranv/estadoAutomatico");
+    const iniciarMensajesSara = require("./saranv/estadoautomatico");
 
     iniciarMensajesSara(sock);
 
