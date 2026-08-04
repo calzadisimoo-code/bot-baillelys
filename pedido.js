@@ -15,8 +15,6 @@ const PALABRAS_DIRECCION = [
     "transversal",
     "tv",
     "diagonal",
-    "dg#",
-    "dg ",
     "manzana",
     "mz",
     "casa",
