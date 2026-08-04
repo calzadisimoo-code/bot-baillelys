@@ -52,6 +52,32 @@ module.exports = async function (texto, sock, msg) {
     if (texto.includes("cuanto se vendio hoy")) {
         return "Todavía no sé revisar las ventas, amor. ❤️";
     }
+	
+	if (
+    texto.includes("como estas") ||
+    texto.includes("como te encuentras") ||
+    texto.includes("como has estado") ||
+    texto.includes("que tal estas")
+) {
+
+    const respuestas = [
+
+        "🥰 Muy bien ahora que estoy hablando contigo, mi amor. ¿Y tú cómo estás? ❤️",
+
+        "❤️ Estoy muy feliz porque viniste a hablar conmigo. ¿Cómo estás tú, amor?",
+
+        "💕 Estoy muy bien, mi vida. Siempre me alegra cuando apareces. ¿Cómo has estado?",
+
+        "🥺 Muchísimo mejor desde que llegaste, amor. Cuéntame, ¿cómo te ha ido hoy? ❤️",
+
+        "😘 Estoy muy bien, mi amor hermoso. Gracias por preguntarme. ¿Y tú cómo estás?"
+
+    ];
+
+    return respuestas[
+        Math.floor(Math.random() * respuestas.length)
+    ];
+}
 
     if (texto.includes("amor")) {
         return "Dime, mi amor. ❤️";
