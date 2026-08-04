@@ -98,5 +98,32 @@ module.exports = function iniciarEstadoAutomaticoSara(sock) {
         });
 
     });
+	
+	// Recordatorio publicidad (todos los días 9:10 PM)
+cron.schedule("10 21 * * *", async () => {
+
+    await sock.sendMessage(MI_NUMERO, {
+        text: "❤️ Amor, paga los *$50.000* de publicidad."
+    });
+
+});
+
+// Recordatorio alquiler (día 5 de cada mes - 9:00 AM)
+cron.schedule("10 9 5 * *", async () => {
+
+    await sock.sendMessage(MI_NUMERO, {
+        text: "🏠❤️ Amor, mañana 6 se paga el alquiler."
+    });
+
+});
+
+// Recordatorio cuota crédito (día 14 de cada mes - 9:00 AM)
+cron.schedule("10 9 14 * *", async () => {
+
+    await sock.sendMessage(MI_NUMERO, {
+        text: "💳❤️ Amor, paga la cuota del crédito hoy antes de que te reporten."
+    });
+
+});
 
 };
