@@ -12,6 +12,7 @@ module.exports = function iniciarEstadoAutomaticoSara(sock) {
 
         try {
 
+
             const mensajes = [
 
                 "❤️ Amor, recuerda que cada mejora que haces al bot hoy puede ahorrarte horas de trabajo mañana.",
