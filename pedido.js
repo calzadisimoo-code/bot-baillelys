@@ -76,9 +76,10 @@ const talla = estado.talla || "";
 
 let mensaje =
 
-`📍 ${texto}
+`👤 ${nombre} 📱
 
-👤 ${nombre} 📱
+📍 ${texto}
+
 📦 ${producto}${talla ? ` Talla: ${talla}` : ""}
 
 💰 Total:`;
