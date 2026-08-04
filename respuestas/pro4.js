@@ -25,9 +25,24 @@ module.exports = function (texto, usuario) {
             tecno: "Tecno"
         };
 
+        const patrones = {
+            iphone: /\biphone\b/i,
+            android: /\bandroid\b/i,
+            samsung: /\bsamsung\b/i,
+            xiaomi: /\bxiaomi\b/i,
+            motorola: /\bmotorola\b/i,
+            huawei: /\bhuawei\b/i,
+            oppo: /\boppo\b/i,
+            realme: /\brealme\b/i,
+            honor: /\bhonor\b/i,
+            vivo: /\b(celular|telefono|teléfono|movil|móvil)\s+vivo\b|\b(vivo)\s+(celular|telefono|teléfono|movil|móvil)\b|\bes\s+para\s+vivo\b|^vivo$/i,
+            infinix: /\binfinix\b/i,
+            tecno: /\btecno\b/i
+        };
+
         for (const marca in celulares) {
 
-            if (texto.includes(marca)) {
+            if (patrones[marca].test(texto)) {
 
                 return `📱 ¡Perfecto! Son totalmente compatibles con *${celulares[marca]}*.
 
@@ -37,7 +52,7 @@ module.exports = function (texto, usuario) {
 
         }
 
-    } 
+    }
 
     if (
         texto.includes("pro 4") ||
@@ -48,11 +63,11 @@ module.exports = function (texto, usuario) {
         texto.includes("audifonos pro 4")
     ) {
 
-      
-		registrarProducto(usuario);
+        registrarProducto(usuario);
+
         guardar(usuario, {
             producto: "pro4",
-			pedidoEnviado: false
+            pedidoEnviado: false
         });
 
         return obtenerVariante("pro4", usuario, {
