@@ -14,6 +14,30 @@ if (!estado?.producto) {
     return null;
 }
 
+const palabrasDireccion = [
+    "calle",
+    "cl",
+    "carrera",
+    "cra",
+    "kr",
+    "kra",
+    "transversal",
+    "tv",
+    "diagonal",
+    "dg",
+    "#",
+    "casa",
+    "apartamento",
+    "apto",
+    "barrio",
+    "manzana",
+    "mz"
+];
+
+if (palabrasDireccion.some(p => texto.includes(p))) {
+    return null;
+}
+
 const tallas = [];
 
 for (let i = 21; i <= 44; i++) {
