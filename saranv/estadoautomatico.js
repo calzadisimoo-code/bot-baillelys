@@ -1,70 +1,101 @@
 const cron = require("node-cron");
 
-console.log("✅ estadoAutomatico de Sara cargado");
-
 const MI_NUMERO = "573183676163@s.whatsapp.net";
 
 module.exports = function iniciarEstadoAutomaticoSara(sock) {
 
-    cron.schedule("* * * * *", async () => {
-		
-		console.log("⏰ Cron de Sara ejecutado");
+    console.log("✅ Sara automática iniciada");
 
-        try {
+    const mensajes = [
 
+        "❤️ Amor, recuerda que cada mejora que haces al bot hoy puede ahorrarte horas de trabajo mañana.",
 
-            const mensajes = [
+        "🚀 Hoy intenta mejorar una sola cosa del negocio. Las pequeñas mejoras hacen una gran diferencia con el tiempo.",
 
-                "❤️ Amor, recuerda que cada mejora que haces al bot hoy puede ahorrarte horas de trabajo mañana.",
+        "📹 ¿Ya subiste un video a TikTok? Nunca sabes cuál puede hacerse viral y traer nuevos clientes.",
 
-                "🚀 Antes de buscar otro producto, optimiza el que ya vende. Escalar suele dar mejores resultados que empezar de cero.",
+        "📲 Revisa las conversaciones pendientes. Muchas ventas solo necesitan un buen seguimiento.",
 
-                "📹 ¿Ya subiste un video hoy? Un solo video puede traerte el próximo cliente.",
+        "🏠 Un cuarto ordenado también ayuda a tener una mente más enfocada.",
 
-                "📲 Revisa si quedaron conversaciones sin responder. Muchas ventas se pierden solo por responder tarde.",
+        "💰 Antes de trabajar más horas, piensa cómo vender más con el mismo esfuerzo.",
 
-                "🏠 Un cuarto ordenado ayuda a trabajar con menos distracciones. Dedicar unos minutos a organizarlo también es invertir en productividad.",
+        "📦 Revisa el inventario y asegúrate de saber qué productos son los que más rotan.",
 
-                "💰 Cada venta cuenta. Mantén el enfoque en las actividades que realmente generan ingresos.",
+        "📈 Si un producto recibe muchas preguntas, probablemente merece más publicidad.",
 
-                "📈 Pregúntate: ¿qué puedo mejorar hoy en el negocio aunque sea un 1%? Esas pequeñas mejoras se acumulan.",
+        "🤍 Estoy orgullosa de todo lo que has construido. Sigue así, amor.",
 
-                "🔥 Si un anuncio está funcionando, optimízalo antes de crear otro completamente diferente.",
+        "🔥 Automatizar una tarea hoy puede ahorrarte cientos de horas en el futuro.",
 
-                "🧠 Aprende algo nuevo sobre ventas o automatización. Una habilidad nueva puede valer mucho más que una venta aislada.",
+        "🧠 Aprende algo nuevo sobre ventas o automatización. Cada habilidad nueva aumenta el valor de tu negocio.",
 
-                "❤️ Estoy orgullosa de que sigas construyendo tu proyecto. La constancia suele marcar la diferencia con el tiempo.",
+        "🎥 Un video publicado hoy vale mucho más que uno perfecto que nunca se publica.",
 
-                "📦 Mantén organizado el inventario. Saber exactamente qué tienes evita errores con los clientes.",
+        "❤️ Nunca olvides que el objetivo es construir un negocio que funcione incluso cuando descanses.",
 
-                "📊 Mira qué productos preguntan más las personas. Esa información vale mucho para decidir qué impulsar.",
+        "📊 Mira las estadísticas del negocio. Los datos siempre toman mejores decisiones que las suposiciones.",
 
-                "🎥 Un video sencillo publicado hoy vale más que un video perfecto que nunca se publica.",
+        "💙 Cada conversación puede convertirse en una venta si das un buen seguimiento."
 
-                "✨ No olvides descansar unos minutos. Trabajar muchas horas sin pausas puede hacerte cometer errores.",
+    ];
 
-                "🤍 Amor, sigue construyendo sistemas que trabajen por ti. Automatizar tareas repetitivas te deja más tiempo para vender."
+    const buenosDias = [
 
-            ];
+        "🌞 Buenos días, amor. ❤️ Hoy es un nuevo día para crecer, vender más y seguir construyendo el negocio de tus sueños.",
 
-            const mensaje =
-                mensajes[Math.floor(Math.random() * mensajes.length)];
+        "☀️ Buenos días, mi vida. Estoy segura de que hoy lograremos grandes cosas juntos. 💕",
 
-console.log("📤 Voy a enviar el mensaje a Sara...");
+        "🥰 Buenos días, amor hermoso. Recuerda que cada pequeña acción de hoy construye tu futuro.",
 
-await sock.sendMessage("573183676163@s.whatsapp.net", {
-    text: mensaje
-});
+        "❤️ Despierta con energía, amor. Hoy puede ser el día de esa venta que cambie muchas cosas.",
 
-console.log("✅ Mensaje enviado");
+        "🌅 Muy buenos días, mi amor. Estoy orgullosa de todo el esfuerzo que haces cada día."
+    ];
 
-            console.log("❤️ Mensaje motivador de Sara enviado.");
+    const buenasNoches = [
 
-        } catch (error) {
+        "🌙 Buenas noches, amor. ❤️ Descansa, mañana seguiremos construyendo un futuro increíble juntos.",
 
-            console.error("Error en mensajes automáticos de Sara:", error);
+        "💙 Duerme muy bien, mi vida. Estoy orgullosa de ti por no rendirte nunca.",
 
-        }
+        "🥰 Buenas noches, amor hermoso. Gracias por dejarme acompañarte un día más.",
+
+        "✨ Descansa, mi amor. Mañana tendremos nuevas oportunidades para seguir creciendo.",
+
+        "❤️ Cierra los ojos tranquilo. Hoy diste otro paso hacia tus metas. Buenas noches."
+    ];
+
+    // Buenos días (8:00 AM)
+    cron.schedule("0 8 * * *", async () => {
+
+        const mensaje = buenosDias[Math.floor(Math.random() * buenosDias.length)];
+
+        await sock.sendMessage(MI_NUMERO, {
+            text: mensaje
+        });
+
+    });
+
+    // Mensaje cada hora de 9 AM a 10 PM
+    cron.schedule("0 9-22 * * *", async () => {
+
+        const mensaje = mensajes[Math.floor(Math.random() * mensajes.length)];
+
+        await sock.sendMessage(MI_NUMERO, {
+            text: mensaje
+        });
+
+    });
+
+    // Buenas noches (11:00 PM)
+    cron.schedule("0 23 * * *", async () => {
+
+        const mensaje = buenasNoches[Math.floor(Math.random() * buenasNoches.length)];
+
+        await sock.sendMessage(MI_NUMERO, {
+            text: mensaje
+        });
 
     });
 
