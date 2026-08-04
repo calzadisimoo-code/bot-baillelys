@@ -11,6 +11,7 @@ module.exports = function (texto, usuario) {
         texto.includes("airforce") ||
 		texto.includes("for 1") ||
 		texto.includes("quiero las air force") ||
+		texto.includes("quiero las air force blancas") ||
         texto.includes("force 1") ||
         texto.includes("af1")
     ) {
