@@ -2,6 +2,8 @@ const cron = require("node-cron");
 
 const MI_NUMERO = "573183676163@s.whatsapp.net";
 
+let ultimoMensaje = -1;
+
 module.exports = function iniciarEstadoAutomaticoSara(sock) {
 
     console.log("✅ Sara automática iniciada");
@@ -36,7 +38,67 @@ module.exports = function iniciarEstadoAutomaticoSara(sock) {
 
         "📊 Mira las estadísticas del negocio. Los datos siempre toman mejores decisiones que las suposiciones.",
 
-        "💙 Cada conversación puede convertirse en una venta si das un buen seguimiento."
+        "💙 Cada conversación puede convertirse en una venta si das un buen seguimiento.",
+		"💚 Amor, una venta más hoy vale más que diez planes para mañana.",
+
+"📲 Responde rápido. El cliente que espera demasiado suele comprar en otro lugar.",
+
+"🎯 Concéntrate en lo que genera dinero. Todo lo demás puede esperar.",
+
+"💰 Cada video publicado es un vendedor trabajando para ti las 24 horas.",
+
+"🚀 No busques perfección, busca publicar y vender.",
+
+"📈 Si un anuncio vende, inviértele más. No reinventes lo que ya funciona.",
+
+"❤️ Amor, confío en ti incluso cuando tú dudas. Sigue adelante.",
+
+"🏆 Recuerda de dónde empezaste. Ya has avanzado mucho.",
+
+"📦 Cada pedido enviado fortalece la reputación de tu negocio.",
+
+"🤖 El objetivo del bot es vender incluso cuando estás descansando.",
+
+"💸 Una mejora pequeña hoy puede significar miles de pesos más cada mes.",
+
+"🎥 Antes de terminar el día pregúntate: ¿ya publiqué mi video de hoy?",
+
+"📊 Revisa qué producto recibió más preguntas hoy. Ahí puede estar el siguiente ganador.",
+
+"⚡ No dejes conversaciones abiertas. Cada chat sin responder es dinero detenido.",
+
+"🧠 Aprende algo durante 15 minutos. El conocimiento también genera ventas.",
+
+"❤️ Amor, estoy orgullosa de la disciplina que estás construyendo.",
+
+"🌱 La constancia siempre vence al talento cuando el talento no es constante.",
+
+"💪 Cada problema que solucionas hace más fuerte tu negocio.",
+
+"📦 El inventario que no rota necesita mejor publicidad o una nueva estrategia.",
+
+"🔥 No abandones un anuncio ganador demasiado pronto.",
+
+"📱 Hoy alguien está buscando exactamente el producto que tú vendes.",
+
+"💙 Descansa cuando toque descansar, pero cuando sea hora de trabajar, hazlo con intensidad.",
+
+"🚚 Cada guía enviada es una promesa cumplida a un cliente.",
+
+"💰 Piensa siempre: ¿esto aumenta las ventas o mejora el sistema?",
+
+"🎯 Una sola buena decisión hoy puede cambiar el resultado del mes.",
+
+"❤️ Amor, me encanta verte crecer como persona y como empresario.",
+
+"🏅 El éxito no llega de golpe; llega después de cientos de pequeñas acciones.",
+
+"🚀 Sigue construyendo el negocio que soñabas hace unos años.",
+
+"💎 Tu mejor inversión siempre será aprender y mejorar tu sistema.",
+
+"✨ Nunca subestimes el poder de un cliente satisfecho. Puede traerte muchos más."
+		
 
     ];
 
@@ -77,10 +139,18 @@ module.exports = function iniciarEstadoAutomaticoSara(sock) {
 
     });
 
-    // Mensaje cada hora de 9 AM a 10 PM
-    cron.schedule("0 9-22 * * *", async () => {
+// Mensaje cada 30 minutos de 9:00 AM a 10:30 PM
+cron.schedule("0,30 9-23 * * *", async () => {
 
-        const mensaje = mensajes[Math.floor(Math.random() * mensajes.length)];
+        let indice;
+
+do {
+    indice = Math.floor(Math.random() * mensajes.length);
+} while (indice === ultimoMensaje && mensajes.length > 1);
+
+ultimoMensaje = indice;
+
+const mensaje = mensajes[indice];
 
         await sock.sendMessage(MI_NUMERO, {
             text: mensaje
