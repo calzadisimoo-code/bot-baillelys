@@ -18,8 +18,20 @@ const saludos = [
     "buenas noches"
 ];
 
+let saludo = "👋 ¡Hola!";
+
+if (texto.includes("buenos dias") || texto.includes("buenos días") || texto.includes("buen dia") || texto.includes("buen día")) {
+    saludo = "☀️ ¡Buenos días!";
+} else if (texto.includes("buenas tardes")) {
+    saludo = "🌤️ ¡Buenas tardes!";
+} else if (texto.includes("buenas noches")) {
+    saludo = "🌙 ¡Buenas noches!";
+} else if (texto.includes("buenas")) {
+    saludo = "😊 ¡Buenas!";
+}
+
 if (saludos.some(s => texto.includes(s))) {
-    return `👋 ¡Hola! Bienvenido a CALZADISIMO.
+    return `${saludo} Bienvenido a CALZADISIMO.
 
 👟 Tenemos Air Force 1, Paris, sandalias, cargadores y más.
 
