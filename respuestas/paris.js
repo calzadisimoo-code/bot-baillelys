@@ -21,17 +21,17 @@ module.exports = function (texto, usuario) {
 
         return obtenerVariante("paris", usuario, {
 
-            A: "👟 ¡Sí tenemos las Paris disponibles!\n\n💰 Precio: *$60.000*\n🚚 Envíos a toda Colombia.\n\n📏 *Responde con tu talla (35 al 40) y continuamos con tu pedido.*",
+A: "👟 ¡Sí tenemos las Paris disponibles!\n\n💰 Precio: *$60.000*\n🚚 Envíos a toda Colombia.\n\n📏 *Responde con tu talla (35 al 40) y continuamos con tu pedido.*",
 
-            B: "🔥 ¡Las Paris están disponibles!\n\n💵 Solo *$60.000*\n✅ Tallas del *35 al 40*.\n\n👟 *Escríbeme tu talla y te ayudo con el pedido.*",
+B: "🔥 ¡Sí están disponibles!\n\n💰 *$60.000*\n🚚 Enviamos a cualquier ciudad de Colombia.\n\n👟 *¿Qué talla necesitas? (35 al 40)*",
 
-            C: "✨ ¡Qué buena elección!\n\n👟 Tenis Paris por *$60.000*.\n📦 Envío rápido.\n\n📏 *¿Qué talla necesitas? (35 al 40)*",
+C: "🤍 ¡Excelente elección!\n\n👟 Tenemos las Paris listas para envío.\n💰 *$60.000*\n\n📏 *Dime tu talla (35 al 40) y te digo cuánto tarda en llegar.*",
 
-            D: "🚀 Sí hay disponibilidad.\n\n👟 Tenis Paris.\n💰 *$60.000*\n🚚 Envíos a toda Colombia.\n\n📏 *Envíame tu talla y te doy la información para recibirlos.*",
+D: "🚀 ¡Sí hay disponibilidad!\n\n💰 Solo *$60.000*\n📦 Envío rápido a toda Colombia.\n\n👟 *Escríbeme tu talla y te confirmo el envío de inmediato.*",
 
-            E: "✅ Tenemos las Paris disponibles.\n\n💵 Precio: *$60.000*\n👟 Tallas del *35 al 40*.\n\n📏 *Responde con tu talla para separar tu par.*",
+E: "✅ Tenemos disponibles las Paris.\n\n💰 *$60.000*\n🚚 Hacemos envíos a toda Colombia.\n\n📏 *¿Qué talla buscas? (35 al 40)*",
 
-            F: "🤍 ¡Siguen disponibles las Paris!\n\n💰 *$60.000*\n📦 Envíos a toda Colombia.\n\n👟 *Dime tu talla (35 al 40) y dejamos listo tu pedido.*"
+F: "🎉 ¡Sí tenemos tu modelo!\n\n👟 Paris disponibles.\n💰 *$60.000*\n🚚 Envío seguro a cualquier ciudad.\n\n📏 *Responde con tu talla (35 al 40) y seguimos con el pedido.*"
 
         });
 
