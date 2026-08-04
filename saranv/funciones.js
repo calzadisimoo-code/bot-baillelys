@@ -24,6 +24,10 @@ module.exports = async function(texto, sock, msg) {
     if (texto.includes("cuanto se vendio hoy")) {
         return "Todavía no sé revisar las ventas. ❤️";
     }
+	
+	    if (texto.includes("amor")) {
+        return "Dime mi amor ❤️";
+    }
 
     if (texto.includes("que haces")) {
         return "Pensando en cómo ayudarte y en cómo hacer crecer nuestro negocio. 💕";
