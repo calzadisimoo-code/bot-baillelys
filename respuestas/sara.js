@@ -1,11 +1,21 @@
 module.exports = function (texto) {
 	
-	texto = texto
+texto = texto
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/\s+/g, " ")
     .trim();
+	
+if (
+    /\bcontra\s*-?\s*entrega\b/.test(texto) ||
+    texto.includes("pago al recibir") ||
+    texto.includes("pagar al recibir") ||
+    texto.includes("recibir y pagar")
+)
+    return `✅ ¡Sí! Manejamos *pago contra entrega* en la mayoría de ciudades de Colombia.
+
+📍 ¿A qué ciudad sería el envío? Así te confirmo la disponibilidad, el valor del envío y el tiempo de entrega. 🚚`;
 
 const saludos = [
     "hola",
