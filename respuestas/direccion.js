@@ -78,6 +78,7 @@ ufvii
 ➡️ Dentro del centro comercial nos encuentras en el **Local 291 - CALZADISIMO**.
 
 📌 Diagonal al Banco de Bogotá.
+Preguntar por monica
 
 🗺️ Google Maps:
 https://maps.app.goo.gl/SuGbvW8j5TourCs9A
@@ -89,6 +90,7 @@ B: `📍 ¡Sí tenemos punto físico!
 La entrada más fácil es por la *Calle 29 #26-30*, Centro Comercial Villa de las Palmas.
 
 ➡️ Estamos dentro del centro comercial en el **Local 291 - CALZADISIMO**.
+Preguntar por monica
 
 🗺️ Google Maps:
 https://maps.app.goo.gl/SuGbvW8j5TourCs9A
@@ -98,6 +100,7 @@ https://maps.app.goo.gl/SuGbvW8j5TourCs9A
 C: `📍 Puedes visitarnos ingresando por la *Calle 29 #26-30*, Centro Comercial Villa de las Palmas.
 
 ➡️ Dentro del centro comercial estamos en el **Local 291 - CALZADISIMO**.
+Preguntar por monica
 
 🗺️ Google Maps:
 https://maps.app.goo.gl/SuGbvW8j5TourCs9A
@@ -109,6 +112,7 @@ D: `📍 Estamos en Palmira.
 La entrada recomendada es por la *Calle 29 #26-30*, Centro Comercial Villa de las Palmas.
 
 ➡️ Dentro del centro comercial nos encuentras en el **Local 291 - CALZADISIMO**.
+Preguntar por monica
 
 🗺️ Google Maps:
 https://maps.app.goo.gl/SuGbvW8j5TourCs9A
@@ -118,6 +122,7 @@ https://maps.app.goo.gl/SuGbvW8j5TourCs9A
 E: `📍 Nuestra tienda está dentro del Centro Comercial Villa de las Palmas.
 
 Ingresa por la *Calle 29 #26-30* y encontrarás el **Local 291 - CALZADISIMO**.
+Preguntar por monica
 
 🗺️ Google Maps:
 https://maps.app.goo.gl/SuGbvW8j5TourCs9A
