@@ -38,27 +38,17 @@ if (palabrasDireccion.some(p => texto.includes(p))) {
     return null;
 }
 
-const tallas = [];
+const textoLimpio = texto.trim();
 
-for (let i = 21; i <= 44; i++) {
-    tallas.push(i.toString());
+if (!/^\d{2}$/.test(textoLimpio)) {
+    return null;
 }
 
-    let talla = null;
+const talla = textoLimpio;
 
-    for (const t of tallas) {
-
-        if (texto.includes(t)) {
-
-            talla = t;
-            break;
-
-        }
-
-    }
-
-    if (!talla)
-        return null;
+if (Number(talla) < 21 || Number(talla) > 44) {
+    return null;
+}
 
      registrarTalla(usuario);
 	 
