@@ -73,31 +73,33 @@ for (let i = 21; i <= 44; i++) {
 
 A: `🤍 ¡Sí! Tenemos disponible la talla *${talla}*.
 
-🚚 ¿Te la envío por domicilio o prefieres recogerla?`,
+🚚 ¿De qué barrio eres? Así te confirmo el costo del envío.`,
 
 B: `✅ Perfecto.
 
 La talla *${talla}* está disponible.
 
-📦 ¿La deseas por envío o prefieres recogerla?`,
+🚚 ¿Me dices tu barrio para indicarte el envío?`,
 
-C: `🔥 Sí tenemos disponible la talla *${talla}*.
+C: `🔥 Excelente.
 
-¿Te la separo o prefieres que te la envíe?`,
+Sí tenemos la talla *${talla}*.
 
-D: `👟 ¡Claro! Sí manejamos la talla *${talla}*.
+📍 ¿Cuál es tu barrio para decirte el valor del envío?`,
 
-🚀 ¿Prefieres recibirla por envío o pasar a recogerla?`,
+D: `👟 La talla *${talla}* está disponible.
 
-E: `✅ Tenemos disponible la talla *${talla}*.
+🚚 ¿En qué barrio te encuentras?`,
 
-📍 Puedes recogerla o también hacemos envíos.
+E: `🤩 ¡Buenas noticias!
 
-¿Cuál prefieres?`,
+Tenemos disponible la talla *${talla}*.
 
-F: `🤩 Excelente, la talla *${talla}* sí está disponible.
+📍 Dime tu barrio y te digo cómo te la hacemos llegar.`,
 
-🚚 ¿La enviamos a tu dirección o prefieres visitarnos para probártela?`
+F: `✅ Sí hay talla *${talla}*.
+
+🚚 ¿Cuál es tu barrio? Así te digo el costo y el tiempo del envío.`
 
         }
 
