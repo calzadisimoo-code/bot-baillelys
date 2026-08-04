@@ -78,16 +78,11 @@ const talla =
 
 		    let mensaje =
 
-`🚨 NUEVO PEDIDO
+`📍 ${texto}
 
-👤 ${nombre} 📱 
+👤 ${nombre} 📱
+📦 ${producto} Talla: ${talla}
 
-📦 ${producto}
-
-👟 Talla:
-${talla}
-
-📍 ${texto}
 
 💰 Total:`;
 
