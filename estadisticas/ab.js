@@ -208,13 +208,39 @@ function reporteTodos() {
 
     let texto = "📊 RESULTADOS A/B\n\n";
 
+let mejorProducto = "";
+let mejorProductoPorcentaje = -1;
+
+let masRespuestasProducto = "";
+let masRespuestas = -1;
+
+let masEnviadosProducto = "";
+let masEnviados = -1;
+
+let mejorRespuestaGlobal = "";
+let mejorRespuestaGlobalPorcentaje = -1;
+
+let peorRespuestaGlobal = "";
+let peorRespuestaGlobalPorcentaje = 101;
+
+let peorProducto = "";
+let peorProductoPorcentaje = 101;
+
+const recomendaciones = [];
+
     for (const nombre of Object.keys(datos)) {
 
         texto += `━━━━━━━━━━━━━━━━━━\n`;
         texto += `📦 ${nombre.toUpperCase()}\n\n`;
 
-        let mejor = "";
-        let mejorPorcentaje = -1;
+let mejor = "";
+let mejorPorcentaje = -1;
+
+let peor = "";
+let peorPorcentaje = 101;
+
+let totalEnviados = 0;
+let totalRespondieron = 0;
 
         for (const letra of Object.keys(datos[nombre])) {
 
@@ -225,6 +251,8 @@ function reporteTodos() {
                 enviados === 0
                     ? 0
                     : (respondieron / enviados) * 100;
+totalEnviados += enviados;
+totalRespondieron += respondieron;
 
             texto +=
 `${letra}
@@ -234,20 +262,179 @@ function reporteTodos() {
 
 `;
 
-            if (porcentaje > mejorPorcentaje) {
+if (porcentaje > mejorPorcentaje) {
 
-                mejorPorcentaje = porcentaje;
-                mejor = letra;
+    mejorPorcentaje = porcentaje;
+    mejor = letra;
 
-            }
+}
+
+if (porcentaje < peorPorcentaje) {
+
+    peorPorcentaje = porcentaje;
+    peor = letra;
+
+}
+
+if (
+    enviados >= 10 &&
+    porcentaje > mejorRespuestaGlobalPorcentaje
+) {
+
+    mejorRespuestaGlobalPorcentaje = porcentaje;
+    mejorRespuestaGlobal =
+        `${nombre.toUpperCase()} - ${letra}`;
+
+}
+
+if (
+    enviados >= 10 &&
+    porcentaje < peorRespuestaGlobalPorcentaje
+) {
+
+    peorRespuestaGlobalPorcentaje = porcentaje;
+    peorRespuestaGlobal =
+        `${nombre.toUpperCase()} - ${letra}`;
+
+}
+
+ }
+
+        texto +=
+`🏆 Mejor: ${mejor} (${mejorPorcentaje.toFixed(1)}%)
+💀 Peor: ${peor} (${peorPorcentaje.toFixed(1)}%)
+
+`;
+
+        const conversionProducto =
+            totalEnviados === 0
+                ? 0
+                : (totalRespondieron / totalEnviados) * 100;
+
+        if (
+    totalEnviados >= 10 &&
+    conversionProducto > mejorProductoPorcentaje
+) {
+
+            mejorProductoPorcentaje = conversionProducto;
+            mejorProducto = nombre.toUpperCase();
+
+        }
+		
+		if (
+    totalEnviados >= 10 &&
+    conversionProducto < peorProductoPorcentaje
+) {
+
+    peorProductoPorcentaje = conversionProducto;
+    peorProducto = nombre.toUpperCase();
+
+}
+
+        if (totalRespondieron > masRespuestas) {
+
+            masRespuestas = totalRespondieron;
+            masRespuestasProducto = nombre.toUpperCase();
 
         }
 
-        texto += `🏆 Ganador: ${mejor} (${mejorPorcentaje.toFixed(1)}%)\n\n`;
+        if (totalEnviados > masEnviados) {
+
+            masEnviados = totalEnviados;
+            masEnviadosProducto = nombre.toUpperCase();
+
+        }
 
     }
+	
+	if (mejorProducto) {
 
-    return texto;
+    recomendaciones.push(
+        `⭐ Invierte más en ${mejorProducto}. Actualmente es el producto con mejor conversión.`
+    );
+
+}
+
+if (peorProducto) {
+
+    recomendaciones.push(
+        `⚠️ Revisa los mensajes de ${peorProducto}. Es el producto con menor conversión.`
+    );
+
+}
+
+if (mejorRespuestaGlobal) {
+
+    recomendaciones.push(
+        `👑 Mantén la variante ${mejorRespuestaGlobal}. Es la que mejor convierte.`
+    );
+
+}
+
+if (peorRespuestaGlobal) {
+
+    recomendaciones.push(
+        `💀 Reescribe la variante ${peorRespuestaGlobal}. Es la de peor rendimiento.`
+    );
+
+}
+
+if (masEnviadosProducto === mejorProducto) {
+
+if (
+    mejorProducto &&
+    mejorProducto !== masEnviadosProducto
+) {
+
+    recomendaciones.push(
+        `📈 ${masEnviadosProducto} recibe muchas consultas pero no convierte tan bien como ${mejorProducto}. Revisa sus mensajes o precio.`
+    );
+
+}
+
+    recomendaciones.push(
+        `🚀 ${mejorProducto} además de convertir bien, también es el producto más consultado. Puede ser tu mejor candidato para anuncios.`
+    );
+
+}
+
+texto +=
+`━━━━━━━━━━━━━━━━━━
+
+🏆 RESUMEN GENERAL
+
+🥇 Producto con mejor conversión:
+${mejorProducto}
+(${mejorProductoPorcentaje.toFixed(1)}%)
+
+💬 Producto con más respuestas:
+${masRespuestasProducto}
+(${masRespuestas})
+
+📤 Producto con más envíos:
+${masEnviadosProducto}
+(${masEnviados})
+
+👑 Mejor respuesta del bot:
+${mejorRespuestaGlobal}
+(${mejorRespuestaGlobalPorcentaje.toFixed(1)}%)
+
+💀 Peor respuesta del bot:
+${peorRespuestaGlobal}
+(${peorRespuestaGlobalPorcentaje.toFixed(1)}%)
+`;
+
+texto +=
+`
+
+━━━━━━━━━━━━━━━━━━
+
+🤖 RECOMENDACIONES
+
+${recomendaciones.join("\n")}
+`;
+
+return texto;
 
 }
 
