@@ -6,31 +6,33 @@ const {
 
 module.exports = function (texto, usuario) {
 
+    // Si el cliente habla de las importadas, este flow no responde
+    if (
+        texto.includes(".1") ||
+        texto.includes("1.1") ||
+        texto.includes("import") ||
+        texto.includes("importada") ||
+        texto.includes("importadas")
+    ) {
+        return null;
+    }
+
     if (
         texto.includes("air force") ||
         texto.includes("airforce") ||
-		texto.includes("for 1") ||
-		texto.includes("quiero las air force") ||
-		texto.includes("quiero las air force blancas") ||
+        texto.includes("for 1") ||
+        texto.includes("quiero las air force") ||
+        texto.includes("quiero las air force blancas") ||
         texto.includes("force 1") ||
         texto.includes("af1")
     ) {
 
-        // Evitar que las búsquedas de la importada entren aquí
-if (
-    texto.includes(".1") ||
-    texto.includes("1.1") ||
-    texto.includes("import")
-) {
-    return null;
-}
-
         registrarProducto(usuario);
 
-guardar(usuario, {
-    producto: "af1b",
-    pedidoEnviado: false
-});
+        guardar(usuario, {
+            producto: "af1b",
+            pedidoEnviado: false
+        });
 
         return obtenerVariante("af1b", usuario, {
 

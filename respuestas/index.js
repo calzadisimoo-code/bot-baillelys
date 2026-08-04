@@ -19,12 +19,11 @@ module.exports = function (texto, usuario) {
         return null;
     }
 
-    texto = texto
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[^\p{L}\p{N}\s.]/gu, "")
-        .trim();
+texto = texto
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
 
 return (
     catalogo(texto, usuario) ||
