@@ -2,7 +2,7 @@ const cron = require("node-cron");
 
 console.log("✅ estadoAutomatico de Sara cargado");
 
-const MI_LID = "73023772213414@lid";
+const MI_NUMERO = "573183676163@s.whatsapp.net";
 
 module.exports = function iniciarEstadoAutomaticoSara(sock) {
 
@@ -49,9 +49,13 @@ module.exports = function iniciarEstadoAutomaticoSara(sock) {
             const mensaje =
                 mensajes[Math.floor(Math.random() * mensajes.length)];
 
-            await sock.sendMessage(MI_LID, {
-                text: mensaje
-            });
+console.log("📤 Voy a enviar el mensaje a Sara...");
+
+await sock.sendMessage("573183676163@s.whatsapp.net", {
+    text: mensaje
+});
+
+console.log("✅ Mensaje enviado");
 
             console.log("❤️ Mensaje motivador de Sara enviado.");
 
