@@ -13,11 +13,8 @@ const PALABRAS_DIRECCION = [
     "kr",
     "kra",
     "transversal",
-    "tv",
     "diagonal",
     "manzana",
-    "mz",
-    "casa",
     "apartamento",
     "apto",
     "barrio"
