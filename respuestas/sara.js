@@ -1,7 +1,32 @@
 module.exports = function (texto) {
 
-    if (texto === "hola")
-        return "Hola 👋 ¿En qué puedo ayudarte?";
+    texto = texto.toLowerCase();
+
+const saludos = [
+    "hola",
+    "holaaa",
+    "holaaaa",
+    "ola",
+    "holi",
+    "hey",
+    "buenas",
+    "buen dia",
+    "buen día",
+    "buenos dias",
+    "buenos días",
+    "buenas tardes",
+    "buenas noches"
+];
+
+if (saludos.some(s => texto.includes(s))) {
+    return `👋 ¡Hola! Bienvenido a CALZADISIMO.
+
+👟 Tenemos Air Force 1, Paris, sandalias, cargadores y más.
+
+🚚 Hacemos envíos a toda Colombia.
+
+¿Qué producto estás buscando?`;
+}
 
     if (texto.includes("precio"))
         return "¿Qué producto te interesa?";
