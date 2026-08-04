@@ -73,7 +73,7 @@ for (let i = 21; i <= 44; i++) {
 
 A: `🤍 ¡Sí! Tenemos disponible la talla *${talla}*.
 
-🚚 ¿De qué barrio eres? Así te confirmo el costo del envío.`,
+🚚 ¿De qué barrio eres? Así te confirmo el costo del envío`,
 
 B: `✅ Perfecto.
 
@@ -95,11 +95,11 @@ E: `🤩 ¡Buenas noticias!
 
 Tenemos disponible la talla *${talla}*.
 
-📍 Dime tu barrio y te digo cómo te la hacemos llegar.`,
+📍 Dime tu barrio y te digo cómo te la hacemos llegar`,
 
 F: `✅ Sí hay talla *${talla}*.
 
-🚚 ¿Cuál es tu barrio? Así te digo el costo y el tiempo del envío.`
+🚚 ¿Cuál es tu barrio? Así te digo el costo y el tiempo del envío`
 
         }
 

@@ -26,13 +26,13 @@ module.exports = function (texto, usuario) {
 
 if (
     texto === "direccion" ||
-texto.includes("direccion") ||
+    texto.includes("direccion") ||
     texto === "ubicacion" ||
     texto === "ubicados" ||
-	
+
     texto.includes("punto fisico") ||
     texto.includes("direccion del local") ||
-	texto.includes("ubicacion") ||
+    texto.includes("ubicacion") ||
     texto.includes("direccion tienda fisica") ||
     texto.includes("direccion de la tienda") ||
     texto.includes("direccion del punto") ||
@@ -45,11 +45,10 @@ texto.includes("direccion") ||
     texto.includes("donde estan") ||
     texto.includes("donde quedan") ||
     texto.includes("donde queda") ||
-	texto.includes("ubicado") ||
+    texto.includes("ubicado") ||
     texto.includes("donde se ubican") ||
     texto.includes("donde esta la tienda") ||
     texto.includes("donde queda la tienda") ||
-	texto.includes("es aca en Palmira") ||
     texto.includes("como llego") ||
 
     texto.includes("puedo recoger") ||
@@ -57,7 +56,19 @@ texto.includes("direccion") ||
     texto.includes("paso a recoger") ||
     texto.includes("recoger en tienda") ||
     texto.includes("recoger en el local") ||
-    texto.includes("recoger personalmente")
+    texto.includes("recoger personalmente") ||
+
+    // Nuevas frases
+    texto.includes("podria ir") ||
+    texto.includes("podría ir") ||
+    texto.includes("puedo ir") ||
+    texto.includes("ir por ellas") ||
+    texto.includes("ir por ellos") ||
+    texto.includes("voy al local") ||
+    texto.includes("voy por ellas") ||
+    texto.includes("voy por ellos") ||
+    texto.includes("pasar por ellas") ||
+    texto.includes("pasar por ellos")
 ) {
 
         return obtenerVariante("ubicacion", usuario, {

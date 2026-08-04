@@ -68,6 +68,7 @@ const nombre =
     msg.pushName || "Sin nombre";
 
 const producto =
+    estado.nombreProducto ||
     PRODUCTOS[estado.producto] ||
     "No especificado";
 

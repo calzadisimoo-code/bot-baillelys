@@ -30,16 +30,21 @@ return (
     catalogo(texto, usuario) ||
     envio(texto, usuario) ||
     direccion(texto, usuario) ||
+
     carg67w(texto, usuario) ||
-    af1bi(texto, usuario) ||
-    paris(texto, usuario) ||
     carg120w(texto, usuario) ||
+
+    af1bi(texto, usuario) ||
     af1ni(texto, usuario) ||
+    r4bd(texto, usuario) ||   // específico
+    af1b(texto, usuario) ||   // más general
+
+    paris(texto, usuario) ||
     pro4(texto, usuario) ||
+
     talla(texto, usuario) ||
     fotos(texto, usuario) ||
-    af1b(texto, usuario) ||
-    r4bd(texto, usuario) ||
+
     sara(texto)
 );
 
