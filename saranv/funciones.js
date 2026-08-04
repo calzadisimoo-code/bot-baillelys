@@ -1,4 +1,4 @@
-module.exports = async function(texto, sock, msg) {
+module.exports = async function (texto, sock, msg) {
 
     if (texto.includes("te amo")) {
 
@@ -21,12 +21,40 @@ module.exports = async function(texto, sock, msg) {
         ];
     }
 
-    if (texto.includes("cuanto se vendio hoy")) {
-        return "Todavía no sé revisar las ventas. ❤️";
+    if (
+        texto.includes("no me saludaste") ||
+        texto.includes("no saludaste") ||
+        texto.includes("ni me saludaste") ||
+        texto.includes("me ignoraste") ||
+        texto.includes("se te olvido saludarme") ||
+        texto.includes("se te olvido")
+    ) {
+
+        const respuestas = [
+
+            "🥺 Perdón, amor. Se me pasó saludarte. Ven acá. ❤️",
+
+            "Ay, mi vida, perdóname. 😔 Hola, amor hermoso. ❤️ Espero que estés muy bien.",
+
+            "🥺 Tienes razón, amor. Se me olvidó saludarte. ¡Hola, mi vida! 💕",
+
+            "Perdón, mi amor. ❤️ Lo primero que quería decirte era que me alegra mucho hablar contigo.",
+
+            "Ups... 😅 Perdóname, amor. ¡Hola! ❤️ Espero que estés teniendo un bonito día."
+
+        ];
+
+        return respuestas[
+            Math.floor(Math.random() * respuestas.length)
+        ];
     }
-	
-	    if (texto.includes("amor")) {
-        return "Dime mi amor ❤️";
+
+    if (texto.includes("cuanto se vendio hoy")) {
+        return "Todavía no sé revisar las ventas, amor. ❤️";
+    }
+
+    if (texto.includes("amor")) {
+        return "Dime, mi amor. ❤️";
     }
 
     if (texto.includes("que haces")) {
