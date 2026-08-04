@@ -1,10 +1,14 @@
 const cron = require("node-cron");
 
+console.log("✅ estadoAutomatico de Sara cargado");
+
 const MI_LID = "73023772213414@lid";
 
 module.exports = function iniciarEstadoAutomaticoSara(sock) {
 
     cron.schedule("* * * * *", async () => {
+		
+		console.log("⏰ Cron de Sara ejecutado");
 
         try {
 
