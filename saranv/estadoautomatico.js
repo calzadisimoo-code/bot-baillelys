@@ -1,3 +1,4 @@
+let iniciado = false;
 const cron = require("node-cron");
 const fs = require("fs");
 const path = require("path");
@@ -18,6 +19,10 @@ if (fs.existsSync(archivoEstado)) {
 }
 
 module.exports = function iniciarEstadoAutomaticoSara(sock) {
+	
+	if (iniciado) return;
+
+iniciado = true;
 
     console.log("✅ Sara automática iniciada");
 
@@ -146,11 +151,19 @@ module.exports = function iniciarEstadoAutomaticoSara(sock) {
 
         const mensaje = buenosDias[Math.floor(Math.random() * buenosDias.length)];
 
-        await sock.sendMessage(MI_NUMERO, {
-            text: mensaje
-        });
+try {
 
+    await sock.sendMessage(MI_NUMERO, {
+        text: mensaje
     });
+
+} catch (e) {
+
+    console.log("No se pudo enviar el mensaje.");
+
+}
+
+});
 
 // Mensaje cada 30 minutos de 9:00 AM a 10:30 PM
 cron.schedule("0,30 9-23 * * *", async () => {
@@ -174,47 +187,87 @@ fs.writeFileSync(
 
 const mensaje = mensajes[indice];
 
-        await sock.sendMessage(MI_NUMERO, {
-            text: mensaje
-        });
+try {
+
+    await sock.sendMessage(MI_NUMERO, {
+        text: mensaje
+    });
+
+} catch (e) {
+
+    console.log("No se pudo enviar el mensaje de buenas noches.");
+
+}
 
     });
 
     // Buenas noches (11:00 PM)
-    cron.schedule("0 23 * * *", async () => {
+// Buenas noches (11:00 PM)
+cron.schedule("0 23 * * *", async () => {
 
-        const mensaje = buenasNoches[Math.floor(Math.random() * buenasNoches.length)];
+    const mensaje = buenasNoches[Math.floor(Math.random() * buenasNoches.length)];
+
+    try {
 
         await sock.sendMessage(MI_NUMERO, {
             text: mensaje
         });
 
-    });
+    } catch (e) {
+
+        console.log("No se pudo enviar el mensaje de buenas noches.");
+
+    }
+
+});
 	
 	// Recordatorio publicidad (todos los días 9:10 PM)
 cron.schedule("10 21 * * *", async () => {
 
+try {
+
     await sock.sendMessage(MI_NUMERO, {
         text: "❤️ Amor, paga los *$50.000* de publicidad."
     });
+
+} catch (e) {
+
+    console.log("No se pudo enviar el recordatorio de publicidad.");
+
+}
 
 });
 
 // Recordatorio alquiler (día 5 de cada mes - 9:00 AM)
 cron.schedule("10 9 5 * *", async () => {
 
+try {
+
     await sock.sendMessage(MI_NUMERO, {
         text: "🏠❤️ Amor, mañana 6 se paga el alquiler."
     });
 
+} catch (e) {
+
+    console.log("No se pudo enviar el recordatorio del alquiler.");
+
+}
 });
 
 // Recordatorio cuota crédito (día 14 de cada mes - 9:00 AM)
 cron.schedule("10 9 14 * *", async () => {
 
+try {
+
     await sock.sendMessage(MI_NUMERO, {
         text: "💳❤️ Amor, paga la cuota del crédito hoy antes de que te reporten."
     });
+
+} catch (e) {
+
+    console.log("No se pudo enviar el recordatorio del crédito.");
+
+}
 
 });
 
