@@ -15,7 +15,7 @@ if (
 )
     return `✅ ¡Sí! Manejamos *pago contra entrega* en la mayoría de ciudades de Colombia.
 
-📍 ¿A qué ciudad sería el envío? Así te confirmo la disponibilidad, el valor del envío y el tiempo de entrega. 🚚`;
+📍 ¿A qué direccion sería el envío? Así te confirmo la disponibilidad, el valor del envío y el tiempo de entrega. 🚚`;
 
 const saludos = [
     "hola",
