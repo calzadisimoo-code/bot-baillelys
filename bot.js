@@ -240,11 +240,7 @@ guardarContacto(
 
                 }
 
-texto = texto
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .trim();
+texto = texto.trim();
 	
 	await revisarPedido(
     sock,
