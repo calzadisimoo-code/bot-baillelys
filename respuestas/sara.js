@@ -8,41 +8,61 @@ texto = texto
     .trim();
 
 if (
-    texto.includes("hasta que hora") ||
-    texto.includes("a que hora cierran") ||
-    texto.includes("a que hora abren") ||
-    texto.includes("a que hora atienden") ||
+
+    // Hasta qué hora
+    /(hasta|asta).*(q|que|k).*(hora)/.test(texto) ||
+
+    // A qué hora abren / cierran
+    /(a).*(q|que|k).*(hora).*(abren|abre|cierran|atienden)/.test(texto) ||
+
+    // Qué hora abren / cierran
+    /(q|que|k).*(hora).*(abren|abre|cierran|atienden)/.test(texto) ||
+
+    // Horarios
     texto.includes("horario") ||
     texto.includes("horarios") ||
     texto.includes("horario del local") ||
     texto.includes("horario de la tienda") ||
-    texto.includes("que horario manejan") ||
     texto.includes("horario de atencion") ||
-    texto.includes("hora de cierre") ||
-    texto.includes("que hora es el cierre") ||
+    texto.includes("que horario manejan") ||
+
+    // Abiertos
+    texto.includes("abierto") ||
+    texto.includes("abiertos") ||
     texto.includes("estan abiertos") ||
     texto.includes("estan abiertos hoy") ||
     texto.includes("abierto hoy") ||
-    texto.includes("abren hoy") ||
-    texto.includes("cierran hoy") ||
-    texto.includes("hoy atienden") ||
-    texto.includes("atienden hoy") ||
-    texto.includes("estan atendiendo") ||
     texto.includes("siguen abiertos") ||
     texto.includes("aun estan abiertos") ||
     texto.includes("todavia estan abiertos") ||
+    texto.includes("estan atendiendo") ||
+
+    // Hoy
+    texto.includes("abren hoy") ||
+    texto.includes("cierran hoy") ||
+    texto.includes("atienden hoy") ||
+    texto.includes("hoy atienden") ||
+
+    // Domingo
     texto.includes("abren domingo") ||
     texto.includes("abren los domingos") ||
     texto.includes("atienden domingo") ||
     texto.includes("atienden los domingos") ||
+
+    // Sábado
     texto.includes("abren sabado") ||
     texto.includes("abren sabados") ||
     texto.includes("atienden sabado") ||
     texto.includes("atienden sabados") ||
+
+    // Festivos
     texto.includes("abren festivos") ||
     texto.includes("atienden festivos") ||
+
+    // Mañana
     texto.includes("abren manana") ||
     texto.includes("manana abren")
+
 ) {
     return `🕘 Estamos abiertos *todos los días de 9:00 a. m. a 7:00 p. m.*
 
