@@ -6,6 +6,52 @@ texto = texto
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/\s+/g, " ")
     .trim();
+
+if (
+    texto.includes("hasta que hora") ||
+    texto.includes("a que hora cierran") ||
+    texto.includes("a que hora abren") ||
+    texto.includes("a que hora atienden") ||
+    texto.includes("horario") ||
+    texto.includes("horarios") ||
+    texto.includes("horario del local") ||
+    texto.includes("horario de la tienda") ||
+    texto.includes("que horario manejan") ||
+    texto.includes("horario de atencion") ||
+    texto.includes("hora de cierre") ||
+    texto.includes("que hora es el cierre") ||
+    texto.includes("estan abiertos") ||
+    texto.includes("estan abiertos hoy") ||
+    texto.includes("abierto hoy") ||
+    texto.includes("abren hoy") ||
+    texto.includes("cierran hoy") ||
+    texto.includes("hoy atienden") ||
+    texto.includes("atienden hoy") ||
+    texto.includes("estan atendiendo") ||
+    texto.includes("siguen abiertos") ||
+    texto.includes("aun estan abiertos") ||
+    texto.includes("todavia estan abiertos") ||
+    texto.includes("abren domingo") ||
+    texto.includes("abren los domingos") ||
+    texto.includes("atienden domingo") ||
+    texto.includes("atienden los domingos") ||
+    texto.includes("abren sabado") ||
+    texto.includes("abren sabados") ||
+    texto.includes("atienden sabado") ||
+    texto.includes("atienden sabados") ||
+    texto.includes("abren festivos") ||
+    texto.includes("atienden festivos") ||
+    texto.includes("abren manana") ||
+    texto.includes("manana abren")
+) {
+    return `🕘 Estamos abiertos *todos los días de 9:00 a. m. a 7:00 p. m.*
+
+📍 Visítanos en el *Local 291* del Centro Comercial Villa de las Palmas, Palmira.
+
+👩 Pregunta por *Mónica*.
+
+😊 ¡Te esperamos!`;
+}
 	
 if (
     /\bcontra\s*-?\s*entrega\b/.test(texto) ||
