@@ -10,6 +10,7 @@ if (
     (texto.includes("air force") ||
      texto.includes("airforce") ||
      texto.includes("force 1") ||
+     texto.includes("Quiero las Air Force importadas") ||
      texto.includes("af1")) &&
     (
         texto.includes(".1") ||
