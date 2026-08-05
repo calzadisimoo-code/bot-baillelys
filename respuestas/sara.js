@@ -50,6 +50,22 @@ if (
 } else if (texto.includes("buenas")) {
     saludo = "😊 ¡Buenas!";
 }
+if (
+    texto.includes("local") ||
+    texto.includes("direccion") ||
+    texto.includes("dirección") ||
+    texto.includes("ubicacion") ||
+    texto.includes("ubicados") ||
+    texto.includes("numero del local") ||
+    texto.includes("número del local") ||
+    texto.includes("numero de la tienda") ||
+    texto.includes("número de la tienda") ||
+    texto.includes("punto fisico") ||
+    texto.includes("punto físico")
+) {
+    return null;
+}
+
 if (saludos.some(s => new RegExp(`\\b${s}\\b`).test(texto))) {
     return `${saludo} Bienvenido a CALZADISIMO.
 
