@@ -29,13 +29,13 @@ guardar(usuario, {
 
             A: "🤍 ¡Sí están disponibles las Air Force 1 blancas importadas!\n\n💰 Precio: *$100.000*\n📦 Calidad importada.\n🚚 Envíos a toda Colombia.\n\n👟 *Responde con tu talla (21 al 44) y continuamos con tu pedido.*",
 
-            B: "🔥 ¡Qué buena elección!\n\nTenemos las Air Force 1 blancas importadas por *$100.000*.\n\n✅ Tallas disponibles del *21 al 44*.\n\n👟 *Escríbeme únicamente tu talla y te ayudo con el pedido.*",
+            B: "🤍 ¡Sí tenemos disponibles las Air Force 1 blancas importadas!\n\n💰 *$100.000*\n🚚 Envíos a toda Colombia.\n\n👟 Escríbeme tu talla (21 al 44) y dejamos listo tu pedido.",
 
             C: "✨ Sí hay disponibilidad.\n\n🤍 Air Force 1 blancas importadas.\n💰 *$100.000*\n🚚 Envío rápido a toda Colombia.\n\n👟 *¿Cuál es tu talla? (21 al 44)*",
 
             D: "🚀 Tenemos disponibles las Air Force 1 blancas importadas.\n\n💵 Valor: *$100.000*\n📦 Calidad importada.\n\n👟 *Envíame tu talla y te envío la información para recibirlas.*",
 
-            E: "✅ Sí están disponibles.\n\n🤍 Air Force 1 blancas importadas.\n💰 *$100.000*\n\n👟 *Responde con tu talla (21 al 44) para separar tu par.*",
+            E: "✨ Sí hay disponibilidad.\n\n🤍 Air Force 1 blancas importadas.\n💰 *$100.000*\n🚚 Envíos a toda Colombia.\n\n👟 ¿Qué talla necesitas? (21 al 44)"
 
             F: "🔥 Las Air Force 1 blancas importadas siguen disponibles.\n\n💰 Precio: *$100.000*\n🚚 Envíos a toda Colombia.\n\n👟 *Dime tu talla y en unos minutos dejamos listo tu pedido.*"
 
