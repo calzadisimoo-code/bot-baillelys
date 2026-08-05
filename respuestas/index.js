@@ -10,6 +10,7 @@ const fotos = require("./fotos");
 const pro4 = require("./pro4");
 const af1ni = require("./af1ni");
 const carg120w = require("./carg120w");
+const af1b50 = require("./af1b50");
 const af1b = require("./af1b");
 const r4bd = require("./r4bd");
 
@@ -36,7 +37,8 @@ return (
     af1bi(texto, usuario) ||
     af1ni(texto, usuario) ||
     r4bd(texto, usuario) ||   // específico
-    af1b(texto, usuario) ||   // más general
+    af1b50(texto, usuario) ||
+    af1b(texto, usuario) ||
 
     paris(texto, usuario) ||
     pro4(texto, usuario) ||
