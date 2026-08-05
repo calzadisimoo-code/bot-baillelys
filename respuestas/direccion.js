@@ -51,6 +51,35 @@ if (
     texto.includes("donde queda la tienda") ||
     texto.includes("como llego") ||
 
+texto.includes("tienen local") ||
+texto.includes("tiene local") ||
+texto.includes("tienen tienda") ||
+texto.includes("tiene tienda") ||
+texto.includes("tienen punto") ||
+texto.includes("tienen punto fisico") ||
+texto.includes("tienen punto físico") ||
+texto.includes("me encuentro en palmira") ||
+texto.includes("estoy en palmira") ||
+texto.includes("ando en palmira") ||
+texto.includes("para probar") ||
+texto.includes("probarme") ||
+texto.includes("probar") ||
+texto.includes("para medirmelos") ||
+texto.includes("para medírmelos") ||
+texto.includes("me los puedo medir") ||
+texto.includes("me los puedo probar") ||
+texto.includes("puedo probarmelos") ||
+
+texto.includes("quiero probar") ||
+texto.includes("probarlos") ||
+texto.includes("probarlas") ||
+texto.includes("medirmelos") ||
+texto.includes("medírmelos") ||
+texto.includes("me quedan bien") ||
+texto.includes("ver si me quedan") ||
+texto.includes("para ver si me quedan") ||
+texto.includes("probar si me quedan") ||
+
     texto.includes("puedo recoger") ||
     texto.includes("quiero recoger") ||
     texto.includes("paso a recoger") ||

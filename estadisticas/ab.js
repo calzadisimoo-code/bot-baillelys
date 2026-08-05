@@ -88,7 +88,7 @@ for (const letra of letras) {
 const exploracion =
     Math.sqrt((2 * Math.log(totalEnviados + 1)) / enviados);
 
-    const puntaje = conversion + 0.6 * exploracion;
+    const puntaje = conversion + 0.7 * exploracion;
 
     if (puntaje > mejorPuntaje) {
 
@@ -110,10 +110,6 @@ pendientes.set(usuario, {
 
 return respuestas[mejor];
 }
-
-
-
-
 
 function registrarRespuesta(usuario) {
 
