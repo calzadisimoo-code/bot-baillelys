@@ -67,11 +67,15 @@ if (datos[nombre][letra].enviados < 5) {
 
 }
 
-// Después de los primeros 10 envíos,
-// elegir la variante con mejor conversión.
+// Después de la fase inicial usar UCB1
 
 let mejor = letras[0];
-let mejorConversion = -1;
+let mejorPuntaje = -Infinity;
+
+const totalEnviados = letras.reduce(
+    (suma, letra) => suma + datos[nombre][letra].enviados,
+    0
+);
 
 for (const letra of letras) {
 
@@ -79,24 +83,19 @@ for (const letra of letras) {
     const respondieron = datos[nombre][letra].respondieron;
 
     const conversion =
-    (respondieron + 1) /
-    (enviados + 2);
+        enviados === 0 ? 0 : respondieron / enviados;
 
-    if (conversion > mejorConversion) {
+const exploracion =
+    Math.sqrt((2 * Math.log(totalEnviados + 1)) / enviados);
 
-        mejorConversion = conversion;
+    const puntaje = conversion + 0.6 * exploracion;
+
+    if (puntaje > mejorPuntaje) {
+
+        mejorPuntaje = puntaje;
         mejor = letra;
 
     }
-
-}
-
-// 10% de exploración
-if (Math.random() < 0.05) {
-
-    mejor = letras[
-        Math.floor(Math.random() * letras.length)
-    ];
 
 }
 
@@ -110,8 +109,11 @@ pendientes.set(usuario, {
 });
 
 return respuestas[mejor];
-
 }
+
+
+
+
 
 function registrarRespuesta(usuario) {
 

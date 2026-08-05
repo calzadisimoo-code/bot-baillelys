@@ -1,0 +1,57 @@
+esque aver si a tiene 10 enviados y 10 respuestas y al 11 no responde ya baja a 92porcienot un ejempplo ysi la b tiene 3 enviados y 3 respuestas a<hora se envia la b y si responde de nuev la b y si no pues baja cmo al 75porciento o no se dime que porcentaje baja ahora por logico tendra ms porcentajje a o no?
+
+Sí, eso es precisamente lo interesante de tu idea. Veamos el ejemplo.
+
+Inicialmente:
+
+A = 10 enviados, 10 respuestas = 100%
+B = 3 enviados, 3 respuestas = 100%
+
+Como B es nueva y también tiene 100%, decides probarla.
+
+Caso 1: B responde
+B = 4 enviados, 4 respuestas = 100%
+
+Sigue siendo la mejor. Se vuelve a enviar B.
+
+Caso 2: Ahora B no responde
+B = 5 enviados, 4 respuestas = 80%
+
+Mientras tanto:
+
+A = 10 enviados, 10 respuestas = 100%
+
+Automáticamente el sistema vuelve a usar A.
+
+Otro ejemplo
+
+A tenía 10/10.
+
+Envías A otra vez y ese cliente no responde.
+
+Ahora:
+
+A = 11 enviados, 10 respuestas = 90.9%
+
+B sigue en:
+
+B = 4 enviados, 4 respuestas = 100%
+
+Entonces el siguiente cliente sería para B.
+
+Si B tampoco responde:
+
+B = 5 enviados, 4 respuestas = 80%
+
+Ahora:
+
+A = 90.9%
+B = 80%
+
+El sistema vuelve a A.
+
+Por eso tu idea sí tiene lógica. Es un algoritmo que siempre usa la variante que en ese momento tiene el mayor porcentaje de respuesta.
+
+Lo único que yo añadiría es una condición muy pequeña:
+
+Una variante solo puede competir cuando tenga al menos 3 envíos.
