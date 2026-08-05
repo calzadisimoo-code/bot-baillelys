@@ -16,10 +16,6 @@ try {
 }
 
 const {
-    iniciarEstados
-} = require("./estadoAutomatico");
-
-const {
     guardarContacto
 } = require("./contactos");
 
@@ -140,7 +136,6 @@ if (connection === "open") {
     console.log("BOT CONECTADO");
     console.log("==================================");
      
-iniciarEstados(sock);
 iniciarInteligencia(sock);
 
 try {
