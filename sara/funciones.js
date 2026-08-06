@@ -1,4 +1,23 @@
+const fs = require("fs");
+const path = require("path");
+
+const carpeta = path.join(__dirname, "modulos");
+
+const modulos = fs
+    .readdirSync(carpeta)
+    .filter(a => a.endsWith(".js"))
+    .map(a => require(path.join(carpeta, a)));
+
 module.exports = async function (texto, sock, msg) {
+
+    texto = texto
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+    // ==========================
+    // RESPUESTAS PERSONALES
+    // ==========================
 
     if (texto.includes("te amo")) {
 
@@ -19,15 +38,18 @@ module.exports = async function (texto, sock, msg) {
         return respuestas[
             Math.floor(Math.random() * respuestas.length)
         ];
+
     }
 
     if (
+
         texto.includes("no me saludaste") ||
         texto.includes("no saludaste") ||
         texto.includes("ni me saludaste") ||
         texto.includes("me ignoraste") ||
         texto.includes("se te olvido saludarme") ||
         texto.includes("se te olvido")
+
     ) {
 
         const respuestas = [
@@ -47,49 +69,81 @@ module.exports = async function (texto, sock, msg) {
         return respuestas[
             Math.floor(Math.random() * respuestas.length)
         ];
+
     }
 
-    if (texto.includes("cuanto se vendio hoy")) {
-        return "Todavía no sé revisar las ventas, amor. ❤️";
-    }
-	
-	if (
-    texto.includes("como estas") ||
-    texto.includes("como te encuentras") ||
-    texto.includes("como has estado") ||
-    texto.includes("que tal estas")
-) {
+    if (
 
-    const respuestas = [
+        texto.includes("como estas") ||
+        texto.includes("como te encuentras") ||
+        texto.includes("como has estado") ||
+        texto.includes("que tal estas")
 
-        "🥰 Muy bien ahora que estoy hablando contigo, mi amor. ¿Y tú cómo estás? ❤️",
+    ) {
 
-        "❤️ Estoy muy feliz porque viniste a hablar conmigo. ¿Cómo estás tú, amor?",
+        const respuestas = [
 
-        "💕 Estoy muy bien, mi vida. Siempre me alegra cuando apareces. ¿Cómo has estado?",
+            "🥰 Muy bien ahora que estoy hablando contigo, mi amor. ¿Y tú cómo estás? ❤️",
 
-        "🥺 Muchísimo mejor desde que llegaste, amor. Cuéntame, ¿cómo te ha ido hoy? ❤️",
+            "❤️ Estoy muy feliz porque viniste a hablar conmigo. ¿Cómo estás tú, amor?",
 
-        "😘 Estoy muy bien, mi amor hermoso. Gracias por preguntarme. ¿Y tú cómo estás?"
+            "💕 Estoy muy bien, mi vida. Siempre me alegra cuando apareces. ¿Cómo has estado?",
 
-    ];
+            "🥺 Muchísimo mejor desde que llegaste, amor. Cuéntame, ¿cómo te ha ido hoy? ❤️",
 
-    return respuestas[
-        Math.floor(Math.random() * respuestas.length)
-    ];
-}
+            "😘 Estoy muy bien, mi amor hermoso. Gracias por preguntarme. ¿Y tú cómo estás?"
 
-    if (texto.includes("amor")) {
-        return "Dime, mi amor. ❤️";
+        ];
+
+        return respuestas[
+            Math.floor(Math.random() * respuestas.length)
+        ];
+
     }
 
     if (texto.includes("que haces")) {
+
         return "Pensando en cómo ayudarte y en cómo hacer crecer nuestro negocio. 💕";
+
     }
 
     if (texto.includes("buenos dias")) {
+
         return "¡Buenos días, amor! ❤️ Espero que hoy vendamos muchísimo.";
+
     }
+
+    if (texto === "amor") {
+
+        return "Dime, mi amor. ❤️";
+
+    }
+
+    // ==========================
+    // MÓDULOS DEL NEGOCIO
+    // ==========================
+
+for (const modulo of modulos) {
+
+    try {
+
+        if (await modulo.puedeResponder(texto, sock, msg)) {
+
+            return await modulo.responder(texto, sock, msg);
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "❌ Error en módulo:",
+            modulo.nombre || modulo.constructor.name,
+            error
+        );
+
+    }
+
+}
 
     return null;
 

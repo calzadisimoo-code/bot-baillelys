@@ -29,7 +29,7 @@ module.exports = async function responderSara(sock, msg, texto) {
         }
 
         await sock.sendMessage(msg.key.remoteJid, {
-            text: "Estoy aprendiendo cosas nuevas para entenderte mejor, amor. ❤️"
+            text: "🥺 Aún no sé responder eso, amor. Pero cada día aprendo cosas nuevas de nuestro negocio. ❤️"
         });
 
         return true;
@@ -38,7 +38,6 @@ module.exports = async function responderSara(sock, msg, texto) {
 
         console.error("❌ Error interno de Sara:", error);
 
-        // Si Sara falla, el bot principal sigue funcionando
         return false;
 
     }
