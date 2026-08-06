@@ -46,6 +46,7 @@ if (
     texto.includes("direccion del punto") ||
     texto.includes("direccion del punto fisico") ||
     texto.includes("direccion tienda fisica") ||
+texto.includes("en que parte de palmira estan") ||
 
     texto.includes("ubicacion del local") ||
     texto.includes("ubicacion de la tienda") ||
