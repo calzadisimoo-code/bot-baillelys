@@ -36,7 +36,7 @@ module.exports = function (texto, usuario) {
 
         return obtenerVariante("af1b", usuario, {
 
-            A: "🤍 ¡Sí tenemos disponibles las Air Force 1 blancas!\n\n💰 Precio: *$60.000*\n🚚 Envíos a toda Colombia.\n\n👟 *Responde con tu talla (21 al 44) y continuamos con tu pedido.*",
+            A: "Hola que talla buscas?",
 
             B: "🔥 Hola tenemos las Air Force 1 blancas por *$60.000*.\n\n✅ Tallas disponibles del *21 al 44*.\n\n👟 *Escríbeme únicamente tu talla y te ayudo con el pedido.*",
 
