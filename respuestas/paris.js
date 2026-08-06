@@ -25,7 +25,7 @@ A: "👟 ¡Sí tenemos las Paris disponibles!\n\n💰 Precio: *$60.000*\n🚚 En
 
 B: "🔥 ¡Sí están disponibles!\n\n💰 *$60.000*\n🚚 Enviamos a cualquier ciudad de Colombia.\n\n👟 *¿Qué talla necesitas? (21 al 44)*",
 
-C: "🤍 ¡Excelente elección!\n\n👟 Tenemos las Paris listas para envío.\n💰 *$60.000*\n\n📏 *Dime tu talla (21 al 44) y te digo cuánto tarda en llegar.*",
+C: "Tenemos las Paris listas para envío.\n💰 *$60.000*\n\n📏 *Dime tu talla (21 al 44) y te confirmo disponiibilidad*",
 
 D: "🚀 ¡Sí hay disponibilidad!\n\n💰 Solo *$60.000*\n📦 Envío rápido a toda Colombia.\n\n👟 *Escríbeme tu talla y te confirmo el envío de inmediato.*",
 
