@@ -27,11 +27,11 @@ B: "🔥 ¡Sí están disponibles!\n\n💰 *$60.000*\n🚚 Enviamos a cualquier 
 
 C: "Tenemos las Paris listas para envío.\n💰 *$60.000*\n\n📏 *Dime tu talla (21 al 44) y te confirmo disponiibilidad*",
 
-D: "🚀 ¡Sí hay disponibilidad!\n\n💰 Solo *$60.000*\n📦 Envío rápido a toda Colombia.\n\n👟 *Escríbeme tu talla y te confirmo el envío de inmediato.*",
+D: "👟 ¡Sí tenemos las Paris disponibles!\n\n💰 *Solo $60.000*\n🚚 Envíos a toda Colombia.\n\n📏 Escríbeme tu *talla (21 al 44)* y te confirmo la disponibilidad para continuar con tu pedido. ✅",
 
 E: "✅ Tenemos disponibles las Paris.\n\n💰 *$60.000*\n🚚 Hacemos envíos a toda Colombia.\n\n📏 *¿Qué talla buscas? (21 al 44)*",
 
-F: "🎉 ¡Sí tenemos tu modelo!\n\n👟 Paris disponibles.\n💰 *$60.000*\n🚚 Envío seguro a cualquier ciudad.\n\n📏 *Responde con tu talla (21 al 44) y seguimos con el pedido.*"
+F: "Hola las Paris están disponibles.\n\n💰 Precio: *$60.000*\n🚚 Envíos a toda Colombia.\n\n📏 ¿Qué talla necesitas? *(21 al 44)*\n\nAsí mismo continuamos con tu pedido. 😊"
 
         });
 

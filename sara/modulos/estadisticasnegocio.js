@@ -15,6 +15,7 @@ module.exports = async function (texto) {
         !texto.includes("negocio") &&
         !texto.includes("producto") &&
         !texto.includes("mejor producto") &&
+!texto.includes("amor que mejoro") &&
         !texto.includes("peor producto") &&
         !texto.includes("como vamos") &&
         !texto.includes("como va el negocio") &&
