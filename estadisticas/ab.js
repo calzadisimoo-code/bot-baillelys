@@ -278,7 +278,7 @@ if (porcentaje < peorPorcentaje) {
 
 }
 
-if (enviados >= 5) {
+if (enviados >= 4) {
 
     if (porcentaje > mejorRespuestaGlobalPorcentaje) {
 
@@ -501,8 +501,8 @@ async function revisarConversiones(sock, datos) {
 
             const v = datos[producto][variante];
 
-            if (v.enviados < 5)
-                continue;
+            if (v.enviados < 4)
+    continue;
 
             const conversion =
                 (v.respondieron / v.enviados) * 100;
