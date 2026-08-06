@@ -286,7 +286,7 @@ if (ultimaRespuesta.has(usuario)) {
                 console.log("Usuario:", usuario);
                 console.log("Mensaje:", texto);
                 console.log("--------------------------------");
-registrarRespuesta(usuario);
+await registrarRespuesta(sock, usuario);
 
 cancelarSeguimiento(usuario);
 

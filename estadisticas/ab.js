@@ -111,7 +111,7 @@ pendientes.set(usuario, {
 return respuestas[mejor];
 }
 
-function registrarRespuesta(usuario) {
+async function registrarRespuesta(sock, usuario) {
 
     if (!pendientes.has(usuario)) return;
 
@@ -127,6 +127,8 @@ function registrarRespuesta(usuario) {
         datos[info.test][info.variante].respondieron++;
 
         guardar(datos);
+
+        await revisarConversiones(sock, datos);
 
     }
 
@@ -460,6 +462,95 @@ ${recomendaciones.join("\n")}
 texto += detalleProductos;
 
 return texto;
+
+}
+
+const estadoArchivo = path.join(__dirname, "../sara/saraestado.json");
+
+function cargarEstado() {
+
+    if (!fs.existsSync(estadoArchivo)) {
+
+        fs.writeFileSync(
+            estadoArchivo,
+            JSON.stringify({}, null, 4)
+        );
+
+    }
+
+    return JSON.parse(
+        fs.readFileSync(estadoArchivo, "utf8")
+    );
+
+}
+
+function guardarEstado(datos) {
+
+    fs.writeFileSync(
+        estadoArchivo,
+        JSON.stringify(datos, null, 4)
+    );
+
+}
+
+async function revisarConversiones(sock, datos) {
+
+    const estado = cargarEstado();
+
+    for (const producto in datos) {
+
+        for (const variante in datos[producto]) {
+
+            const v = datos[producto][variante];
+
+            if (v.enviados < 5)
+                continue;
+
+            const conversion =
+                (v.respondieron / v.enviados) * 100;
+
+            const clave =
+                `${producto}_${variante}`;
+
+            if (conversion <= 20) {
+
+                if (!estado[clave]) {
+
+                    estado[clave] = true;
+
+                    guardarEstado(estado);
+
+                    await sock.sendMessage(
+                        "73023772213414@lid",
+                        {
+                            text:
+`❤️ Amor...
+
+Acabo de detectar una oportunidad para vender más.
+
+🚨 ${producto.toUpperCase()} - ${variante}
+
+📤 Enviados: ${v.enviados}
+💬 Respondieron: ${v.respondieron}
+📉 Conversión: ${conversion.toFixed(1)}%
+
+💡 Yo cambiaría esa respuesta antes de seguir enviándola.`
+                        }
+                    );
+
+                }
+
+            } else {
+
+                estado[clave] = false;
+
+            }
+
+        }
+
+    }
+
+    guardarEstado(estado);
 
 }
 
