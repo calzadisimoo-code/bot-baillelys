@@ -13,6 +13,7 @@ const carg120w = require("./carg120w");
 const af1b50 = require("./af1b50");
 const af1b = require("./af1b");
 const r4bd = require("./r4bd");
+const pago = require("./pago");
 
 module.exports = function (texto, usuario) {
 
@@ -27,26 +28,30 @@ texto = texto
     .trim();
 
 return (
+    // Funciones generales
     catalogo(texto, usuario) ||
     envio(texto, usuario) ||
     direccion(texto, usuario) ||
 
+    // Productos
     carg67w(texto, usuario) ||
     carg120w(texto, usuario) ||
 
     af1bi(texto, usuario) ||
     af1ni(texto, usuario) ||
-    r4bd(texto, usuario) ||   // específico
+    r4bd(texto, usuario) ||
     af1b50(texto, usuario) ||
     af1b(texto, usuario) ||
 
     paris(texto, usuario) ||
     pro4(texto, usuario) ||
 
+    // Después del producto
     talla(texto, usuario) ||
     fotos(texto, usuario) ||
+    pago(texto, usuario) ||
 
+    // Respuestas generales
     sara(texto)
 );
-
 };
