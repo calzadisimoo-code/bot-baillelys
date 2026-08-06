@@ -127,19 +127,15 @@ for (const modulo of modulos) {
 
     try {
 
-        if (await modulo.puedeResponder(texto, sock, msg)) {
+        const respuesta = await modulo(texto, sock, msg);
 
-            return await modulo.responder(texto, sock, msg);
-
+        if (respuesta) {
+            return respuesta;
         }
 
     } catch (error) {
 
-        console.error(
-            "❌ Error en módulo:",
-            modulo.nombre || modulo.constructor.name,
-            error
-        );
+        console.error("❌ Error en módulo:", error);
 
     }
 
