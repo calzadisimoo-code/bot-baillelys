@@ -58,7 +58,7 @@ if (
     // Festivos
     texto.includes("abren festivos") ||
     texto.includes("atienden festivos") ||
-exto.includes("Ustedes abren los sábados para pasar ese día y llevarlos en 200 los 2?") ||
+    texto.includes("Ustedes abren los sábados para pasar ese día y llevarlos en 200 los 2?") ||
 
     // Mañana
     texto.includes("abren manana") ||
