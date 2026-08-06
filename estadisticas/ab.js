@@ -278,25 +278,23 @@ if (porcentaje < peorPorcentaje) {
 
 }
 
-if (
-    enviados >= 10 &&
-    porcentaje > mejorRespuestaGlobalPorcentaje
-) {
+if (enviados >= 5) {
 
-    mejorRespuestaGlobalPorcentaje = porcentaje;
-    mejorRespuestaGlobal =
-        `${nombre.toUpperCase()} - ${letra}`;
+    if (porcentaje > mejorRespuestaGlobalPorcentaje) {
 
-}
+        mejorRespuestaGlobalPorcentaje = porcentaje;
+        mejorRespuestaGlobal =
+            `${nombre.toUpperCase()} - ${letra}`;
 
-if (
-    enviados >= 10 &&
-    porcentaje < peorRespuestaGlobalPorcentaje
-) {
+    }
 
-    peorRespuestaGlobalPorcentaje = porcentaje;
-    peorRespuestaGlobal =
-        `${nombre.toUpperCase()} - ${letra}`;
+    if (porcentaje < peorRespuestaGlobalPorcentaje) {
+
+        peorRespuestaGlobalPorcentaje = porcentaje;
+        peorRespuestaGlobal =
+            `${nombre.toUpperCase()} - ${letra}`;
+
+    }
 
 }
 
