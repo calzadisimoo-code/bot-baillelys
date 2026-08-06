@@ -1,64 +1,70 @@
-module.exports = function (texto, usuario) {
+const {
+    obtenerVariante,
+    reporte
+} = require("../estadisticas/ab");
 
-const { obtenerVariante } = require("../estadisticas/ab");
 const {
     obtener,
     guardar
 } = require("../estado");
-const estado = obtener(usuario);
+
 const {
     registrarTalla
 } = require("../estadisticas/hoy");
 
-if (!estado?.producto) {
-    return null;
-}
+module.exports = function (texto, usuario) {
 
-const palabrasDireccion = [
-    "calle",
-    "cl",
-    "carrera",
-    "cra",
-    "kr",
-    "kra",
-    "transversal",
-    "tv",
-    "diagonal",
-    "dg",
-    "#",
-    "casa",
-    "apartamento",
-    "apto",
-    "barrio",
-    "manzana",
-    "mz"
-];
+    const estado = obtener(usuario);
 
-if (palabrasDireccion.some(p => texto.includes(p))) {
-    return null;
-}
+    if (!estado?.producto) {
+        return null;
+    }
 
-const textoLimpio = texto.trim();
+    const palabrasDireccion = [
+        "calle",
+        "cl",
+        "carrera",
+        "cra",
+        "kr",
+        "kra",
+        "transversal",
+        "tv",
+        "diagonal",
+        "dg",
+        "#",
+        "casa",
+        "apartamento",
+        "apto",
+        "barrio",
+        "manzana",
+        "mz"
+    ];
 
-if (!/^\d{2}$/.test(textoLimpio)) {
-    return null;
-}
+    if (palabrasDireccion.some(p => texto.includes(p))) {
+        return null;
+    }
 
-const talla = textoLimpio;
+    const textoLimpio = texto.trim();
 
-if (Number(talla) < 21 || Number(talla) > 44) {
-    return null;
-}
+    if (!/^\d{2}$/.test(textoLimpio)) {
+        return null;
+    }
 
-     registrarTalla(usuario);
-	 
-	 guardar(usuario,{
-    talla
-});
+    const talla = textoLimpio;
 
-    return obtenerVariante(
+    if (Number(talla) < 21 || Number(talla) > 44) {
+        return null;
+    }
+
+    registrarTalla(usuario);
+
+    guardar(usuario, {
+        talla
+    });
+
+    const respuesta = obtenerVariante(
         "talla",
-        texto,
+        usuario,
         {
 
 A: `🤍 ¡Sí! Tenemos disponible la talla *${talla}*.
@@ -77,9 +83,7 @@ Sí tenemos la talla *${talla}*.
 
 📍 ¿Cuál es tu barrio para decirte el valor del envío?`,
 
-D: `👟 La talla *${talla}* está disponible.
-
-🚚 ¿En qué barrio te encuentras?`,
+D: `Si claro para que direccion?`,
 
 E: `🤩 ¡Buenas noticias!
 
@@ -92,7 +96,10 @@ F: `✅ Sí hay talla *${talla}*.
 🚚 ¿Cuál es tu barrio? Así te digo el costo y el tiempo del envío`
 
         }
-
     );
+
+    console.log(reporte("talla"));
+
+    return respuesta;
 
 };
