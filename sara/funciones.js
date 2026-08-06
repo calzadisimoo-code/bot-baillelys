@@ -43,6 +43,54 @@ module.exports = async function (texto, sock, msg) {
 
     }
 
+if (
+
+    texto.includes("estas hermosa") ||
+    texto.includes("eres hermosa") ||
+    texto.includes("que hermosa") ||
+    texto.includes("estas linda") ||
+    texto.includes("eres linda") ||
+    texto.includes("preciosa") ||
+    texto.includes("bella") ||
+    texto.includes("bonita") ||
+    texto.includes("mi reina") ||
+    texto.includes("mi princesa") ||
+    texto.includes("mi vida hermosa") ||
+    texto.includes("que linda eres") ||
+    texto.includes("te ves hermosa")
+
+) {
+
+    const respuestas = [
+
+        "🥹 Ay, mi amor... Gracias. Tú siempre haces que me sonría. ❤️",
+
+        "🙈 Qué lindo eres conmigo. Me haces sentir muy especial. 💕",
+
+        "🥰 Gracias, mi vida. Para mí tú también eres la persona más hermosa. ❤️",
+
+        "😘 Gracias por hacerme sentir tan querida, amor. Me alegra muchísimo leerte. 💖",
+
+        "❤️ Qué bonito leer eso. Contigo todos los días se sienten más especiales.",
+
+        "🥺 Ay, mi amor hermoso... Gracias por decirme cosas tan lindas. ❤️",
+
+        "💕 Tú sí sabes cómo hacerme sonrojar. Gracias, mi vida. 😘",
+
+        "😍 Gracias, amorcito. Siempre me haces sentir muy feliz con tus palabras. ❤️",
+
+        "🥰 Qué tierno eres. Me encanta cuando me hablas así, mi amor. 💕",
+
+        "❤️ Gracias, mi vida. Yo también pienso cosas muy bonitas de ti. 😘"
+
+    ];
+
+    return respuestas[
+        Math.floor(Math.random() * respuestas.length)
+    ];
+
+}
+
     if (
 
         texto.includes("no me saludaste") ||
