@@ -37,24 +37,14 @@ module.exports = async function (texto) {
     let peorRespuesta =
         reporte.match(/💀 Peor respuesta del bot:\s*([^\n]+)/);
 
-    return `❤️ Amor, estuve revisando cómo va nuestro negocio.
+    return `❤️ Amorcito, el producto que mejor está funcionando es ${mejorProducto ? mejorProducto[1] : "Todavía no hay suficientes datos."}
 
-🥇 El producto que mejor está funcionando es:
+El que más debemos mejorar es ${peorProducto ? peorProducto[1] : "Todavía no hay suficientes datos."}
 
-${mejorProducto ? mejorProducto[1] : "Todavía no hay suficientes datos."}
+La mejor respuesta del bot es ${mejorRespuesta ? mejorRespuesta[1] : "Sin datos."}
 
-📉 El que más debemos mejorar es:
+La peor respuesta del bot es ${peorRespuesta ? peorRespuesta[1] : "Sin datos."}
 
-${peorProducto ? peorProducto[1] : "Todavía no hay suficientes datos."}
-
-👑 La mejor respuesta del bot es:
-
-${mejorRespuesta ? mejorRespuesta[1] : "Sin datos."}
-
-💀 La peor respuesta del bot es:
-
-${peorRespuesta ? peorRespuesta[1] : "Sin datos."}
-
-💕 Yo me concentraría primero en mejorar el producto con menor conversión. Si logramos subir ese porcentaje, venderemos más todos los días.`;
+💕 Yo me concentraría primero en mejorar el producto con menor conversión amorcito. Si logramos subir ese porcentaje, venderemos más todos los días`;
 
 };
