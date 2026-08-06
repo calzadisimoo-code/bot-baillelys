@@ -8,6 +8,8 @@ const modulos = fs
     .filter(a => a.endsWith(".js"))
     .map(a => require(path.join(carpeta, a)));
 
+console.log("🧠 Módulos cargados:", modulos.length);
+
 module.exports = async function (texto, sock, msg) {
 
     texto = texto

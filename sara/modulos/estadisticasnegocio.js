@@ -2,6 +2,8 @@ const { reporteTodos } = require("../../estadisticas/ab");
 
 module.exports = async function (texto) {
 
+    console.log("📊 Entró a estadisticasnegocio");
+
     texto = texto
         .toLowerCase()
         .normalize("NFD")
@@ -54,4 +56,5 @@ ${mejorRespuesta ? mejorRespuesta[1] : "Sin datos."}
 ${peorRespuesta ? peorRespuesta[1] : "Sin datos."}
 
 💕 Yo me concentraría primero en mejorar el producto con menor conversión. Si logramos subir ese porcentaje, venderemos más todos los días.`;
+
 };
