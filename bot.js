@@ -242,11 +242,15 @@ guardarContacto(
 
 texto = texto.trim();
 	
-	await revisarPedido(
+	const fuePedido = await revisarPedido(
     sock,
     msg,
     texto
 );
+
+if (fuePedido) {
+    continue;
+}
 
                 if (!texto) continue;
 				
@@ -287,8 +291,6 @@ if (ultimaRespuesta.has(usuario)) {
                 console.log("Mensaje:", texto);
                 console.log("--------------------------------");
 await registrarRespuesta(sock, usuario);
-
-cancelarSeguimiento(usuario);
 
 // Primero revisar comandos del negocio
 const ejecutado = await comandos(
