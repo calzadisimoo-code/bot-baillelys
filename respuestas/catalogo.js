@@ -18,11 +18,12 @@ if (
 
         return obtenerVariante("catalogo", usuario, {
 
-            A: `🔥 ¡Aquí puedes ver todos nuestros modelos disponibles!
+            A: `👟 ¡Tenemos muchísimos modelos disponibles!
 
-📲 https://wa.me/c/573217204017
+📲 Míralos aquí:
+https://wa.me/c/573217204017
 
-Cuando veas el que más te guste, envíame una captura de pantalla o el nombre del modelo. 😊`,
+📸 Envíame una captura del que más te guste y te confirmo de inmediato la talla disponible y el precio. ✅`,
 
             B: `👟 ¡Tenemos muchos modelos disponibles!
 
