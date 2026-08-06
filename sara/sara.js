@@ -2,7 +2,7 @@ const funciones = require("./funciones");
 
 const MI_LID = "73023772213414@lid";
 
-module.exports = async function saranv(sock, msg, texto) {
+module.exports = async function responderSara(sock, msg, texto) {
 
     try {
 

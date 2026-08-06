@@ -7,7 +7,7 @@ let sara = null;
 
 try {
 
-    sara = require("./saranv/saranv.js");
+    sara = require("./sara/sara.js");
 
 } catch (error) {
 
@@ -140,7 +140,7 @@ iniciarInteligencia(sock);
 
 try {
 
-    const iniciarMensajesSara = require("./saranv/estadoautomatico");
+    const iniciarMensajesSara = require("./sara/estadoautomatico");
 
     iniciarMensajesSara(sock);
 
