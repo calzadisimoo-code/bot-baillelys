@@ -1,7 +1,7 @@
-const { obtenerVariante } = require("../../estadisticas/ab");
+const { obtenerVariante } = require("../estadisticas/ab");
 const {
     registrarDireccion
-} = require("../../estadisticas/hoy");
+} = require("../estadisticas/hoy");
 
 module.exports = function (texto, usuario) {
 
