@@ -1,12 +1,17 @@
 const fs = require("fs");
 const path = require("path");
 
-const carpeta = path.join(__dirname, "modulos");
-
 const modulos = fs
-    .readdirSync(carpeta)
-    .filter(archivo => archivo.endsWith(".js"))
-    .map(archivo => require(path.join(carpeta, archivo)));
+    .readdirSync(__dirname)
+    .filter(
+        archivo =>
+            archivo.endsWith(".js") &&
+            archivo !== "index.js" &&
+            archivo !== "enviofotos.js"
+    )
+    .map(archivo =>
+        require(path.join(__dirname, archivo))
+    );
 
 console.log("📦 Módulos cargados:", modulos.length);
 
@@ -35,7 +40,7 @@ module.exports = function (texto, usuario) {
         } catch (error) {
 
             console.error(
-                `❌ Error en ${modulo.name || "módulo"}:`,
+                "❌ Error en módulo:",
                 error
             );
 
