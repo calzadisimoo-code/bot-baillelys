@@ -1,27 +1,28 @@
 module.exports = function iniciarEstados(sock) {
 
+    console.log("🚀 Estado automático iniciado.");
+
     setInterval(async () => {
+
+        console.log("⏰ Intentando publicar estado...");
 
         try {
 
             await sock.sendMessage(
                 "status@broadcast",
                 {
-                    text: "👟 Air Force 1 desde $60.000\n🚚 Envíos a toda Colombia."
+                    text: "🧪 Prueba de estado"
                 }
             );
 
-            console.log("✅ Estado publicado.");
+            console.log("✅ Estado publicado correctamente.");
 
         } catch (error) {
 
-            console.error(
-                "❌ Error publicando estado:",
-                error
-            );
+            console.error("❌ Error:", error);
 
         }
 
-    }, 60 * 1000); // Cada minuto
+    }, 60000);
 
 };
