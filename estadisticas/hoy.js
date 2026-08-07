@@ -31,9 +31,15 @@ function guardar(datos) {
 
 function obtenerFecha() {
 
-    return new Date()
-        .toISOString()
-        .slice(0, 10);
+    const ahora = new Date();
+
+    const colombia = new Date(
+        ahora.toLocaleString("en-US", {
+            timeZone: "America/Bogota"
+        })
+    );
+
+    return colombia.toISOString().slice(0, 10);
 
 }
 
