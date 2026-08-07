@@ -175,17 +175,20 @@ https://maps.app.goo.gl/SuGbvW8j5TourCs9A
 
 ¿Vienes al local o prefieres domicilio?`,
 
-D: `📍 Estamos en Palmira.
+D: `📍 ¡Claro! Puedes visitarnos en nuestra tienda.
 
-La entrada recomendada es por la *Calle 29 #26-30*, Centro Comercial Villa de las Palmas.
+🏢 Centro Comercial Villa de las Palmas
+📌 *Local 291 - CALZADISIMO*
 
-➡️ Dentro del centro comercial nos encuentras en el **Local 291 - CALZADISIMO**.
-Preguntar por monica
+📍 Dirección:
+*Palmira - Calle 29 #26-30*
+
+🏦 Estamos diagonal al Banco de Bogotá.
 
 🗺️ Google Maps:
 https://maps.app.goo.gl/SuGbvW8j5TourCs9A
 
-¿Te esperamos o hacemos el envío?`,
+😊 ¿Vas a pasar hoy por el local o prefieres que te lo enviemos a domicilio?`,
 
 E: `📍 Nuestra tienda está dentro del Centro Comercial Villa de las Palmas - Palmira.
 
