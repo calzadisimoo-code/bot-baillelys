@@ -85,9 +85,7 @@ Sí tenemos la talla *${talla}*.
 
 D: `Si claro para que direccion?`,
 
-E: `🤩 ¡Buenas noticias!
-
-Tenemos disponible la talla *${talla}*.
+E: `Listo, prefieres recoger en el local o envio?.
 
 📍 Dime tu barrio y te digo cómo te la hacemos llegar`,
 
