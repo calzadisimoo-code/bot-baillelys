@@ -14,6 +14,7 @@ const af1b50 = require("./af1b50");
 const af1b = require("./af1b");
 const r4bd = require("./r4bd");
 const pago = require("./pago");
+const saludo = require("./saludo");
 
 module.exports = function (texto, usuario) {
 
@@ -29,6 +30,7 @@ texto = texto
 
 return (
     // Funciones generales
+    saludo(texto, usuario) ||
     catalogo(texto, usuario) ||
     envio(texto, usuario) ||
     direccion(texto, usuario) ||
