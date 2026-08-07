@@ -392,9 +392,10 @@ if (respuesta.startsWith("IMG_")) {
 }
 				
 const espera =
-    1000 +
+    ESPERA_MIN +
     Math.floor(
-        Math.random() * 2001
+        Math.random() *
+        (ESPERA_MAX - ESPERA_MIN + 1)
     );
 
 await new Promise(resolve =>
