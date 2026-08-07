@@ -76,6 +76,7 @@ texto.includes("en donde queda") ||
     texto.includes("donde estan") ||
     texto.includes("donde queda") ||
     texto.includes("donde quedan") ||
+    texto.includes("donde quesa") ||
     texto.includes("donde se ubican") ||
     texto.includes("donde esta la tienda") ||
     texto.includes("donde queda la tienda") ||

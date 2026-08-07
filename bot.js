@@ -57,6 +57,7 @@ const {
 } = require("./config");
 
 const ultimaRespuesta = new Map();
+const ultimaRespuestaTexto = new Map();
 const mensajesProcesados = new Set();
 
 let conectado = false;
@@ -399,15 +400,28 @@ await new Promise(resolve =>
     setTimeout(resolve, espera)
 );
 
-await sock.sendMessage(
+const ultima = ultimaRespuestaTexto.get(usuario);
 
-    usuario,
+if (
+    ultima &&
+    ultima.texto === respuesta &&
+    Date.now() - ultima.fecha < 10000
+) {
 
-    {
+    console.log("🔁 Mensaje duplicado evitado.");
+
+} else {
+
+    await sock.sendMessage(usuario, {
         text: respuesta
-    }
+    });
 
-);
+    ultimaRespuestaTexto.set(usuario, {
+        texto: respuesta,
+        fecha: Date.now()
+    });
+
+}
 
 // Programar seguimiento si no responde
 programarSeguimiento(
