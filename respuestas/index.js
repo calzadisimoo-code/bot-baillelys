@@ -5,8 +5,8 @@ const carpeta = path.join(__dirname, "modulos");
 
 const modulos = fs
     .readdirSync(carpeta)
-    .filter(a => a.endsWith(".js"))
-    .map(a => require(path.join(carpeta, a)));
+    .filter(archivo => archivo.endsWith(".js"))
+    .map(archivo => require(path.join(carpeta, archivo)));
 
 console.log("📦 Módulos cargados:", modulos.length);
 
@@ -34,7 +34,11 @@ module.exports = function (texto, usuario) {
 
         } catch (error) {
 
-            console.error("❌ Error en módulo:", error);
+            console.error(
+                `❌ Error en ${modulo.name || "módulo"}:`,
+                error
+            );
+
         }
 
     }
