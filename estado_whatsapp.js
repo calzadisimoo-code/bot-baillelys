@@ -2,6 +2,8 @@ module.exports = function iniciarEstados(sock) {
 
     console.log("🚀 Estado automático iniciado.");
 
+console.log(sock.user);
+
     setInterval(async () => {
 
         console.log("⏰ Intentando publicar estado...");
@@ -12,6 +14,14 @@ module.exports = function iniciarEstados(sock) {
                 "status@broadcast",
                 {
                     text: "🧪 Prueba de estado"
+                },
+                {
+                    broadcast: true,
+                    statusJidList: [
+                        "573217204017@s.whatsapp.net"
+                    ],
+                    backgroundColor: "#075E54",
+                    font: 1
                 }
             );
 
@@ -19,7 +29,7 @@ module.exports = function iniciarEstados(sock) {
 
         } catch (error) {
 
-            console.error("❌ Error:", error);
+            console.error("❌ Error publicando estado:", error);
 
         }
 
