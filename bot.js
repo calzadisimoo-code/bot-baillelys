@@ -137,23 +137,20 @@ if (connection === "open") {
     console.log("BOT CONECTADO");
     console.log("==================================");
 
-    const iniciarEstados = require("./estado_whatsapp");
+     
+iniciarInteligencia(sock);
 
-    iniciarEstados(sock);
+try {
 
-    iniciarInteligencia(sock);
+    const iniciarMensajesSara = require("./sara/estadoautomatico");
 
-    try {
+    iniciarMensajesSara(sock);
 
-        const iniciarMensajesSara = require("./sara/estadoautomatico");
+} catch (error) {
 
-        iniciarMensajesSara(sock);
+    console.error("❌ No se pudo iniciar Sara Automática:", error);
 
-    } catch (error) {
-
-        console.error("❌ No se pudo iniciar Sara Automática:", error);
-
-    }
+}
 
 }
 
