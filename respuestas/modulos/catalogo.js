@@ -1,5 +1,5 @@
-const { obtenerVariante } = require("../estadisticas/ab");
-const { registrarCatalogo } = require("../estadisticas/hoy");
+const { obtenerVariante } = require("../../estadisticas/ab");
+const { registrarCatalogo } = require("../../estadisticas/hoy");
 
 module.exports = function (texto, usuario) {
 

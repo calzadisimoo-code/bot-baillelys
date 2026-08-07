@@ -1,4 +1,4 @@
-const { obtenerVariante } = require("../estadisticas/ab");
+const { obtenerVariante } = require("../../estadisticas/ab");
 
 module.exports = function (texto, usuario) {
 

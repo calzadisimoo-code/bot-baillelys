@@ -1,16 +1,16 @@
 const {
     obtenerVariante,
     reporte
-} = require("../estadisticas/ab");
+} = require("../../estadisticas/ab");
 
 const {
     obtener,
     guardar
-} = require("../estado");
+} = require("../../estado");
 
 const {
     registrarTalla
-} = require("../estadisticas/hoy");
+} = require("../../estadisticas/hoy");
 
 module.exports = function (texto, usuario) {
 

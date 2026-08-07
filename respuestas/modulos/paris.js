@@ -1,9 +1,9 @@
-const { obtenerVariante } = require("../estadisticas/ab");
-const { guardar } = require("../estado");
+const { obtenerVariante } = require("../../estadisticas/ab");
+const { guardar } = require("../../estado");
 
 const {
     registrarProducto
-} = require("../estadisticas/hoy");
+} = require("../../estadisticas/hoy");
 
 module.exports = function (texto, usuario) {
 
