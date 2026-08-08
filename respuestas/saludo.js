@@ -101,11 +101,11 @@ Estoy aquí para ayudarte a encontrar el producto que buscas. 🤝
 
 📦 ¿Qué producto te interesa hoy?`,
 
-E: `${saludo} ¡Qué gusto saludarte! ❤️
+E: `${saludo} Bienvenido a CALZADISIMO.
 
-👟 Tenemos varios modelos disponibles.
+👟 Con gusto te ayudo a encontrar el producto que buscas.
 
-✨ ¿Cuál estás buscando?`,
+📦 ¿Cuál te interesa?`,
 
 F: `${saludo}
 
