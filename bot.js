@@ -140,17 +140,17 @@ if (connection === "open") {
      
 iniciarInteligencia(sock);
 
-try {
+// try {
 
-    const iniciarMensajesSara = require("./sara/estadoautomatico");
+//     const iniciarMensajesSara = require("./sara/estadoautomatico");
 
-    iniciarMensajesSara(sock);
+//     iniciarMensajesSara(sock);
 
-} catch (error) {
+// } catch (error) {
 
-    console.error("❌ No se pudo iniciar Sara Automática:", error);
+//     console.error("❌ No se pudo iniciar Sara Automática:", error);
 
-}
+// }
 
 }
 
