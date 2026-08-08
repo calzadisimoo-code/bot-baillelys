@@ -35,10 +35,19 @@ if (
     texto === "direccion" ||
     texto === "ubicacion" ||
 
-    texto.includes("direccion") ||
-    texto.includes("ubicacion") ||
-    texto.includes("ubicados") ||
-    texto.includes("ubicado") ||
+(
+    texto.includes("direccion") &&
+    !texto.includes("no me se la direccion") &&
+    !texto.includes("no me sé la direccion") &&
+    !texto.includes("no se la direccion") &&
+    !texto.includes("no sé la direccion") &&
+    !texto.includes("no tengo la direccion") &&
+    !texto.includes("no conozco la direccion")
+) ||
+
+texto.includes("ubicacion") ||
+texto.includes("ubicados") ||
+texto.includes("ubicado") ||
 
     texto.includes("punto fisico") ||
     texto.includes("direccion del local") ||
