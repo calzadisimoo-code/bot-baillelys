@@ -38,7 +38,7 @@ guardar(usuario, {
 
             E: "Hola que talla buscas?",
 
-            F: "🔥 Las Air Force 1 blancas importadas siguen disponibles.\n\n💰 Precio: *$100.000*\n🚚 Envíos a toda Colombia.\n\n👟 *Dime tu talla y en unos minutos dejamos listo tu pedido.*"
+            F: "Listo, prefieres recoger en el local o envio?.\n\n📍 Dime tu barrio y te digo cómo te la hacemos llegar"
 
         });
 
