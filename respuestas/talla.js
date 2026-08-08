@@ -77,11 +77,11 @@ La talla *${talla}* está disponible.
 
 🚚 ¿Me dices tu barrio para indicarte el envío?`,
 
-C: `🔥 Excelente.
+C: `Perfecto
 
-Sí tenemos la talla *${talla}*.
+¿La recoges en el local o prefieres que te la enviemos?
 
-📍 ¿Cuál es tu barrio para decirte el valor del envío?`,
+📍 Dime tu barrio y te explico cómo te la hacemos llegar.`,
 
 D: `Si claro para que direccion?`,
 
