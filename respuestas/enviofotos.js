@@ -24,9 +24,11 @@ E: `😊 Perfecto, aquí tienes las fotos.
 
 👀 ¿Te las llevarías en ese modelo?`,
 
-F: `🚀 Ya te envío las fotos.
+F: `📸 ¡Listo! Ya te envié las fotos. 😊
 
-💯 Del 1 al 10, ¿qué calificación les das?`
+🚚 ¿Prefieres recoger en el local o recibirlas por envío?
+
+📍 Dime tu barrio o ciudad y te digo cómo te las hacemos llegar.`
 
     });
 
