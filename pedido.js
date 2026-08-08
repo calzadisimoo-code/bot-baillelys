@@ -71,8 +71,7 @@ const producto =
 
 const talla = estado.talla || "";
 
-let mensaje = `${nombre}, ${usuario}, ${producto}${talla ? ` • ${talla}` : ""}, ${texto}
-💰 $`;
+let mensaje = `${texto}, ${producto}${talla ? ` • ${talla}` : ""}, $`;
 
     try {
 
