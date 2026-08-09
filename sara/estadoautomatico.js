@@ -1,4 +1,5 @@
 let iniciado = false;
+let ACTIVADO = false;
 const cron = require("node-cron");
 const fs = require("fs");
 const path = require("path");
@@ -19,6 +20,11 @@ if (fs.existsSync(archivoEstado)) {
 }
 
 module.exports = function iniciarEstadoAutomaticoSara(sock) {
+
+if (!ACTIVADO) {
+    console.log("⏸️ Sara automática desactivada.");
+    return;
+}
 	
 	if (iniciado) return;
 
