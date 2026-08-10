@@ -199,13 +199,15 @@ sock.ev.on(
 
                 if (msg.key.fromMe) continue;
 
-const usuario =
-    msg.key.remoteJid;
+const usuario = msg.key.remoteJid;
 
 if (!usuario) continue;
 
 // Ignorar grupos
 if (usuario.endsWith("@g.us")) continue;
+
+// Ignorar canales/newsletters
+if (usuario.endsWith("@newsletter")) continue;
 
 // Ignorar estados
 if (usuario === "status@broadcast") continue;
