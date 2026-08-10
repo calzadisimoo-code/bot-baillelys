@@ -107,11 +107,11 @@ E: `${saludo} Bienvenido a CALZADISIMO.
 
 📦 ¿Cuál te interesa?`,
 
-F: `${saludo}
+F: `${saludo} Bienvenido a CALZADISIMO.
 
-✅ Enviamos a toda Colombia y respondemos lo más rápido posible.
+Tenemos Calzado, cargadores, adufionos, sandalias y muchos productos más.
 
-👟 ¿Qué producto te gustaría ver?`
+😊 ¿Qué producto estás buscando?`
 
     }
 
