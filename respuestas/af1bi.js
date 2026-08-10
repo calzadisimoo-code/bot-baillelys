@@ -38,7 +38,7 @@ guardar(usuario, {
 
             E: "Hola que talla buscas?",
 
-            F: "Listo, prefieres recoger en el local o envio?.\n\n📍 Dime tu barrio y te digo cómo te la hacemos llegar"
+            F: "Hola que talla buscas? y en que barrio te encuentras?"
 
         });
 
