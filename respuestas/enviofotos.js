@@ -4,9 +4,9 @@ module.exports = function (usuario) {
 
     return obtenerVariante("enviofotos", usuario, {
 
-A: `📸 ¡Claro! Ya mismo te envío las fotos. 😊
+A: `📸 ¡Listo! Ya te envié las fotos. 😊
 
-👀 ¿Sí eran las que estabas buscando?`,
+📍 Dime tu barrio o ciudad y te digo cómo te las hacemos llegar.`,
 
 B: `🤩 ¡Con gusto! Aquí tienes las fotos.
 
@@ -20,9 +20,9 @@ D: `📷 Aquí están las fotos del producto.
 
 ✨ ¿Cuál fue la que más te gustó?`,
 
-E: `😊 Perfecto, aquí tienes las fotos.
+E: `📸¡Listo! Ya te envié las fotos. 😊
 
-👀 ¿Te las llevarías en ese modelo?`,
+🚚 ¿Prefieres recoger en el local o recibirlas por envío?`,
 
 F: `📸 ¡Listo! Ya te envié las fotos. 😊
 
