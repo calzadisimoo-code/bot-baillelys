@@ -175,15 +175,17 @@ https://maps.app.goo.gl/SuGbvW8j5TourCs9A
 
 ¿Vas a pasar hoy o prefieres envío?`,
 
-C: `📍 Puedes visitarnos en Palmira por la *Calle 29 #26-30*, Centro Comercial Villa de las Palmas.
+C: `📍 Estamos ubicados en Palmira *Calle 29 #26-30*.
 
-➡️ Dentro del centro comercial estamos en el **Local 291 - CALZADISIMO**.
+➡️ Dentro del centro comercial nos encuentras en el **Local 291 - CALZADISIMO**.
+
+📌 Alfrente de almacenes Si.
 Preguntar por monica
 
 🗺️ Google Maps:
 https://maps.app.goo.gl/SuGbvW8j5TourCs9A
 
-¿Vienes al local o prefieres domicilio?`,
+¿Prefieres pasar por el local o hacemos el envío?`,
 
 D: `📍 ¡Claro! Puedes visitarnos en nuestra tienda.
 
