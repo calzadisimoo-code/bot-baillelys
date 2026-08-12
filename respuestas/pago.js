@@ -25,6 +25,7 @@ module.exports = function (texto, usuario) {
         texto.includes("realizar el pago") ||
         texto.includes("hacer el pago") ||
         texto.includes("donde pago") ||
+		texto.includes("Que medios de pago reciben") ||
         texto.includes("dónde pago") ||
         texto.includes("pagar")
     ) {
