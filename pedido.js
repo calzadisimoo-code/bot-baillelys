@@ -76,8 +76,7 @@ let mensaje = `${texto}, ${producto}${talla ? ` • ${talla}` : ""}, $`;
     try {
 
 const destinatarios = [
-    "573183676163@s.whatsapp.net", // Tu número
-    "573233898981@s.whatsapp.net" // Número de la trabajadora
+    "573183676163@s.whatsapp.net" // Tu número // Número de la trabajadora
 ];
 
 for (const numero of destinatarios) {
