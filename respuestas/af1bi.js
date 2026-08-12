@@ -38,7 +38,9 @@ guardar(usuario, {
 
             E: "Hola que talla buscas?",
 
-            F: "Hola que talla buscas? y en que barrio te encuentras?"
+            F: "Hola que talla buscas? y en que barrio te encuentras?",
+			
+			G: "📦 Con gusto. Escríbeme tu dirección completa y la ciudad para cotizar el envío de inmediato."
 
         });
 
