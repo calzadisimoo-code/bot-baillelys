@@ -97,7 +97,11 @@ E: `Listo, prefieres recoger en el local o envio?.
 
 F: `✅ Sí hay talla *${talla}*.
 
-🚚 ¿Cuál es tu barrio? Así te digo el costo y el tiempo del envío`
+🚚 ¿Cuál es tu barrio? Así te digo el costo y el tiempo del envío`,
+
+G: `🤍 ¡Sí! Tenemos disponible la talla *${talla}*.
+
+🚚 ¿En que direccion estas? Así te confirmo el costo del envío`,
 
         }
     );
