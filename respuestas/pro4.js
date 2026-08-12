@@ -324,25 +324,26 @@ Envíame esos datos y te confirmamos el pedido.`;
         // DATOS
         // =================================================
 
-        if (estado.etapa === "datos") {
 
-    // Detectar si el cliente ya envió una dirección
+
+
+
+
+
+
+if (estado.etapa === "datos") {
+
     const tieneDireccion =
         /\b(carrera|cra|calle|cl|avenida|av|diagonal|diag|transversal|trans|kr)\b/i.test(texto) ||
         /#\s*\d+/i.test(texto) ||
         /\d+\s*[-#]\s*\d+/i.test(texto);
 
-    // Detectar teléfono colombiano
     const tieneTelefono =
-        /(?:\+57\s*)?3\d{9}\b/.test(texto.replace(/\s+/g, ""));
+        /(?:\+57\s*)?3\d{9}\b/.test(
+            texto.replace(/\s+/g, "")
+        );
 
-    // Detectar si parece que envió varios datos juntos
-    const tieneDatos =
-        tieneDireccion ||
-        tieneTelefono ||
-        texto.length > 20;
-
-    if (tieneDatos) {
+    if (tieneDireccion || tieneTelefono) {
 
         guardar(usuario, {
             ...estado,
@@ -353,12 +354,9 @@ Envíame esos datos y te confirmamos el pedido.`;
 
         return `✅ Perfecto, ya recibí tus datos.
 
-📦 Voy a verificar la información del pedido y te confirmamos el envío.
-
-Si ya enviaste nombre, celular, ciudad y dirección, **no necesitas volver a enviarlos**.`;
+📦 Voy a verificar la información del pedido y te confirmamos el envío.`;
     }
 
-    // Si realmente NO ha enviado datos todavía
     return `Perfecto. Ya casi está listo. 📦
 
 Envíame por favor:
@@ -371,17 +369,12 @@ Envíame por favor:
 Y te confirmamos el pedido.`;
 }
 
-            return `Perfecto. Ya casi está listo. 📦
+if (estado.etapa === "confirmacion") {
 
-Envíame por favor:
+    return `✅ Tus datos ya fueron recibidos correctamente.
 
-👤 Nombre completo
-📱 Número de celular
-📍 Ciudad
-🏠 Dirección exacta
-
-Y te confirmamos el pedido.`;
-        }
+📦 Estamos verificando tu pedido y te confirmamos el envío.`;
+}
 
 
         // =================================================
