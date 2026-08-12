@@ -84,7 +84,12 @@ C: `Perfecto
 
 📍 Dime tu barrio y te explico cómo te la hacemos llegar.`,
 
-D: `Si claro para que direccion?`,
+D: `Sí, las *${nombreProducto}* las tenemos disponibles. 👟
+💰 *$${precioProducto}*
+📦 Talla *${talla}* disponible.
+🚚 Hacemos envíos a toda Colombia.
+
+¿Las deseas con envío o prefieres recogerlas en Palmira?`,
 
 E: `Listo, prefieres recoger en el local o envio?.
 
@@ -92,14 +97,7 @@ E: `Listo, prefieres recoger en el local o envio?.
 
 F: `✅ Sí hay talla *${talla}*.
 
-🚚 ¿Cuál es tu barrio? Así te digo el costo y el tiempo del envío`,
-
-G: `Sí, las *${nombreProducto}* las tenemos disponibles. 👟
-💰 *$${precioProducto}*
-📦 Talla *${talla}* disponible.
-🚚 Hacemos envíos a toda Colombia.
-
-¿Las deseas con envío o prefieres recogerlas en Palmira?`
+🚚 ¿Cuál es tu barrio? Así te digo el costo y el tiempo del envío`
 
         }
     );
