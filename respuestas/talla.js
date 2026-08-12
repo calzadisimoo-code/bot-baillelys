@@ -58,13 +58,14 @@ module.exports = function (texto, usuario) {
 
     registrarTalla(usuario);
 
-    guardar(usuario, {
-        talla
-    });
+guardar(usuario, {
+    ...estado,
+    talla
+});
 
-    const respuesta = obtenerVariante(
-        "talla",
-        usuario,
+const respuesta = obtenerVariante(
+    `${estado.producto}_talla`,
+    usuario,
         {
 
 A: `🤍 ¡Sí! Tenemos disponible la talla *${talla}*.
@@ -91,12 +92,19 @@ E: `Listo, prefieres recoger en el local o envio?.
 
 F: `✅ Sí hay talla *${talla}*.
 
-🚚 ¿Cuál es tu barrio? Así te digo el costo y el tiempo del envío`
+🚚 ¿Cuál es tu barrio? Así te digo el costo y el tiempo del envío`,
+
+G: `Sí, las *${nombreProducto}* las tenemos disponibles. 👟
+💰 *$${precioProducto}*
+📦 Talla *${talla}* disponible.
+🚚 Hacemos envíos a toda Colombia.
+
+¿Las deseas con envío o prefieres recogerlas en Palmira?`
 
         }
     );
 
-    console.log(reporte("talla"));
+    console.log(reporte(`${estado.producto}_talla`));
 
     return respuesta;
 
