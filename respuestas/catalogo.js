@@ -10,6 +10,7 @@ if (
     texto.includes("catalago") ||
     texto.includes("catalogo") ||
     texto.includes("catlogo") ||
+	texto.includes("tienes diseños") ||
     texto.includes("de hombre y de mujer") ||
     texto.includes("modelos")
 ) {

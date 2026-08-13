@@ -84,12 +84,7 @@ C: `Perfecto
 
 📍 Dime tu barrio y te explico cómo te la hacemos llegar.`,
 
-D: `Sí, las *${nombreProducto}* las tenemos disponibles. 👟
-💰 *$${precioProducto}*
-📦 Talla *${talla}* disponible.
-🚚 Hacemos envíos a toda Colombia.
-
-¿Las deseas con envío o prefieres recogerlas en Palmira?`,
+D: `Claro a que direccion seria el envio?`,
 
 E: `Listo, prefieres recoger en el local o envio?.
 
