@@ -4,8 +4,8 @@ module.exports = {
 
     LIMITE_MENSAJE: 300,
 
-    ESPERA_MIN: 1000,
+    ESPERA_MIN: 500,
 
-    ESPERA_MAX: 10000
+    ESPERA_MAX: 1500
 
 };
