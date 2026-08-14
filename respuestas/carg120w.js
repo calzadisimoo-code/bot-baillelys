@@ -22,17 +22,17 @@ module.exports = function (texto, usuario) {
 
 return obtenerVariante("carg120w", usuario, {
 
-    A: "⚡ ¡Sí disponible!\n\n💰 Precio: *$60.000*\n\n📍 ¿Envío o recoges?",
+    A: "⚡ ¡Sí disponible!\n\n💰 Precio: *$60.000*\n\n📍 ¿Prefieres envío o recoger?",
 
-    B: "Listo, prefieres recoger en el local o envio?.\n\n📍 Dime tu barrio y te digo cómo te la hacemos llegar",
+    B: "Hola 👋 ¿Desde qué ciudad o barrio nos escribes?",
 
-    C: "🔥 Es uno de los cargadores que más vendemos por su velocidad de carga.\n\n💰 *$60.000*.\n\n📍 ¿Te lo enviamos o pasas por él?",
+    C: "🔥 ¡Sí, disponible!\n\n💰 *$60.000*\n\n📍 ¿Desde qué ciudad nos escribes?",
 
-    D: "👋 ¡Hola! Claro que sí.\n\n¿Para qué celular lo necesitas?\n\n💰 El cargador Turbo *120W* vale *$60.000*.",
+    D: "✅ Sí tenemos disponible.\n\n📍 ¿Desde qué ciudad o barrio nos escribes?",
 
-    E: "✅ Sí tenemos disponible el cargador Turbo *120W*.\n\n🚚 Envío rápido a toda Colombia.\n💰 *$45.000*.\n\n📍 ¿De qué ciudad nos escribes?",
+    E: "Perfecto 👌 ¿Lo recoges en el local o te lo enviamos?",
 
-    F: "⚡ ¡Perfecto!\n\n💰 Cargador Turbo *180W*: *$60.000*.\n\n😊 ¿Cuántas unidades necesitas?"
+    F: "⚡ Sí disponible en *$60.000*.\n\n📍 ¿De qué ciudad nos escribes?"
 
 });
 
