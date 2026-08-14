@@ -3,6 +3,10 @@ const fs = require("fs");
 const path = require("path");
 const envioFotos = require("./respuestas/enviofotos");
 const iniciarInteligencia = require("./inteligencia");
+
+const NUMEROS_IGNORADOS = [
+    "573233898981"
+];
 let sara = null;
 
 try {
@@ -202,6 +206,14 @@ sock.ev.on(
 const usuario = msg.key.remoteJid;
 
 if (!usuario) continue;
+
+// Ignorar números específicos
+const numero = usuario.replace("@s.whatsapp.net", "");
+
+if (NUMEROS_IGNORADOS.includes(numero)) {
+    console.log("🚫 Número ignorado:", numero);
+    continue;
+}
 
 // Ignorar grupos
 if (usuario.endsWith("@g.us")) continue;

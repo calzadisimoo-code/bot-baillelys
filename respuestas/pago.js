@@ -21,6 +21,7 @@ module.exports = function (texto, usuario) {
         texto.includes("formas de pago") ||
         texto.includes("como pago") ||
         texto.includes("cómo pago") ||
+		texto.includes("medios de pago") ||
         texto.includes("quiero pagar") ||
         texto.includes("realizar el pago") ||
         texto.includes("hacer el pago") ||

@@ -52,6 +52,10 @@ if (
     saludo = "😊 ¡Buenas!";
 
 }
+// Evitar saludo cuando el cliente está preguntando por calidad
+if (texto.includes("triple a")) {
+    return null;
+}
 
 // Evitar conflicto con ubicación
 if (
