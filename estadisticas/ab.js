@@ -230,6 +230,8 @@ let peorProductoPorcentaje = 101;
 
 const recomendaciones = [];
 
+const rankingProductos = [];
+
     for (const nombre of Object.keys(datos)) {
 
 detalleProductos += `━━━━━━━━━━━━━━━━━━\n`;
@@ -313,6 +315,13 @@ if (enviados >= 4) {
             totalEnviados === 0
                 ? 0
                 : (totalRespondieron / totalEnviados) * 100;
+				
+				rankingProductos.push({
+    nombre: nombre.toUpperCase(),
+    enviados: totalEnviados,
+    respondieron: totalRespondieron,
+    conversion: conversionProducto
+});
 
         if (
     totalEnviados >= 10 &&
@@ -349,7 +358,27 @@ if (enviados >= 4) {
         }
 
     }
-	
+	rankingProductos.sort(
+    (a, b) => b.conversion - a.conversion
+);
+
+texto += `
+━━━━━━━━━━━━━━━━━━
+
+🏆 RANKING DE PRODUCTOS
+
+`;
+
+rankingProductos.forEach((producto, index) => {
+
+    texto += `${index + 1}. ${producto.nombre}
+📈 ${producto.conversion.toFixed(1)}%
+💬 ${producto.respondieron} respuestas
+📤 ${producto.enviados} enviados
+
+`;
+
+});
 	if (mejorProducto) {
 
     recomendaciones.push(
