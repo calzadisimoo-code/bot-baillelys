@@ -352,30 +352,15 @@ if (estado.etapa === "datos") {
             texto.replace(/\s+/g, "")
         );
 
+    // Si manda dirección o teléfono:
+    // PRO4 NO RESPONDE
     if (tieneDireccion || tieneTelefono) {
-
-        guardar(usuario, {
-            ...estado,
-            datosRecibidos: true,
-            mensajeDatos: texto,
-            etapa: "confirmacion"
-        });
-
-        return `✅ Perfecto, ya recibí tus datos.
-
-📦 Voy a verificar la información del pedido y te confirmamos el envío.`;
+        return null;
     }
 
-    return `Perfecto. Ya casi está listo. 📦
-
-Envíame por favor:
-
-👤 Nombre completo
-📱 Número de celular
-📍 Ciudad
-🏠 Dirección exacta
-
-Y te confirmamos el pedido.`;
+    // Si tampoco sabe qué responder:
+    // PRO4 NO RESPONDE
+    return null;
 }
 
 if (estado.etapa === "confirmacion") {
