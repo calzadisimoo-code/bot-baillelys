@@ -6,7 +6,23 @@ const {
 
 module.exports = function (texto, usuario) {
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     texto = texto.toLowerCase().trim();
+	
+	// Preguntas sobre cable, caja y estado del producto
+if (
+    texto.includes("cable") ||
+    texto.includes("nuevo") ||
+    texto.includes("nuevos") ||
+    texto.includes("nueva") ||
+    texto.includes("caja")
+) {
+
+    return `Sí, claro. 😊 Vienen completamente nuevos, con su cable de carga incluido y su caja. 📦🎧
+
+¿En qué ciudad te encuentras para indicarte el envío?`;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const estado = obtener(usuario);
 
@@ -302,22 +318,15 @@ module.exports = function (texto, usuario) {
         // CIERRE
         // =================================================
 
-        if (estado.etapa === "cierre") {
+if (estado.etapa === "cierre") {
 
-            guardar(usuario, {
-                ...estado,
-                etapa: "datos"
-            });
+    guardar(usuario, {
+        ...estado,
+        etapa: "datos"
+    });
 
-            return `Perfecto. 🔥 Para finalizar tu pedido necesito:
-
-👤 Nombre completo:
-📱 Número de celular:
-📍 Ciudad:
-🏠 Dirección exacta:
-
-Envíame esos datos y te confirmamos el pedido.`;
-        }
+    return null;
+}
 
 
         // =================================================
