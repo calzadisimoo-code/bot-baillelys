@@ -12,7 +12,7 @@ module.exports = function (texto, usuario) {
 
         return obtenerVariante("envio", usuario, {
 
-            A: "🚚 ¡Claro! Envíanos tu dirección o barrio y ciudad para decirte el costo del envío y el tiempo de entrega.",
+            A: "🚚 ¡Claro! Envíanos tu dirección o barrio y ciudad para decirte el costo del envío",
 
             B: "📦 Con gusto. Escríbeme tu dirección completa y la ciudad para cotizar el envío de inmediato.", //1 VENTA
 
