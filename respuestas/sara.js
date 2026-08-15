@@ -79,6 +79,7 @@ if (
     texto.includes("pago al recibir") ||
     texto.includes("pagar al recibir") ||
 	texto.includes("Manejan pagos contra entrega?") ||
+	texto.includes("El envío es contra entrega") ||
     texto.includes("recibir y pagar")
 )
     return `✅ ¡Sí! Manejamos *pago contra entrega* en la mayoría de ciudades de Colombia.
