@@ -113,8 +113,6 @@ E: `${saludo} Bienvenido a CALZADISIMO.
 
 F: `${saludo} Bienvenido a CALZADISIMO.
 
-Tenemos Calzado, cargadores, adufionos, sandalias y muchos productos más.
-
 😊 ¿Qué producto estás buscando?`
 
     }
