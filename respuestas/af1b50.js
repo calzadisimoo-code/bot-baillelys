@@ -32,11 +32,11 @@ module.exports = function (texto, usuario) {
 
         C: "✨ Sí hay disponibilidad.\n\n🤍 Air Force 1 blancas.\n💰 *$50.000*\n🚚 Envío rápido a toda Colombia.\n\n👟 *¿Cuál es tu talla? (21 al 44)*",
 
-        D: "🚀 Tenemos disponibles las Air Force 1 blancas.\n\n💵 Valor: *$50.000*\n\n👟 *Envíame tu talla y te envío la información para recibirlas.*",
+        D: "Hola, que talla buscas?",
 
         E: "👋 ¡Hola! 😊\n\n¿En qué talla las necesitas?\n\n👟 Tenemos disponibles del *21 al 44*.\n💰 Precio: *$50.000*.",
 
-        F: "✅ Sí están disponibles.\n\n🤍 Air Force 1 blancas.\n💰 *$50.000*\n\n👟 *Dime tu talla y en unos minutos dejamos listo tu pedido.*"
+        F: "Hola, Air Force 1 blancas 💰 *$50.000* 👟 Dime tu talla y te confirmo disponibilidad"
 
     });
 
