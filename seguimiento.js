@@ -61,6 +61,19 @@ function cancelarSeguimiento(usuario) {
 
 }
 
+function cancelarSiEsDireccion(usuario, texto) {
+
+    if (!texto) return;
+
+    const direccion =
+        /\b(calle|cl|carrera|cra|kr|kra|transversal|tv|diagonal|dg|barrio|casa|apto|apartamento|manzana|mz)\b|#\s*\d+/i.test(texto);
+
+    if (direccion) {
+        cancelarSeguimiento(usuario);
+    }
+
+}
+
 function programarSeguimiento(
     sock,
     usuario
@@ -181,5 +194,6 @@ timers.set(usuario, timer);
 
 module.exports = {
     programarSeguimiento,
-    cancelarSeguimiento
+    cancelarSeguimiento,
+    cancelarSiEsDireccion
 };

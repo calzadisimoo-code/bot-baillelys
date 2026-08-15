@@ -29,7 +29,8 @@ const {
 
 const {
     programarSeguimiento,
-    cancelarSeguimiento
+    cancelarSeguimiento,
+    cancelarSiEsDireccion
 } = require("./seguimiento");
 
 const {
@@ -257,6 +258,7 @@ guardarContacto(
                 }
 
 texto = texto.trim();
+cancelarSiEsDireccion(usuario, texto);
 	
 	const fuePedido = await revisarPedido(
     sock,
