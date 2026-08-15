@@ -12,7 +12,8 @@ if (
     texto.includes("catlogo") ||
 	texto.includes("tienes diseños") ||
     texto.includes("de hombre y de mujer") ||
-	texto.includes("calzado que tenga") ||
+	texto.includes("Solo tienen esos") ||
+	texto.includes("calzado que tenga") || 
     texto.includes("modelos")
 ) {
 
