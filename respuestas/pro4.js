@@ -435,7 +435,7 @@ if (estado.etapa === "confirmacion") {
 
             E: "🎧 ¡Sí hay disponibilidad!\n\n💰 *$60.000*\n🚚 Envíos a toda Colombia.\n\n✅ ¿Te ayudo a dejar listo tu pedido?",
 
-            F: "🎧 ¡Sí tenemos los *AirPods Pro 4*!\n\n💰 Precio: *$60.000*\n\n📦 ¿Cuántos pares necesitas?"
+            F: "🎧 ¡SE AGOTAN!\n\n💰 *$60.000*\n\n📍 ¿En qué ciudad te encuentras para decirte el tiempo de entrega?"
 
         });
     }
