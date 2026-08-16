@@ -97,6 +97,11 @@ F: `✅ Sí hay talla *${talla}*.
 G: `🤍 ¡Sí! Tenemos disponible la talla *${talla}*.
 
 🚚 ¿En que direccion estas? Así te confirmo el costo del envío`,
+H: `🔥 Perfecto, talla ${talla} disponible. Te las puedo separar de una vez porque se están moviendo rápido 👟
+💰 $promo del anuncio
+📦 Hacemos envío a domicilio.
+
+📍 ¿A qué dirección te las envío para dejartelas separadas?`,// 1 respuesta
 
         }
     );
