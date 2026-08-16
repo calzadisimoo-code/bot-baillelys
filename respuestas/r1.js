@@ -7,7 +7,7 @@ const {
 module.exports = function (texto, usuario) {
 
     if (
-		texto.includes("Quiero las Retro 1 blancas con negro") ||
+		texto.includes("quiero las retro 1 blancas con negro") ||
         texto.includes("retro blancas")
     ) {
 
@@ -24,7 +24,7 @@ module.exports = function (texto, usuario) {
 
             B: "🔥 Tenemos las Retro 1 blancas con negro por *$84.900*.\n\n✅ Tallas disponibles del *21 al 44*.\n\n👟 *Escríbeme tu talla y te ayudo con el pedido.*",
 
-            C: "✨ Sí hay disponibilidad.\n\n🤍🖤 Retro 1 blancas con negro.\n💰 *$84.900*\n🚚 Envíos a toda Colombia.\n\n👟 *¿Cuál es tu talla? (21 al 44)*",
+            C: "✨ Sí hay disponibilidad.\n\n🤍🖤 Retro 1 blancas con negro.\n💰 *$84.900*\n🚚 Envíos a toda Colombia.\n\n👟 *¿Cuál es tu talla? (21 al 44)*",//1 punto
 
             D: "🚀 Tenemos disponibles las Retro 1 blancas con negro.\n\n💵 Valor: *$84.900*\n\n👟 *Envíame tu talla y te envío la información para recibirlas.*",
 
