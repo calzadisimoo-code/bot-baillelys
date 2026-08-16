@@ -99,7 +99,17 @@ if (
     texto.includes("pro 2liv") ||
     texto.includes("pro2liv")
 ) {
-    return `Perfecto 😊 Te quedan los *AirPods Pro 2 con cancelación de ruido* en *$50.000* 🎧🔥
+    return `😊Perfecto Te quedan los *AirPods Pro 2* en *$50.000* 🔥
+
+✅ *Cancelación activa de ruido*
+🎧 *4 modos de sonido*
+📍 *GPS compatible con iPhone*
+🔋 Excelente autonomía
+📱 Compatibles con iPhone y Android
+🔌 Incluyen *cable de carga*
+🎧 Incluyen *3 pares de almohadillas* para elegir el ajuste que mejor te quede
+
+💰 *Solo $50.000*
 
 Te los puedo separar para que no se agoten.
 📍 ¿A qué dirección te los separo?`;
