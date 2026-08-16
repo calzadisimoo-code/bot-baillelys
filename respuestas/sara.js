@@ -92,6 +92,18 @@ if (
 
     if (texto === "adios")
         return "Hasta luego.";
+	
+	if (
+    texto.includes("pro 2 live") ||
+    texto.includes("pro2 live") ||
+    texto.includes("pro 2liv") ||
+    texto.includes("pro2liv")
+) {
+    return `Perfecto 😊 Te quedan los *AirPods Pro 2 con cancelación de ruido* en *$50.000* 🎧🔥
+
+Te los puedo separar para que no se agoten.
+📍 ¿A qué dirección te los separo?`;
+}
 
     return null;
 
