@@ -8,6 +8,7 @@ if (
     texto === "catalago" ||
     texto.includes("catalogo") ||
     texto.includes("catalago") ||
+	texto.includes("tenis tiene") ||
     texto.includes("catalogo") ||
     texto.includes("catlogo") ||
 	texto.includes("tienes diseños") ||
