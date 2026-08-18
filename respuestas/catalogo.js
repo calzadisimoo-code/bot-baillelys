@@ -9,6 +9,7 @@ if (
     texto.includes("catalogo") ||
     texto.includes("catalago") ||
 	texto.includes("tenis tiene") ||
+	texto.includes("mas diseños") ||
     texto.includes("catalogo") ||
     texto.includes("catlogo") ||
 	texto.includes("tienes diseños") ||

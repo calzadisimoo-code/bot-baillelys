@@ -6,7 +6,7 @@ module.exports = function (usuario) {
 
 A: `📸 ¡Listo! Ya te envié las fotos. 😊
 
-📍 Dime tu barrio o ciudad y te digo cómo te las hacemos llegar.`,
+📍 Dime tu direccion y te digo cómo te las hacemos llegar.`,
 
 B: `🤩 ¡Con gusto! Aquí tienes las fotos.
 
@@ -28,7 +28,7 @@ F: `📸 ¡Listo! Ya te envié las fotos. 😊
 
 🚚 ¿Prefieres recoger en el local o recibirlas por envío?
 
-📍 Dime tu barrio o ciudad y te digo cómo te las hacemos llegar.`
+📍 Dime tu direccion y te digo cómo te las hacemos llegar.`
 
     });
 

@@ -103,6 +103,8 @@ H: `🔥 Perfecto, talla ${talla} disponible. Te las puedo separar de una vez po
 
 📍 ¿A qué dirección te las envío para dejartelas separadas?`,// 1 respuesta
 
+I: `A qué dirección sería el envio-`,// 1 DIRECCION
+
         }
     );
 
