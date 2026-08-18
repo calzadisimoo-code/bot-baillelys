@@ -367,6 +367,47 @@ if (atendidoPorSara) continue;
 
 }
 
+// Magencio: enviar mensaje + 2 imágenes
+if (
+    respuesta.includes("🔥 ¡Sí tenemos disponible el Magencio Complex 1000 mg!")
+) {
+
+    await sock.sendMessage(usuario, {
+        text: respuesta
+    });
+
+    const carpeta = path.join(
+        __dirname,
+        "img",
+        "complejodemagencio"
+    );
+
+    if (fs.existsSync(carpeta)) {
+
+        const archivos = fs
+            .readdirSync(carpeta)
+            .filter(archivo =>
+                /\.(jpg|jpeg|png|webp)$/i.test(archivo)
+            )
+            .sort();
+
+        for (const archivo of archivos) {
+
+            await sock.sendMessage(
+                usuario,
+                {
+                    image: fs.readFileSync(
+                        path.join(carpeta, archivo)
+                    )
+                }
+            );
+
+        }
+    }
+
+    continue;
+}
+
 if (respuesta.startsWith("IMG_")) {
 
     const producto = respuesta.replace("IMG_", "");
