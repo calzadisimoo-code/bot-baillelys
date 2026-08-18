@@ -30,16 +30,7 @@ module.exports = function (texto, usuario) {
                 "🔥 Tenemos nuestro *Magnesio Complex 1000 mg* por solo *$89.990*.\n\n💪 Ideal como complemento para apoyar la función muscular y el bienestar general.\n😴 También es una opción para quienes buscan complementar su rutina de descanso.\n\n👉 ¿Lo quieres para ti? Te ayudo a dejar el pedido listo.",
 
             C:
-                "✨ *MAGNESIO COMPLEX 1000 MG* ✨\n\n💊 90 cápsulas\n⚡ 8 formas de magnesio\n💰 *$89.990*\n🚚 Envíos rápidos.\n\n¿Lo estás buscando principalmente para *cansancio, tensión muscular o bienestar general*?",
-
-            D:
-                "💪 Si buscas complementar tu alimentación con magnesio, tenemos el *Magnesio Complex 1000 mg*.\n\n✅ 90 cápsulas\n✅ 8 formas de magnesio\n✅ 1000 mg por porción\n💰 *$89.990*\n\n🚚 Te lo podemos enviar rápidamente.\n\n¿Te lo envío?",
-
-            E:
-                "👋 ¿Sientes que necesitas complementar tu alimentación con magnesio?\n\n💊 Tenemos *Magnesio Complex 1000 mg*.\n💰 *$89.990*\n📦 90 cápsulas\n🚚 Envío rápido.\n\n👉 ¿Quieres que te lo envíe?",
-
-            F:
-                "🚀 *MAGNESIO COMPLEX — $89.990*\n\n💪 Apoya la función normal de músculos y nervios.\n😴 Ideal para complementar tu rutina de bienestar.\n💊 90 cápsulas + 8 formas de magnesio.\n\n¿Te confirmo el pedido y me pasas la dirección de entrega? 📦"
+                "?? ?S�� tenemos disponible el Magnesio Complex 1000 mg! \n\n?? $89.990\n?? 90 c��psulas �� 8 formas de magnesio.\n?? Env��os a todo Colombia.\n\n\n? La promoci��n est�� activa por tiempo limitado. Si quieres aprovecharla, te lo puedo dejar separado hoy mismo.\n\n?? P��same nombre completo, ciudad, direcci��n y n��mero de tel��fono y te dejo el pedido listo"
 
         });
 
