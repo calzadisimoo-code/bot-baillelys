@@ -11,8 +11,8 @@ const modulos = fs
     )
     .sort((a, b) => {
 
-        if (a === "complejodemagencio.js") return -1;
-        if (b === "complejodemagencio.js") return 1;
+        if (a === "complejodemagensio.js") return -1;
+        if (b === "complejodemagensio.js") return 1;
 
         return a.localeCompare(b);
 

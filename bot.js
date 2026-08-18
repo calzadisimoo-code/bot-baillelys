@@ -379,7 +379,7 @@ if (
     const carpeta = path.join(
         __dirname,
         "img",
-        "complejodemagencio"
+        "complejodemagensio"
     );
 
     if (fs.existsSync(carpeta)) {
