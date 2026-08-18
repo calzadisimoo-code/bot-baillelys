@@ -23,7 +23,7 @@ module.exports = function (texto, usuario) {
 
         return obtenerVariante("complejodemagnesio", usuario, {
             A:
-                "?? ?S¨ª tenemos disponible el Magnesio Complex 1000 mg! \n\n?? $89.990\n?? 90 c¨¢psulas ¡ª 8 formas de magnesio.\n?? Env¨ªos a todo Colombia.\n\n\n? La promoci¨®n est¨¢ activa por tiempo limitado. Si quieres aprovecharla, te lo puedo dejar separado hoy mismo.\n\n?? P¨¢same nombre completo, ciudad, direcci¨®n y n¨²mero de tel¨¦fono y te dejo el pedido listo"
+                "¡Sí tenemos disponible el Magencio Complex 1000 mg!\n\n $89.990\n?? 90 cápsulas — 8 formas de magencio.\n Envíos a todo Colombia.\n\n La promoción está activa por tiempo limitado. Si quieres aprovecharla, te lo puedo dejar separado hoy mismo.\n\n Pásame nombre completo, ciudad, dirección y número de teléfono y te dejo el pedido listo"
 
         });
 

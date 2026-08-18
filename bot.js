@@ -369,7 +369,7 @@ if (atendidoPorSara) continue;
 
 // Magencio: enviar mensaje + 2 imágenes
 if (
-    respuesta.includes("🔥 ¡Sí tenemos disponible el Magencio Complex 1000 mg!")
+    respuesta.includes("Sí tenemos disponible el Magencio Complex 1000 mg!")
 ) {
 
     await sock.sendMessage(usuario, {
