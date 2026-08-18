@@ -5,6 +5,16 @@ const {
 } = require("../estadisticas/hoy");
 
 module.exports = function (texto, usuario) {
+	
+	if (
+    texto.includes("$50") ||
+    texto.includes("50mil") ||
+    texto.includes("50 mil") ||
+    texto.includes("50.000") ||
+    texto.includes("50000")
+) {
+    return null;
+}
 
     // Si el cliente habla de las importadas, este flow no responde
     if (
