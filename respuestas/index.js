@@ -9,6 +9,14 @@ const modulos = fs
             archivo !== "index.js" &&
             archivo !== "enviofotos.js"
     )
+    .sort((a, b) => {
+
+        if (a === "complejodemagencio.js") return -1;
+        if (b === "complejodemagencio.js") return 1;
+
+        return a.localeCompare(b);
+
+    })
     .map(archivo =>
         require(path.join(__dirname, archivo))
     );
