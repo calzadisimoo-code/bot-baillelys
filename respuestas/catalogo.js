@@ -11,6 +11,7 @@ if (
 	texto.includes("tenis tiene") ||
 	texto.includes("mas diseños") ||
     texto.includes("catalogo") ||
+	 texto.includes("modelo manejas") ||
     texto.includes("catlogo") ||
 	texto.includes("tienes diseños") ||
     texto.includes("de hombre y de mujer") ||

@@ -1,0 +1,4 @@
+pm2 stop kyrobot
+rm -rf ./sesion
+pm2 start kyrobot
+pm2 logs kyrobot
