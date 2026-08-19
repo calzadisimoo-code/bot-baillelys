@@ -24,7 +24,45 @@ module.exports = function (texto, usuario) {
         return obtenerVariante("complejodemagnesio", usuario, {
 
             A:
-                "🔥 ¡Sí tenemos disponible el Magencio Complex 1000 mg!\n\n💊 90 cápsulas | 8 formas de magencio.\n💰 Precio promocional: *$89.900*\n🚚 Envíos a toda Colombia.\n\n✨ *BENEFICIOS:*\n\n✅ Ayuda a mejorar el descanso y la relajación.\n✅ Apoya la función normal de los músculos.\n✅ Contribuye al funcionamiento normal del sistema nervioso.\n✅ Apoya el metabolismo energético normal.\n✅ Contribuye al mantenimiento de huesos normales.\n✅ 8 formas de magencio para complementar tu alimentación.\n\n⚡ *Promoción activa por tiempo limitado.*\n\n📦 Te lo enviamos directamente a tu ciudad.\n\n🔥 *¿Quieres aprovechar el precio promocional?*\n\n👤 Nombre completo:\n📍 Ciudad:\n🏠 Dirección:\n📱 Número de teléfono:"
+                "🔥 ¡Sí tenemos disponible el Magnesio Complex 1000 mg!\n\n" +
+                "💊 90 cápsulas | 8 formas de magnesio\n" +
+                "💰 $89.990\n" +
+                "🚚 Envíos a toda Colombia.\n\n" +
+                "¿Lo buscas principalmente para *descanso, músculos o energía*?",
+
+            B:
+                "🔥 Sí tenemos el Magnesio Complex 1000 mg por *$89.990*.\n\n" +
+                "💊 90 cápsulas | 8 formas de magnesio\n" +
+                "🚚 Envíos a toda Colombia.\n\n" +
+                "¿Qué buscas principalmente?\n\n" +
+                "1️⃣ Descanso\n" +
+                "2️⃣ Músculos\n" +
+                "3️⃣ Energía\n\n" +
+                "👉 Respóndeme con *1, 2 o 3*.",
+
+            C:
+                "🔥 Sí, disponible por *$89.990*.\n\n" +
+                "💊 Magnesio Complex | 90 cápsulas\n" +
+                "⚡ 8 formas de magnesio\n\n" +
+                "¿Para qué lo estás buscando principalmente? 💪😴⚡",
+
+            D:
+                "🔥 Sí tenemos disponible el Magnesio Complex 1000 mg.\n\n" +
+                "💰 Precio: *$89.990*\n" +
+                "💊 90 cápsulas\n" +
+                "🚚 Envíos a toda Colombia.\n\n" +
+                "Cuéntame, ¿qué te interesa más: *descansar mejor, apoyar tus músculos o tener más energía*?",
+
+            E:
+                "🔥 Sí tenemos el Magnesio Complex 1000 mg por *$89.990*.\n\n" +
+                "💊 90 cápsulas | 8 formas de magnesio\n\n" +
+                "¿Lo estás buscando por alguna necesidad específica o simplemente quieres complementar tu alimentación?",
+
+            F:
+                "🔥 Sí tenemos disponible el Magnesio Complex 1000 mg.\n\n" +
+                "💊 90 cápsulas | 8 formas de magnesio\n" +
+                "💰 *$89.990*\n\n" +
+                "¿Quieres que te diga cuál de sus beneficios puede interesarte más según lo que buscas?"
 
         });
 
