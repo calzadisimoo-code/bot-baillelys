@@ -30,7 +30,7 @@ module.exports = function (texto, usuario) {
 
         B: "🔥 Sí, disponibles las Air Force 1 blancas por *$50.000*.\n\n👟 *¿Qué talla necesitas?*",
 
-        C: "✨ Sí hay disponibilidad.\n\n🤍 Air Force 1 blancas.\n💰 *$50.000*\n🚚 Envío rápido a toda Colombia.\n\n👟 *¿Cuál es tu talla? (21 al 44)*",
+        C: "👟 Air Force 1 blancas $50.000\n\n✅ Tallas 21 al 44\n\n¿Qué talla buscas?",
 
         D: "Hola, que talla buscas?",
 
