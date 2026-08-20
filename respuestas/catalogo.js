@@ -45,11 +45,7 @@ https://wa.me/c/573217204017
 ✅ Talla disponible
 ✅ Precio`,
 
-            C: `😎 Nuestro catálogo completo está aquí:
-
-https://wa.me/c/573217204017
-
-Escríbeme cuál modelo te gustó y con gusto te ayudo con la talla.`,
+            C: `¿Buscas blanco, negro o deportivo?`,
 
             D: `✅ Aquí puedes ver todas las zapatillas disponibles:
 
