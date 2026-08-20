@@ -87,13 +87,13 @@ A: `${saludo} Bienvenido a CALZADISIMO.
 
 👟 Tenemos Air Force 1, Paris, sandalias, cargadores y muchos productos más.
 
-😊 ¿Qué producto estás buscando?`,
+😊 ¿Qué producto estás buscando?`,/*
 
 B: `${saludo}
 
 🚚 Hacemos envíos a toda Colombia y también contamos con tienda física en Palmira.
 
-👟 ¿Qué producto te interesa?`,
+👟 ¿Qué producto te interesa?`,*/
 
 C: `${saludo} 😊
 
@@ -109,11 +109,11 @@ E: `${saludo} Bienvenido a CALZADISIMO.
 
 👟 Con gusto te ayudo a encontrar el producto que buscas.
 
-📦 ¿Cuál te interesa?`,
+📦 ¿Cuál te interesa?`/*,
 
 F: `${saludo} Bienvenido a CALZADISIMO.
 
-😊 ¿Qué producto estás buscando?`
+😊 ¿Qué producto estás buscando?`*/
 
     }
 
