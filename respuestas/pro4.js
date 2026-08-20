@@ -427,7 +427,7 @@ if (estado.etapa === "confirmacion") {
 
             A: "🎧 ¡Sí tenemos disponibles los *AirPods Pro 4*!\n\n💰 Precio: *$60.000*\n🚚 Envíos a toda Colombia.\n\n📦 ¿Te envío 1 par o quieres aprovechar para llevar 2?",
 
-            B: "🎧 ¡Sí tenemos disponibles!\n\n🔥 AirPods Pro 2 — $60.000\n• Con gomitas\n• Mayor ajuste al oído\n\n🔥 AirPods Pro 4 — $60.000\n• Sin gomitas\n• Más cómodos para uso prolongado\n\n✅ ¿Cuál prefieres? Pro 2 o Pro 4."
+            B: "🎧 ¡Sí tenemos disponibles!\n\n🔥 AirPods Pro 2 — $60.000\n• Con gomitas\n• Mayor ajuste al oído\n\n🔥 AirPods Pro 4 — $60.000\n• Sin gomitas\n• Más cómodos para uso prolongado\n\n✅ ¿Cuál prefieres? Pro 2 o Pro 4.",
 
             C: "🎧 ¡Sí tenemos disponibles!\n\n💰 *$60.000*\n\n📍 ¿En qué ciudad te encuentras para decirte el tiempo de entrega?",
 
