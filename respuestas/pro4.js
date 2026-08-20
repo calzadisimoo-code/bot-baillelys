@@ -304,9 +304,9 @@ if (
 
                 C: "Listo. 🔥 ¿Me envías tu nombre completo y dirección para confirmar el pedido?",
 
-                D: "Perfecto. Solo nos falta tu nombre y dirección para finalizar.",
+                D: "Perfecto. 📍 Envíame tu nombre completo y dirección y te dejamos listo el envío",
 
-                E: "Excelente. ✅ Pásame nombre completo y dirección y te dejamos el pedido listo.",
+                E: "📦 Excelente.\n\nPásame:\n\n👤 Nombre completo\n📍 Dirección de entrega\n\nY te separo el pedido. 🔥",
 
                 F: "Perfecto. 📍 Envíame tu nombre completo y dirección para finalizar."
 
