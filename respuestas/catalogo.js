@@ -35,12 +35,15 @@ https://wa.me/c/573217204017
 
 📸 Envíame una captura del que más te guste y te confirmo de inmediato la talla disponible y el precio. ✅`,
 
-            B: `👟 ¡Tenemos muchos modelos disponibles!
+            B: `👟 Tenemos muchísimos modelos disponibles.
 
-Míralos aquí:
+📲 Catálogo:
 https://wa.me/c/573217204017
 
-📸 Envíame una captura del que te guste y te confirmo talla y disponibilidad.`,
+📸 Mándame una captura del modelo que te gustó y la talla te confirmo enseguida:
+
+✅ Talla disponible
+✅ Precio`,
 
             C: `😎 Nuestro catálogo completo está aquí:
 
