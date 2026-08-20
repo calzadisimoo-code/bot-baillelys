@@ -8,6 +8,7 @@ module.exports = function (texto, usuario) {
 
     if (
 		texto.includes("quiero las retro 1 blancas con negro") ||
+		texto.includes("quiero jordan blancas con negro") ||
         texto.includes("retro blancas")
     ) {
 

@@ -12,6 +12,7 @@ if (!fs.existsSync(archivo)) {
 }
 
 const timers = new Map();
+const timers24h = new Map();
 
 function cargar() {
 
@@ -38,6 +39,16 @@ function guardar(datos) {
 }
 
 function cancelarSeguimiento(usuario) {
+	
+	if (timers24h.has(usuario)) {
+
+    clearTimeout(
+        timers24h.get(usuario)
+    );
+
+    timers24h.delete(usuario);
+
+}
 
     if (timers.has(usuario)) {
 
@@ -137,7 +148,7 @@ switch (seguimiento.producto) {
 
     case "pro4":
         mensaje =
-            "🎧 Hola. ¿Todavía te interesan los AirPods Pro 4? Si tienes alguna duda, escríbeme.";
+            "🎧 Hola. ¿Todavía te interesan los AirPods Pro? Si tienes alguna duda, escríbeme.";
         break;
 
     case "carg67w":
@@ -174,10 +185,6 @@ try {
 
 } finally {
 
-    delete actuales[usuario];
-
-    guardar(actuales);
-
     timers.delete(usuario);
 
 }
@@ -189,6 +196,46 @@ try {
 );
 
 timers.set(usuario, timer);
+
+const timer24h = setTimeout(
+
+    async () => {
+
+        const actuales = cargar();
+
+        if (!actuales[usuario]) return;
+
+        try {
+
+            await sock.sendMessage(usuario, {
+                text:
+                    "😊 Hola. Estoy organizando los envíos de hoy y todavía tengo disponible el producto que me preguntaste ayer. 🚚\n\nSi aún lo deseas, puedo enviártelo hoy mismo.\n\n¿Te lo separo?"
+            });
+
+        } catch (e) {
+
+            console.log(
+                "Error enviando seguimiento 24h:",
+                usuario
+            );
+
+        } finally {
+
+    delete actuales[usuario];
+
+    guardar(actuales);
+
+    timers.delete(usuario);
+    timers24h.delete(usuario);
+
+}
+
+    },
+
+    24 * 60 * 60 * 1000
+
+);
+timers24h.set(usuario, timer24h);
 
 }
 
