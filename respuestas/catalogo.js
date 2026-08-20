@@ -21,6 +21,7 @@ if (
 	texto.includes("foto de el calzado") ||
 	texto.includes("Solo tienen esos") ||
 	texto.includes("calzado que tenga") || 
+	texto.includes("tienen ese estilo") ||
     texto.includes("modelos")
 ) {
 
