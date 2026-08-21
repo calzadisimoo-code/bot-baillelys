@@ -256,7 +256,7 @@ if (
                 oppo: "Oppo",
                 realme: "Realme",
                 honor: "Honor",
-                vivo: "Vivo",
+               // vivo: "Vivo",
                 infinix: "Infinix",
                 tecno: "Tecno"
             };
