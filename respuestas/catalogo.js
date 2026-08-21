@@ -36,15 +36,7 @@ https://wa.me/c/573217204017
 
 📸 Envíame una captura del que más te guste y te confirmo de inmediato la talla disponible y el precio. ✅`,
 
-            B: `👟 Tenemos muchísimos modelos disponibles.
-
-📲 Catálogo:
-https://wa.me/c/573217204017
-
-📸 Mándame una captura del modelo que te gustó y la talla te confirmo enseguida:
-
-✅ Talla disponible
-✅ Precio`,
+            B: `Claro ¿Qué producto buscas? Tenemos AirPods, zapatillas Nike, cargadores rápidos y más. Te envío directamente las opciones disponibles`,
 
             C: `¿Buscas blanco, negro o deportivo?`,
 

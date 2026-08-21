@@ -1,0 +1,266 @@
+<style>
+
+.form-section{
+background:#f5f8fc;
+color:#07101e;
+padding:80px 0;
+}
+
+.form-wrap{
+display:grid;
+grid-template-columns:.85fr 1.15fr;
+gap:35px;
+align-items:start;
+max-width:1180px;
+width:92%;
+margin:auto;
+}
+
+.form-card{
+background:#fff;
+border-radius:24px;
+padding:30px;
+box-shadow:0 20px 60px rgba(6,25,55,.1);
+}
+
+.form-card h2{
+margin-top:0;
+font-size:32px;
+font-weight:900;
+}
+
+label{
+display:block;
+font-weight:850;
+font-size:14px;
+margin:13px 0 6px;
+}
+
+input{
+width:100%;
+padding:14px 15px;
+border:1px solid #d8e0eb;
+border-radius:12px;
+font:inherit;
+outline:none;
+background:#fff;
+}
+
+input:focus{
+border-color:#1688ff;
+box-shadow:0 0 0 3px rgba(22,136,255,.1);
+}
+
+.submit{
+width:100%;
+margin-top:18px;
+background:#16b967;
+color:#fff;
+border:0;
+border-radius:13px;
+padding:16px;
+font-size:17px;
+font-weight:950;
+cursor:pointer;
+transition:.2s;
+}
+
+.submit:hover{
+transform:translateY(-2px);
+}
+
+.mini{
+font-size:12px;
+color:#66758a;
+margin-top:10px;
+}
+
+.urgency-box{
+background:#fff4e5;
+border:2px solid #ffb84d;
+padding:15px;
+border-radius:14px;
+margin-bottom:20px;
+font-weight:700;
+text-align:center;
+}
+
+@media(max-width:900px){
+
+.form-wrap{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+<section id="pedido" class="form-section">
+
+<div class="form-wrap">
+
+<div>
+
+<h2 style="
+font-size:46px;
+line-height:1.05;
+margin-top:0;
+font-weight:1000;
+">
+Recibe tus AirPods Pro 2 ANC en Colombia
+</h2>
+
+<p style="
+font-size:18px;
+color:#526174;
+">
+Completa tus datos y te contactaremos para confirmar tu pedido.
+</p>
+
+<div style="
+display:grid;
+gap:12px;
+margin-top:25px;
+">
+
+<div>🚚 <b>Envíos a toda Colombia</b></div>
+
+<div>💵 <b>Pago Contra Entrega</b></div>
+
+<div>🎧 <b>AirPods Pro 2 ANC</b></div>
+
+<div>🔒 <b>Compra segura por WhatsApp</b></div>
+
+</div>
+
+</div>
+
+<div class="form-card">
+
+<h2>Quiero mis AirPods Pro 2</h2>
+
+<div class="urgency-box">
+
+🔥 OFERTA LIMITADA
+
+<br><br>
+
+✅ Pago Contra Entrega
+
+<br>
+
+✅ Garantía por funcionamiento
+
+<br>
+
+✅ Compatible con Android y iPhone
+
+<br>
+
+✅ Stock limitado
+
+</div>
+
+<form id="orderForm">
+
+<label>
+Nombre Completo
+</label>
+
+<input
+id="nombre"
+required
+placeholder="Ej. Juan Pérez">
+
+<label>
+Celular
+</label>
+
+<input
+id="telefono"
+required
+placeholder="Ej. 3001234567">
+
+<label>
+Ciudad
+</label>
+
+<input
+id="ciudad"
+required
+placeholder="Ej. Cali">
+
+<label>
+Dirección Completa
+</label>
+
+<input
+id="direccion"
+required
+placeholder="Ej. Cra 10 #20-30">
+
+<button
+class="submit"
+type="submit">
+
+🔥 CONFIRMAR PEDIDO
+
+</button>
+
+<div class="mini">
+
+Al enviar el formulario se abrirá WhatsApp con tu pedido listo para confirmar.
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+const WHATSAPP = "573217204017";
+
+document.getElementById("orderForm").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+const nombre =
+document.getElementById("nombre").value.trim();
+
+const telefono =
+document.getElementById("telefono").value.trim();
+
+const ciudad =
+document.getElementById("ciudad").value.trim();
+
+const direccion =
+document.getElementById("direccion").value.trim();
+
+const mensaje =
+`🎧 NUEVO PEDIDO AIRPODS PRO 2 ANC
+
+👤 Nombre: ${nombre}
+📱 Celular: ${telefono}
+🏙️ Ciudad: ${ciudad}
+📍 Dirección: ${direccion}
+
+💰 Precio: $60.000
+
+Quiero confirmar mi pedido.`;
+
+window.open(
+"https://wa.me/" +
+WHATSAPP +
+"?text=" +
+encodeURIComponent(mensaje),
+"_blank"
+);
+
+});
+
+</script>

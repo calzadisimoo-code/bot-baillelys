@@ -1,0 +1,22 @@
+creame una landing pague compketa dees te producto 
+
+Te preparé una landing completa y responsive para Magnesium Complex, enfocada en conversión:
+
+Hero con la imagen del producto.
+Precio de $89.990.
+Beneficios y características.
+Sección de oferta.
+Formulario de pedido.
+Botón que abre WhatsApp con los datos del cliente.
+CTA fijo en móvil.
+Preguntas frecuentes.
+Aviso de que es suplemento dietario.
+Diseño pensado para anuncios de Facebook/Instagram.
+
+Descargar landing completa en ZIP
+
+También tienes el archivo HTML listo para editar: 
+Abrir/descargar index.html 
+
+index.html
+HTML
