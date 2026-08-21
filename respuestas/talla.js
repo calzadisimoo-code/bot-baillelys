@@ -44,17 +44,13 @@ module.exports = function (texto, usuario) {
         return null;
     }
 
-    const textoLimpio = texto.trim();
+const tallas = texto.match(/\b(2[1-9]|3[0-9]|4[0-4])\b/g);
 
-    if (!/^\d{2}$/.test(textoLimpio)) {
-        return null;
-    }
+if (!tallas || tallas.length === 0) {
+    return null;
+}
 
-    const talla = textoLimpio;
-
-    if (Number(talla) < 21 || Number(talla) > 44) {
-        return null;
-    }
+const talla = tallas.join(" o ");
 
     registrarTalla(usuario);
 
