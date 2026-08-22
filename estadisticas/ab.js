@@ -25,6 +25,15 @@ function obtenerVariante(nombre, usuario, respuestas) {
     if (!datos[nombre]) {
         datos[nombre] = {};
     }
+	
+	for (const letra of Object.keys(respuestas)) {
+    if (!datos[nombre][letra]) {
+        datos[nombre][letra] = {
+            enviados: 0,
+            respondieron: 0
+        };
+    }
+}
 
     const letras = Object.keys(respuestas);
 
