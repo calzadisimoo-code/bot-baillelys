@@ -80,15 +80,17 @@ C: `Perfecto
 
 📍 Dime tu barrio y te explico cómo te la hacemos llegar.`,
 
-D: `Claro a que direccion seria el envio?`,
+D: `A qué dirección sería el envio-`,
 
 E: `Listo, prefieres recoger en el local o envio?.
 
 📍 Dime tu barrio y te digo cómo te la hacemos llegar`,
 
-F: `✅ Sí hay talla *${talla}*.
+F: `🔥 Perfecto, la talla *${talla}* sí está disponible.
 
-🚚 ¿Cuál es tu barrio? Así te digo el costo y el tiempo del envío`,
+🚚 Hacemos entrega a domicilio.
+
+📍 ¿De qué barrio eres para confirmar el envío?`,
 
 G: `🤍 ¡Sí! Tenemos disponible la talla *${talla}*.
 
@@ -99,7 +101,7 @@ H: `🔥 Perfecto, talla ${talla} disponible. Te las puedo separar de una vez po
 
 📍 ¿A qué dirección te las envío para dejartelas separadas?`,// 1 respuesta
 
-I: `A qué dirección sería el envio-`,// 1 DIRECCION
+I: `A qué dirección sería el envio-`,// 1 venta
 
         }
     );
