@@ -116,6 +116,19 @@ Te los puedo separar para que no se agoten.
 📍 ¿A qué dirección te los separo?`;
 }
 
+if (
+    texto.includes("sistecredito") ||
+    texto.includes("siste credito") ||
+    texto.includes("addi") ||
+    texto.includes("addi?")
+) {
+    return `✅ En el momento no manejamos Addi ni Sistecrédito.
+
+🚚 Te podemos enviar con pago contra entrega o también puedes pagar por Nequi si lo prefieres.
+
+📍 ¿A qué dirección sería el envío?`;
+}
+
     return null;
 
 };

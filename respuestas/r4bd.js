@@ -13,6 +13,7 @@ module.exports = function (texto, usuario) {
         texto.includes("r4 blanca") ||
         texto.includes("retro blanca") ||
         texto.includes("retro dorada") ||
+		texto.includes("Quiero Retro 4 blanca con dorado") ||
         texto.includes("retro 4 blanca")
     ) {
 
