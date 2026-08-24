@@ -21,17 +21,17 @@ module.exports = function (texto, usuario) {
 
         return obtenerVariante("paris", usuario, {
 
-A: "👟 ¡Sí tenemos las Paris disponibles!\n\n💰 Precio: *$60.000*\n🚚 Envíos a toda Colombia.\n\n📏 *Responde con tu talla (21 al 44) y continuamos con tu pedido.*",
+A: "👟 ¡Sí tenemos las Paris disponibles!\n\n💰 Precio: *$85.000*\n🚚 Envíos a toda Colombia.\n\n📏 *Responde con tu talla (21 al 44) y continuamos con tu pedido.*",
 
-B: "🔥 ¡Sí están disponibles!\n\n💰 *$60.000*\n🚚 Enviamos a cualquier ciudad de Colombia.\n\n👟 *¿Qué talla necesitas? (21 al 44)*",
+B: "🔥 ¡Sí están disponibles!\n\n💰 *$85.000*\n🚚 Enviamos a cualquier ciudad de Colombia.\n\n👟 *¿Qué talla necesitas? (21 al 44)*",
 
 C: "Hola que talla buscas?",
 
 D: "Hola, en que talla?",
 
-E: "✅ Tenemos disponibles las Paris.\n\n💰 *$60.000*\n🚚 Hacemos envíos a toda Colombia.\n\n📏 *¿Qué talla buscas? (21 al 44)*",
+E: "✅ Tenemos disponibles las Paris.\n\n💰 *$85.000*\n🚚 Hacemos envíos a toda Colombia.\n\n📏 *¿Qué talla buscas? (21 al 44)*",
 
-F: "`👟 ¡Sí tenemos las Paris disponibles!\n\n💰 *$60.000*\n🚚 Envíos a toda Colombia.\n\n📏 *Responde con tu talla (21 al 44) y te confirmo de inmediato si está disponible.*`"
+F: "`👟 ¡Sí tenemos las Paris disponibles!\n\n💰 *$85.000*\n🚚 Envíos a toda Colombia.\n\n📏 *Responde con tu talla (21 al 44) y te confirmo de inmediato si está disponible.*`"
 
         });
 
