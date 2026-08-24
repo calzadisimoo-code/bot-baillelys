@@ -69,23 +69,26 @@ if (
 
 📍 Visítanos en el *Local 291* del Centro Comercial Villa de las Palmas, Palmira.
 
-👩 Pregunta por *Mónica*.
+👩 Pregunta por *Camilo*.
 
 😊 ¡Te esperamos!`;
 }
 	
 if (
     /\bcontra\s*-?\s*entrega\b/.test(texto) ||
+    texto.includes("contra entrega") ||
+    texto.includes("envio contra entrega") ||
+    texto.includes("envios contra entrega") ||
+    texto.includes("hacen contra entrega") ||
+    texto.includes("manejan contra entrega") ||
     texto.includes("pago al recibir") ||
     texto.includes("pagar al recibir") ||
-	texto.includes("Manejan pagos contra entrega?") ||
-	texto.includes("contra entrega") ||
-	texto.includes("El envío es contra entrega") ||
     texto.includes("recibir y pagar")
-)
-    return `✅ ¡Sí! Manejamos *pago contra entrega* en la mayoría de ciudades de Colombia.
+) {
+    return `✅ Sí manejamos pago contra entrega.
 
-📍 ¿A qué direccion sería el envío? Así te confirmo la disponibilidad, el valor del envío 🚚`;
+📍 ¿A qué dirección sería el envío? Así te confirmo disponibilidad y valor del envío 🚚`;
+}
 
 
     if (texto === "gracias")

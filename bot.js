@@ -367,6 +367,54 @@ if (atendidoPorSara) continue;
 
 }
 
+if (
+    typeof respuesta === "object" &&
+    respuesta.foto === true
+) {
+
+    const ruta = path.join(
+        __dirname,
+        "img",
+        respuesta.producto,
+        "1.jpeg"
+    );
+
+    if (fs.existsSync(ruta)) {
+
+        await sock.sendMessage(usuario, {
+            image: fs.readFileSync(ruta),
+            caption: respuesta.texto
+        });
+
+    } else {
+
+        await sock.sendMessage(usuario, {
+            text: respuesta.texto
+        });
+
+    }
+
+    ultimaRespuestaTexto.set(usuario, {
+        texto: respuesta.texto,
+        fecha: Date.now()
+    });
+
+    programarSeguimiento(
+        sock,
+        usuario
+    );
+
+    ultimaRespuesta.set(
+        usuario,
+        Date.now()
+    );
+
+    console.log("Respuesta enviada.");
+
+    continue;
+}
+
+
 if (respuesta.startsWith("IMG_")) {
 
     const producto = respuesta.replace("IMG_", "");
