@@ -17,7 +17,7 @@ module.exports = function (texto, usuario) {
 
             C: "✅ Sí hacemos envíos. ¿Me envías la dirección donde deseas recibir el pedido? Así te confirmo el valor del envío.",
 
-            D: "🚚 Perfecto. Compárteme tu dirección y ciudad, y te indico cuánto cuesta el envío y cuándo te llegaría.",
+            D: "🚚 Perfecto. Compárteme tu dirección y ciudad, y te indico cuánto cuesta el envío",
 
             E: "📍 Envíame la dirección de entrega y te cotizo el envío enseguida.",
 
