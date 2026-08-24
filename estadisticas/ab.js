@@ -26,6 +26,9 @@ function obtenerVariante(nombre, usuario, respuestas) {
         datos[nombre] = {};
     }
 	
+	// Guardar automáticamente los mensajes del A/B
+datos[nombre]._mensajes = respuestas;
+	
 	for (const letra of Object.keys(respuestas)) {
     if (!datos[nombre][letra]) {
         datos[nombre][letra] = {
@@ -177,6 +180,8 @@ function reporte(nombre) {
     let mejorPorcentaje = -1;
 
     for (const letra of Object.keys(datos[nombre])) {
+		
+		if (letra === "_mensajes") continue;
 
         const enviados = datos[nombre][letra].enviados;
         const respondieron = datos[nombre][letra].respondieron;
@@ -191,6 +196,9 @@ texto +=
 📤 Enviados: ${enviados}
 💬 Respondieron: ${respondieron}
 📈 Conversión: ${porcentaje.toFixed(1)}%
+
+💬 Mensaje:
+${datos[nombre]._mensajes?.[letra] || "No encontrado"}
 
 `;
 
@@ -256,6 +264,8 @@ let totalEnviados = 0;
 let totalRespondieron = 0;
 
         for (const letra of Object.keys(datos[nombre])) {
+			
+			if (letra === "_mensajes") continue;
 
             const enviados = datos[nombre][letra].enviados;
             const respondieron = datos[nombre][letra].respondieron;
@@ -272,6 +282,9 @@ detalleProductos +=
 📤 Enviados: ${enviados}
 💬 Respondieron: ${respondieron}
 📈 Conversión: ${porcentaje.toFixed(1)}%
+
+💬 Mensaje:
+${datos[nombre]._mensajes?.[letra] || "No encontrado"}
 
 `;
 
@@ -536,6 +549,8 @@ async function revisarConversiones(sock, datos) {
     for (const producto in datos) {
 
         for (const variante in datos[producto]) {
+			
+			if (variante === "_mensajes") continue;
 
             const v = datos[producto][variante];
 
