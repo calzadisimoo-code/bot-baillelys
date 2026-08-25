@@ -1,0 +1,111 @@
+const {
+    obtenerVariante,
+    reporte
+} = require("../estadisticas/ab");
+
+const {
+    obtener,
+    guardar
+} = require("../estado");
+
+const {
+    registrarTalla
+} = require("../estadisticas/hoy");
+
+module.exports = function (texto, usuario) {
+
+    const estado = obtener(usuario);
+
+    if (!estado?.producto) {
+        return null;
+    }
+
+    const palabrasDireccion = [
+        "calle",
+        "cl",
+        "carrera",
+        "cra",
+        "kr",
+        "kra",
+        "transversal",
+        "tv",
+        "diagonal",
+        "dg",
+        "#",
+        "casa",
+        "apartamento",
+        "apto",
+        "barrio",
+        "manzana",
+        "mz"
+    ];
+
+    if (palabrasDireccion.some(p => texto.includes(p))) {
+        return null;
+    }
+
+const tallas = texto.match(/\b(2[1-9]|3[0-9]|4[0-4])\b/g);
+
+if (!tallas || tallas.length === 0) {
+    return null;
+}
+
+const talla = tallas.join(" o ");
+
+    registrarTalla(usuario);
+
+guardar(usuario, {
+    ...estado,
+    talla
+});
+
+const respuesta = obtenerVariante(
+    `${estado.producto}_talla`,
+    usuario,
+        {
+
+A: `🤍 ¡Sí! Tenemos disponible la talla *${talla}*.
+
+🚚 ¿De qué barrio eres? Así te confirmo el costo del envío`,
+
+B: `✅ Perfecto.
+
+La talla *${talla}* está disponible.
+
+🚚 ¿Me dices tu barrio para indicarte el envío?`,
+
+C: `Perfecto
+
+¿La recoges en el local o prefieres que te la enviemos?
+
+📍 Dime tu barrio y te explico cómo te la hacemos llegar.`,
+
+D: `Claro a que direccion seria el envio?`,
+
+E: `Listo, prefieres recoger en el local o envio?.
+
+📍 Dime tu barrio y te digo cómo te la hacemos llegar`,
+
+F: `✅ Sí hay talla *${talla}*.
+
+🚚 ¿Cuál es tu barrio? Así te digo el costo y el tiempo del envío`,
+
+G: `🤍 ¡Sí! Tenemos disponible la talla *${talla}*.
+
+🚚 ¿En que direccion estas? Así te confirmo el costo del envío`,
+H: `🔥 Perfecto, talla ${talla} disponible. Te las puedo separar de una vez porque se están moviendo rápido 👟
+💰 $promo del anuncio
+📦 Hacemos envío a domicilio.
+
+📍 ¿A qué dirección te las envío para dejartelas separadas?`,// 1 respuesta
+
+I: `A qué dirección sería el envio-`,// 1 DIRECCION
+
+        }
+    );
+
+    console.log(reporte(`${estado.producto}_talla`));
+
+    return respuesta;
+
+};

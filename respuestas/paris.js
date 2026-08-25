@@ -10,6 +10,7 @@ module.exports = function (texto, usuario) {
     if (
         texto.includes("paris") ||
         texto.includes("tenis paris") ||
+		texto.includes("quiero las r1") ||
         texto.includes("zapatillas paris")
     ) {
 		

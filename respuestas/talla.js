@@ -1,15 +1,15 @@
-const {
-    obtenerVariante,
-    reporte
+const { 
+    obtenerVariante, 
+    reporte 
 } = require("../estadisticas/ab");
 
-const {
-    obtener,
-    guardar
+const { 
+    obtener, 
+    guardar 
 } = require("../estado");
 
-const {
-    registrarTalla
+const { 
+    registrarTalla 
 } = require("../estadisticas/hoy");
 
 module.exports = function (texto, usuario) {
@@ -44,68 +44,40 @@ module.exports = function (texto, usuario) {
         return null;
     }
 
-const tallas = texto.match(/\b(2[1-9]|3[0-9]|4[0-4])\b/g);
+    const tallas = texto.match(/\b(2[1-9]|3[0-9]|4[0-4])\b/g);
 
-if (!tallas || tallas.length === 0) {
-    return null;
-}
+    if (!tallas || tallas.length === 0) {
+        return null;
+    }
 
-const talla = tallas.join(" o ");
+    const talla = tallas.join(" o ");
 
     registrarTalla(usuario);
 
-guardar(usuario, {
-    ...estado,
-    talla
-});
+    guardar(usuario, {
+        ...estado,
+        talla
+    });
 
-const respuesta = obtenerVariante(
-    `${estado.producto}_talla`,
-    usuario,
+    const respuesta = obtenerVariante(
+        `${estado.producto}_talla`,
+        usuario,
         {
+            A: "🚚 ¡Claro! Envíanos tu dirección o barrio y ciudad para decirte el costo del envío",
 
-A: `🤍 ¡Sí! Tenemos disponible la talla *${talla}*.
+            B: "📦 Con gusto. Escríbeme tu dirección completa y la ciudad para cotizar el envío de inmediato.",
 
-🚚 ¿De qué barrio eres? Así te confirmo el costo del envío`,
+            C: "✅ Sí hacemos envíos. ¿Me envías la dirección donde deseas recibir el pedido? Así te confirmo el valor del envío.",
 
-B: `✅ Perfecto.
+            D: "🚚 Perfecto. Compárteme tu dirección y ciudad, y te indico cuánto cuesta el envío",
 
-La talla *${talla}* está disponible.
+            E: "📍 Envíame la dirección de entrega y te cotizo el envío enseguida.",
 
-🚚 ¿Me dices tu barrio para indicarte el envío?`,
-
-C: `Perfecto
-
-¿La recoges en el local o prefieres que te la enviemos?
-
-📍 Dime tu barrio y te explico cómo te la hacemos llegar.`,
-
-D: `Claro a que direccion seria el envio?`,
-
-E: `Listo, prefieres recoger en el local o envio?.
-
-📍 Dime tu barrio y te digo cómo te la hacemos llegar`,
-
-F: `✅ Sí hay talla *${talla}*.
-
-🚚 ¿Cuál es tu barrio? Así te digo el costo y el tiempo del envío`,
-
-G: `🤍 ¡Sí! Tenemos disponible la talla *${talla}*.
-
-🚚 ¿En que direccion estas? Así te confirmo el costo del envío`,
-H: `🔥 Perfecto, talla ${talla} disponible. Te las puedo separar de una vez porque se están moviendo rápido 👟
-💰 $promo del anuncio
-📦 Hacemos envío a domicilio.
-
-📍 ¿A qué dirección te las envío para dejartelas separadas?`,// 1 respuesta
-
-I: `A qué dirección sería el envio-`,// 1 DIRECCION
-
+            F: "📦 Para calcular el envío necesito la dirección donde deseas recibir el pedido. Envíamela y te doy el valor exacto."
         }
     );
 
     console.log(reporte(`${estado.producto}_talla`));
 
     return respuesta;
-
 };
