@@ -20,6 +20,8 @@ const modulos = [
     require("./ubicacion")
 ];
 
+console.log(modulos);
+
 console.log("📦 Módulos cargados:", modulos.length);
 
 module.exports = function (texto, usuario) {
