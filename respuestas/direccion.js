@@ -177,7 +177,7 @@ https://maps.app.goo.gl/SuGbvW8j5TourCs9A
 
 C: `📍 Estamos ubicados en Palmira *Calle 29 #27-32*.
 
-➡️ Dentro del centro comercial nos encuentras en el **Local 291 - CALZADISIMO**.
+➡️ Dentro del centro comercial *VILLA DE LAS PALMAS* nos encuentras en el **Local 291 - CALZADISIMO**.
 
 📌 Alfrente de almacenes Si.
 Preguntar por Camilo
