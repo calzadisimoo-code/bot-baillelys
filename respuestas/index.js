@@ -17,7 +17,7 @@ const modulos = fs
 
 const modulos = [
     require("./catalogo"),
-    require("./ubicacion")
+    require("./direccion")
 ];
 
 console.log(modulos);
