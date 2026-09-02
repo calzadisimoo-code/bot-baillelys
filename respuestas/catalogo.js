@@ -38,7 +38,12 @@ https://wa.me/c/573217204017
 
 📸 Envíame una captura del que más te guste y te confirmo de inmediato la talla disponible y el precio. ✅`,
 
-            B: `Claro ¿Qué producto buscas? Tenemos AirPods, zapatillas Nike, cargadores rápidos y más. Te envío directamente las opciones disponibles`,
+            B: `👋 ¡Claro!
+
+Aquí está nuestro catálogo actualizado:
+https://wa.me/c/573217204017
+
+📷 Cuando encuentres el modelo que te guste, mándame una captura y te digo si está disponible en tu talla.`,
 
             C: `¿Buscas blanco, negro o deportivo?`,
 
@@ -53,14 +58,7 @@ Cuando elijas una, envíame una foto del modelo para confirmar disponibilidad.`,
 Catálogo:
 https://wa.me/c/573217204017
 
-¿Cuál te gustó? Envíame una captura y te ayudo enseguida. 👌`,
-
-            F: `👋 ¡Claro!
-
-Aquí está nuestro catálogo actualizado:
-https://wa.me/c/573217204017
-
-📷 Cuando encuentres el modelo que te guste, mándame una captura y te digo si está disponible en tu talla.`
+¿Cuál te gustó? Envíame una captura y te ayudo enseguida. 👌`
 
         });
 
