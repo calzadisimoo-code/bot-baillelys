@@ -9,7 +9,7 @@ const {
 module.exports = function (texto, usuario) {
 
     if (
-        texto.includes("quiero pedir la promocion de kyro arnica plus x2 por")
+        texto.includes("arnica")
     ) {
 
         registrarProducto(usuario);
