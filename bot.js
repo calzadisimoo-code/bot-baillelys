@@ -372,17 +372,37 @@ if (
     respuesta.foto === true
 ) {
 
-    const ruta = path.join(
+    const carpeta = path.join(
         __dirname,
         "img",
-        respuesta.producto,
-        "1.jpeg"
+        respuesta.producto
     );
 
-    if (fs.existsSync(ruta)) {
+    let imagen = null;
+
+    if (fs.existsSync(carpeta)) {
+
+        const archivos = fs
+            .readdirSync(carpeta)
+            .filter(archivo =>
+                /\.(jpg|jpeg|png|webp)$/i.test(archivo)
+            );
+
+        if (archivos.length > 0) {
+
+            imagen = path.join(
+                carpeta,
+                archivos[0]
+            );
+
+        }
+
+    }
+
+    if (imagen) {
 
         await sock.sendMessage(usuario, {
-            image: fs.readFileSync(ruta),
+            image: fs.readFileSync(imagen),
             caption: respuesta.texto
         });
 
