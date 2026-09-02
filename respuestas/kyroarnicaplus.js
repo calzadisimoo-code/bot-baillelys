@@ -1,21 +1,29 @@
-module.exports = function (texto) {
 
-    const mensaje = texto.toLowerCase().trim();
+const { obtenerVariante } = require("../estadisticas/ab");
+const { guardar } = require("../estado");
+
+const {
+    registrarProducto
+} = require("../estadisticas/hoy");
+
+module.exports = function (texto, usuario) {
 
     if (
-        mensaje === "hola, quiero pedir la promoción de kyro árnica plus x2 por $89.900." ||
-        mensaje === "hola, quiero pedir la promocion de kyro arnica plus x2 por $89.900."
+        texto.includes("quiero pedir la promocion de kyro arnica plus x2 por $89.900.")
     ) {
 
-        return `La promoción de Kyro Árnica Plus x2 (250ML c/u) sigue disponible por $89.900 con envío GRATIS 🚚.
+        registrarProducto(usuario);
 
-Para validar la entrega y dejar tu pedido registrado, indícame por favor:
+        guardar(usuario, {
+            producto: "kyroarnicaplus",
+            pedidoEnviado: false
+        });
 
-✅ Ciudad
-✅ Nombre completo
-✅ Dirección de entrega
+        return obtenerVariante("kyroarnicaplus", usuario, {
 
-Tu pedido llega entre 1 y 3 días hábiles`;
+            A: "La promoción de Kyro Árnica Plus x2 (250ML c/u) sigue disponible por $89.900 con envío GRATIS 🚚.\n\nPara validar la entrega y dejar tu pedido registrado, indícame por favor:\n\n✅ Ciudad\n✅ Nombre completo\n✅ Dirección de entrega\n\nTu pedido llega entre 1 y 3 días hábiles"
+
+        });
 
     }
 
