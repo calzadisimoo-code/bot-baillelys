@@ -1,8 +1,10 @@
 module.exports = function (texto) {
 
+    const mensaje = texto.toLowerCase().trim();
+
     if (
-        texto.toLowerCase().includes("hola, quiero pedir la promoción de kyro árnica plus x2 por $89.900.") ||
-        texto.toLowerCase().includes("hola, quiero pedir la promocion de kyro arnica plus x2 por $89.900.")
+        mensaje === "hola, quiero pedir la promoción de kyro árnica plus x2 por $89.900." ||
+        mensaje === "hola, quiero pedir la promocion de kyro arnica plus x2 por $89.900."
     ) {
 
         return `La promoción de Kyro Árnica Plus x2 (250ML c/u) sigue disponible por $89.900 con envío GRATIS 🚚.
