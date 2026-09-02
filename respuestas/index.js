@@ -1,7 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 
-/*
 const modulos = fs
     .readdirSync(__dirname)
     .filter(
@@ -13,14 +12,6 @@ const modulos = fs
     .map(archivo =>
         require(path.join(__dirname, archivo))
     );
-*/
-
-const modulos = [
-    require("./catalogo"),
-    require("./direccion")
-];
-
-console.log(modulos);
 
 console.log("📦 Módulos cargados:", modulos.length);
 
