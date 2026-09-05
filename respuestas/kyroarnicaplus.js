@@ -1,7 +1,6 @@
 const { obtenerVariante } = require("../estadisticas/ab");
 const { guardar } = require("../estado");
 
-
 const {
     registrarProducto
 } = require("../estadisticas/hoy");
