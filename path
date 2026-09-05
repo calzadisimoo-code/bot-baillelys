@@ -1,0 +1,170 @@
+Script started on 2026-09-02 13:04:12-05:00 [TERM="xterm" TTY="/dev/pts/0" COLUMNS="163" LINES="44"]
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# +}
+[?2004l+}: command not found
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# [7mgrep -R "89.900" .[27m
+[7mgrep -R "Ciudad" .[27m
+[7mgrep -R "quiero pedir la promocion de kyro arnica plus" .[27m
+[7mgrep -R "Ayuda a aliviar dolores musculares" .[27m[A[A[A]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# grep -R "89.900" .
+grep -R "Ciudad" .
+grep -R "quiero pedir la promocion de kyro arnica plus" .
+grep -R "Ayuda a aliviar dolores musculares" .
+[?2004l[35m[K./respuestas/kyroarnicaplus.js[m[K[36m[K:[m[K            A: "La promoción de Kyro Árnica Plus x2 (250ML c/u) sigue disponible por $[01;31m[K89.900[m[K con envío *GRATIS*.\n\nPago *Contra entrega* 🚚.\n\n✅ Ayuda a aliviar dolores musculares y articulares, espalda, hombros, rodillas, cuello y tensión muscular, brindando una sensación calmante y mayor movilidad.\n\nPara validar la entrega y dejar tu pedido registrado, indícame por favor:\n\n✅ Nombre completo\n\n✅ Dirección de entrega\n\nTu pedido llega entre 1 y 3 días hábiles."
+[35m[K./respuestas/seguimientoPro4.js[m[K[36m[K:[m[K📌 [01;31m[KCiudad[m[K:
+[35m[K./respuestas/seguimientoPro4.js[m[K[36m[K:[m[K📌 [01;31m[KCiudad[m[K
+[35m[K./formulariolandingpage.html[m[K[36m[K:[m[K[01;31m[KCiudad[m[K
+[35m[K./formulariolandingpage.html[m[K[36m[K:[m[K🏙️ [01;31m[KCiudad[m[K: ${ciudad}
+[35m[K./respuestas/kyroarnicaplus.js[m[K[36m[K:[m[K            A: "La promoción de Kyro Árnica Plus x2 (250ML c/u) sigue disponible por $89.900 con envío *GRATIS*.\n\nPago *Contra entrega* 🚚.\n\n✅ [01;31m[KAyuda a aliviar dolores musculares[m[K y articulares, espalda, hombros, rodillas, cuello y tensión muscular, brindando una sensación calmante y mayor movilidad.\n\nPara validar la entrega y dejar tu pedido registrado, indícame por favor:\n\n✅ Nombre completo\n\n✅ Dirección de entrega\n\nTu pedido llega entre 1 y 3 días hábiles."
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# git add .
+[?2004l[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# g[Kgit pull
+[?2004lremote: Enumerating objects: 9, done.[K
+remote: Counting objects:  11% (1/9)[Kremote: Counting objects:  22% (2/9)[Kremote: Counting objects:  33% (3/9)[Kremote: Counting objects:  44% (4/9)[Kremote: Counting objects:  55% (5/9)[Kremote: Counting objects:  66% (6/9)[Kremote: Counting objects:  77% (7/9)[Kremote: Counting objects:  88% (8/9)[Kremote: Counting objects: 100% (9/9)[Kremote: Counting objects: 100% (9/9), done.[K
+remote: Compressing objects:  50% (1/2)[Kremote: Compressing objects: 100% (2/2)[Kremote: Compressing objects: 100% (2/2), done.[K
+remote: Total 5 (delta 4), reused 4 (delta 3), pack-reused 0 (from 0)[K
+Unpacking objects:  20% (1/5)Unpacking objects:  40% (2/5)Unpacking objects:  60% (3/5)Unpacking objects:  80% (4/5)Unpacking objects: 100% (5/5)Unpacking objects: 100% (5/5), 449 bytes | 89.00 KiB/s, done.
+From https://github.com/calzadisimoo-code/bot-baillelys
+   1593b4e..bbbc163  main       -> origin/main
+Updating 1593b4e..bbbc163
+Fast-forward
+ respuestas/index.js          | 9 [31m---------[m
+ respuestas/kyroarnicaplus.js | 2 [32m+[m[31m-[m
+ 2 files changed, 1 insertion(+), 10 deletions(-)
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# pm2 restart kyrobot
+[?2004l[1m[34mUse --update-env to update environment variables[39m[22m
+[32m[PM2] [39mApplying action restartProcessId on app [kyrobot](ids: [ 7 ])
+[32m[PM2] [39m[kyrobot](7) ✓
+[90m┌────┬────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐[39m
+[90m│[39m[1m[36m id [39m[22m[90m│[39m[1m[36m name       [39m[22m[90m│[39m[1m[36m namespace   [39m[22m[90m│[39m[1m[36m version [39m[22m[90m│[39m[1m[36m mode    [39m[22m[90m│[39m[1m[36m pid      [39m[22m[90m│[39m[1m[36m uptime [39m[22m[90m│[39m[1m[36m ↺    [39m[22m[90m│[39m[1m[36m status    [39m[22m[90m│[39m[1m[36m cpu      [39m[22m[90m│[39m[1m[36m mem      [39m[22m[90m│[39m[1m[36m user     [39m[22m[90m│[39m[1m[36m watching [39m[22m[90m│[39m
+[90m├────┼────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤[39m
+[90m│[39m[1m[36m [1m[36m1[39m[36m[22m[1m  [39m[22m[90m│[39m casino     [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 2186575  [90m│[39m 11D    [90m│[39m 1    [90m│[39m [32m[1monline[22m[39m    [90m│[39m 6.7%     [90m│[39m 35.9mb   [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m│[39m[1m[36m [1m[36m7[39m[36m[22m[1m  [39m[22m[90m│[39m kyrobot    [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 294315   [90m│[39m 0s     [90m│[39m 175… [90m│[39m [32m[1monline[22m[39m    [90m│[39m 0%       [90m│[39m 18.0mb   [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m└────┴────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘[39m
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# ^?[K[7mgrep -R "Cuéntame qué producto estás buscando" .[27mgrep -R "Cuéntame qué producto estás buscando" .
+[?2004l[35m[K./estadisticas/datos.json[m[K[36m[K:[m[K            "C": "👋 ¡Hola! 😊\n\n👟 [01;31m[KCuéntame qué producto estás buscando[m[K y con gusto te envío toda la información.",
+[35m[K./respuestas/saludo.js[m[K[36m[K:[m[K👟 [01;31m[KCuéntame qué producto estás buscando[m[K y con gusto te envío toda la información.`,
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# [7mgrep -R "La promoción de Kyro Árnica Plus x2" .[27mgrep -R "La promoción de Kyro Árnica Plus x2" .
+[?2004l[35m[K./path[m[K[36m[K:[m[K[?2004l[35m[K./respuestas/kyroarnicaplus.js[m[K[36m[K:[m[K            A: "[01;31m[KLa promoción de Kyro Árnica Plus x2[m[K (250ML c/u) sigue disponible por $[01;31m[K89.900[m[K con envío *GRATIS*.\n\nPago *Contra entrega* 🚚.\n\n✅ Ayuda a aliviar dolores musculares y articulares, espalda, hombros, rodillas, cuello y tensión muscular, brindando una sensación calmante y mayor movilidad.\n\nPara validar la entrega y dejar tu pedido registrado, indícame por favor:\n\n✅ Nombre completo\n\n✅ Dirección de entrega\n\nTu pedido llega entre 1 y 3 días hábiles."
+[35m[K./path[m[K[36m[K:[m[K[35m[K./respuestas/kyroarnicaplus.js[m[K[36m[K:[m[K            A: "[01;31m[KLa promoción de Kyro Árnica Plus x2[m[K (250ML c/u) sigue disponible por $89.900 con envío *GRATIS*.\n\nPago *Contra entrega* 🚚.\n\n✅ [01;31m[KAyuda a aliviar dolores musculares[m[K y articulares, espalda, hombros, rodillas, cuello y tensión muscular, brindando una sensación calmante y mayor movilidad.\n\nPara validar la entrega y dejar tu pedido registrado, indícame por favor:\n\n✅ Nombre completo\n\n✅ Dirección de entrega\n\nTu pedido llega entre 1 y 3 días hábiles."
+[35m[K./respuestas/kyroarnicaplus.js[m[K[36m[K:[m[K            A: "[01;31m[KLa promoción de Kyro Árnica Plus x2[m[K (250ML c/u) sigue disponible por $89.900 con envío *GRATIS*.\n\nPago *Contra entrega* 🚚.\n\n✅ Ayuda a aliviar dolores musculares y articulares, espalda, hombros, rodillas, cuello y tensión muscular, brindando una sensación calmante y mayor movilidad.\n\nPara validar la entrega y dejar tu pedido registrado, indícame por favor:\n\n✅ Nombre completo\n\n✅ Dirección de entrega\n\nTu pedido llega entre 1 y 3 días hábiles."
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# [7mpm2 stop kyrobot[27mpm2 stop kyrobot
+[?2004l[32m[PM2] [39mApplying action stopProcessId on app [kyrobot](ids: [ 7 ])
+[32m[PM2] [39m[kyrobot](7) ✓
+[90m┌────┬────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐[39m
+[90m│[39m[1m[36m id [39m[22m[90m│[39m[1m[36m name       [39m[22m[90m│[39m[1m[36m namespace   [39m[22m[90m│[39m[1m[36m version [39m[22m[90m│[39m[1m[36m mode    [39m[22m[90m│[39m[1m[36m pid      [39m[22m[90m│[39m[1m[36m uptime [39m[22m[90m│[39m[1m[36m ↺    [39m[22m[90m│[39m[1m[36m status    [39m[22m[90m│[39m[1m[36m cpu      [39m[22m[90m│[39m[1m[36m mem      [39m[22m[90m│[39m[1m[36m user     [39m[22m[90m│[39m[1m[36m watching [39m[22m[90m│[39m
+[90m├────┼────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤[39m
+[90m│[39m[1m[36m [1m[36m1[39m[36m[22m[1m  [39m[22m[90m│[39m casino     [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 2186575  [90m│[39m 11D    [90m│[39m 1    [90m│[39m [32m[1monline[22m[39m    [90m│[39m 0%       [90m│[39m 35.2mb   [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m│[39m[1m[36m [1m[36m7[39m[36m[22m[1m  [39m[22m[90m│[39m kyrobot    [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 0        [90m│[39m 0      [90m│[39m 175… [90m│[39m [31m[1mstopped[22m[39m   [90m│[39m 0%       [90m│[39m 0b       [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m└────┴────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘[39m
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# pm2 restart kyrobot
+[?2004l[1m[34mUse --update-env to update environment variables[39m[22m
+[32m[PM2] [39mApplying action restartProcessId on app [kyrobot](ids: [ 7 ])
+[32m[PM2] [39m[kyrobot](7) ✓
+[90m┌────┬────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐[39m
+[90m│[39m[1m[36m id [39m[22m[90m│[39m[1m[36m name       [39m[22m[90m│[39m[1m[36m namespace   [39m[22m[90m│[39m[1m[36m version [39m[22m[90m│[39m[1m[36m mode    [39m[22m[90m│[39m[1m[36m pid      [39m[22m[90m│[39m[1m[36m uptime [39m[22m[90m│[39m[1m[36m ↺    [39m[22m[90m│[39m[1m[36m status    [39m[22m[90m│[39m[1m[36m cpu      [39m[22m[90m│[39m[1m[36m mem      [39m[22m[90m│[39m[1m[36m user     [39m[22m[90m│[39m[1m[36m watching [39m[22m[90m│[39m
+[90m├────┼────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤[39m
+[90m│[39m[1m[36m [1m[36m1[39m[36m[22m[1m  [39m[22m[90m│[39m casino     [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 2186575  [90m│[39m 11D    [90m│[39m 1    [90m│[39m [32m[1monline[22m[39m    [90m│[39m 0%       [90m│[39m 35.2mb   [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m│[39m[1m[36m [1m[36m7[39m[36m[22m[1m  [39m[22m[90m│[39m kyrobot    [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 294599   [90m│[39m 0s     [90m│[39m 175… [90m│[39m [32m[1monline[22m[39m    [90m│[39m 0%       [90m│[39m 17.6mb   [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m└────┴────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘[39m
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# pm2 list
+[?2004l[90m┌────┬────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐[39m
+[90m│[39m[1m[36m id [39m[22m[90m│[39m[1m[36m name       [39m[22m[90m│[39m[1m[36m namespace   [39m[22m[90m│[39m[1m[36m version [39m[22m[90m│[39m[1m[36m mode    [39m[22m[90m│[39m[1m[36m pid      [39m[22m[90m│[39m[1m[36m uptime [39m[22m[90m│[39m[1m[36m ↺    [39m[22m[90m│[39m[1m[36m status    [39m[22m[90m│[39m[1m[36m cpu      [39m[22m[90m│[39m[1m[36m mem      [39m[22m[90m│[39m[1m[36m user     [39m[22m[90m│[39m[1m[36m watching [39m[22m[90m│[39m
+[90m├────┼────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤[39m
+[90m│[39m[1m[36m [1m[36m1[39m[36m[22m[1m  [39m[22m[90m│[39m casino     [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 2186575  [90m│[39m 11D    [90m│[39m 1    [90m│[39m [32m[1monline[22m[39m    [90m│[39m 0%       [90m│[39m 29.7mb   [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m│[39m[1m[36m [1m[36m7[39m[36m[22m[1m  [39m[22m[90m│[39m kyrobot    [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 294599   [90m│[39m 26m    [90m│[39m 175… [90m│[39m [32m[1monline[22m[39m    [90m│[39m 0%       [90m│[39m 107.1mb  [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m└────┴────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘[39m
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# ^C[?2004l[?2004h[?2004l
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# [7mpm2 stop casino[27mpm2 stop casino
+[?2004l[32m[PM2] [39mApplying action stopProcessId on app [casino](ids: [ 1 ])
+[32m[PM2] [39m[casino](1) ✓
+[90m┌────┬────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐[39m
+[90m│[39m[1m[36m id [39m[22m[90m│[39m[1m[36m name       [39m[22m[90m│[39m[1m[36m namespace   [39m[22m[90m│[39m[1m[36m version [39m[22m[90m│[39m[1m[36m mode    [39m[22m[90m│[39m[1m[36m pid      [39m[22m[90m│[39m[1m[36m uptime [39m[22m[90m│[39m[1m[36m ↺    [39m[22m[90m│[39m[1m[36m status    [39m[22m[90m│[39m[1m[36m cpu      [39m[22m[90m│[39m[1m[36m mem      [39m[22m[90m│[39m[1m[36m user     [39m[22m[90m│[39m[1m[36m watching [39m[22m[90m│[39m
+[90m├────┼────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤[39m
+[90m│[39m[1m[36m [1m[36m1[39m[36m[22m[1m  [39m[22m[90m│[39m casino     [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 0        [90m│[39m 0      [90m│[39m 1    [90m│[39m [31m[1mstopped[22m[39m   [90m│[39m 0%       [90m│[39m 0b       [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m│[39m[1m[36m [1m[36m7[39m[36m[22m[1m  [39m[22m[90m│[39m kyrobot    [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 294599   [90m│[39m 37m    [90m│[39m 175… [90m│[39m [32m[1monline[22m[39m    [90m│[39m 0%       [90m│[39m 108.4mb  [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m└────┴────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘[39m
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# git add .
+[?2004l[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# git commit -m ""2"."0"
+[?2004lAuthor identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'root@ubuntu-s-1vcpu-512mb-10gb-nyc1.(none)')
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# git pull
+[?2004lremote: Enumerating objects: 5, done.[K
+remote: Counting objects:  20% (1/5)[Kremote: Counting objects:  40% (2/5)[Kremote: Counting objects:  60% (3/5)[Kremote: Counting objects:  80% (4/5)[Kremote: Counting objects: 100% (5/5)[Kremote: Counting objects: 100% (5/5), done.[K
+remote: Compressing objects: 100% (1/1)[Kremote: Compressing objects: 100% (1/1), done.[K
+remote: Total 3 (delta 2), reused 3 (delta 2), pack-reused 0 (from 0)[K
+Unpacking objects:  33% (1/3)Unpacking objects:  66% (2/3)Unpacking objects: 100% (3/3)Unpacking objects: 100% (3/3), 282 bytes | 94.00 KiB/s, done.
+From https://github.com/calzadisimoo-code/bot-baillelys
+   bbbc163..b9b52f0  main       -> origin/main
+Updating bbbc163..b9b52f0
+Fast-forward
+ config.js | 4 [32m++[m[31m--[m
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# pm2 restart kyribot[K[K[K[Kobot
+[?2004l[1m[34mUse --update-env to update environment variables[39m[22m
+[32m[PM2] [39mApplying action restartProcessId on app [kyrobot](ids: [ 7 ])
+[32m[PM2] [39m[kyrobot](7) ✓
+[90m┌────┬────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐[39m
+[90m│[39m[1m[36m id [39m[22m[90m│[39m[1m[36m name       [39m[22m[90m│[39m[1m[36m namespace   [39m[22m[90m│[39m[1m[36m version [39m[22m[90m│[39m[1m[36m mode    [39m[22m[90m│[39m[1m[36m pid      [39m[22m[90m│[39m[1m[36m uptime [39m[22m[90m│[39m[1m[36m ↺    [39m[22m[90m│[39m[1m[36m status    [39m[22m[90m│[39m[1m[36m cpu      [39m[22m[90m│[39m[1m[36m mem      [39m[22m[90m│[39m[1m[36m user     [39m[22m[90m│[39m[1m[36m watching [39m[22m[90m│[39m
+[90m├────┼────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤[39m
+[90m│[39m[1m[36m [1m[36m1[39m[36m[22m[1m  [39m[22m[90m│[39m casino     [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 0        [90m│[39m 0      [90m│[39m 1    [90m│[39m [31m[1mstopped[22m[39m   [90m│[39m 0%       [90m│[39m 0b       [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m│[39m[1m[36m [1m[36m7[39m[36m[22m[1m  [39m[22m[90m│[39m kyrobot    [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 299616   [90m│[39m 0s     [90m│[39m 175… [90m│[39m [32m[1monline[22m[39m    [90m│[39m 0%       [90m│[39m 17.1mb   [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m└────┴────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘[39m
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# [7mls -la img/kyroarnicaplus[27mls -la img/kyroarnicaplus
+[?2004ltotal 948
+drwxr-xr-x  2 root root   4096 Sep  2 12:43 [0m[01;34m.[0m
+drwxr-xr-x 10 root root   4096 Sep  2 12:43 [01;34m..[0m
+-rw-r--r--  1 root root 962109 Sep  2 12:43 [01;35m1.png[0m
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# ^C[?2004l[?2004h[?2004l
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# [7mgrep -n "1.jpeg" bot.js[27mgrep -n "1.jpeg" bot.js
+[?2004l[32m[K379[m[K[36m[K:[m[K        "[01;31m[K1.jpeg[m[K"
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# [7mmv img/kyroarnicaplus/1.png img/kyroarnicaplus/1.jpeg[27mmv img/kyroarnicaplus/1.png img/kyroarnicaplus/1.jpeg
+[?2004l[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# git pull
+[?2004lremote: Enumerating objects: 7, done.[K
+remote: Counting objects:  14% (1/7)[Kremote: Counting objects:  28% (2/7)[Kremote: Counting objects:  42% (3/7)[Kremote: Counting objects:  57% (4/7)[Kremote: Counting objects:  71% (5/7)[Kremote: Counting objects:  85% (6/7)[Kremote: Counting objects: 100% (7/7)[Kremote: Counting objects: 100% (7/7), done.[K
+remote: Compressing objects: 100% (1/1)[Kremote: Compressing objects: 100% (1/1), done.[K
+remote: Total 4 (delta 3), reused 4 (delta 3), pack-reused 0 (from 0)[K
+Unpacking objects:  25% (1/4)Unpacking objects:  50% (2/4)Unpacking objects:  75% (3/4)Unpacking objects: 100% (4/4)Unpacking objects: 100% (4/4), 388 bytes | 64.00 KiB/s, done.
+From https://github.com/calzadisimoo-code/bot-baillelys
+   b9b52f0..2e2a565  main       -> origin/main
+Updating b9b52f0..2e2a565
+Fast-forward
+ respuestas/kyroarnicaplus.js | 11 [32m+++++++[m[31m----[m
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# pm2 restart kyrobot
+[?2004l[1m[34mUse --update-env to update environment variables[39m[22m
+[32m[PM2] [39mApplying action restartProcessId on app [kyrobot](ids: [ 7 ])
+[32m[PM2] [39m[kyrobot](7) ✓
+[90m┌────┬────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐[39m
+[90m│[39m[1m[36m id [39m[22m[90m│[39m[1m[36m name       [39m[22m[90m│[39m[1m[36m namespace   [39m[22m[90m│[39m[1m[36m version [39m[22m[90m│[39m[1m[36m mode    [39m[22m[90m│[39m[1m[36m pid      [39m[22m[90m│[39m[1m[36m uptime [39m[22m[90m│[39m[1m[36m ↺    [39m[22m[90m│[39m[1m[36m status    [39m[22m[90m│[39m[1m[36m cpu      [39m[22m[90m│[39m[1m[36m mem      [39m[22m[90m│[39m[1m[36m user     [39m[22m[90m│[39m[1m[36m watching [39m[22m[90m│[39m
+[90m├────┼────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤[39m
+[90m│[39m[1m[36m [1m[36m1[39m[36m[22m[1m  [39m[22m[90m│[39m casino     [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 0        [90m│[39m 0      [90m│[39m 1    [90m│[39m [31m[1mstopped[22m[39m   [90m│[39m 0%       [90m│[39m 0b       [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m│[39m[1m[36m [1m[36m7[39m[36m[22m[1m  [39m[22m[90m│[39m kyrobot    [90m│[39m default     [90m│[39m 1.0.0   [90m│[39m [7m[1mfork[22m[27m    [90m│[39m 300177   [90m│[39m 0s     [90m│[39m 175… [90m│[39m [32m[1monline[22m[39m    [90m│[39m 0%       [90m│[39m 17.9mb   [90m│[39m [1mroot[22m     [90m│[39m [90mdisabled[39m [90m│[39m
+[90m└────┴────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘[39m
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# git pull
+[?2004lAlready up to date.
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# git pulll[K
+[?2004lremote: Enumerating objects: 5, done.[K
+remote: Counting objects:  20% (1/5)[Kremote: Counting objects:  40% (2/5)[Kremote: Counting objects:  60% (3/5)[Kremote: Counting objects:  80% (4/5)[Kremote: Counting objects: 100% (5/5)[Kremote: Counting objects: 100% (5/5), done.[K
+remote: Compressing objects: 100% (1/1)[Kremote: Compressing objects: 100% (1/1), done.[K
+remote: Total 3 (delta 2), reused 3 (delta 2), pack-reused 0 (from 0)[K
+Unpacking objects:  33% (1/3)Unpacking objects:  66% (2/3)Unpacking objects: 100% (3/3)Unpacking objects: 100% (3/3), 423 bytes | 52.00 KiB/s, done.
+From https://github.com/calzadisimoo-code/bot-baillelys
+   2e2a565..b6de377  main       -> origin/main
+Updating 2e2a565..b6de377
+Fast-forward
+ bot.js | 30 [32m+++++++++++++++++++++++++[m[31m-----[m
+ 1 file changed, 25 insertions(+), 5 deletions(-)
+[?2004h]0;root@ubuntu-s-1vcpu-512mb-10gb-nyc1: ~/bot-baillelysroot@ubuntu-s-1vcpu-512mb-10gb-nyc1:~/bot-baillelys# pm2 restart kyrobot
+[?2004l[1m[34mUse --update-env to update environment variables[39m[22m
+[32m[PM2] [39mApplying action restartProcessId on app [kyrobot](ids: [ 7 ])
+[32m[PM2] [39m[kyrobot](7) ✓
+[90m┌────┬────────────┬─────────────┬─────────┬─────────

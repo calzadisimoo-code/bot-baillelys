@@ -1,64 +1,186 @@
 {
     "catalogo": {
         "A": {
-            "enviados": 1,
-            "respondieron": 0
+            "enviados": 17,
+            "respondieron": 10
         },
         "B": {
-            "enviados": 0,
-            "respondieron": 0
+            "enviados": 36,
+            "respondieron": 27
         },
         "C": {
-            "enviados": 2,
-            "respondieron": 2
+            "enviados": 22,
+            "respondieron": 14
         },
         "D": {
-            "enviados": 2,
-            "respondieron": 1
+            "enviados": 16,
+            "respondieron": 9
         },
         "E": {
-            "enviados": 2,
-            "respondieron": 1
+            "enviados": 13,
+            "respondieron": 7
         },
         "F": {
-            "enviados": 2,
-            "respondieron": 1
+            "enviados": 14,
+            "respondieron": 8
+        },
+        "_mensajes": {
+            "A": "👟 ¡Tenemos muchísimos modelos disponibles!\n\n📲 Míralos aquí:\nhttps://wa.me/c/573217204017\n\n📸 Envíame una captura del que más te guste y te confirmo de inmediato la talla disponible y el precio. ✅",
+            "B": "👋 ¡Claro!\n\nAquí está nuestro catálogo actualizado:\nhttps://wa.me/c/573217204017\n\n📷 Cuando encuentres el modelo que te guste, mándame una captura y te digo si está disponible en tu talla.",
+            "C": "¿Buscas blanco, negro o deportivo?",
+            "D": "✅ Aquí puedes ver todas las zapatillas disponibles:\n\nhttps://wa.me/c/573217204017\n\nCuando elijas una, envíame una foto del modelo para confirmar disponibilidad.",
+            "E": "🔥 Tenemos muchos estilos para escoger.\n\nCatálogo:\nhttps://wa.me/c/573217204017\n\n¿Cuál te gustó? Envíame una captura y te ayudo enseguida. 👌"
         }
     },
     "ubicacion": {
         "A": {
-            "enviados": 1,
-            "respondieron": 0
+            "enviados": 30,
+            "respondieron": 21
         },
         "B": {
-            "enviados": 2,
-            "respondieron": 0
+            "enviados": 25,
+            "respondieron": 16
         },
         "C": {
-            "enviados": 0,
-            "respondieron": 0
+            "enviados": 30,
+            "respondieron": 21
         },
         "D": {
-            "enviados": 0,
-            "respondieron": 0
+            "enviados": 23,
+            "respondieron": 14
         },
         "E": {
-            "enviados": 0,
-            "respondieron": 0
+            "enviados": 14,
+            "respondieron": 7
         },
         "F": {
-            "enviados": 1,
-            "respondieron": 0
+            "enviados": 48,
+            "respondieron": 38
+        },
+        "_mensajes": {
+            "A": "📍 Estamos ubicados en Palmira *Calle 29 #27-32*, entrada recomendada del Centro Comercial Villa de las Palmas.\n\n➡️ Dentro del centro comercial nos encuentras en el **Local 291 - CALZADISIMO**.\n\n📌 Diagonal al Banco de Bogotá.\nPreguntar por Camilo\n\n🗺️ Google Maps:\nhttps://maps.app.goo.gl/SuGbvW8j5TourCs9A\n\n¿Prefieres pasar por el local o hacemos el envío?",
+            "B": "📍 ¡Sí tenemos punto físico en Palmira!\n\nLa entrada más fácil es por la *Calle 29 #27-32*, Centro Comercial Villa de las Palmas.\n\n➡️ Estamos dentro del centro comercial en el **Local 291 - CALZADISIMO**.\nPreguntar por Camilo\n\n🗺️ Google Maps:\nhttps://maps.app.goo.gl/SuGbvW8j5TourCs9A\n\n¿Vas a pasar hoy o prefieres envío?",
+            "C": "📍 Estamos ubicados en Palmira *Calle 29 #27-32*.\n\n➡️ Dentro del centro comercial *VILLA DE LAS PALMAS* nos encuentras en el **Local 291 - CALZADISIMO**.\n\n📌 Alfrente de almacenes Si.\nPreguntar por Camilo\n\n🗺️ Google Maps:\nhttps://maps.app.goo.gl/SuGbvW8j5TourCs9A\n\n¿Prefieres pasar por el local o hacemos el envío?",
+            "D": "📍 ¡Claro! Puedes visitarnos en nuestra tienda.\n\n🏢 Centro Comercial Villa de las Palmas\n📌 *Local 291 - CALZADISIMO*\n\n📍 Dirección:\n*Palmira - Calle 29 #27-32*\n\n🏦 Estamos diagonal al Banco de Bogotá.\n\n🗺️ Google Maps:\nhttps://maps.app.goo.gl/SuGbvW8j5TourCs9A\n\n😊 ¿Vas a pasar hoy por el local o prefieres que te lo enviemos a domicilio?",
+            "E": "📍 ¡Claro! Tenemos tienda física en Palmira.\n\n🏢 Nos encuentras en el *Centro Comercial Villa de las Palmas*.\n\n➡️ **Local 291 - CALZADISIMO**\n\n📍 Dirección:\n*Calle 29 #27-32*\n\n🏦 Estamos diagonal al Banco de Bogotá.\n\n🗺️ Google Maps:\nhttps://maps.app.goo.gl/SuGbvW8j5TourCs9A\n\n😊 ¿Te queda fácil pasar por el local o prefieres que te lo enviemos hasta tu dirección?",
+            "F": "📍 Dirección:\n\nPalmira - *Calle 29 #27-32*\nCentro Comercial Villa de las Palmas\n\n➡️ **Local 291 - CALZADISIMO**\n\n📌 Diagonal al Banco de Bogotá.\n\n🗺️ Google Maps:\nhttps://maps.app.goo.gl/SuGbvW8j5TourCs9A\n\n¿Recoges en tienda o hacemos el envío?"
         }
     },
     "envio": {
         "A": {
-            "enviados": 0,
-            "respondieron": 0
+            "enviados": 27,
+            "respondieron": 22
         },
         "B": {
-            "enviados": 0,
-            "respondieron": 0
+            "enviados": 18,
+            "respondieron": 13
+        },
+        "C": {
+            "enviados": 27,
+            "respondieron": 23
+        },
+        "D": {
+            "enviados": 26,
+            "respondieron": 22
+        },
+        "E": {
+            "enviados": 28,
+            "respondieron": 24
+        },
+        "F": {
+            "enviados": 26,
+            "respondieron": 22
+        },
+        "_mensajes": {
+            "A": "🚚 ¡Claro! Envíanos tu dirección o barrio y ciudad para decirte el costo del envío",
+            "B": "📦 Con gusto. Escríbeme tu dirección completa y la ciudad para cotizar el envío de inmediato.",
+            "C": "✅ Sí hacemos envíos. ¿Me envías la dirección donde deseas recibir el pedido? Así te confirmo el valor del envío.",
+            "D": "🚚 Perfecto. Compárteme tu dirección y ciudad, y te indico cuánto cuesta el envío",
+            "E": "📍 Envíame la dirección de entrega y te cotizo el envío enseguida.",
+            "F": "📦 Para calcular el envío necesito la dirección donde deseas recibir el pedido. Envíamela y te doy el valor exacto."
+        }
+    },
+    "af1bi": {
+        "A": {
+            "enviados": 11,
+            "respondieron": 6
+        },
+        "B": {
+            "enviados": 12,
+            "respondieron": 7
+        },
+        "C": {
+            "enviados": 8,
+            "respondieron": 3
+        },
+        "D": {
+            "enviados": 23,
+            "respondieron": 17
+        },
+        "E": {
+            "enviados": 29,
+            "respondieron": 23
+        },
+        "F": {
+            "enviados": 9,
+            "respondieron": 4
+        },
+        "G": {
+            "enviados": 15,
+            "respondieron": 10
+        },
+        "_mensajes": {
+            "A": "🤍 ¡Sí están disponibles las Air Force 1 blancas importadas!\n\n💰 Precio: *$100.000*\n📦 Calidad importada.\n🚚 Envíos a toda Colombia.\n\n👟 *Responde con tu talla (21 al 44) y continuamos con tu pedido.*",
+            "B": "Hola desde que barrio nos escribes?",
+            "C": "✨ Sí hay disponibilidad.\n\n🤍 Air Force 1 blancas importadas.\n💰 *$100.000*\n🚚 Envío rápido a toda Colombia.\n\n👟 *¿Cuál es tu talla? (21 al 44)*",
+            "D": "🚀 Tenemos disponibles las Air Force 1 blancas importadas.\n\n💵 Valor: *$100.000*\n📦 Calidad importada.\n\n👟 *Envíame tu talla y te envío la información para recibirlas.*",
+            "E": "Hola que talla buscas?",
+            "F": "Hola que talla buscas? y en que barrio te encuentras?",
+            "G": "📦 Con gusto. Escríbeme tu dirección completa y la ciudad para cotizar el envío de inmediato."
+        }
+    },
+    "paris": {
+        "A": {
+            "enviados": 22,
+            "respondieron": 15
+        },
+        "B": {
+            "enviados": 19,
+            "respondieron": 12
+        },
+        "C": {
+            "enviados": 45,
+            "respondieron": 37
+        },
+        "D": {
+            "enviados": 13,
+            "respondieron": 7
+        },
+        "E": {
+            "enviados": 14,
+            "respondieron": 8
+        },
+        "F": {
+            "enviados": 27,
+            "respondieron": 20
+        },
+        "_mensajes": {
+            "A": "👟 ¡Sí tenemos las Paris disponibles!\n\n💰 Precio: *$85.000*\n🚚 Envíos a toda Colombia.\n\n📏 *Responde con tu talla (21 al 44) y continuamos con tu pedido.*",
+            "B": "🔥 ¡Sí están disponibles!\n\n💰 *$85.000*\n🚚 Enviamos a cualquier ciudad de Colombia.\n\n👟 *¿Qué talla necesitas? (21 al 44)*",
+            "C": "Hola que talla buscas?",
+            "D": "Hola, en que talla?",
+            "E": "✅ Tenemos disponibles las Paris.\n\n💰 *$85.000*\n🚚 Hacemos envíos a toda Colombia.\n\n📏 *¿Qué talla buscas? (21 al 44)*",
+            "F": "`👟 ¡Sí tenemos las Paris disponibles!\n\n💰 *$85.000*\n🚚 Envíos a toda Colombia.\n\n📏 *Responde con tu talla (21 al 44) y te confirmo de inmediato si está disponible.*`"
+        }
+    },
+    "carg67w": {
+        "A": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "B": {
+            "enviados": 1,
+            "respondieron": 1
         },
         "C": {
             "enviados": 0,
@@ -70,40 +192,518 @@
         },
         "E": {
             "enviados": 1,
+            "respondieron": 1
+        },
+        "F": {
+            "enviados": 0,
+            "respondieron": 0
+        }
+    },
+    "talla": {
+        "A": {
+            "enviados": 5,
+            "respondieron": 4
+        },
+        "B": {
+            "enviados": 5,
+            "respondieron": 4
+        },
+        "C": {
+            "enviados": 5,
+            "respondieron": 4
+        },
+        "D": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "E": {
+            "enviados": 0,
             "respondieron": 0
         },
         "F": {
-            "enviados": 2,
-            "respondieron": 1
+            "enviados": 4,
+            "respondieron": 3
         }
     },
-    "af1bi": {
+    "enviofotos": {
         "A": {
-            "enviados": 0,
+            "enviados": 18,
+            "respondieron": 15
+        },
+        "B": {
+            "enviados": 11,
+            "respondieron": 8
+        },
+        "C": {
+            "enviados": 10,
+            "respondieron": 7
+        },
+        "D": {
+            "enviados": 13,
+            "respondieron": 10
+        },
+        "E": {
+            "enviados": 13,
+            "respondieron": 10
+        },
+        "F": {
+            "enviados": 14,
+            "respondieron": 11
+        },
+        "_mensajes": {
+            "A": "📸 ¡Listo! Ya te envié las fotos. 😊\n\n📍 Dime tu direccion y te digo cómo te las hacemos llegar.",
+            "B": "🤩 ¡Con gusto! Aquí tienes las fotos.\n\n💬 ¿Qué te parecieron?",
+            "C": "🔥 Ya te envío las fotos.\n\n👟 ¿Te gustaron?",
+            "D": "📷 Aquí están las fotos del producto.\n\n✨ ¿Cuál fue la que más te gustó?",
+            "E": "📸¡Listo! Ya te envié las fotos. 😊\n\n🚚 ¿Prefieres recoger en el local o recibirlas por envío?",
+            "F": "📸 ¡Listo! Ya te envié las fotos. 😊\n\n🚚 ¿Prefieres recoger en el local o recibirlas por envío?\n\n📍 Dime tu direccion y te digo cómo te las hacemos llegar."
+        }
+    },
+    "pro4": {
+        "A": {
+            "enviados": 24,
+            "respondieron": 17
+        },
+        "B": {
+            "enviados": 8,
+            "respondieron": 3
+        },
+        "C": {
+            "enviados": 28,
+            "respondieron": 21
+        },
+        "D": {
+            "enviados": 18,
+            "respondieron": 12
+        },
+        "E": {
+            "enviados": 18,
+            "respondieron": 12
+        },
+        "F": {
+            "enviados": 21,
+            "respondieron": 15
+        },
+        "_mensajes": {
+            "A": "🎧 ¡Sí tenemos disponibles los *AirPods Pro 4*!\n\n💰 Precio: *$60.000*\n🚚 Envíos a toda Colombia.\n\n📦 ¿Te envío 1 par o quieres aprovechar para llevar 2?",
+            "B": "🎧 ¡Sí tenemos disponibles!\n\n🔥 AirPods Pro 2 — $60.000\n• Con gomitas\n• Mayor ajuste al oído\n\n🔥 AirPods Pro 4 — $60.000\n• Sin gomitas\n• Más cómodos para uso prolongado\n\n✅ ¿Cuál prefieres? Pro 2 o Pro 4.",
+            "C": "🎧 ¡Sí tenemos disponibles!\n\n💰 *$60.000*\n\n📍 ¿En qué ciudad te encuentras para decirte el tiempo de entrega?",
+            "D": "🎧 ¡Sí hay disponibilidad!\n\n💰 Precio: *$60.000*\n📦 Envíos rápidos.\n\n📱 ¿Los usarás con iPhone o Android?",
+            "E": "🎧 ¡Sí hay disponibilidad!\n\n💰 *$60.000*\n🚚 Envíos a toda Colombia.\n\n✅ ¿Te ayudo a dejar listo tu pedido?",
+            "F": "🎧 ¡SE AGOTAN!\n\n💰 *$60.000*\n\n📍 ¿En qué ciudad te encuentras para decirte el tiempo de entrega?"
+        }
+    },
+    "af1b": {
+        "A": {
+            "enviados": 24,
+            "respondieron": 20
+        },
+        "B": {
+            "enviados": 18,
+            "respondieron": 13
+        },
+        "C": {
+            "enviados": 12,
+            "respondieron": 8
+        },
+        "D": {
+            "enviados": 23,
+            "respondieron": 19
+        },
+        "E": {
+            "enviados": 23,
+            "respondieron": 19
+        },
+        "F": {
+            "enviados": 23,
+            "respondieron": 19
+        },
+        "_mensajes": {
+            "A": "Hola que talla buscas?",
+            "B": "🔥 Hola tenemos las Air Force 1 blancas por *$60.000*.\n\n✅ Tallas disponibles del *21 al 44*.\n\n👟 *Escríbeme únicamente tu talla y te ayudo con el pedido.*",
+            "C": "🤍 Air Force 1 blancas disponibles.\n\n💰 Valor: *$60.000*\n\n👟 ¿Qué talla buscas?",
+            "D": "🚀 Tenemos disponibles las Air Force 1 blancas.\n\n💵 Valor: *$60.000*\n\n👟 *Envíame tu talla y te envío la información para recibirlas.*",
+            "E": "👋 ¡Hola! 😊\n\n¿En qué talla las necesitas?\n\n👟 Tenemos disponibles del *21 al 44*.\n💰 Precio: *$60.000*.",
+            "F": "✅ Sí están disponibles.\n\n🤍 Air Force 1 blancas.\n💰 *$60.000*\n\n👟 *Dime tu talla y en unos minutos dejamos listo tu pedido.*"
+        }
+    },
+    "carg120w": {
+        "A": {
+            "enviados": 1,
             "respondieron": 0
         },
         "B": {
             "enviados": 1,
-            "respondieron": 0
+            "respondieron": 1
         },
         "C": {
+            "enviados": 1,
+            "respondieron": 0
+        },
+        "D": {
             "enviados": 0,
             "respondieron": 0
+        },
+        "E": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "F": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "_mensajes": {
+            "A": "⚡ ¡Sí disponible!\n\n💰 Precio: *$60.000*\n\n📍 ¿Prefieres envío o recoger?",
+            "B": "Hola 👋 ¿Desde qué ciudad o barrio nos escribes?",
+            "C": "🔥 ¡Sí, disponible!\n\n💰 *$60.000*\n\n📍 ¿Desde qué ciudad nos escribes?",
+            "D": "✅ Sí tenemos disponible.\n\n📍 ¿Desde qué ciudad o barrio nos escribes?",
+            "E": "Perfecto 👌 ¿Lo recoges en el local o te lo enviamos?",
+            "F": "⚡ Sí disponible en *$60.000*.\n\n📍 ¿De qué ciudad nos escribes?"
+        }
+    },
+    "r4bd": {
+        "A": {
+            "enviados": 2,
+            "respondieron": 2
+        },
+        "B": {
+            "enviados": 2,
+            "respondieron": 1
+        },
+        "C": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "D": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "E": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "F": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "_mensajes": {
+            "A": "🤍 ¡Sí tenemos disponibles las Retro 4 blancas con dorado!\n\n💰 Precio: *$84.900*\n🚚 Envíos a toda Colombia.\n\n👟 *Responde con tu talla (21 al 44) y continuamos con tu pedido.*",
+            "B": "🔥 Hola, tenemos disponibles las Retro 4 blancas con dorado.\n\n💰 Solo *$84.900*.\n✅ Tallas del *21 al 44*.\n\n👟 *Escríbeme únicamente tu talla y te ayudo con el pedido.*",
+            "C": "✨ Sí hay disponibilidad.\n\n🤍 Retro 4 blanca con dorado.\n💰 *$84.900*\n🚚 Envíos a toda Colombia.\n\n👟 *¿Qué talla necesitas? (21 al 44)*",
+            "D": "🚀 Tenemos disponibles las Retro 4 blancas con dorado.\n\n💵 Valor: *$84.900*\n\n👟 *Envíame tu talla y te envío la información para recibirlas.*",
+            "E": "👋 ¡Hola! 😊\n\n¿En qué talla las necesitas?\n\n👟 Tenemos disponibles del *21 al 44*.\n💰 Precio: *$84.900*.",
+            "F": "✅ Sí están disponibles.\n\n🤍 Retro 4 blanca con dorado.\n💰 *$84.900*\n\n👟 *Dime tu talla y en unos minutos dejamos listo tu pedido.*"
+        }
+    },
+    "af1b50": {
+        "A": {
+            "enviados": 5,
+            "respondieron": 3
+        },
+        "B": {
+            "enviados": 4,
+            "respondieron": 3
+        },
+        "C": {
+            "enviados": 4,
+            "respondieron": 4
+        },
+        "D": {
+            "enviados": 4,
+            "respondieron": 3
+        },
+        "E": {
+            "enviados": 4,
+            "respondieron": 4
+        },
+        "F": {
+            "enviados": 4,
+            "respondieron": 2
+        },
+        "_mensajes": {
+            "A": "🤍 ¡Sí tenemos disponibles las Air Force 1 blancas!\n\n💰 Precio: *$50.000*\n🚚 Envíos a toda Colombia.\n\n👟 *Responde con tu talla (21 al 44) y continuamos con tu pedido.*",
+            "B": "🔥 Sí, disponibles las Air Force 1 blancas por *$50.000*.\n\n👟 *¿Qué talla necesitas?*",
+            "C": "👟 Air Force 1 blancas $50.000\n\n✅ Tallas 21 al 44\n\n¿Qué talla buscas?",
+            "D": "Hola, que talla buscas?",
+            "E": "👋 ¡Hola! 😊\n\n¿En qué talla las necesitas?\n\n👟 Tenemos disponibles del *21 al 44*.\n💰 Precio: *$50.000*.",
+            "F": "Hola, Air Force 1 blancas 💰 *$50.000* 👟 Dime tu talla y te confirmo disponibilidad"
+        }
+    },
+    "pago": {
+        "A": {
+            "enviados": 5,
+            "respondieron": 2
+        },
+        "B": {
+            "enviados": 9,
+            "respondieron": 8
+        },
+        "C": {
+            "enviados": 5,
+            "respondieron": 3
+        },
+        "D": {
+            "enviados": 11,
+            "respondieron": 10
+        },
+        "E": {
+            "enviados": 9,
+            "respondieron": 8
+        },
+        "F": {
+            "enviados": 6,
+            "respondieron": 4
+        },
+        "_mensajes": {
+            "A": "💳 Puedes realizar el pago por Nequi:\n\n👤 *Juan Galarraga*\n📱 *321 720 4017*\n\n📸 Cuando realices el pago, envíame el comprobante y continuamos con el envío. 🚚",
+            "B": "💳 ¿Prefieres pagar por Nequi o pago contra entrega?\n\nSi deseas pagar por Nequi, estos son los datos:\n\n👤 *Juan Galarraga*\n📱 *321 720 4017*",
+            "C": "✅ ¡Perfecto!\n\nEn cuanto envíes el comprobante dejaré tu pedido confirmado para despacho.\n\n💳 Nequi\n\n👤 *Juan Galarraga*\n📱 *321 720 4017*",
+            "D": "🚚 Si realizas el pago ahora, tu pedido podrá prepararse de inmediato.\n\n💳 Nequi\n\n👤 *Juan Galarraga*\n📱 *321 720 4017*\n\n📸 Apenas reciba el comprobante seguimos con el envío.",
+            "E": "💳 Datos para el pago:\n\n👤 *Juan Galarraga*\n📱 *321 720 4017*\n\n❓Si prefieres otro método de pago, dime cuál y con gusto te ayudo.",
+            "F": "🤝 Ya casi terminamos tu pedido.\n\nSolo falta el pago para dejarlo confirmado.\n\n💳 Nequi\n\n👤 *Juan Galarraga*\n📱 *321 720 4017*\n\n📸 Envíame el comprobante y tu pedido quedará listo para despacho. 🚚"
+        }
+    },
+    "saludo": {
+        "A": {
+            "enviados": 29,
+            "respondieron": 22
+        },
+        "B": {
+            "enviados": 25,
+            "respondieron": 18
+        },
+        "C": {
+            "enviados": 45,
+            "respondieron": 38
+        },
+        "D": {
+            "enviados": 68,
+            "respondieron": 61
+        },
+        "E": {
+            "enviados": 54,
+            "respondieron": 47
+        },
+        "F": {
+            "enviados": 13,
+            "respondieron": 7
+        },
+        "_mensajes": {
+            "A": "👋 ¡Hola! Bienvenido a CALZADISIMO.\n\n👟 Tenemos Air Force 1, Paris, sandalias, cargadores y muchos productos más.\n\n😊 ¿Qué producto estás buscando?",
+            "B": "👋 Hola, ¿qué producto estás buscando?",
+            "C": "👋 ¡Hola! 😊\n\n👟 Cuéntame qué producto estás buscando y con gusto te envío toda la información.",
+            "D": "👋 ¡Hola!\n\nEstoy aquí para ayudarte a encontrar el producto que buscas. 🤝\n\n📦 ¿Qué producto te interesa hoy?",
+            "E": "👋 ¡Hola! Bienvenido a CALZADISIMO.\n\n👟 Con gusto te ayudo a encontrar el producto que buscas\n\n📦 ¿Cuál te interesa?",
+            "F": "👟 Bienvenido a CALZADISIMO.\n\n¿Qué producto te interesa? Te ayudo enseguida"
+        }
+    },
+    "pro4_2": {
+        "A": {
+            "enviados": 9,
+            "respondieron": 8
+        },
+        "B": {
+            "enviados": 9,
+            "respondieron": 8
+        },
+        "C": {
+            "enviados": 9,
+            "respondieron": 8
+        },
+        "D": {
+            "enviados": 9,
+            "respondieron": 8
+        },
+        "E": {
+            "enviados": 9,
+            "respondieron": 8
+        },
+        "F": {
+            "enviados": 12,
+            "respondieron": 12
+        },
+        "_mensajes": {
+            "A": "Perfecto. 📍 ¿En qué ciudad te encuentras?",
+            "B": "Claro. ¿A qué ciudad sería el envío?",
+            "C": "Perfecto 🎧 ¿En qué ciudad quieres recibirlos?",
+            "D": "Listo. ¿Cuál es tu ciudad?",
+            "E": "Excelente. ¿En qué ciudad estás?",
+            "F": "¿A qué ciudad hacemos el envío?"
+        }
+    },
+    "pro4_3": {
+        "A": {
+            "enviados": 8,
+            "respondieron": 7
+        },
+        "B": {
+            "enviados": 8,
+            "respondieron": 7
+        },
+        "C": {
+            "enviados": 7,
+            "respondieron": 6
+        },
+        "D": {
+            "enviados": 6,
+            "respondieron": 4
+        },
+        "E": {
+            "enviados": 6,
+            "respondieron": 4
+        },
+        "F": {
+            "enviados": 7,
+            "respondieron": 6
+        },
+        "_mensajes": {
+            "A": "Perfecto. 🚚 ¿Me compartes tu nombre completo y dirección para dejar listo el pedido?",
+            "B": "Excelente. 📦 Ahora pásame tu nombre completo y dirección de entrega.",
+            "C": "Listo. 🔥 ¿Me envías tu nombre completo y dirección para confirmar el pedido?",
+            "D": "Perfecto. 📍 Envíame tu nombre completo y dirección y te dejamos listo el envío",
+            "E": "📦 Excelente.\n\nPásame:\n\n👤 Nombre completo\n📍 Dirección de entrega\n\nY te separo el pedido. 🔥",
+            "F": "Perfecto. 📍 Envíame tu nombre completo y dirección para finalizar."
+        }
+    },
+    "af1b_talla": {
+        "A": {
+            "enviados": 4,
+            "respondieron": 2
+        },
+        "B": {
+            "enviados": 4,
+            "respondieron": 3
+        },
+        "C": {
+            "enviados": 3,
+            "respondieron": 3
+        },
+        "D": {
+            "enviados": 3,
+            "respondieron": 2
+        },
+        "E": {
+            "enviados": 3,
+            "respondieron": 3
+        },
+        "F": {
+            "enviados": 3,
+            "respondieron": 3
+        },
+        "G": {
+            "enviados": 2,
+            "respondieron": 2
+        },
+        "H": {
+            "enviados": 2,
+            "respondieron": 1
+        },
+        "I": {
+            "enviados": 2,
+            "respondieron": 2
+        },
+        "_mensajes": {
+            "A": "🚚 ¡Claro! Envíanos tu dirección o barrio y ciudad para decirte el costo del envío",
+            "B": "📦 Con gusto. Escríbeme tu dirección completa y la ciudad para cotizar el envío de inmediato.",
+            "C": "✅ Sí hacemos envíos. ¿Me envías la dirección donde deseas recibir el pedido? Así te confirmo el valor del envío.",
+            "D": "🚚 Perfecto. Compárteme tu dirección y ciudad, y te indico cuánto cuesta el envío",
+            "E": "📍 Envíame la dirección de entrega y te cotizo el envío enseguida.",
+            "F": "📦 Para calcular el envío necesito la dirección donde deseas recibir el pedido. Envíamela y te doy el valor exacto."
+        }
+    },
+    "paris_talla": {
+        "A": {
+            "enviados": 5,
+            "respondieron": 4
+        },
+        "B": {
+            "enviados": 5,
+            "respondieron": 4
+        },
+        "C": {
+            "enviados": 5,
+            "respondieron": 4
+        },
+        "D": {
+            "enviados": 5,
+            "respondieron": 3
+        },
+        "E": {
+            "enviados": 5,
+            "respondieron": 3
+        },
+        "F": {
+            "enviados": 4,
+            "respondieron": 3
+        },
+        "G": {
+            "enviados": 2,
+            "respondieron": 2
+        },
+        "H": {
+            "enviados": 2,
+            "respondieron": 1
+        },
+        "I": {
+            "enviados": 2,
+            "respondieron": 2
+        },
+        "_mensajes": {
+            "A": "🚚 ¡Claro! Envíanos tu dirección o barrio y ciudad para decirte el costo del envío",
+            "B": "📦 Con gusto. Escríbeme tu dirección completa y la ciudad para cotizar el envío de inmediato.",
+            "C": "✅ Sí hacemos envíos. ¿Me envías la dirección donde deseas recibir el pedido? Así te confirmo el valor del envío.",
+            "D": "🚚 Perfecto. Compárteme tu dirección y ciudad, y te indico cuánto cuesta el envío",
+            "E": "📍 Envíame la dirección de entrega y te cotizo el envío enseguida.",
+            "F": "📦 Para calcular el envío necesito la dirección donde deseas recibir el pedido. Envíamela y te doy el valor exacto."
+        }
+    },
+    "af1bi_talla": {
+        "A": {
+            "enviados": 2,
+            "respondieron": 1
+        },
+        "B": {
+            "enviados": 2,
+            "respondieron": 2
+        },
+        "C": {
+            "enviados": 2,
+            "respondieron": 2
         },
         "D": {
             "enviados": 2,
             "respondieron": 2
         },
         "E": {
-            "enviados": 0,
-            "respondieron": 0
+            "enviados": 2,
+            "respondieron": 2
         },
         "F": {
+            "enviados": 2,
+            "respondieron": 1
+        },
+        "G": {
             "enviados": 1,
-            "respondieron": 0
+            "respondieron": 1
+        },
+        "H": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "I": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "_mensajes": {
+            "A": "🚚 ¡Claro! Envíanos tu dirección o barrio y ciudad para decirte el costo del envío",
+            "B": "📦 Con gusto. Escríbeme tu dirección completa y la ciudad para cotizar el envío de inmediato.",
+            "C": "✅ Sí hacemos envíos. ¿Me envías la dirección donde deseas recibir el pedido? Así te confirmo el valor del envío.",
+            "D": "🚚 Perfecto. Compárteme tu dirección y ciudad, y te indico cuánto cuesta el envío",
+            "E": "📍 Envíame la dirección de entrega y te cotizo el envío enseguida.",
+            "F": "📦 Para calcular el envío necesito la dirección donde deseas recibir el pedido. Envíamela y te doy el valor exacto."
         }
     },
-    "paris": {
+    "complejodemagnesio": {
         "A": {
             "enviados": 0,
             "respondieron": 0
@@ -113,12 +713,245 @@
             "respondieron": 0
         },
         "C": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "D": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "E": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "F": {
+            "enviados": 0,
+            "respondieron": 0
+        }
+    },
+    "r1": {
+        "A": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "B": {
+            "enviados": 1,
+            "respondieron": 0
+        },
+        "C": {
+            "enviados": 1,
+            "respondieron": 0
+        },
+        "D": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "E": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "F": {
+            "enviados": 0,
+            "respondieron": 0
+        }
+    },
+    "r1_talla": {
+        "A": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "B": {
+            "enviados": 1,
+            "respondieron": 0
+        },
+        "C": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "D": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "E": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "F": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "G": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "H": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "I": {
+            "enviados": 0,
+            "respondieron": 0
+        }
+    },
+    "af1b50_talla": {
+        "A": {
+            "enviados": 2,
+            "respondieron": 2
+        },
+        "B": {
+            "enviados": 2,
+            "respondieron": 0
+        },
+        "C": {
+            "enviados": 2,
+            "respondieron": 2
+        },
+        "D": {
+            "enviados": 2,
+            "respondieron": 2
+        },
+        "E": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "F": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "G": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "H": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "I": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "_mensajes": {
+            "A": "🚚 ¡Claro! Envíanos tu dirección o barrio y ciudad para decirte el costo del envío",
+            "B": "📦 Con gusto. Escríbeme tu dirección completa y la ciudad para cotizar el envío de inmediato.",
+            "C": "✅ Sí hacemos envíos. ¿Me envías la dirección donde deseas recibir el pedido? Así te confirmo el valor del envío.",
+            "D": "🚚 Perfecto. Compárteme tu dirección y ciudad, y te indico cuánto cuesta el envío",
+            "E": "📍 Envíame la dirección de entrega y te cotizo el envío enseguida.",
+            "F": "📦 Para calcular el envío necesito la dirección donde deseas recibir el pedido. Envíamela y te doy el valor exacto."
+        }
+    },
+    "vans": {
+        "A": {
+            "enviados": 3,
+            "respondieron": 3
+        },
+        "B": {
+            "enviados": 3,
+            "respondieron": 1
+        },
+        "C": {
+            "enviados": 3,
+            "respondieron": 2
+        },
+        "D": {
+            "enviados": 3,
+            "respondieron": 1
+        },
+        "E": {
+            "enviados": 3,
+            "respondieron": 1
+        },
+        "F": {
+            "enviados": 3,
+            "respondieron": 3
+        },
+        "_mensajes": {
+            "A": "Hola que talla buscas?",
+            "B": "🔥 Hola tenemos las Vans por *$85.000*.\n\n✅ Tallas disponibles del *21 al 44*.\n\n👟 *Escríbeme únicamente tu talla y te ayudo con el pedido.*",
+            "C": "🖤 Vans disponibles.\n\n💰 Valor: *$85.000*\n\n👟 ¿Qué talla buscas?",
+            "D": "🚀 Tenemos disponibles las Vans.\n\n💵 Valor: *$85.000*\n\n👟 *Envíame tu talla y te envío la información para recibirlas.*",
+            "E": "👋 ¡Hola! 😊\n\n¿En qué talla las necesitas?\n\n👟 Tenemos disponibles del *21 al 44*.\n💰 Precio: *$85.000*.",
+            "F": "✅ Sí están disponibles.\n\n🖤 Vans.\n💰 *$85.000*\n\n👟 *Dime tu talla y en unos minutos dejamos listo tu pedido.*"
+        }
+    },
+    "vans_talla": {
+        "A": {
+            "enviados": 2,
+            "respondieron": 2
+        },
+        "B": {
+            "enviados": 2,
+            "respondieron": 2
+        },
+        "C": {
             "enviados": 1,
             "respondieron": 1
         },
         "D": {
             "enviados": 1,
+            "respondieron": 0
+        },
+        "E": {
+            "enviados": 1,
             "respondieron": 1
+        },
+        "F": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "G": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "H": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "I": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "_mensajes": {
+            "A": "🚚 ¡Claro! Envíanos tu dirección o barrio y ciudad para decirte el costo del envío",
+            "B": "📦 Con gusto. Escríbeme tu dirección completa y la ciudad para cotizar el envío de inmediato.",
+            "C": "✅ Sí hacemos envíos. ¿Me envías la dirección donde deseas recibir el pedido? Así te confirmo el valor del envío.",
+            "D": "🚚 Perfecto. Compárteme tu dirección y ciudad, y te indico cuánto cuesta el envío",
+            "E": "📍 Envíame la dirección de entrega y te cotizo el envío enseguida.",
+            "F": "📦 Para calcular el envío necesito la dirección donde deseas recibir el pedido. Envíamela y te doy el valor exacto."
+        }
+    },
+    "kyroarnicaplus": {
+        "_mensajes": {
+            "A": "La promoción de Kyro Árnica Plus x2 (250ML c/u) sigue disponible por $89.900 con envío *GRATIS*.\n\nPago *Contra entrega* 🚚.\n\n✅ Ayuda a aliviar dolores musculares y articulares, espalda, hombros, rodillas, cuello y tensión muscular, brindando una sensación calmante y mayor movilidad.\n\nPara validar la entrega y dejar tu pedido registrado, indícame por favor:\n\n✅ Nombre completo\n\n✅ Dirección de entrega\n\nTu pedido llega entre 1 y 3 días hábiles."
+        },
+        "A": {
+            "enviados": 26,
+            "respondieron": 6
+        }
+    },
+    "r4bd_talla": {
+        "_mensajes": {
+            "A": "🚚 ¡Claro! Envíanos tu dirección o barrio y ciudad para decirte el costo del envío",
+            "B": "📦 Con gusto. Escríbeme tu dirección completa y la ciudad para cotizar el envío de inmediato.",
+            "C": "✅ Sí hacemos envíos. ¿Me envías la dirección donde deseas recibir el pedido? Así te confirmo el valor del envío.",
+            "D": "🚚 Perfecto. Compárteme tu dirección y ciudad, y te indico cuánto cuesta el envío",
+            "E": "📍 Envíame la dirección de entrega y te cotizo el envío enseguida.",
+            "F": "📦 Para calcular el envío necesito la dirección donde deseas recibir el pedido. Envíamela y te doy el valor exacto."
+        },
+        "A": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "B": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "C": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "D": {
+            "enviados": 0,
+            "respondieron": 0
         },
         "E": {
             "enviados": 0,

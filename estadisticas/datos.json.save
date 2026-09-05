@@ -1,0 +1,340 @@
+{
+    "catalogo": {
+        "A": {
+            "enviados": 3,
+            "respondieron": 0
+        },
+        "B": {
+            "enviados": 3,
+            "respondieron": 2
+        },
+        "C": {
+            "enviados": 3,
+            "respondieron": 2
+        },
+        "D": {
+            "enviados": 3,
+            "respondieron": 2
+        },
+        "E": {
+            "enviados": 3,
+            "respondieron": 2
+        },
+        "F": {
+            "enviados": 3,
+            "respondieron": 2
+        }
+    },
+    "ubicacion": {
+        "A": {
+            "enviados": 4,
+            "respondieron": 4
+        },
+        "B": {
+            "enviados": 4,
+            "respondieron": 3
+        },
+        "C": {
+            "enviados": 4,
+            "respondieron": 2
+        },
+        "D": {
+            "enviados": 4,
+            "respondieron": 2
+        },
+        "E": {
+            "enviados": 3,
+            "respondieron": 2
+        },
+        "F": {
+            "enviados": 3,
+            "respondieron": 3
+        }
+    },
+    "envio": {
+        "A": {
+            "enviados": 6,
+            "respondieron": 6
+        },
+        "B": {
+            "enviados": 5,
+            "respondieron": 3
+        },
+        "C": {
+            "enviados": 6,
+            "respondieron": 6
+        },
+        "D": {
+            "enviados": 5,
+            "respondieron": 4
+        },
+        "E": {
+            "enviados": 5,
+            "respondieron": 5
+        },
+        "F": {
+            "enviados": 5,
+            "respondieron": 4
+        }
+    },
+    "af1bi": {
+        "A": {
+            "enviados": 5,
+            "respondieron": 3
+        },
+        "B": {
+            "enviados": 2,
+            "respondieron": 1
+        },
+        "C": {
+            "enviados": 5,
+            "respondieron": 3
+        },
+        "D": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "E": {
+            "enviados": 3,
+            "respondieron": 1
+        },
+        "F": {
+            "enviados": 4,
+            "respondieron": 2
+        }
+    },
+    "paris": {
+        "A": {
+            "enviados": 5,
+            "respondieron": 4
+        },
+        "B": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "C": {
+            "enviados": 0,
+            "respondieron":0
+        },
+        "D": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "E": {
+            "enviados": 4,
+            "respondieron": 2
+        },
+        "F": {
+            "enviados": 0,
+            "respondieron": 0
+        }
+    },
+    "carg67w": {
+        "A": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "B": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "C": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "D": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "E": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "F": {
+            "enviados": 0,
+            "respondieron": 0
+        }
+    },
+    "talla": {
+        "A": {
+            "enviados": 1,
+            "respondieron": 0
+        },
+        "B": {
+            "enviados": 1,
+            "respondieron": 0
+        },
+        "C": {
+            "enviados": 1,
+            "respondieron": 0
+        },
+        "D": {
+            "enviados": 1,
+            "respondieron": 0
+        },
+        "E": {
+            "enviados": 1,
+            "respondieron": 0
+        },
+        "F": {
+            "enviados": 1,
+            "respondieron": 0
+        }
+    },
+    "enviofotos": {
+        "A": {
+            "enviados": 3,
+            "respondieron": 1
+        },
+        "B": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "C": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "D": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "E": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "F": {
+            "enviados": 0,
+            "respondieron": 0
+        }
+    },
+    "pro4": {
+        "A": {
+            "enviados": 5,
+            "respondieron": 3
+        },
+        "B": {
+            "enviados": 4,
+            "respondieron": 2
+        },
+        "C": {
+            "enviados": 4,
+            "respondieron": 3
+        },
+        "D": {
+            "enviados": 4,
+            "respondieron": 3
+        },
+        "E": {
+            "enviados": 4,
+            "respondieron": 3
+        },
+        "F": {
+            "enviados": 4,
+            "respondieron": 2
+        }
+    },
+    "af1b": {
+        "A": {
+            "enviados": 5,
+            "respondieron": 2
+        },
+        "B": {
+            "enviados": 5,
+            "respondieron": 2
+        },
+        "C": {
+            "enviados": 8,
+            "respondieron": 6
+        },
+        "D": {
+            "enviados": 6,
+            "respondieron": 4
+        },
+        "E": {
+            "enviados": 18,
+            "respondieron": 15
+        },
+        "F": {
+            "enviados": 7,
+            "respondieron": 5
+        }
+    },
+    "carg120w": {
+        "A": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "B": {
+            "enviados": 1,
+            "respondieron": 0
+        },
+        "C": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "D": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "E": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "F": {
+            "enviados": 0,
+            "respondieron": 0
+        }
+    },
+    "r4bd": {
+        "A": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "B": {
+            "enviados": 1,
+            "respondieron": 0
+        },
+        "C": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "D": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "E": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "F": {
+            "enviados": 0,
+            "respondieron": 0
+        }
+    },
+    "af1b50": {
+        "A": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "B": {
+            "enviados": 1,
+            "respondieron": 1
+        },
+        "C": {
+            "enviados": 1,
+            "respondieron": 0
+        },
+        "D": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "E": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "F": {
+            "enviados": 0,
+            "respondieron": 0
+        }
+    }
+}
