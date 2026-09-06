@@ -7,15 +7,8 @@ const {
 
 module.exports = function (texto, usuario) {
 
-    const mensaje = texto
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "") // elimina tildes
-        .replace(/\s+/g, " ") // elimina espacios dobles
-        .trim();
-
     if (
-        mensaje.includes("quiero pedir la promoción de Kyro arnica Plus x2 por $89.900.")
+        texto === "Hola, quiero pedir la promoción de Kyro Árnica Plus x2 por $89.900."
     ) {
 
         registrarProducto(usuario);
