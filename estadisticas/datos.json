@@ -1,24 +1,24 @@
 {
     "catalogo": {
         "A": {
-            "enviados": 17,
+            "enviados": 18,
             "respondieron": 10
         },
         "B": {
-            "enviados": 36,
+            "enviados": 37,
             "respondieron": 27
         },
         "C": {
-            "enviados": 22,
+            "enviados": 23,
             "respondieron": 14
         },
         "D": {
-            "enviados": 16,
+            "enviados": 17,
             "respondieron": 9
         },
         "E": {
-            "enviados": 13,
-            "respondieron": 7
+            "enviados": 15,
+            "respondieron": 8
         },
         "F": {
             "enviados": 14,
@@ -34,7 +34,7 @@
     },
     "ubicacion": {
         "A": {
-            "enviados": 30,
+            "enviados": 31,
             "respondieron": 21
         },
         "B": {
@@ -42,20 +42,20 @@
             "respondieron": 16
         },
         "C": {
-            "enviados": 30,
-            "respondieron": 21
+            "enviados": 33,
+            "respondieron": 23
         },
         "D": {
             "enviados": 23,
             "respondieron": 14
         },
         "E": {
-            "enviados": 14,
+            "enviados": 15,
             "respondieron": 7
         },
         "F": {
-            "enviados": 48,
-            "respondieron": 38
+            "enviados": 51,
+            "respondieron": 39
         },
         "_mensajes": {
             "A": "📍 Estamos ubicados en Palmira *Calle 29 #27-32*, entrada recomendada del Centro Comercial Villa de las Palmas.\n\n➡️ Dentro del centro comercial nos encuentras en el **Local 291 - CALZADISIMO**.\n\n📌 Diagonal al Banco de Bogotá.\nPreguntar por Camilo\n\n🗺️ Google Maps:\nhttps://maps.app.goo.gl/SuGbvW8j5TourCs9A\n\n¿Prefieres pasar por el local o hacemos el envío?",
@@ -76,19 +76,19 @@
             "respondieron": 13
         },
         "C": {
-            "enviados": 27,
-            "respondieron": 23
+            "enviados": 29,
+            "respondieron": 25
         },
         "D": {
-            "enviados": 26,
-            "respondieron": 22
+            "enviados": 29,
+            "respondieron": 24
         },
         "E": {
             "enviados": 28,
             "respondieron": 24
         },
         "F": {
-            "enviados": 26,
+            "enviados": 27,
             "respondieron": 22
         },
         "_mensajes": {
@@ -102,31 +102,31 @@
     },
     "af1bi": {
         "A": {
-            "enviados": 11,
-            "respondieron": 6
+            "enviados": 14,
+            "respondieron": 8
         },
         "B": {
-            "enviados": 12,
-            "respondieron": 7
+            "enviados": 18,
+            "respondieron": 11
         },
         "C": {
             "enviados": 8,
             "respondieron": 3
         },
         "D": {
-            "enviados": 23,
+            "enviados": 24,
             "respondieron": 17
         },
         "E": {
-            "enviados": 29,
-            "respondieron": 23
+            "enviados": 32,
+            "respondieron": 24
         },
         "F": {
-            "enviados": 9,
-            "respondieron": 4
+            "enviados": 14,
+            "respondieron": 8
         },
         "G": {
-            "enviados": 15,
+            "enviados": 17,
             "respondieron": 10
         },
         "_mensajes": {
@@ -141,27 +141,27 @@
     },
     "paris": {
         "A": {
-            "enviados": 22,
-            "respondieron": 15
+            "enviados": 24,
+            "respondieron": 16
         },
         "B": {
             "enviados": 19,
             "respondieron": 12
         },
         "C": {
-            "enviados": 45,
-            "respondieron": 37
+            "enviados": 47,
+            "respondieron": 38
         },
         "D": {
             "enviados": 13,
             "respondieron": 7
         },
         "E": {
-            "enviados": 14,
-            "respondieron": 8
+            "enviados": 17,
+            "respondieron": 10
         },
         "F": {
-            "enviados": 27,
+            "enviados": 28,
             "respondieron": 20
         },
         "_mensajes": {
@@ -231,12 +231,12 @@
             "respondieron": 15
         },
         "B": {
-            "enviados": 11,
-            "respondieron": 8
+            "enviados": 13,
+            "respondieron": 9
         },
         "C": {
-            "enviados": 10,
-            "respondieron": 7
+            "enviados": 12,
+            "respondieron": 9
         },
         "D": {
             "enviados": 13,
@@ -303,8 +303,8 @@
             "respondieron": 13
         },
         "C": {
-            "enviados": 12,
-            "respondieron": 8
+            "enviados": 14,
+            "respondieron": 10
         },
         "D": {
             "enviados": 23,
@@ -341,8 +341,8 @@
             "respondieron": 0
         },
         "D": {
-            "enviados": 0,
-            "respondieron": 0
+            "enviados": 1,
+            "respondieron": 1
         },
         "E": {
             "enviados": 0,
@@ -435,8 +435,8 @@
             "respondieron": 2
         },
         "B": {
-            "enviados": 9,
-            "respondieron": 8
+            "enviados": 10,
+            "respondieron": 9
         },
         "C": {
             "enviados": 5,
@@ -447,8 +447,8 @@
             "respondieron": 10
         },
         "E": {
-            "enviados": 9,
-            "respondieron": 8
+            "enviados": 10,
+            "respondieron": 9
         },
         "F": {
             "enviados": 6,
@@ -465,28 +465,28 @@
     },
     "saludo": {
         "A": {
-            "enviados": 29,
-            "respondieron": 22
+            "enviados": 35,
+            "respondieron": 26
         },
         "B": {
-            "enviados": 25,
-            "respondieron": 18
+            "enviados": 31,
+            "respondieron": 23
         },
         "C": {
-            "enviados": 45,
+            "enviados": 47,
             "respondieron": 38
         },
         "D": {
-            "enviados": 68,
-            "respondieron": 61
+            "enviados": 71,
+            "respondieron": 62
         },
         "E": {
-            "enviados": 54,
-            "respondieron": 47
+            "enviados": 60,
+            "respondieron": 51
         },
         "F": {
-            "enviados": 13,
-            "respondieron": 7
+            "enviados": 15,
+            "respondieron": 8
         },
         "_mensajes": {
             "A": "👋 ¡Hola! Bienvenido a CALZADISIMO.\n\n👟 Tenemos Air Force 1, Paris, sandalias, cargadores y muchos productos más.\n\n😊 ¿Qué producto estás buscando?",
@@ -575,12 +575,12 @@
             "respondieron": 3
         },
         "C": {
-            "enviados": 3,
-            "respondieron": 3
+            "enviados": 4,
+            "respondieron": 4
         },
         "D": {
-            "enviados": 3,
-            "respondieron": 2
+            "enviados": 4,
+            "respondieron": 3
         },
         "E": {
             "enviados": 3,
@@ -633,8 +633,8 @@
             "respondieron": 3
         },
         "F": {
-            "enviados": 4,
-            "respondieron": 3
+            "enviados": 5,
+            "respondieron": 4
         },
         "G": {
             "enviados": 2,
@@ -659,16 +659,16 @@
     },
     "af1bi_talla": {
         "A": {
-            "enviados": 2,
-            "respondieron": 1
+            "enviados": 3,
+            "respondieron": 2
         },
         "B": {
-            "enviados": 2,
+            "enviados": 3,
             "respondieron": 2
         },
         "C": {
-            "enviados": 2,
-            "respondieron": 2
+            "enviados": 3,
+            "respondieron": 3
         },
         "D": {
             "enviados": 2,
@@ -841,12 +841,12 @@
     },
     "vans": {
         "A": {
-            "enviados": 3,
-            "respondieron": 3
+            "enviados": 4,
+            "respondieron": 4
         },
         "B": {
-            "enviados": 3,
-            "respondieron": 1
+            "enviados": 4,
+            "respondieron": 2
         },
         "C": {
             "enviados": 3,
@@ -883,8 +883,8 @@
             "respondieron": 2
         },
         "C": {
-            "enviados": 1,
-            "respondieron": 1
+            "enviados": 2,
+            "respondieron": 2
         },
         "D": {
             "enviados": 1,
@@ -921,11 +921,11 @@
     },
     "kyroarnicaplus": {
         "_mensajes": {
-            "A": "La promoción de Kyro Árnica Plus x2 (250ML c/u) sigue disponible por $89.900 con envío *GRATIS*.\n\nPago *Contra entrega* 🚚.\n\n✅ Ayuda a aliviar dolores musculares y articulares, espalda, hombros, rodillas, cuello y tensión muscular, brindando una sensación calmante y mayor movilidad.\n\nPara validar la entrega y dejar tu pedido registrado, indícame por favor:\n\n✅ Nombre completo\n\n✅ Dirección de entrega\n\nTu pedido llega entre 1 y 3 días hábiles."
+            "A": "La promoción de Kyro Árnica Plus x2 (250ML c/u) sigue disponible por $89.900\n\nPago Contra entrega 🚚.\n\n✅ Ayuda a aliviar dolores musculares y articulares, espalda, hombros, rodillas, cuello y tensión muscular, brindando una sensación calmante y mayor movilidad.\n\nPara validar la entrega y dejar tu pedido registrado, indícame por favor:\n\n✅ Nombre completo\n✅ Dirección de entrega\n\nTu pedido llega entre 1 y 3 días hábiles."
         },
         "A": {
-            "enviados": 28,
-            "respondieron": 6
+            "enviados": 38,
+            "respondieron": 8
         }
     },
     "r4bd_talla": {
@@ -938,8 +938,8 @@
             "F": "📦 Para calcular el envío necesito la dirección donde deseas recibir el pedido. Envíamela y te doy el valor exacto."
         },
         "A": {
-            "enviados": 1,
-            "respondieron": 1
+            "enviados": 0,
+            "respondieron": 0
         },
         "B": {
             "enviados": 0,
@@ -958,6 +958,35 @@
             "respondieron": 0
         },
         "F": {
+            "enviados": 0,
+            "respondieron": 0
+        }
+    },
+    "kyroarnicaplusx1": {
+        "_mensajes": {
+            "A": "La promoción de Kyro Árnica Plus (250ML) sigue disponible por $49.900.\n\n🚚 Pago Contra Entrega.\n\n✅ Ayuda a aliviar dolores musculares y articulares, espalda, hombros, rodillas, cuello y tensión muscular.\n\nPara registrar tu pedido envíame por favor:\n\n✅ Nombre completo\n✅ Dirección de entrega\n\n📦 Entrega entre 1 y 3 días hábiles.",
+            "B": "🔥 ¡Excelente elección!\n\nKyro Árnica Plus (250ML) está disponible por solo $49.900.\n\n🚚 Pago Contra Entrega.\n\n✅ Ideal para aliviar molestias musculares, articulares y tensión acumulada.\n\nPara dejar tu pedido listo necesito:\n\n✅ Nombre completo\n✅ Dirección de entrega",
+            "C": "💥 La promoción sigue activa.\n\nKyro Árnica Plus por $49.900 pagando al recibir.\n\n✅ Ayuda a aliviar dolores de espalda, cuello, hombros, rodillas y músculos cansados.\n\nPara registrar tu pedido indícame:\n\n✅ Nombre completo\n✅ Dirección de entrega",
+            "D": "✅ Sí tenemos disponible Kyro Árnica Plus.\n\n💰 Precio promocional: $49.900.\n\n🚚 Pago Contra Entrega.\n\nMiles de personas lo utilizan para aliviar dolores musculares y articulares.\n\nPara registrar tu pedido envíame:\n\n✅ Nombre completo\n✅ Dirección de entrega",
+            "E": "👋 Perfecto.\n\nLa promoción de Kyro Árnica Plus continúa disponible por $49.900.\n\n🚚 Pagas cuando recibes tu pedido.\n\n✅ Ayuda a brindar alivio en espalda, rodillas, cuello, hombros y articulaciones.\n\nPara confirmar tu pedido necesito:\n\n✅ Nombre completo\n✅ Dirección de entrega\n\n📦 Tiempo estimado: 1 a 3 días hábiles."
+        },
+        "A": {
+            "enviados": 1,
+            "respondieron": 0
+        },
+        "B": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "C": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "D": {
+            "enviados": 0,
+            "respondieron": 0
+        },
+        "E": {
             "enviados": 0,
             "respondieron": 0
         }

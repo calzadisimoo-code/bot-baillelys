@@ -1011,7 +1011,7 @@
         "fechaPedido": 1786644157079
     },
     "276428893462716@lid": {
-        "producto": "af1b",
+        "producto": "af1bi",
         "pedidoEnviado": false
     },
     "253618305372293@lid": {
@@ -1268,7 +1268,8 @@
     },
     "208761515966486@lid": {
         "producto": "af1bi",
-        "pedidoEnviado": false
+        "pedidoEnviado": false,
+        "talla": "38"
     },
     "232516711628992@lid": {
         "producto": "pro4",
@@ -2593,7 +2594,7 @@
         "fechaPedido": 1787673522736
     },
     "123532436619459@lid": {
-        "producto": "af1b",
+        "producto": "af1bi",
         "pedidoEnviado": false
     },
     "139367427358844@lid": {
@@ -2939,5 +2940,172 @@
     "156925404643545@lid": {
         "direccion": "Calle 54#38-51  ignacio torres",
         "fechaPedido": 1788547475310
+    },
+    "26728252583973@lid": {
+        "producto": "af1b",
+        "pedidoEnviado": false
+    },
+    "216466502774878@lid": {
+        "producto": "af1b",
+        "pedidoEnviado": false,
+        "talla": "37",
+        "direccion": "Queda a diagonal a fundación fedi",
+        "fechaPedido": 1788635252800
+    },
+    "118725814579453@lid": {
+        "producto": "af1bi",
+        "pedidoEnviado": false
+    },
+    "207399793254603@lid": {
+        "producto": "af1bi",
+        "pedidoEnviado": false
+    },
+    "246884081909776@lid": {
+        "producto": "vans",
+        "pedidoEnviado": false
+    },
+    "190387461341398@lid": {
+        "producto": "af1bi",
+        "pedidoEnviado": false
+    },
+    "33471267365004@lid": {
+        "producto": "af1bi",
+        "pedidoEnviado": false
+    },
+    "20418358472733@lid": {
+        "producto": "af1bi",
+        "pedidoEnviado": false
+    },
+    "170201551233115@lid": {
+        "producto": "paris",
+        "pedidoEnviado": false
+    },
+    "2749433413644@lid": {
+        "producto": "paris",
+        "pedidoEnviado": false
+    },
+    "201889585061904@lid": {
+        "producto": "af1bi",
+        "pedidoEnviado": false,
+        "talla": "41 o 42"
+    },
+    "234901022453892@lid": {
+        "producto": "af1bi",
+        "pedidoEnviado": false
+    },
+    "84413891231846@lid": {
+        "direccion": "Calle 4 27 76 Cerezos de la italia",
+        "fechaPedido": 1788640937349
+    },
+    "33733428129913@lid": {
+        "producto": "af1bi",
+        "pedidoEnviado": false
+    },
+    "202855667527769@lid": {
+        "producto": "af1bi",
+        "pedidoEnviado": false
+    },
+    "1963185930307@lid": {
+        "producto": "af1bi",
+        "pedidoEnviado": false
+    },
+    "100390599188641@lid": {
+        "producto": "paris",
+        "pedidoEnviado": false,
+        "talla": "38",
+        "direccion": "Carrera 36 #49-33",
+        "fechaPedido": 1788643718255
+    },
+    "256933583913022@lid": {
+        "producto": "af1bi",
+        "pedidoEnviado": false
+    },
+    "66808266666071@lid": {
+        "producto": "af1bi",
+        "pedidoEnviado": false
+    },
+    "80921579528212@lid": {
+        "producto": "af1bi",
+        "pedidoEnviado": false,
+        "talla": "39"
+    },
+    "51475334074522@lid": {
+        "producto": "af1bi",
+        "pedidoEnviado": false
+    },
+    "250564768206861@lid": {
+        "producto": "paris",
+        "pedidoEnviado": false
+    },
+    "170420393246933@lid": {
+        "producto": "af1bi",
+        "pedidoEnviado": false
+    },
+    "108469600444628@lid": {
+        "producto": "kyroarnicaplus",
+        "pedidoEnviado": false
+    },
+    "231679713132794@lid": {
+        "producto": "kyroarnicaplus",
+        "pedidoEnviado": false
+    },
+    "237009415213287@lid": {
+        "producto": "af1bi",
+        "pedidoEnviado": false
+    },
+    "155564369784971@lid": {
+        "producto": "kyroarnicaplus",
+        "pedidoEnviado": false
+    },
+    "9943553941505@lid": {
+        "producto": "kyroarnicaplus",
+        "pedidoEnviado": false
+    },
+    "163269071343706@lid": {
+        "producto": "vans",
+        "pedidoEnviado": false,
+        "talla": "35",
+        "direccion": "Barrio parques de la Italia. \nEn Palmira- valle",
+        "fechaPedido": 1788655405331
+    },
+    "34097778929667@lid": {
+        "producto": "paris",
+        "pedidoEnviado": false
+    },
+    "250466034307263@lid": {
+        "producto": "kyroarnicaplusx1",
+        "nombreProducto": "Kyro Árnica Plus x1",
+        "pedidoEnviado": false
+    },
+    "233595385942071@lid": {
+        "producto": "af1bi",
+        "pedidoEnviado": false
+    },
+    "76918703554572@lid": {
+        "producto": "paris",
+        "pedidoEnviado": false
+    },
+    "83159777579258@lid": {
+        "producto": "paris",
+        "pedidoEnviado": false
+    },
+    "242390824697996@lid": {
+        "producto": "carg120w",
+        "pedidoEnviado": false
+    },
+    "34583110283324@lid": {
+        "producto": "kyroarnicaplusx1",
+        "nombreProducto": "Kyro Árnica Plus x1",
+        "pedidoEnviado": false
+    },
+    "172236812103701@lid": {
+        "producto": "kyroarnicaplus",
+        "nombreProducto": "Kyro Árnica Plus",
+        "pedidoEnviado": false
+    },
+    "77945133650111@lid": {
+        "producto": "kyroarnicaplus",
+        "nombreProducto": "Kyro Árnica Plus",
+        "pedidoEnviado": false
     }
 }
