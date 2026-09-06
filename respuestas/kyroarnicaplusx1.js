@@ -7,13 +7,6 @@ const {
 
 module.exports = function (texto, usuario) {
 
-    const mensaje = texto
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "") // elimina tildes
-        .replace(/\s+/g, " ") // elimina espacios dobles
-        .trim();
-
     if (
         mensaje.includes("Kyro arnica Plus por $49.900")
     ) {
