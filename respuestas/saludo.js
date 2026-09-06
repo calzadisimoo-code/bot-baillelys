@@ -74,7 +74,7 @@ if (
     return null;
 }
 
-if (!saludos.includes(texto)) {
+if (!saludos.some(s => new RegExp(`\\b${s}\\b`).test(texto))) {
     return null;
 }
 
