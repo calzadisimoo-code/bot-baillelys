@@ -7,7 +7,7 @@ const {
 module.exports = function (texto, usuario) {
 
 if (
-    texto.includes("Kyro Árnica Plus") &&
+    texto.includes("kyro arnica plus") &&
     texto.includes("$49.900")
 ) {
 
