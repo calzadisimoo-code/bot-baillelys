@@ -15,7 +15,7 @@ module.exports = function (texto, usuario) {
         .trim();
 
     if (
-        mensaje.includes("Hola, quiero pedir la promoción de Kyro Árnica Plus x2 por $89.900.")
+        mensaje.includes("quiero pedir la promoción de Kyro arnica Plus x2 por $89.900.")
     ) {
 
         registrarProducto(usuario);
