@@ -84,6 +84,29 @@ if (palabras.length > 3) {
     return null;
 }
 
+const extras = [
+    "desde",
+    "quiero",
+    "necesito",
+    "busco",
+    "tienen",
+    "cuanto",
+    "precio",
+    "vale",
+    "costo",
+    "envio",
+    "envío",
+    "talla",
+    "color",
+    "para",
+    "porque",
+    "como"
+];
+
+if (extras.some(p => texto.includes(p))) {
+    return null;
+}
+
 return obtenerVariante(
     "saludo",
     usuario,

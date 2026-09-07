@@ -2,12 +2,33 @@ const { obtenerVariante } = require("../estadisticas/ab");
 
 module.exports = function (texto, usuario) {
 
-    if (
-        texto.includes("envio") ||
-        texto.includes("envío") ||
-        texto.includes("domicilio") ||
-        texto.includes("domiclio")
-    ) {
+if (
+
+    texto === "envio" ||
+    texto === "envío" ||
+    texto === "domicilio" ||
+
+    texto.includes("hacen envios") ||
+    texto.includes("hacen envíos") ||
+    texto.includes("realizan envios") ||
+    texto.includes("realizan envíos") ||
+
+    texto.includes("quiero envio") ||
+    texto.includes("quiero envío") ||
+
+    texto.includes("necesito envio") ||
+    texto.includes("necesito envío") ||
+
+    texto.includes("cuanto cuesta el envio") ||
+    texto.includes("cuanto cuesta el envío") ||
+
+    texto.includes("valor del envio") ||
+    texto.includes("valor del envío") ||
+
+    texto.includes("costo del envio") ||
+    texto.includes("costo del envío")
+
+) {
 
         return obtenerVariante("envio", usuario, {
 
