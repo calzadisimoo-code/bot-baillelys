@@ -294,6 +294,8 @@ let totalRespondieron = 0;
 
             const enviados = datos[nombre][letra].enviados;
             const respondieron = datos[nombre][letra].respondieron;
+			const direcciones =
+    datos[nombre][letra].direcciones || 0;
 
             const porcentaje =
                 enviados === 0
