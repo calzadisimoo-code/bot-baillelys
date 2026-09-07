@@ -78,6 +78,12 @@ if (!saludos.some(s => new RegExp(`\\b${s}\\b`).test(texto))) {
     return null;
 }
 
+const palabras = texto.split(" ");
+
+if (palabras.length > 3) {
+    return null;
+}
+
 return obtenerVariante(
     "saludo",
     usuario,

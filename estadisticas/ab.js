@@ -210,10 +210,10 @@ const enviados = datos[nombre][letra].enviados;
 const respondieron = datos[nombre][letra].respondieron;
 const direcciones = datos[nombre][letra].direcciones || 0;
 
-        const porcentaje =
-            enviados === 0
-                ? 0
-                : (respondieron / enviados) * 100;
+const porcentaje =
+    enviados === 0
+        ? 0
+        : (direcciones / enviados) * 100;
 
 texto +=
 `${letra}
@@ -287,6 +287,7 @@ let peorPorcentaje = 101;
 
 let totalEnviados = 0;
 let totalRespondieron = 0;
+let totalDirecciones = 0;
 
         for (const letra of Object.keys(datos[nombre])) {
 			
@@ -297,12 +298,13 @@ let totalRespondieron = 0;
 			const direcciones =
     datos[nombre][letra].direcciones || 0;
 
-            const porcentaje =
-                enviados === 0
-                    ? 0
-                    : (respondieron / enviados) * 100;
+const conversionProducto =
+    totalEnviados === 0
+        ? 0
+        : (totalDirecciones / totalEnviados) * 100;
 totalEnviados += enviados;
 totalRespondieron += respondieron;
+totalDirecciones += direcciones;
 
 detalleProductos +=
 `${letra}
@@ -361,10 +363,11 @@ if (enviados >= 4) {
 
 `;
 
-        const conversionProducto =
-            totalEnviados === 0
-                ? 0
-                : (totalRespondieron / totalEnviados) * 100;
+const conversionProducto =
+    totalEnviados === 0
+        ? 0
+        : (totalDirecciones / totalEnviados) * 100;
+		
 				
 				rankingProductos.push({
     nombre: nombre.toUpperCase(),
