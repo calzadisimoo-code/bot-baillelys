@@ -4,6 +4,10 @@ const {
     cancelarSeguimiento
 } = require("./seguimiento");
 
+const {
+    registrarDireccionAB
+} = require("./estadisticas/ab");
+
 const PALABRAS_DIRECCION = [
 
     "calle",
@@ -56,8 +60,8 @@ async function revisarPedido(
         return false;
 
 
-    const usuario =
-        msg.key.remoteJid;
+const usuario =
+    msg.key.remoteJid;
 
 const estado = obtener(usuario) || {};
 
@@ -86,6 +90,8 @@ for (const numero of destinatarios) {
     });
 
 }
+
+registrarDireccionAB(usuario);
 
 guardar(usuario, {
 

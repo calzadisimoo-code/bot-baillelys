@@ -1,7 +1,4 @@
 const { obtenerVariante } = require("../estadisticas/ab");
-const {
-    registrarDireccion
-} = require("../estadisticas/hoy");
 
 module.exports = function (texto, usuario) {
 
@@ -235,8 +232,6 @@ https://maps.app.goo.gl/SuGbvW8j5TourCs9A
         });
 
     }
-
-registrarDireccion(usuario);
 
 return null;
 

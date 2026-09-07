@@ -17,6 +17,7 @@ function guardar(datos) {
 
 // Guarda qué variante recibió cada usuario
 const pendientes = new Map();
+const historial = new Map();
 
 function obtenerVariante(nombre, usuario, respuestas) {
 
@@ -32,9 +33,10 @@ datos[nombre]._mensajes = respuestas;
 	for (const letra of Object.keys(respuestas)) {
     if (!datos[nombre][letra]) {
         datos[nombre][letra] = {
-            enviados: 0,
-            respondieron: 0
-        };
+    enviados: 0,
+    respondieron: 0,
+    direcciones: 0
+};
     }
 }
 
@@ -45,9 +47,10 @@ datos[nombre]._mensajes = respuestas;
         if (!datos[nombre][letra]) {
 
             datos[nombre][letra] = {
-                enviados: 0,
-                respondieron: 0
-            };
+    enviados: 0,
+    respondieron: 0,
+    direcciones: 0
+};
 
         }
 
@@ -74,6 +77,15 @@ if (datos[nombre][letra].enviados < 5) {
         test: nombre,
         variante: letra
     });
+	
+	if (!historial.has(usuario)) {
+    historial.set(usuario, []);
+}
+
+historial.get(usuario).push({
+    test: nombre,
+    variante: letra
+});
 
     return respuestas[letra];
 
@@ -92,10 +104,11 @@ const totalEnviados = letras.reduce(
 for (const letra of letras) {
 
     const enviados = datos[nombre][letra].enviados;
-    const respondieron = datos[nombre][letra].respondieron;
+const direcciones =
+    datos[nombre][letra].direcciones || 0;
 
-    const conversion =
-        enviados === 0 ? 0 : respondieron / enviados;
+const conversion =
+    enviados === 0 ? 0 : direcciones / enviados;
 
 const exploracion =
     Math.sqrt((2 * Math.log(totalEnviados + 1)) / enviados);
@@ -116,6 +129,15 @@ datos[nombre][mejor].enviados++;
 guardar(datos);
 
 pendientes.set(usuario, {
+    test: nombre,
+    variante: mejor
+});
+
+if (!historial.has(usuario)) {
+    historial.set(usuario, []);
+}
+
+historial.get(usuario).push({
     test: nombre,
     variante: mejor
 });
@@ -156,8 +178,9 @@ function reiniciar(nombre) {
 
     for (const variante in datos[nombre]) {
 
-        datos[nombre][variante].enviados = 0;
-        datos[nombre][variante].respondieron = 0;
+datos[nombre][variante].enviados = 0;
+datos[nombre][variante].respondieron = 0;
+datos[nombre][variante].direcciones = 0;
 
     }
 
@@ -605,9 +628,45 @@ Acabo de detectar una oportunidad para vender más.
 
 }
 
+function registrarDireccionAB(usuario) {
+
+    if (!historial.has(usuario)) {
+        return;
+    }
+
+    const datos = cargar();
+
+    const usados = historial.get(usuario);
+
+    for (const item of usados) {
+
+        if (
+            datos[item.test] &&
+            datos[item.test][item.variante]
+        ) {
+
+            if (
+                typeof datos[item.test][item.variante].direcciones !== "number"
+            ) {
+                datos[item.test][item.variante].direcciones = 0;
+            }
+
+            datos[item.test][item.variante].direcciones++;
+
+        }
+
+    }
+
+    guardar(datos);
+
+    historial.delete(usuario);
+
+}
+
 module.exports = {
     obtenerVariante,
     registrarRespuesta,
+    registrarDireccionAB,
     reporte,
     reporteTodos,
     reiniciar
