@@ -206,8 +206,9 @@ function reporte(nombre) {
 		
 		if (letra === "_mensajes") continue;
 
-        const enviados = datos[nombre][letra].enviados;
-        const respondieron = datos[nombre][letra].respondieron;
+const enviados = datos[nombre][letra].enviados;
+const respondieron = datos[nombre][letra].respondieron;
+const direcciones = datos[nombre][letra].direcciones || 0;
 
         const porcentaje =
             enviados === 0
@@ -218,6 +219,7 @@ texto +=
 `${letra}
 📤 Enviados: ${enviados}
 💬 Respondieron: ${respondieron}
+📦 Direcciones: ${direcciones}
 📈 Conversión: ${porcentaje.toFixed(1)}%
 
 💬 Mensaje:
@@ -304,6 +306,7 @@ detalleProductos +=
 `${letra}
 📤 Enviados: ${enviados}
 💬 Respondieron: ${respondieron}
+📦 Direcciones: ${direcciones}
 📈 Conversión: ${porcentaje.toFixed(1)}%
 
 💬 Mensaje:
