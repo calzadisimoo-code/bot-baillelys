@@ -96,10 +96,6 @@ texto.includes("en donde queda") ||
     texto.includes("tienen punto") ||
     texto.includes("tienen punto fisico") ||
 
-    texto.includes("me encuentro en palmira") ||
-    texto.includes("estoy en palmira") ||
-    texto.includes("ando en palmira") ||
-
     texto.includes("para probar") ||
     texto.includes("probarme") ||
     texto.includes("probar") ||
