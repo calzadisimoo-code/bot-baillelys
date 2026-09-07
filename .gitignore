@@ -1,3 +1,14 @@
 node_modules/
 sesion/
 *.log
+
+contactos.json
+estado.json
+seguimientos.json
+
+estadisticas/datos.json
+estadisticas/hoy.json
+
+sara/saraestado.json
+
+respaldo/
