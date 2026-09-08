@@ -24,23 +24,13 @@ if (
             producto: "kyroarnicaplus",
             texto: obtenerVariante("kyroarnicaplus", usuario, {
 
-A: `¡Hola! 👋
+A: `Antes de despacharla, por favor envíame estos datos:
 
-La promoción de *Kyro Árnica Plus* sigue disponible:
+📦 Nombre completo: 📍 Dirección exacta: 🏙️ Ciudad/Municipio: 📱 
 
-✅ 2 Frascos de 250ML por $89.900
-✅ Pago contra entrega
-✅ Envíos a todo el país
+La promoción de 2 unidad de Kyro Árnica Plus tiene un valor de $89.900 con pago contra entrega. 🚚
 
-Está formulada con Árnica, Diclofenaco, Naproxeno y Lidocaína para ayudar a aliviar molestias musculares y articulares.
-
-¿Para qué zona la necesitas principalmente?
-
-1️⃣ Espalda
-2️⃣ Rodillas
-3️⃣ Cuello
-4️⃣ Hombros
-5️⃣ Articulaciones`,
+Una vez nos compartas los datos, programamos el envío. El tiempo de entrega es de 1 a 3 días hábiles.`,
 
 B: `¡Hola! 👋
 

@@ -24,7 +24,14 @@ module.exports = function (texto, usuario) {
             producto: "kyroarnicaplusx1",
             texto: obtenerVariante("kyroarnicaplusx1", usuario, {
 
-                A: "La promoción de Kyro Árnica Plus (250ML) sigue disponible por $49.900.\n\n🚚 Pago Contra Entrega.\n\n✅ Ayuda a aliviar dolores musculares y articulares, espalda, hombros, rodillas, cuello y tensión muscular.\n\nPara registrar tu pedido envíame por favor:\n\n✅ Nombre completo\n✅ Dirección de entrega\n\n📦 Entrega entre 1 y 3 días hábiles.",
+                A: `Antes de despacharla, por favor envíame estos datos:
+
+📦 Nombre completo: 📍 Dirección exacta: 🏙️ Ciudad/Municipio: 📱 
+
+La promoción de 1 unidad de Kyro Árnica Plus tiene un valor de $49.900 con pago contra entrega. 🚚
+
+Una vez nos compartas los datos, programamos el envío. El tiempo de entrega es de 1 a 3 días hábiles.`,
+
 
                 B: "🔥 ¡Excelente elección!\n\nKyro Árnica Plus (250ML) está disponible por solo $49.900.\n\n🚚 Pago Contra Entrega.\n\n✅ Ideal para aliviar molestias musculares, articulares y tensión acumulada.\n\nPara dejar tu pedido listo necesito:\n\n✅ Nombre completo\n✅ Dirección de entrega",
 
