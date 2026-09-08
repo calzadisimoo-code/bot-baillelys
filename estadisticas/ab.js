@@ -256,7 +256,7 @@ let mejorProducto = "";
 let mejorProductoPorcentaje = -1;
 
 let masRespuestasProducto = "";
-let masRespuestas = -1;
+let masDirecciones = -1;
 
 let masEnviadosProducto = "";
 let masEnviados = -1;
@@ -397,12 +397,12 @@ const conversionProducto =
 
 }
 
-        if (totalRespondieron > masRespuestas) {
+if (totalDirecciones > masDirecciones) {
 
-            masRespuestas = totalRespondieron;
-            masRespuestasProducto = nombre.toUpperCase();
+    masDirecciones = totalDirecciones;
+    masRespuestasProducto = nombre.toUpperCase();
 
-        }
+}
 
         if (totalEnviados > masEnviados) {
 
@@ -505,9 +505,9 @@ peorProducto
 : ""
 }
 
-💬 Producto con más respuestas:
+📦 Producto con más direcciones:
 ${masRespuestasProducto}
-(${masRespuestas})
+(${masDirecciones})
 
 📤 Producto con más envíos:
 ${masEnviadosProducto}
