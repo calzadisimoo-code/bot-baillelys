@@ -297,11 +297,12 @@ let totalDirecciones = 0;
             const respondieron = datos[nombre][letra].respondieron;
 			const direcciones =
     datos[nombre][letra].direcciones || 0;
-
-const conversionProducto =
-    totalEnviados === 0
+	
+	const porcentaje =
+    enviados === 0
         ? 0
-        : (totalDirecciones / totalEnviados) * 100;
+        : (direcciones / enviados) * 100;
+
 totalEnviados += enviados;
 totalRespondieron += respondieron;
 totalDirecciones += direcciones;
