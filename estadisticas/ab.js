@@ -590,7 +590,7 @@ async function revisarConversiones(sock, datos) {
     continue;
 
             const conversion =
-                (v.respondieron / v.enviados) * 100;
+    (v.direcciones / v.enviados) * 100;
 
             const clave =
                 `${producto}_${variante}`;
@@ -614,7 +614,7 @@ Acabo de detectar una oportunidad para vender más.
 🚨 ${producto.toUpperCase()} - ${variante}
 
 📤 Enviados: ${v.enviados}
-💬 Respondieron: ${v.respondieron}
+📦 Direcciones: ${v.direcciones || 0}
 📉 Conversión: ${conversion.toFixed(1)}%
 
 💡 Yo cambiaría esa respuesta antes de seguir enviándola.`
