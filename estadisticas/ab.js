@@ -374,6 +374,7 @@ const conversionProducto =
     nombre: nombre.toUpperCase(),
     enviados: totalEnviados,
     respondieron: totalRespondieron,
+    direcciones: totalDirecciones,
     conversion: conversionProducto
 });
 
@@ -427,7 +428,7 @@ rankingProductos.forEach((producto, index) => {
 
     texto += `${index + 1}. ${producto.nombre}
 📈 ${producto.conversion.toFixed(1)}%
-💬 ${producto.respondieron} respuestas
+📦 ${producto.direcciones} direcciones
 📤 ${producto.enviados} enviados
 
 `;
