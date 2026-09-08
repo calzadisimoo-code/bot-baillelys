@@ -24,7 +24,9 @@ if (
             producto: "kyroarnicaplus",
             texto: obtenerVariante("kyroarnicaplus", usuario, {
 
-A: `Antes de despacharla, por favor envíame estos datos:
+A: `Perfecto
+
+Antes de despacharlas, por favor envíame estos datos:
 
 📦 Nombre completo: 📍 Dirección exacta: 🏙️ Ciudad/Municipio: 📱 
 
