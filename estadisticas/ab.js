@@ -67,7 +67,7 @@ const candidatas = letras.filter(
 
 const letra = candidatas[0];
 
-if (datos[nombre][letra].enviados < 5) {
+if (datos[nombre][letra].enviados < 8) {
 
     datos[nombre][letra].enviados++;
 
@@ -596,7 +596,10 @@ async function revisarConversiones(sock, datos) {
             const clave =
                 `${producto}_${variante}`;
 
-            if (conversion <= 20) {
+            if (
+    v.enviados >= 8 &&
+    v.direcciones === 0
+)
 
                 if (!estado[clave]) {
 
