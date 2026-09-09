@@ -24,15 +24,15 @@ if (
             producto: "kyroarnicaplus",
             texto: obtenerVariante("kyroarnicaplus", usuario, {
 
-A: `Perfecto
+A: `Perfecto 👌
 
-Antes de despacharlas, por favor envíame estos datos:
+La promoción de 2 Kyro Árnica Plus de 250ML está disponible por solo $89.900.
 
-📦 Nombre completo: 📍 Dirección exacta: 🏙️ Ciudad/Municipio: 📱 
+🚚 Pago contra entrega.
 
-La promoción de 2 unidad de Kyro Árnica Plus tiene un valor de $89.900 con pago contra entrega. 🚚
+Para verificar cobertura de entrega dime primero:
 
-Una vez nos compartas los datos, programamos el envío. El tiempo de entrega es de 1 a 3 días hábiles.`,
+📍 ¿En qué ciudad te encuentras?`,
 
 B: `¡Hola! 👋
 
@@ -50,17 +50,13 @@ Miles de personas buscan Kyro Árnica Plus para aliviar molestias en:
 
 ¿En qué parte del cuerpo presentas la molestia para indicarte cómo usarla correctamente?`,
 
-C: `¡Hola! 👋
+C: `🔥 Promoción activa:
 
-La promoción de *Kyro Árnica Plus x2* sigue activa por solo $89.900.
+✅ 2 Kyro Árnica Plus 250ML
+💰 $89.900
+🚚 Pago contra entrega
 
-✅ 2 Frascos de 250ML
-✅ Pago contra entrega
-✅ Envío rápido
-
-Muchas personas la solicitan para apoyar el alivio de dolores musculares y articulares y mejorar la sensación de movilidad.
-
-Para verificar cobertura de entrega, dime por favor:
+Para decirte cuándo te llega:
 
 📍 ¿En qué ciudad te encuentras?`
 
