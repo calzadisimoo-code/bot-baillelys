@@ -596,12 +596,12 @@ async function revisarConversiones(sock, datos) {
             const clave =
                 `${producto}_${variante}`;
 
-            if (
+if (
     v.enviados >= 8 &&
     v.direcciones === 0
-)
+) {
 
-                if (!estado[clave]) {
+    if (!estado[clave]) {
 
                     estado[clave] = true;
 
