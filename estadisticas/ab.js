@@ -218,7 +218,6 @@ const porcentaje =
 texto +=
 `${letra}
 📤 Enviados: ${enviados}
-💬 Respondieron: ${respondieron}
 📦 Direcciones: ${direcciones}
 📈 Conversión: ${porcentaje.toFixed(1)}%
 
@@ -310,7 +309,6 @@ totalDirecciones += direcciones;
 detalleProductos +=
 `${letra}
 📤 Enviados: ${enviados}
-💬 Respondieron: ${respondieron}
 📦 Direcciones: ${direcciones}
 📈 Conversión: ${porcentaje.toFixed(1)}%
 
@@ -426,7 +424,7 @@ texto += `
 
 rankingProductos.forEach((producto, index) => {
 
-    texto += `${index + 1}. ${producto.nombre}
+texto += `${index + 1}. ${producto.nombre}
 📈 ${producto.conversion.toFixed(1)}%
 📦 ${producto.direcciones} direcciones
 📤 ${producto.enviados} enviados

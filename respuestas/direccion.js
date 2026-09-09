@@ -45,6 +45,7 @@ if (
 texto.includes("ubicacion") ||
 texto.includes("ubicados") ||
 texto.includes("ubicado") ||
+texto.includes("donde estan ubicados") ||
 
     texto.includes("punto fisico") ||
     texto.includes("direccion del local") ||
