@@ -34,7 +34,7 @@ if (
 
             A: "🚚 ¡Claro! Envíanos tu dirección o barrio y ciudad para decirte el costo del envío",
 
-            B: "📦 Con gusto. Escríbeme tu dirección completa y la ciudad para cotizar el envío de inmediato.", //1 VENTA
+            B: "📦 Con gusto. Escríbeme tu dirección completa para cotizar el envío de inmediato", //1 VENTA
 
             C: "✅ Sí hacemos envíos. ¿Me envías la dirección donde deseas recibir el pedido? Así te confirmo el valor del envío.",
 
