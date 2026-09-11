@@ -6,10 +6,10 @@ const {
 
 module.exports = function (texto, usuario) {
 
-if (
-    texto.includes("kyro arnica plus") &&
-    texto.includes("$89.900")
-) {
+    if (
+        texto.includes("kyro arnica plus") &&
+        texto.includes("$89.900")
+    ) {
 
         registrarProducto(usuario);
 
@@ -34,29 +34,37 @@ Para verificar cobertura de entrega dime primero:
 
 📍 ¿En qué ciudad te encuentras?`,
 
-B: `¡Hola! 👋
+B: `Perfecto 👌
 
-Miles de personas buscan Kyro Árnica Plus para aliviar molestias en:
-
-✅ Espalda
-✅ Rodillas
-✅ Cuello
-✅ Hombros
-✅ Articulaciones
-
-🔥 Hoy tenemos promoción de 2 unidades de 250ML por solo $89.900.
+La promoción de 2 Kyro Árnica Plus de 250ML está disponible por $89.900.
 
 🚚 Pago contra entrega.
 
-¿En qué parte del cuerpo presentas la molestia para indicarte cómo usarla correctamente?`,
-
-C: `🔥 Promoción activa:
-
-✅ 2 Kyro Árnica Plus 250ML
-💰 $89.900
-🚚 Pago contra entrega
-
 Para decirte cuándo te llega:
+
+📍 ¿En qué ciudad te encuentras?`,
+
+C: `Perfecto 👌
+
+Aún tenemos disponible la promoción de 2 Kyro Árnica Plus de 250ML por $89.900.
+
+🚚 Pago contra entrega.
+
+📍 ¿En qué ciudad te encuentras para validar entrega?`,
+
+D: `Perfecto 👌
+
+Las 2 unidades de Kyro Árnica Plus 250ML te quedan en $89.900.
+
+🚚 Pagas al recibir.
+
+📍 Dime tu ciudad y te confirmo entrega.`,
+
+E: `Perfecto 👌
+
+La promoción de 2 Kyro Árnica Plus de 250ML por $89.900 sigue activa hoy.
+
+🚚 Pago contra entrega.
 
 📍 ¿En qué ciudad te encuentras?`
 
