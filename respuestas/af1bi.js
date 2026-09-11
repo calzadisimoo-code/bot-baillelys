@@ -37,9 +37,7 @@ module.exports = function (texto, usuario) {
 
         return obtenerVariante("af1bi", usuario, {
 
-            A: `👟 Sí tenemos disponibles las Air Force 1 blancas importadas.
-
-¿Las buscas para dama o caballero?`,
+            A: `¿Las buscas para hombre o mujer?`,
 
             B: `📍 ¿Desde qué ciudad nos escribes?`,
 
@@ -55,9 +53,7 @@ module.exports = function (texto, usuario) {
 
 ¿En qué talla las necesitas?`,
 
-            F: `👟 Tenemos disponibles.
-
-📦 ¿Serían para ti o para un regalo?`,
+            F: `📦 ¿Serían para ti o para un regalo?`,
 
             G: `🤍 Air Force 1 blancas importadas disponibles.
 
