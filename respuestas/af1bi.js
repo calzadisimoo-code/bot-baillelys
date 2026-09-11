@@ -1,46 +1,67 @@
 const { guardar } = require("../estado");
 const { obtenerVariante } = require("../estadisticas/ab");
-const {
-    registrarProducto
-} = require("../estadisticas/hoy");
+const { registrarProducto } = require("../estadisticas/hoy");
 
 module.exports = function (texto, usuario) {
 
-if (
-    (texto.includes("air force") ||
-     texto.includes("airforce") ||
-     texto.includes("force 1") ||
-     texto.includes("Quiero las Air Force importadas") ||
-     texto.includes("af1")) &&
-    (
-        texto.includes(".1") ||
-        texto.includes("1.1") ||
-        texto.includes("import") ||
-        texto.includes("importada") ||
-        texto.includes("importadas")
-    )
-) {
-		registrarProducto(usuario);
-guardar(usuario, {
-    producto: "af1bi",
-	pedidoEnviado: false
-});
+    texto = texto
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    if (
+        (
+            texto.includes("air force") ||
+            texto.includes("airforce") ||
+            texto.includes("force 1") ||
+            texto.includes("quiero las air force importadas") ||
+            texto.includes("af1")
+        ) &&
+        (
+            texto.includes(".1") ||
+            texto.includes("1.1") ||
+            texto.includes("import") ||
+            texto.includes("importada") ||
+            texto.includes("importadas")
+        )
+    ) {
+
+        registrarProducto(usuario);
+
+        guardar(usuario, {
+            producto: "af1bi",
+            pedidoEnviado: false
+        });
 
         return obtenerVariante("af1bi", usuario, {
 
-            A: "🤍 ¡Sí están disponibles las Air Force 1 blancas importadas!\n\n💰 Precio: *$100.000*\n📦 Calidad importada.\n🚚 Envíos a toda Colombia.\n\n👟 *Responde con tu talla (21 al 44) y continuamos con tu pedido.*",
+            A: `👟 Sí tenemos disponibles las Air Force 1 blancas importadas.
 
-            B: "Hola desde que barrio nos escribes?",
+¿Las buscas para dama o caballero?`,
 
-            C: "✨ Sí hay disponibilidad.\n\n🤍 Air Force 1 blancas importadas.\n💰 *$100.000*\n🚚 Envío rápido a toda Colombia.\n\n👟 *¿Cuál es tu talla? (21 al 44)*",
+            B: `📍 ¿Desde qué ciudad nos escribes?`,
 
-            D: "🚀 Tenemos disponibles las Air Force 1 blancas importadas.\n\n💵 Valor: *$100.000*\n📦 Calidad importada.\n\n👟 *Envíame tu talla y te envío la información para recibirlas.*",
+            C: `💰 Las Air Force 1 importadas están en *$100.000*.
 
-            E: "Hola que talla buscas?",
+👟 ¿Qué talla necesitas?`,
 
-            F: "Hola que talla buscas? y en que barrio te encuentras?",
-			
-			G: "📦 Con gusto. Escríbeme tu dirección completa y la ciudad para cotizar el envío de inmediato."
+            D: `🔥 Son calidad importada.
+
+👟 ¿Qué talla buscas?`,
+
+            E: `Hola 👋
+
+¿En qué talla las necesitas?`,
+
+            F: `👟 Tenemos disponibles.
+
+📦 ¿Serían para ti o para un regalo?`,
+
+            G: `🤍 Air Force 1 blancas importadas disponibles.
+
+¿Te interesa pago contra entrega o Nequi?`
 
         });
 
