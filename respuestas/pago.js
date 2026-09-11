@@ -9,6 +9,21 @@ module.exports = function (texto, usuario) {
         .replace(/\s+/g, " ")
         .trim();
 
+    // EXCLUIR MENSAJES DE CONTRAENTREGA
+    if (
+        texto.includes("contraentrega") ||
+        texto.includes("contra entrega") ||
+        texto.includes("pago contra entrega") ||
+        texto.includes("pagar contra entrega") ||
+        texto.includes("voy a pagar contra entrega") ||
+        texto.includes("voy a pagar por contraentrega") ||
+        texto.includes("voy a pagar por contra entrega") ||
+        texto.includes("pago al recibir") ||
+        texto.includes("pago cuando llegue")
+    ) {
+        return null;
+    }
+
     if (
         texto.includes("nequi") ||
         texto.includes("transferencia") ||
@@ -21,14 +36,13 @@ module.exports = function (texto, usuario) {
         texto.includes("formas de pago") ||
         texto.includes("como pago") ||
         texto.includes("cómo pago") ||
-		texto.includes("medios de pago") ||
+        texto.includes("medios de pago") ||
         texto.includes("quiero pagar") ||
         texto.includes("realizar el pago") ||
         texto.includes("hacer el pago") ||
         texto.includes("donde pago") ||
-		texto.includes("Que medios de pago reciben") ||
         texto.includes("dónde pago") ||
-        texto.includes("pagar")
+        texto.includes("que medios de pago reciben")
     ) {
 
         return obtenerVariante(
