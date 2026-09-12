@@ -57,38 +57,57 @@ datos[nombre]._mensajes = respuestas;
     }
 // Fase inicial: reparto equilibrado (A, B, C, D, E, F...)
 
-let menor = Math.min(
-    ...letras.map(l => datos[nombre][l].enviados)
+// Si alguna variante ya consiguió direcciones,
+// usar la de mejor conversión inmediatamente
+
+const conDirecciones = letras.filter(
+    l => (datos[nombre][l].direcciones || 0) > 0
 );
 
-const candidatas = letras.filter(
-    l => datos[nombre][l].enviados === menor
-);
+if (conDirecciones.length > 0) {
 
-const letra = candidatas[0];
+    let mejor = conDirecciones[0];
+    let mejorConversion = -1;
 
-if (datos[nombre][letra].enviados < 8) {
+    for (const letra of conDirecciones) {
 
-    datos[nombre][letra].enviados++;
+        const enviados = datos[nombre][letra].enviados;
+        const direcciones =
+            datos[nombre][letra].direcciones || 0;
+
+        const conversion =
+            enviados === 0
+                ? 0
+                : direcciones / enviados;
+
+        if (conversion > mejorConversion) {
+
+            mejorConversion = conversion;
+            mejor = letra;
+
+        }
+
+    }
+
+    datos[nombre][mejor].enviados++;
 
     guardar(datos);
 
     pendientes.set(usuario, {
         test: nombre,
-        variante: letra
+        variante: mejor
     });
-	
-	if (!historial.has(usuario)) {
-    historial.set(usuario, []);
-}
 
-historial.get(usuario).push({
-    test: nombre,
-    variante: letra
-});
+    if (!historial.has(usuario)) {
+        historial.set(usuario, []);
+    }
 
-    return respuestas[letra];
+    historial.get(usuario).push({
+        test: nombre,
+        variante: mejor
+    });
 
+    return respuestas[mejor];
 }
 
 // Después de la fase inicial usar UCB1
