@@ -167,13 +167,15 @@ function reiniciar(nombre) {
 
     if (!datos[nombre]) return false;
 
-    for (const variante in datos[nombre]) {
+for (const variante in datos[nombre]) {
 
-datos[nombre][variante].enviados = 0;
-datos[nombre][variante].respondieron = 0;
-datos[nombre][variante].direcciones = 0;
+    if (variante === "_mensajes") continue;
 
-    }
+    datos[nombre][variante].enviados = 0;
+    datos[nombre][variante].respondieron = 0;
+    datos[nombre][variante].direcciones = 0;
+
+}
 
     guardar(datos);
 
