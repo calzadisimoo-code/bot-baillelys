@@ -124,7 +124,7 @@ if (Math.random() < 0.90) {
     });
 
     if (!historial.has(usuario)) {
-        historial.set(usuario, [];
+        historial.set(usuario, []);
     }
 
     historial.get(usuario).push({
