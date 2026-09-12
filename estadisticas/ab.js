@@ -57,111 +57,83 @@ datos[nombre]._mensajes = respuestas;
     }
 // Fase inicial: reparto equilibrado (A, B, C, D, E, F...)
 
-// Si alguna variante ya consiguió direcciones,
-// usar la de mejor conversión inmediatamente
+let elegida;
 
-const conDirecciones = letras.filter(
-    l => (datos[nombre][l].direcciones || 0) > 0
+// 1. Probar siempre primero las variantes sin envíos
+
+const sinProbar = letras.filter(
+    l => datos[nombre][l].enviados === 0
 );
 
-if (conDirecciones.length > 0) {
+if (sinProbar.length > 0) {
 
-    let mejor = conDirecciones[0];
-    let mejorConversion = -1;
+    elegida = sinProbar[0];
 
-    for (const letra of conDirecciones) {
+} else {
 
-        const enviados = datos[nombre][letra].enviados;
-        const direcciones =
-            datos[nombre][letra].direcciones || 0;
+// Buscar ganador por mejor porcentaje
 
-        const conversion =
-            enviados === 0
-                ? 0
-                : direcciones / enviados;
+const ranking = [...letras].sort((a, b) => {
 
-        if (conversion > mejorConversion) {
+    const ea = datos[nombre][a].enviados;
+    const eb = datos[nombre][b].enviados;
 
-            mejorConversion = conversion;
-            mejor = letra;
+    const da = datos[nombre][a].direcciones || 0;
+    const db = datos[nombre][b].direcciones || 0;
 
-        }
+    const ca = ea === 0 ? 0 : da / ea;
+    const cb = eb === 0 ? 0 : db / eb;
 
-    }
+    return cb - ca;
 
-    datos[nombre][mejor].enviados++;
+});
+
+const ganador = ranking[0];
+
+// 90% ganador
+// 10% exploración
+
+if (Math.random() < 0.90) {
+
+    elegida = ganador;
+
+} else {
+
+    const alternativas = ranking.filter(
+        l => l !== ganador
+    );
+
+    elegida =
+        alternativas[
+            Math.floor(
+                Math.random() * alternativas.length
+            )
+        ];
+
+}
+
+}
+
+    datos[nombre][elegida].enviados++;
 
     guardar(datos);
 
     pendientes.set(usuario, {
         test: nombre,
-        variante: mejor
+        variante: elegida
     });
 
     if (!historial.has(usuario)) {
-        historial.set(usuario, []);
+        historial.set(usuario, [];
     }
 
     historial.get(usuario).push({
         test: nombre,
-        variante: mejor
+        variante: elegida
     });
 
-    return respuestas[mejor];
-}
+    return respuestas[elegida];
 
-// Después de la fase inicial usar UCB1
-
-let mejor = letras[0];
-let mejorPuntaje = -Infinity;
-
-const totalEnviados = letras.reduce(
-    (suma, letra) => suma + datos[nombre][letra].enviados,
-    0
-);
-
-for (const letra of letras) {
-
-    const enviados = datos[nombre][letra].enviados;
-const direcciones =
-    datos[nombre][letra].direcciones || 0;
-
-const conversion =
-    enviados === 0 ? 0 : direcciones / enviados;
-
-const exploracion =
-    Math.sqrt((2 * Math.log(totalEnviados + 1)) / enviados);
-
-    const puntaje = conversion + 0.7 * exploracion;
-
-    if (puntaje > mejorPuntaje) {
-
-        mejorPuntaje = puntaje;
-        mejor = letra;
-
-    }
-
-}
-
-datos[nombre][mejor].enviados++;
-
-guardar(datos);
-
-pendientes.set(usuario, {
-    test: nombre,
-    variante: mejor
-});
-
-if (!historial.has(usuario)) {
-    historial.set(usuario, []);
-}
-
-historial.get(usuario).push({
-    test: nombre,
-    variante: mejor
-});
-
-return respuestas[mejor];
 }
 
 async function registrarRespuesta(sock, usuario) {

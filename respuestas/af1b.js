@@ -44,21 +44,21 @@ module.exports = function (texto, usuario) {
             pedidoEnviado: false
         });
 
-        return obtenerVariante("af1b", usuario, {
+return obtenerVariante("af1b", usuario, {
 
-            A: "Hola que talla buscas?",
+    A: "Hola, ¿en qué talla?",
 
-            B: "🔥 Hola tenemos las Air Force 1 blancas por *$60.000*.\n\n✅ Tallas disponibles del *21 al 44*.\n\n👟 *Escríbeme únicamente tu talla y te ayudo con el pedido.*",
+    B: "👟 Air Force 1 blancas.\n\n¿Qué talla buscas?",
 
-            C: "🤍 Air Force 1 blancas disponibles.\n\n💰 Valor: *$60.000*\n\n👟 ¿Qué talla buscas?",
+    C: "🤍 Air Force 1 blancas disponibles.\n\n💰 Valor: *$60.000*\n\n👟 ¿Qué talla buscas?",
 
-            D: "🚀 Tenemos disponibles las Air Force 1 blancas.\n\n💵 Valor: *$60.000*\n\n👟 *Envíame tu talla y te envío la información para recibirlas.*",
+    D: "¿Qué talla necesitas? 👟",
 
-            E: "👋 ¡Hola! 😊\n\n¿En qué talla las necesitas?\n\n👟 Tenemos disponibles del *21 al 44*.\n💰 Precio: *$60.000*.",
+    E: "💰 Air Force 1 blancas $60.000.\n\n¿En qué talla las quieres?",
 
-            F: "✅ Sí están disponibles.\n\n🤍 Air Force 1 blancas.\n💰 *$60.000*\n\n👟 *Dime tu talla y en unos minutos dejamos listo tu pedido.*"
+    F: "👋 Hola.\n\n¿En qué talla las necesitas?"
 
-        });
+});
 
     }
 
