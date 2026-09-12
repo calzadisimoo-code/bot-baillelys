@@ -52,6 +52,7 @@ if (
     saludo = "😊 ¡Buenas!";
 
 }
+
 // Evitar saludo cuando el cliente está preguntando por calidad
 if (texto.includes("triple a")) {
     return null;
@@ -112,36 +113,25 @@ return obtenerVariante(
     usuario,
     {
 
-A: `${saludo} Bienvenido a CALZADISIMO.
+A: `${saludo}
 
-👟 Tenemos Air Force 1, Paris, sandalias, cargadores y muchos productos más.
+💬 Dime qué producto buscas y te ayudo enseguida.`,
 
-😊 ¿Qué producto estás buscando?`,
+B: `👀 ¿Qué producto te interesa?`,
 
-B: `👋 Hola, ¿qué producto estás buscando?`,
-
-C: `${saludo} 😊
-
-👟 Cuéntame qué producto estás buscando y con gusto te envío toda la información.`,
+C: `${saludo} ¿Buscas tenis, sandalias, cargadores o algo diferente?`,
 
 D: `${saludo}
 
-Estoy aquí para ayudarte a encontrar el producto que buscas. 🤝
+¿Qué producto necesitas?`,
 
-📦 ¿Qué producto te interesa hoy?`,
-
-E: `${saludo} Bienvenido a CALZADISIMO.
-
-👟 Con gusto te ayudo a encontrar el producto que buscas
-
-📦 ¿Cuál te interesa?`,
+E: `📦 Cuéntame qué producto quieres y te envío la información completa.`,
 
 F: `👟 Bienvenido a CALZADISIMO.
 
 ¿Qué producto te interesa? Te ayudo enseguida`
 
     }
-
 );
 
 };
