@@ -1,15 +1,15 @@
-const { 
-    obtenerVariante, 
-    reporte 
+const {
+    obtenerVariante,
+    reporte
 } = require("../estadisticas/ab");
 
-const { 
-    obtener, 
-    guardar 
+const {
+    obtener,
+    guardar
 } = require("../estado");
 
-const { 
-    registrarTalla 
+const {
+    registrarTalla
 } = require("../estadisticas/hoy");
 
 module.exports = function (texto, usuario) {
@@ -60,16 +60,16 @@ module.exports = function (texto, usuario) {
     });
 
     const respuesta = obtenerVariante(
-        `${estado.producto}_talla`,
+        "talla",
         usuario,
         {
-            A: "🚚 ¡Claro! Envíanos tu dirección o barrio y ciudad para decirte el costo del envío",
+            A: "🚚 ¡Claro! Envíanos tu dirección o barrio y ciudad para decirte el costo del envío.",
 
             B: "📦 Con gusto. Escríbeme tu dirección completa y la ciudad para cotizar el envío de inmediato.",
 
             C: "✅ Sí hacemos envíos. ¿Me envías la dirección donde deseas recibir el pedido? Así te confirmo el valor del envío.",
 
-            D: "🚚 Perfecto. Compárteme tu dirección y ciudad, y te indico cuánto cuesta el envío",
+            D: "🚚 Perfecto. Compárteme tu dirección y ciudad, y te indico cuánto cuesta el envío.",
 
             E: "📍 Envíame la dirección de entrega y te cotizo el envío enseguida.",
 
@@ -77,7 +77,7 @@ module.exports = function (texto, usuario) {
         }
     );
 
-    console.log(reporte(`${estado.producto}_talla`));
+    console.log(reporte("talla"));
 
     return respuesta;
 };
