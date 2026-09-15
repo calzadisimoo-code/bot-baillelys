@@ -23,17 +23,17 @@ module.exports = function (texto, usuario) {
             producto: "vans",
             texto: obtenerVariante("vans", usuario, {
 
-                A: "Hola que talla buscas?",
+A: "Hola 👋\n\n¿Qué talla buscas?",
 
-                B: "🔥 Hola tenemos las Vans por *$85.000*.\n\n✅ Tallas disponibles del *21 al 44*.\n\n👟 *Escríbeme únicamente tu talla y te ayudo con el pedido.*",
+B: "🔥 Tenemos disponibles las Vans.\n\n💰 *$85.000*\n✅ Tallas del *21 al 44*\n\n👟 Escríbeme tu talla y te confirmo disponibilidad.",
 
-                C: "🖤 Vans disponibles.\n\n💰 Valor: *$85.000*\n\n👟 ¿Qué talla buscas?",
+C: "🖤 Vans disponibles.\n\n💰 *$85.000*\n\n👟 ¿Qué talla necesitas?",
 
-                D: "🚀 Tenemos disponibles las Vans.\n\n💵 Valor: *$85.000*\n\n👟 *Envíame tu talla y te envío la información para recibirlas.*",
+D: "🚀 Sí tenemos disponibles las Vans.\n\n💰 *$85.000*\n\n👟 Dime tu talla y te ayudo a dejar listo tu pedido.",
 
-                E: "👋 ¡Hola! 😊\n\n¿En qué talla las necesitas?\n\n👟 Tenemos disponibles del *21 al 44*.\n💰 Precio: *$85.000*.",
+E: "👋 Hola.\n\n🖤 Vans disponibles del *21 al 44*.\n💰 *$85.000*\n\n👟 ¿En qué talla las necesitas?",
 
-                F: "✅ Sí están disponibles.\n\n🖤 Vans.\n💰 *$85.000*\n\n👟 *Dime tu talla y en unos minutos dejamos listo tu pedido.*"
+F: "✅ Sí están disponibles.\n\n🖤 Vans\n💰 *$85.000*\n\n👟 Dime tu talla y en unos minutos dejamos listo tu pedido. 🚚"
 
             })
         };

@@ -32,7 +32,7 @@ if (
 
         return obtenerVariante("envio", usuario, {
 
-            A: "🚚 ¡Claro! Envíanos tu dirección o barrio y ciudad para decirte el costo del envío",
+            A: "🚚 ¡Claro! Envíanos tu dirección o barrio para decirte el costo del envío",
 
             B: "📦 Con gusto. Escríbeme tu dirección completa para cotizar el envío de inmediato", //1 VENTA
 
