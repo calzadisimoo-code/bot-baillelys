@@ -81,36 +81,17 @@ const ranking = [...letras].sort((a, b) => {
     const da = datos[nombre][a].direcciones || 0;
     const db = datos[nombre][b].direcciones || 0;
 
-    const ca = ea === 0 ? 0 : da / ea;
-    const cb = eb === 0 ? 0 : db / eb;
+const ca = ea === 0 ? 0 : da / ea;
+const cb = eb === 0 ? 0 : db / eb;
 
-    return cb - ca;
+const scoreA = ca * da;
+const scoreB = cb * db;
+
+return scoreB - scoreA;
 
 });
 
-const ganador = ranking[0];
-
-// 90% ganador
-// 10% exploración
-
-if (Math.random() < 0.90) {
-
-    elegida = ganador;
-
-} else {
-
-    const alternativas = ranking.filter(
-        l => l !== ganador
-    );
-
-    elegida =
-        alternativas[
-            Math.floor(
-                Math.random() * alternativas.length
-            )
-        ];
-
-}
+elegida = ranking[0];
 
 }
 
