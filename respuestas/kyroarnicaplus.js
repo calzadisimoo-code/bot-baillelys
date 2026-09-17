@@ -62,11 +62,14 @@ Las 2 unidades de Kyro Árnica Plus 250ML te quedan en $89.900.
 
 E: `Perfecto 👌
 
-La promoción de 2 Kyro Árnica Plus de 250ML por $89.900 sigue activa hoy.
+La promoción de 2 Kyro Árnica Plus de 250ML está disponible por $89.900.
 
 🚚 Pago contra entrega.
 
-📍 ¿En qué ciudad te encuentras?`
+Antes de confirmar el envío, dime:
+
+🤕 ¿Qué dolor te molesta más actualmente?
+Rodillas, espalda, hombros o articulaciones?`
 
             })
         };
