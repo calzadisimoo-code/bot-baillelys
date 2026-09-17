@@ -91,7 +91,20 @@ return scoreB - scoreA;
 
 });
 
-elegida = ranking[0];
+const ganador = ranking[0];
+
+if (
+    ranking.length > 1 &&
+    Math.random() < 0.05
+) {
+
+    elegida = ranking[1];
+
+} else {
+
+    elegida = ganador;
+
+}
 
 }
 
