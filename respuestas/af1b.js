@@ -48,17 +48,15 @@ return obtenerVariante("af1b", usuario, {
 
     A: "Hola, ¿en qué talla?",
 
-    B: "¿Te interesa el modelo blanco o negro?",
+    B: "👟 Air Force 1 blancas.\n\n¿Qué talla buscas?",
 
-    C: "¿Cuántos pares necesitas?",
+    C: "🤍 Air Force 1 blancas disponibles.\n\n💰 Valor: *$60.000*\n\n👟 ¿Qué talla buscas?",
 
-    D: "¿Son para hombre o mujer?",
+    D: "¿Qué talla necesitas? 👟",
 
-    E: "¿Desde qué barrio nos escribes?",
+    E: "💰 Air Force 1 blancas $60.000.\n\n¿En qué talla las quieres?",
 
-    F: "¿Es para ti o para regalo?",
-	
-	G: "¿Ya has usado Air Force 1 antes?"
+    F: "👋 Hola.\n\n¿En qué talla las necesitas?"
 
 });
 
