@@ -2,17 +2,68 @@ const {
     reporte,
     reporteTodos,
     reiniciar,
-    reiniciarRespuesta
+    reiniciarRespuesta,
+    editarRespuesta
 } = require("./estadisticas/ab");
 const {
     reporteHoy
 } = require("./estadisticas/hoy");
+
+const edicionesAB = new Map();
 
 module.exports = async function comandos(
     texto,
     usuario,
     sock
 ) {
+	
+	if (
+    edicionesAB.has(usuario) &&
+    !texto.startsWith("#")
+) {
+
+    const editando =
+        edicionesAB.get(usuario);
+
+    editarRespuesta(
+        editando.nombre,
+        editando.variante,
+        texto
+    );
+
+    edicionesAB.delete(usuario);
+
+    await sock.sendMessage(usuario, {
+        text:
+`✅ ${editando.nombre.toUpperCase()} - ${editando.variante} actualizada.`
+    });
+
+    return true;
+}
+	
+	const matchEdit = texto.match(
+    /^#editab(.+)respuesta([a-z])$/i
+);
+
+if (matchEdit) {
+
+    const nombre = matchEdit[1];
+    const variante = matchEdit[2].toUpperCase();
+
+    edicionesAB.set(usuario, {
+        nombre,
+        variante
+    });
+
+    await sock.sendMessage(usuario, {
+        text:
+`✏️ ${nombre.toUpperCase()} - ${variante}
+
+¿Por cuál la vas a reemplazar?`
+    });
+
+    return true;
+}
 
 if (texto.startsWith("#resetab")) {
 

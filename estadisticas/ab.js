@@ -28,7 +28,18 @@ function obtenerVariante(nombre, usuario, respuestas) {
     }
 	
 	// Guardar automáticamente los mensajes del A/B
-datos[nombre]._mensajes = respuestas;
+if (!datos[nombre]._mensajes) {
+    datos[nombre]._mensajes = {};
+}
+
+for (const letra of Object.keys(respuestas)) {
+
+    if (!datos[nombre]._mensajes[letra]) {
+        datos[nombre]._mensajes[letra] =
+            respuestas[letra];
+    }
+
+}
 	
 	for (const letra of Object.keys(respuestas)) {
     if (!datos[nombre][letra]) {
@@ -126,7 +137,7 @@ if (
         variante: elegida
     });
 
-    return respuestas[elegida];
+    return datos[nombre]._mensajes[elegida];
 
 }
 
@@ -643,6 +654,24 @@ Acabo de detectar una oportunidad para vender más.
 
 }
 
+function editarRespuesta(nombre, variante, nuevoMensaje) {
+
+    const datos = cargar();
+
+    if (!datos[nombre]) return false;
+
+    if (!datos[nombre]._mensajes)
+        datos[nombre]._mensajes = {};
+
+    datos[nombre]._mensajes[variante] =
+        nuevoMensaje;
+
+    guardar(datos);
+
+    return true;
+
+}
+
 function registrarDireccionAB(usuario) {
 
     if (!historial.has(usuario)) {
@@ -685,5 +714,6 @@ module.exports = {
     reporte,
     reporteTodos,
     reiniciar,
-    reiniciarRespuesta
+    reiniciarRespuesta,
+    editarRespuesta
 };
