@@ -21,8 +21,6 @@ const PALABRAS_DIRECCION = [
     "manzana",
     "apartamento",
     "apto",
-    "barrio"
-
 ];
 
 const PRODUCTOS = {
