@@ -666,6 +666,14 @@ function editarRespuesta(nombre, variante, nuevoMensaje) {
     datos[nombre]._mensajes[variante] =
         nuevoMensaje;
 
+    if (datos[nombre][variante]) {
+
+        datos[nombre][variante].enviados = 0;
+        datos[nombre][variante].respondieron = 0;
+        datos[nombre][variante].direcciones = 0;
+
+    }
+
     guardar(datos);
 
     return true;
