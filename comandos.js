@@ -1,7 +1,8 @@
 const {
     reporte,
-	reporteTodos,
-    reiniciar
+    reporteTodos,
+    reiniciar,
+    reiniciarRespuesta
 } = require("./estadisticas/ab");
 const {
     reporteHoy
@@ -12,6 +13,34 @@ module.exports = async function comandos(
     usuario,
     sock
 ) {
+
+if (texto.startsWith("#resetab")) {
+
+    const match = texto.match(
+        /^#resetab(.+)respuesta([a-z])$/i
+    );
+
+    if (match) {
+
+        const nombre = match[1];
+        const variante = match[2].toUpperCase();
+
+        const ok = reiniciarRespuesta(
+            nombre,
+            variante
+        );
+
+        await sock.sendMessage(usuario, {
+            text: ok
+                ? `✅ ${nombre.toUpperCase()} - ${variante} reiniciada.`
+                : "❌ No encontrada."
+        });
+
+        return true;
+
+    }
+
+}
 
 if (texto.startsWith("#resetab")) {
 

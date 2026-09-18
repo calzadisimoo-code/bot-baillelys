@@ -155,6 +155,23 @@ async function registrarRespuesta(sock, usuario) {
 
 }
 
+function reiniciarRespuesta(nombre, variante) {
+
+    const datos = cargar();
+
+    if (!datos[nombre]) return false;
+    if (!datos[nombre][variante]) return false;
+
+    datos[nombre][variante].enviados = 0;
+    datos[nombre][variante].respondieron = 0;
+    datos[nombre][variante].direcciones = 0;
+
+    guardar(datos);
+
+    return true;
+
+}
+
 function reiniciar(nombre) {
 
     const datos = cargar();
@@ -667,5 +684,6 @@ module.exports = {
     registrarDireccionAB,
     reporte,
     reporteTodos,
-    reiniciar
+    reiniciar,
+    reiniciarRespuesta
 };
