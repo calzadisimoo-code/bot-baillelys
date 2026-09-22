@@ -92,11 +92,11 @@ const ranking = [...letras].sort((a, b) => {
     const da = datos[nombre][a].direcciones || 0;
     const db = datos[nombre][b].direcciones || 0;
 
-const ca = ea === 0 ? 0 : da / ea;
-const cb = eb === 0 ? 0 : db / eb;
+const scoreA =
+    ea === 0 ? 0 : da / ea;
 
-const scoreA = ca * da;
-const scoreB = cb * db;
+const scoreB =
+    eb === 0 ? 0 : db / eb;
 
 return scoreB - scoreA;
 
@@ -214,9 +214,8 @@ function reporte(nombre) {
 
     let texto = `📊 RESULTADOS A/B ${nombre.toUpperCase()}\n\n`;
 
-    let mejor = "";
-    let mejorPorcentaje = -1;
-
+let mejor = "";
+let mejorScore = -1;
     for (const letra of Object.keys(datos[nombre])) {
 		
 		if (letra === "_mensajes") continue;
@@ -241,14 +240,19 @@ ${datos[nombre]._mensajes?.[letra] || "No encontrado"}
 
 `;
 
-        if (porcentaje > mejorPorcentaje) {
-            mejorPorcentaje = porcentaje;
-            mejor = letra;
-        }
+const score =
+    enviados === 0
+        ? 0
+        : (direcciones * direcciones) / enviados;
+
+if (score > mejorScore) {
+    mejorScore = score;
+    mejor = letra;
+}
 
     }
 
-    texto += `🏆 Ganador: ${mejor} (${mejorPorcentaje.toFixed(1)}%)`;
+    texto += `🏆 Ganador: ${mejor}`;
 
     return texto;
 
@@ -294,7 +298,7 @@ detalleProductos += `━━━━━━━━━━━━━━━━━━\n`;
 detalleProductos += `📦 ${nombre.toUpperCase()}\n\n`;
 
 let mejor = "";
-let mejorPorcentaje = -1;
+let mejorScore = -1;
 
 let peor = "";
 let peorPorcentaje = 101;
@@ -332,11 +336,14 @@ ${datos[nombre]._mensajes?.[letra] || "No encontrado"}
 
 `;
 
-if (porcentaje > mejorPorcentaje) {
+const score =
+    enviados === 0
+        ? 0
+        : (direcciones * direcciones) / enviados;
 
-    mejorPorcentaje = porcentaje;
+if (score > mejorScore) {
+    mejorScore = score;
     mejor = letra;
-
 }
 
 if (porcentaje < peorPorcentaje) {
@@ -370,7 +377,7 @@ if (enviados >= 4) {
 
         detalleProductos +=
 `🏆 Mejor: ${mejor}
-📈 ${mejorPorcentaje.toFixed(1)}%
+📈 Score: ${mejorScore.toFixed(2)}
 
 💀 Peor: ${peor}
 📉 ${peorPorcentaje.toFixed(1)}%
