@@ -1,5 +1,6 @@
 const { registrarProducto } = require("../estadisticas/hoy");
 const { guardar } = require("../estado");
+const { obtenerVariante } = require("../estadisticas/ab");
 
 module.exports = function (texto, usuario) {
 
@@ -18,22 +19,24 @@ module.exports = function (texto, usuario) {
             pedidoEnviado: false
         });
 
-        return {
-            mensajes: [
-                {
-                    foto: true,
-                    producto: "pro4",
-                    imagen: 1,
-                    texto: "🎧 AirPods Pro 2"
-                },
-                {
-                    foto: true,
-                    producto: "pro4",
-                    imagen: 2,
-                    texto: "🎧 AirPods Pro 4"
-                },
-                {
-                    texto: `Excelente 👍
+        return obtenerVariante("pro4", usuario, {
+
+            A: {
+                mensajes: [
+                    {
+                        foto: true,
+                        producto: "pro4",
+                        imagen: 1,
+                        texto: "🎧 AirPods Pro 2"
+                    },
+                    {
+                        foto: true,
+                        producto: "pro4",
+                        imagen: 2,
+                        texto: "🎧 AirPods Pro 4"
+                    },
+                    {
+                        texto: `Excelente 👍
 
 Ya solo necesito estos datos para generar el envío:
 
@@ -48,9 +51,47 @@ Ya solo necesito estos datos para generar el envío:
 ✅ ¿Te despacho los AirPods Pro 2 o los AirPods Pro 4?
 
 Tu pedido llegará hoy mismo si estás en Palmira o entre 1 y 3 días hábiles si estás en otra ciudad.`
-                }
-            ]
-        };
+                    }
+                ]
+            },
+
+            B: {
+                mensajes: [
+                    {
+                        foto: true,
+                        producto: "pro4",
+                        imagen: 1,
+                        texto: "🎧 AirPods Pro 2"
+                    },
+                    {
+                        foto: true,
+                        producto: "pro4",
+                        imagen: 2,
+                        texto: "🎧 AirPods Pro 4"
+                    },
+                    {
+                        texto: `🚚 Disponibles para entrega inmediata.
+
+💰 Valor: $60.000 + envío
+💵 Pago contra entrega.
+
+Para despacharlos hoy mismo envíame:
+
+📦 Nombre completo:
+📍 Dirección exacta:
+🏙️ Ciudad/Municipio:
+📱 Número de contacto:
+
+1️⃣ AirPods Pro 2
+2️⃣ AirPods Pro 4
+
+✅ ¿Cuál prefieres?`
+                    }
+                ]
+            }
+
+        });
+
     }
 
     return null;
