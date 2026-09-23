@@ -27,6 +27,34 @@ function obtenerVariante(nombre, usuario, respuestas) {
         datos[nombre] = {};
     }
 	
+	const variantesActuales = Object.keys(respuestas);
+
+for (const clave of Object.keys(datos[nombre])) {
+
+    if (clave === "_mensajes") continue;
+
+    if (!variantesActuales.includes(clave)) {
+
+        delete datos[nombre][clave];
+
+    }
+
+}
+
+if (datos[nombre]._mensajes) {
+
+    for (const clave of Object.keys(datos[nombre]._mensajes)) {
+
+        if (!variantesActuales.includes(clave)) {
+
+            delete datos[nombre]._mensajes[clave];
+
+        }
+
+    }
+
+}
+	
 	// Guardar automáticamente los mensajes del A/B
 if (!datos[nombre]._mensajes) {
     datos[nombre]._mensajes = {};
@@ -34,10 +62,8 @@ if (!datos[nombre]._mensajes) {
 
 for (const letra of Object.keys(respuestas)) {
 
-    if (!datos[nombre]._mensajes[letra]) {
-        datos[nombre]._mensajes[letra] =
-            respuestas[letra];
-    }
+    datos[nombre]._mensajes[letra] =
+        respuestas[letra];
 
 }
 	
