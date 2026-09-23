@@ -35,7 +35,10 @@ module.exports = function (texto, usuario) {
             pedidoEnviado: false
         });
 
-        return obtenerVariante("af1bi", usuario, {
+        return {
+    foto: true,
+    producto: "af1bi",
+    texto: obtenerVariante("af1bi", usuario, {
 
             A: `¿Las buscas para hombre o mujer?`,
 

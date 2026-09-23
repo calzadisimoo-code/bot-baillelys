@@ -1,68 +1,53 @@
-const { guardar } = require("../estado");
 const { obtenerVariante } = require("../estadisticas/ab");
-const {
-    registrarProducto
-} = require("../estadisticas/hoy");
+const { guardar } = require("../estado");
+const { registrarProducto } = require("../estadisticas/hoy");
 
 module.exports = function (texto, usuario) {
 
+    texto = texto.toLowerCase();
+
     if (
-        texto.includes("kyro arnica plus") &&
-        texto.includes("$89.900")
+        texto.includes("paris") ||
+        texto.includes("tenis paris") ||
+        texto.includes("quiero las r1") ||
+        texto.includes("zapatillas paris")
     ) {
 
         registrarProducto(usuario);
 
         guardar(usuario, {
-            producto: "kyroarnicaplus",
-            nombreProducto: "Kyro Árnica Plus",
+            producto: "paris",
             pedidoEnviado: false
         });
 
         return {
             foto: true,
-            producto: "kyroarnicaplus",
-            texto: obtenerVariante("kyroarnicaplus", usuario, {
+            producto: "paris",
+            texto: obtenerVariante("paris", usuario, {
 
-A: `*NUEVA PRESENTACION*
+                A: `✅ Tenemos disponibles las Paris.
 
-La promoción de 2 Kyro Árnica Plus de 250ML está disponible por solo $89.900.
+👟 ¿Las buscas para dama o caballero?`,
 
-🚚 Pago contra entrega.
+                B: `🚚 Hacemos envíos a toda Colombia.
 
-Para verificar cobertura de entrega dime primero:
+📍 ¿En qué ciudad o barrio te encuentras?`,
 
-📍 ¿En qué ciudad te encuentras?`,
+                C: `💰 Las Paris están en *$65.000*.
 
-B: `NUEVA PRESENTACION*
+👟 ¿Para qué talla las necesitas?`,
 
-La promoción de 2 Kyro Árnica Plus de 250ML está disponible por $89.900.
+                D: `Hola, ¿en qué talla?`,
 
-🚚 Pago contra entrega.
+                E: `✅ Tenemos disponibles las Paris.
 
-Para decirte cuándo te llega:
+💰 *$60.000*
 
-📍 ¿En qué ciudad te encuentras?`,
+📏 ¿Qué talla buscas? (21 al 44)`,
 
-C: `NUEVA PRESENTACION* 👌
+                F: `👟 Sí tenemos disponibles.
 
-Aún tenemos disponible la promoción de 2 Kyro Árnica Plus de 250ML por $89.900.
-
-🚚 Pago contra entrega.
-
-📍 ¿En qué ciudad te encuentras para validar entrega?`,
-
-D: `NUEVA PRESENTACION* 👌
-
-Las 2 unidades de Kyro Árnica Plus 250ML te quedan en $89.900.
-
-🚚 Pagas al recibir.
-
-📍 Dime tu ciudad y te confirmo entrega.`,
-
-E: `NUEVA PRESENTACION*
-
-Hola, desde que ciudad nos escribes?`
+📦 ¿Serían para ti o para otra persona?`
 
             })
         };
