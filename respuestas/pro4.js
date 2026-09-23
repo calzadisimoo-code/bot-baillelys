@@ -88,7 +88,26 @@ Para despacharlos hoy mismo envíame:
 ✅ ¿Cuál prefieres?`
                     }
                 ]
-            }
+            },
+			C: {
+    mensajes: [
+        {
+            foto: true,
+            producto: "pro4",
+            imagen: 1,
+            texto: "🎧 AirPods Pro 2"
+        },
+        {
+            foto: true,
+            producto: "pro4",
+            imagen: 2,
+            texto: "🎧 AirPods Pro 4"
+        },
+        {
+            texto: `¿Cuál prefieres?`
+        }
+    ]
+}
 
         });
 
