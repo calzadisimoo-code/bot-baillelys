@@ -6,13 +6,6 @@ module.exports = function (texto, usuario) {
     texto = texto.toLowerCase().trim();
 
     if (
-        texto.includes("pro 4") ||
-        texto.includes("pro4") ||
-        texto.includes("airpods") ||
-        texto.includes("airpods pro 4") ||
-        texto.includes("airpod pro 4") ||
-        texto.includes("audifonos pro 4") ||
-        texto.includes("audífonos pro 4") ||
         texto.includes("audifonos con cancelacion de ruido") ||
         texto.includes("audífonos con cancelación de ruido")
     ) {
