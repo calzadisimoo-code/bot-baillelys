@@ -382,19 +382,30 @@ if (
                 mensaje.producto
             );
 
-            let imagen = null;
+          let imagen = null;
 
-         if (archivos.length > 0) {
+if (fs.existsSync(carpeta)) {
 
-    const indice =
-        (mensaje.imagen || 1) - 1;
+    const archivos = fs
+        .readdirSync(carpeta)
+        .filter(a =>
+            /\.(jpg|jpeg|png|webp)$/i.test(a)
+        )
+        .sort();
 
-    if (archivos[indice]) {
+    if (archivos.length > 0) {
 
-        imagen = path.join(
-            carpeta,
-            archivos[indice]
-        );
+        const indice =
+            (mensaje.imagen || 1) - 1;
+
+        if (archivos[indice]) {
+
+            imagen = path.join(
+                carpeta,
+                archivos[indice]
+            );
+
+        }
 
     }
 
