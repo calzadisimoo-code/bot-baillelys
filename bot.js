@@ -384,25 +384,21 @@ if (
 
             let imagen = null;
 
-            if (fs.existsSync(carpeta)) {
+         if (archivos.length > 0) {
 
-                const archivos = fs
-                    .readdirSync(carpeta)
-                    .filter(a =>
-                        /\.(jpg|jpeg|png|webp)$/i.test(a)
-                    )
-                    .sort();
+    const indice =
+        (mensaje.imagen || 1) - 1;
 
-                if (archivos.length > 0) {
+    if (archivos[indice]) {
 
-                    imagen = path.join(
-                        carpeta,
-                        archivos[0]
-                    );
+        imagen = path.join(
+            carpeta,
+            archivos[indice]
+        );
 
-                }
+    }
 
-            }
+}
 
             if (imagen) {
 
