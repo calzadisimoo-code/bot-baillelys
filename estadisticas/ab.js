@@ -255,6 +255,20 @@ const porcentaje =
         ? 0
         : (direcciones / enviados) * 100;
 
+let mensajeMostrar =
+    datos[nombre]._mensajes?.[letra] || "No encontrado";
+
+if (
+    typeof mensajeMostrar === "object" &&
+    mensajeMostrar?.mensajes
+) {
+
+    mensajeMostrar = mensajeMostrar.mensajes
+        .map(m => m.texto || "")
+        .join("\n\n");
+
+}
+
 texto +=
 `${letra}
 📤 Enviados: ${enviados}
@@ -262,7 +276,7 @@ texto +=
 📈 Conversión: ${porcentaje.toFixed(1)}%
 
 💬 Mensaje:
-${datos[nombre]._mensajes?.[letra] || "No encontrado"}
+${mensajeMostrar}
 
 `;
 
@@ -351,6 +365,20 @@ totalEnviados += enviados;
 totalRespondieron += respondieron;
 totalDirecciones += direcciones;
 
+let mensajeMostrar =
+    datos[nombre]._mensajes?.[letra] || "No encontrado";
+
+if (
+    typeof mensajeMostrar === "object" &&
+    mensajeMostrar?.mensajes
+) {
+
+    mensajeMostrar = mensajeMostrar.mensajes
+        .map(m => m.texto || "")
+        .join("\n\n");
+
+}
+
 detalleProductos +=
 `${letra}
 📤 Enviados: ${enviados}
@@ -358,7 +386,7 @@ detalleProductos +=
 📈 Conversión: ${porcentaje.toFixed(1)}%
 
 💬 Mensaje:
-${datos[nombre]._mensajes?.[letra] || "No encontrado"}
+${mensajeMostrar}
 
 `;
 
