@@ -44,7 +44,10 @@ module.exports = function (texto, usuario) {
             pedidoEnviado: false
         });
 
-return obtenerVariante("af1b", usuario, {
+return {
+    foto: true,
+    producto: "af1b",
+    texto: obtenerVariante("af1b", usuario, {
 
     A: "Hola, ¿en qué talla?",
 
