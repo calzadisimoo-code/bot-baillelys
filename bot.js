@@ -369,6 +369,74 @@ if (atendidoPorSara) continue;
 
 if (
     typeof respuesta === "object" &&
+    Array.isArray(respuesta.mensajes)
+) {
+
+    for (const mensaje of respuesta.mensajes) {
+
+        if (mensaje.foto) {
+
+            const carpeta = path.join(
+                __dirname,
+                "img",
+                mensaje.producto
+            );
+
+            let imagen = null;
+
+            if (fs.existsSync(carpeta)) {
+
+                const archivos = fs
+                    .readdirSync(carpeta)
+                    .filter(a =>
+                        /\.(jpg|jpeg|png|webp)$/i.test(a)
+                    )
+                    .sort();
+
+                if (archivos.length > 0) {
+
+                    imagen = path.join(
+                        carpeta,
+                        archivos[0]
+                    );
+
+                }
+
+            }
+
+            if (imagen) {
+
+                await sock.sendMessage(usuario, {
+                    image: fs.readFileSync(imagen),
+                    caption: mensaje.texto || ""
+                });
+
+            }
+
+        } else {
+
+            await sock.sendMessage(usuario, {
+                text: mensaje.texto
+            });
+
+        }
+
+        await new Promise(resolve =>
+            setTimeout(resolve, 1000)
+        );
+
+    }
+
+    ultimaRespuesta.set(
+        usuario,
+        Date.now()
+    );
+
+    continue;
+}
+
+if (
+    typeof respuesta === "object" &&
     respuesta.foto === true
 ) {
 

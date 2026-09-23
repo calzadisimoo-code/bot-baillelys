@@ -1,4 +1,5 @@
 const { registrarProducto } = require("../estadisticas/hoy");
+const { guardar } = require("../estado");
 
 module.exports = function (texto, usuario) {
 
@@ -18,7 +19,26 @@ module.exports = function (texto, usuario) {
 
         registrarProducto(usuario);
 
-        return `Excelente 👍
+        guardar(usuario, {
+            producto: "pro4",
+            nombreProducto: "AirPods Pro",
+            pedidoEnviado: false
+        });
+
+        return {
+            mensajes: [
+                {
+                    foto: true,
+                    imagen: 1,
+                    texto: "🎧 AirPods Pro 2"
+                },
+                {
+                    foto: true,
+                    imagen: 2,
+                    texto: "🎧 AirPods Pro 4"
+                },
+                {
+                    texto: `Excelente 👍
 
 Ya solo necesito estos datos para generar el envío:
 
@@ -27,10 +47,15 @@ Ya solo necesito estos datos para generar el envío:
 🏙️ Ciudad/Municipio:
 📱 Número de contacto:
 
-💰 Valor a pagar: $60.000 + envio
+💰 Valor a pagar: $60.000 + envío
 🚚 Pago contra entrega.
 
-Tu pedido llegará hoy mismo si estas en Palmira o entre 1 y 3 días hábiles si estas en otra ciudad.`;
+✅ ¿Te despacho los AirPods Pro 2 o los AirPods Pro 4?
+
+Tu pedido llegará hoy mismo si estás en Palmira o entre 1 y 3 días hábiles si estás en otra ciudad.`
+                }
+            ]
+        };
     }
 
     return null;
