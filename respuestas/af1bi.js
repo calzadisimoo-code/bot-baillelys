@@ -36,33 +36,34 @@ module.exports = function (texto, usuario) {
         });
 
         return {
-    foto: true,
-    producto: "af1bi",
-    texto: obtenerVariante("af1bi", usuario, {
+            foto: true,
+            producto: "af1bi",
+            texto: obtenerVariante("af1bi", usuario, {
 
-            A: `¿Las buscas para hombre o mujer?`,
+                A: `¿Las buscas para hombre o mujer?`,
 
-            B: `📍 ¿Desde qué ciudad nos escribes?`,
+                B: `📍 ¿Desde qué ciudad nos escribes?`,
 
-            C: `💰 Las Air Force 1 importadas están en *$100.000*.
+                C: `💰 Las Air Force 1 importadas están en *$100.000*.
 
 👟 ¿Qué talla necesitas?`,
 
-            D: `🔥 Son calidad importada.
+                D: `🔥 Son calidad importada.
 
 👟 ¿Qué talla buscas?`,
 
-            E: `Hola 👋
+                E: `Hola 👋
 
 ¿En qué talla las necesitas?`,
 
-            F: `📦 ¿Serían para ti o para un regalo?`,
+                F: `📦 ¿Serían para ti o para un regalo?`,
 
-            G: `🤍 Air Force 1 blancas importadas disponibles.
+                G: `🤍 Air Force 1 blancas importadas disponibles.
 
 ¿Te interesa pago contra entrega o Nequi?`
 
-        });
+            })
+        };
 
     }
 

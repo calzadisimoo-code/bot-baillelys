@@ -5,16 +5,16 @@ const {
 } = require("../estadisticas/hoy");
 
 module.exports = function (texto, usuario) {
-	
-	if (
-    texto.includes("$50") ||
-    texto.includes("50mil") ||
-    texto.includes("50 mil") ||
-    texto.includes("50.000") ||
-    texto.includes("50000")
-) {
-    return null;
-}
+
+    if (
+        texto.includes("$50") ||
+        texto.includes("50mil") ||
+        texto.includes("50 mil") ||
+        texto.includes("50.000") ||
+        texto.includes("50000")
+    ) {
+        return null;
+    }
 
     // Si el cliente habla de las importadas, este flow no responde
     if (
@@ -44,26 +44,27 @@ module.exports = function (texto, usuario) {
             pedidoEnviado: false
         });
 
-return {
-    foto: true,
-    producto: "af1b",
-    texto: obtenerVariante("af1b", usuario, {
+        return {
+            foto: true,
+            producto: "af1b",
+            texto: obtenerVariante("af1b", usuario, {
 
-    A: "Hola, ¿en qué talla?",
+                A: "Hola, ¿en qué talla?",
 
-    B: "¿Te interesa el modelo blanco o negro?",
+                B: "¿Te interesa el modelo blanco o negro?",
 
-    C: "¿Cuántos pares necesitas?",
+                C: "¿Cuántos pares necesitas?",
 
-    D: "¿Son para hombre o mujer?",
+                D: "¿Son para hombre o mujer?",
 
-    E: "¿Desde qué barrio nos escribes?",
+                E: "¿Desde qué barrio nos escribes?",
 
-    F: "¿Es para ti o para regalo?",
-	
-	G: "¿Ya has usado Air Force 1 antes?"
+                F: "¿Es para ti o para regalo?",
 
-});
+                G: "¿Ya has usado Air Force 1 antes?"
+
+            })
+        };
 
     }
 
