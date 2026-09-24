@@ -9,19 +9,19 @@ module.exports = function (texto, usuario) {
     if (
         texto.includes("180w") ||
         texto.includes("180 w") ||
-		texto.includes("quiero el cargador de 120w") ||
         texto.includes("cargador 180") ||
+		texto.includes("Promo cargador 180W X3 en $60.000.") ||
         texto.includes("cargador de 180")
     ) {
 	
         registrarProducto(usuario);
 
         guardar(usuario, {
-            producto: "carg120w",
+            producto: "carg180w",
 			pedidoEnviado: false
         });
 
-return obtenerVariante("carg120w", usuario, {
+return obtenerVariante("carg180w", usuario, {
 
     A: "⚡ ¡Sí disponible!\n\n💰 Precio: *$45.000*\n\n📍 ¿Envío o recoges?",
 
