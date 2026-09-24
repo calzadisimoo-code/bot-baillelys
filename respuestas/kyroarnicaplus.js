@@ -34,7 +34,7 @@ Para verificar cobertura de entrega dime primero:
 
 📍 ¿En qué ciudad te encuentras?`,
 
-B: `NUEVA PRESENTACION*
+B: `*NUEVA PRESENTACION*
 
 La promoción de 2 Kyro Árnica Plus de 250ML está disponible por $89.900.
 
@@ -44,7 +44,7 @@ Para decirte cuándo te llega:
 
 📍 ¿En qué ciudad te encuentras?`,
 
-C: `NUEVA PRESENTACION* 👌
+C: `*NUEVA PRESENTACION* 👌
 
 Aún tenemos disponible la promoción de 2 Kyro Árnica Plus de 250ML por $89.900.
 
@@ -52,7 +52,7 @@ Aún tenemos disponible la promoción de 2 Kyro Árnica Plus de 250ML por $89.90
 
 📍 ¿En qué ciudad te encuentras para validar entrega?`,
 
-D: `NUEVA PRESENTACION* 👌
+D: `*NUEVA PRESENTACION* 👌
 
 Las 2 unidades de Kyro Árnica Plus 250ML te quedan en $89.900.
 
@@ -60,7 +60,7 @@ Las 2 unidades de Kyro Árnica Plus 250ML te quedan en $89.900.
 
 📍 Dime tu ciudad y te confirmo entrega.`,
 
-E: `NUEVA PRESENTACION*
+E: `*NUEVA PRESENTACION*
 
 Hola, desde que ciudad nos escribes?`
 
