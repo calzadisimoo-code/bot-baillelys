@@ -9,6 +9,7 @@ module.exports = function (texto, usuario) {
     if (
         texto.includes("67w") ||
         texto.includes("67 w") ||
+		texto.includes("Promo cargador 67W en $45.000.") ||
         texto.includes("cargador 67") ||
         texto.includes("cargador de 67")
     ) {

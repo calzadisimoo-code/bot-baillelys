@@ -10,6 +10,7 @@ module.exports = function (texto, usuario) {
         texto.includes("120w") ||
         texto.includes("120 w") ||
         texto.includes("cargador 120") ||
+		texto.includes("Promo cargador 67W en $45.000.") ||
         texto.includes("cargador de 120")
     ) {
 	
