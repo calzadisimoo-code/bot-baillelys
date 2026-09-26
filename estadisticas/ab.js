@@ -723,26 +723,64 @@ function editarRespuesta(nombre, variante, nuevoMensaje) {
 
     const datos = cargar();
 
+    if (!datos[nombre]) {
+        datos[nombre] = {};
+    }
+
+    if (!datos[nombre]._mensajes) {
+        datos[nombre]._mensajes = {};
+    }
+
+    if (!datos[nombre][variante]) {
+        datos[nombre][variante] = {
+            enviados: 0,
+            respondieron: 0,
+            direcciones: 0
+        };
+    }
+
+    datos[nombre]._mensajes[variante] = nuevoMensaje;
+
+    datos[nombre][variante].enviados = 0;
+    datos[nombre][variante].respondieron = 0;
+    datos[nombre][variante].direcciones = 0;
+
+    guardar(datos);
+
+    return true;
+}
+
+function eliminarAB(nombre) {
+
+    const datos = cargar();
+
     if (!datos[nombre]) return false;
 
-    if (!datos[nombre]._mensajes)
-        datos[nombre]._mensajes = {};
+    delete datos[nombre];
 
-    datos[nombre]._mensajes[variante] =
-        nuevoMensaje;
+    guardar(datos);
 
-    if (datos[nombre][variante]) {
+    return true;
+}
 
-        datos[nombre][variante].enviados = 0;
-        datos[nombre][variante].respondieron = 0;
-        datos[nombre][variante].direcciones = 0;
+function eliminarRespuestaAB(nombre, variante) {
 
+    const datos = cargar();
+
+    if (!datos[nombre]) return false;
+
+    delete datos[nombre][variante];
+
+    if (
+        datos[nombre]._mensajes &&
+        datos[nombre]._mensajes[variante]
+    ) {
+        delete datos[nombre]._mensajes[variante];
     }
 
     guardar(datos);
 
     return true;
-
 }
 
 function registrarDireccionAB(usuario) {
@@ -788,5 +826,7 @@ module.exports = {
     reporteTodos,
     reiniciar,
     reiniciarRespuesta,
-    editarRespuesta
+    editarRespuesta,
+    eliminarAB,
+    eliminarRespuestaAB
 };
