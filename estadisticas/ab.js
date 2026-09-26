@@ -62,8 +62,12 @@ if (!datos[nombre]._mensajes) {
 
 for (const letra of Object.keys(respuestas)) {
 
-    datos[nombre]._mensajes[letra] =
-        respuestas[letra];
+    if (datos[nombre]._mensajes[letra] === undefined) {
+
+        datos[nombre]._mensajes[letra] =
+            respuestas[letra];
+
+    }
 
 }
 	
