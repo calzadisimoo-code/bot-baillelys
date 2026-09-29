@@ -1491,7 +1491,7 @@ function eliminarVenta(idVenta) {
             ][ventaEncontrada.talla]
     };
 }
-
+ 
 
 module.exports = {
     inicializar,

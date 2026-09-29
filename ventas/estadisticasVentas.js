@@ -758,7 +758,7 @@ module.exports = {
     ventasHoy,
     ventasMes,
     ventasAnio,
-
+ 
 gastosHoy,
 gastosMes,
 gastosAnio,
