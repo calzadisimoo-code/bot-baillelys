@@ -1243,8 +1243,16 @@ if (/^#stock$/i.test(texto.trim())) {
                 const cantidad =
                     producto.stock[talla];
 
-                mensaje +=
-                    `${producto.nombre}T${talla} ${cantidad}\n`;
+                if (cantidad === 0) {
+
+                    mensaje +=
+                        `🔴 ${producto.nombre}T${talla} — AGOTADO\n`;
+
+                } else {
+
+                    mensaje +=
+                        `${producto.nombre}T${talla} ${cantidad}\n`;
+                }
             }
         }
 
