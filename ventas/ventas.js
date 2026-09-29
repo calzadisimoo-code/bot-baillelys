@@ -1000,6 +1000,52 @@ function entradaInventario(texto) {
 
 
 // ==========================================
+// SALIDA MANUAL DE INVENTARIO
+// ==========================================
+
+function salidaInventario(producto, talla, cantidad) {
+
+    inicializar();
+
+    producto = String(producto).toUpperCase().trim();
+    talla = String(talla).trim();
+    cantidad = Number(cantidad);
+
+    if (!producto || !talla || !Number.isFinite(cantidad) || cantidad <= 0) {
+        return {
+            ok: false,
+            mensaje: "Datos inválidos."
+        };
+    }
+
+    const inventario =
+        cargarJSON(archivoInventario);
+
+    if (!inventario[producto]) {
+        inventario[producto] = {};
+    }
+
+    if (inventario[producto][talla] === undefined) {
+        inventario[producto][talla] = 0;
+    }
+
+    inventario[producto][talla] -= cantidad;
+
+    guardarJSON(
+        archivoInventario,
+        inventario
+    );
+
+    return {
+        ok: true,
+        producto,
+        talla,
+        cantidad,
+        stock: inventario[producto][talla]
+    };
+}
+
+// ==========================================
 // CONSULTAR STOCK
 // ==========================================
 
@@ -1452,6 +1498,7 @@ module.exports = {
     registrarVenta,
     completarCosto,
     entradaInventario,
+    salidaInventario,
     obtenerStock,
     obtenerInventarioCompleto,
     obtenerVentasHoyParaEliminar,

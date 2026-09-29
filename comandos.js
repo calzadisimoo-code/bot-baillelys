@@ -640,6 +640,75 @@ La próxima vez ya conoceré este costo.`
     return true;
 }
 
+// ==========================================
+// #SALIDA
+// Restar stock manualmente
+// ==========================================
+
+if (
+    /^#salida\s+[a-z0-9]+t\d+\s+\d+(?:[.,]\d+)?$/i
+        .test(texto.trim())
+) {
+
+    const partes =
+        texto
+            .trim()
+            .replace(/^#salida\s+/i, "")
+            .split(/\s+/);
+
+    const productoTalla =
+        partes[0];
+
+    const cantidad =
+        Number(
+            partes[1].replace(",", ".")
+        );
+
+    const coincidencia =
+        productoTalla.match(
+            /^(.+)t(\d+)$/i
+        );
+
+    if (!coincidencia) {
+        await sock.sendMessage(usuario, {
+            text: "❌ Producto/talla inválido."
+        });
+
+        return true;
+    }
+
+    const producto =
+        coincidencia[1].toUpperCase();
+
+    const talla =
+        coincidencia[2];
+
+    const resultado =
+        ventas.salidaInventario(
+            producto,
+            talla,
+            cantidad
+        );
+
+    if (!resultado.ok) {
+        await sock.sendMessage(usuario, {
+            text: `❌ ${resultado.mensaje}`
+        });
+
+        return true;
+    }
+
+    await sock.sendMessage(usuario, {
+        text:
+            `📤 SALIDA DE INVENTARIO\n\n` +
+            `${resultado.producto}T${resultado.talla}\n` +
+            `Cantidad retirada: ${resultado.cantidad}\n\n` +
+            `📦 Stock actual: ${resultado.stock}`
+    });
+
+    return true;
+}
+
 
 // ==========================================
 // #ENTRADA
