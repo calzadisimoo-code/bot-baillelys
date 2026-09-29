@@ -890,6 +890,7 @@ if (eliminacionesGastos.has(usuario)) {
 
         return true;
     }
+	
 
     const resultado =
         estadisticasVentas.eliminarGasto(
