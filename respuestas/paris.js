@@ -12,7 +12,8 @@ module.exports = function (texto, usuario) {
         texto.includes("tenis paris") ||
         texto.includes("quiero las r1") ||
         texto.includes("zapatillas paris")
-    ) {
+     ||
+        texto.includes("Quiero las paris de 60mil")) {
 
         registrarProducto(usuario);
 
