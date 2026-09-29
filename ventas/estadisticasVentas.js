@@ -193,9 +193,25 @@ function registrarGasto(
             valor
         ].join(",") + "\n";
 
+    let separador = "";
+
+    if (fs.existsSync(archivoGastos)) {
+        const contenidoActual = fs.readFileSync(
+            archivoGastos,
+            "utf8"
+        );
+
+        if (
+            contenidoActual.length > 0 &&
+            !contenidoActual.endsWith("\n")
+        ) {
+            separador = "\n";
+        }
+    }
+
     fs.appendFileSync(
         archivoGastos,
-        linea,
+        separador + linea,
         "utf8"
     );
 
