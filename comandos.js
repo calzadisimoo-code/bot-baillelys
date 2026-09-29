@@ -507,7 +507,7 @@ if (texto === "#direcciones") {
 
     await sock.sendMessage(usuario, {
         text:
-`✅ Camilo Hoy se han enviado ${datos.total} direcciones`
+`Camilo Hoy se han enviado ${datos.total} direcciones ✅`
     });
 
     return true;
