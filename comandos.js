@@ -317,6 +317,7 @@ respuestas/${nombre}.js`
         nombre
     );
 
+
     await sock.sendMessage(usuario, {
         text:
 `➕ AGREGAR ACTIVADOR
