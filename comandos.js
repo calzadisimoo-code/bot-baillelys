@@ -442,29 +442,26 @@ Disponible: ${resultado.stock}`
 
 
 // ==========================================
-// #VENTA
+// VENTA RÁPIDA
 // Ejemplo:
-// #venta PARIST38 ANUNCIO 12
+// #PARIST38 ENVIO 60
 // ==========================================
 
-if (/^#venta\s+/i.test(texto)) {
+if (
+    /^#[a-z0-9]+t\d+\s+\S+\s+\d+(?:[.,]\d+)?$/i
+        .test(texto)
+) {
 
     const textoVenta =
-        texto.replace(
-            /^#venta\s+/i,
-            ""
-        );
+        texto.replace(/^#/, "");
 
     const resultado =
-        ventas.registrarVenta(
-            textoVenta
-        );
+        ventas.registrarVenta(textoVenta);
 
     if (!resultado.ok) {
 
         await sock.sendMessage(usuario, {
-            text:
-                `❌ ${resultado.mensaje}`
+            text: `❌ ${resultado.mensaje}`
         });
 
         return true;
@@ -477,14 +474,11 @@ if (/^#venta\s+/i.test(texto)) {
 
     if (!resultado.costoConocido) {
 
-        costosPendientes.set(
-            usuario,
-            {
-                id: resultado.id,
-                producto: resultado.producto,
-                talla: resultado.talla
-            }
-        );
+        costosPendientes.set(usuario, {
+            id: resultado.id,
+            producto: resultado.producto,
+            talla: resultado.talla
+        });
 
         await sock.sendMessage(usuario, {
             text:
@@ -502,7 +496,7 @@ if (/^#venta\s+/i.test(texto)) {
 ¿Cuál es el costo?
 
 Ejemplo:
-7`
+35`
         });
 
         return true;
