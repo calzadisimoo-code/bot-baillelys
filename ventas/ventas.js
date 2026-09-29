@@ -1079,17 +1079,65 @@ function obtenerStock(texto) {
 // EXPORTAR
 // ==========================================
 
+function obtenerInventarioCompleto() {
+
+    inicializar();
+
+    const inventario =
+        cargarJSON(archivoInventario);
+
+    const productos =
+        Object.keys(inventario)
+            .filter(producto => {
+                return Object.keys(
+                    inventario[producto] || {}
+                ).some(talla => {
+                    return inventario[producto][talla] > 0;
+                });
+            })
+            .sort((a, b) =>
+                a.localeCompare(b)
+            );
+
+    const resultado = [];
+
+    for (const producto of productos) {
+
+        const tallas =
+            Object.keys(
+                inventario[producto]
+            )
+            .filter(talla => {
+                return inventario[producto][talla] > 0;
+            })
+            .sort((a, b) =>
+                Number(a) - Number(b)
+            );
+
+        if (tallas.length === 0) {
+            continue;
+        }
+
+        resultado.push({
+            nombre: producto,
+            tallas
+        });
+    }
+
+    return {
+        ok: true,
+        productos: resultado
+    };
+}
+
+
 module.exports = {
-
     inicializar,
-
     registrarVenta,
-
     completarCosto,
-
     entradaInventario,
-
-    obtenerStock
+    obtenerStock,
+    obtenerInventarioCompleto
 };
 
 

@@ -548,6 +548,53 @@ if (/^#entrada\s+/i.test(texto)) {
 // #stock PARIST38
 // ==========================================
 
+// ==========================================
+// #STOCK
+// Ver inventario completo
+// ==========================================
+
+if (/^#stock$/i.test(texto.trim())) {
+
+    const inventario =
+        ventas.obtenerInventarioCompleto();
+
+    let mensaje =
+        "📦 INVENTARIO\n";
+
+    if (!inventario.ok || inventario.productos.length === 0) {
+
+        mensaje += "\nNo hay inventario registrado.";
+
+    } else {
+
+        for (const producto of inventario.productos) {
+
+            mensaje += "\n";
+
+            for (const talla of producto.tallas) {
+
+                mensaje +=
+                    `${producto.nombre}T${talla}\n`;
+            }
+        }
+
+        mensaje = mensaje.trimEnd();
+    }
+
+    await sock.sendMessage(usuario, {
+        text: mensaje
+    });
+
+    return true;
+}
+
+
+// ==========================================
+// #STOCK REFERENCIA
+// Ejemplo:
+// #stock PARIST38
+// ==========================================
+
 if (/^#stock\s+/i.test(texto)) {
 
     const textoStock =
@@ -562,12 +609,15 @@ if (/^#stock\s+/i.test(texto)) {
         );
 
     await sock.sendMessage(usuario, {
+
         text: resultado.ok
+
             ? `📦 STOCK
 
 Producto: ${resultado.producto}
 Talla: ${resultado.talla}
 Disponible: ${resultado.stock}`
+
             : `❌ ${resultado.mensaje}`
     });
 
