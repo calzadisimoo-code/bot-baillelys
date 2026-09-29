@@ -305,7 +305,7 @@ module.exports = async function comandos(
 // #ventashoy
 // ==========================================
 
-if (/^#ventashoy$/i.test(texto.trim())) {
+if (/^#(?:ventashoy|ventas)$/i.test(texto.trim())) {
 
     const ventas =
         estadisticasVentas.ventasHoy();
@@ -1348,7 +1348,7 @@ Disponible: ${resultado.stock}`
 // ==========================================
 
 if (
-    /^#[a-z0-9]+t\d+\s+\S+\s+\d+(?:[.,]\d+)?$/i
+    /^#[a-z0-9_-]+(?:t\d+)?\s+\S+\s+\d+(?:[.,]\d+)?$/i
         .test(texto)
 ) {
 
