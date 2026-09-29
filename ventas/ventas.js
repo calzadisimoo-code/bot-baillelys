@@ -100,17 +100,28 @@ function interpretarProducto(codigo) {
             .trim()
             .toUpperCase();
 
+    // Producto con talla: AF1BT38
     const match =
         limpio.match(/^(.+)T(\d+)$/);
 
-    if (!match) {
-        return null;
+    if (match) {
+        return {
+            producto: match[1],
+            talla: match[2],
+            tieneTalla: true
+        };
     }
 
-    return {
-        producto: match[1],
-        talla: match[2]
-    };
+    // Producto sin talla: KYROARNICAPLUS
+    if (/^[A-Z0-9_-]+$/.test(limpio)) {
+        return {
+            producto: limpio,
+            talla: "UNICA",
+            tieneTalla: false
+        };
+    }
+
+    return null;
 }
 
 
@@ -353,11 +364,6 @@ function migrarMoneda() {
     );
 }
 
-
-// ==========================================
-// REGISTRAR VENTA
-// ==========================================
-
 function registrarVenta(texto) {
 
     inicializar();
@@ -372,10 +378,10 @@ function registrarVenta(texto) {
         return {
             ok: false,
             mensaje:
-                "Formato: PARIST38 ENVIO 60"
+                "Formato: PARIST38 ENVIO 60\n" +
+                "O: KYROARNICAPLUS ENVIO 50"
         };
     }
-
 
     const datosProducto =
         interpretarProducto(partes[0]);
@@ -385,10 +391,9 @@ function registrarVenta(texto) {
         return {
             ok: false,
             mensaje:
-                "Producto/talla inválido. Ejemplo: PARIST38"
+                "Producto inválido. Ejemplo: PARIST38 o KYROARNICAPLUS"
         };
     }
-
 
     const producto =
         datosProducto.producto;
@@ -396,12 +401,14 @@ function registrarVenta(texto) {
     const talla =
         datosProducto.talla;
 
+    const tieneTalla =
+        datosProducto.tieneTalla;
+
     const canal =
         partes[1].toUpperCase();
 
     const precio =
         normalizarDinero(partes[2]);
-
 
     if (precio === null) {
 
@@ -412,13 +419,11 @@ function registrarVenta(texto) {
         };
     }
 
-
     const productos =
         cargarJSON(archivoProductos);
 
     const inventario =
         cargarJSON(archivoInventario);
-
 
     // ==========================================
     // CREAR PRODUCTO
@@ -436,9 +441,8 @@ function registrarVenta(texto) {
         };
     }
 
-
     // ==========================================
-    // CREAR TALLA
+    // CREAR TALLA / UNICA
     // ==========================================
 
     if (
@@ -452,7 +456,6 @@ function registrarVenta(texto) {
                 costo: 0
             };
     }
-
 
     // ==========================================
     // CREAR CANAL
@@ -472,7 +475,6 @@ function registrarVenta(texto) {
             };
     }
 
-
     // ==========================================
     // INVENTARIO
     // ==========================================
@@ -482,7 +484,6 @@ function registrarVenta(texto) {
         inventario[producto] = {};
     }
 
-
     if (
         inventario[producto][talla] === undefined
     ) {
@@ -490,9 +491,7 @@ function registrarVenta(texto) {
         inventario[producto][talla] = 0;
     }
 
-
     inventario[producto][talla] -= 1;
-
 
     // ==========================================
     // COSTO
@@ -505,8 +504,8 @@ function registrarVenta(texto) {
                 .costo
         ) || 0;
 
-
     // Compatibilidad con datos antiguos
+
     if (costo >= 1000) {
 
         costo =
@@ -517,16 +516,13 @@ function registrarVenta(texto) {
             .costo = costo;
     }
 
-
     const costoConocido =
         costo > 0;
-
 
     const utilidad =
         costoConocido
             ? precio - costo
             : 0;
-
 
     // ==========================================
     // ESTADÍSTICAS PRODUCTO/CANAL
@@ -536,11 +532,9 @@ function registrarVenta(texto) {
         .canales[canal]
         .ventas += 1;
 
-
     productos[producto]
         .canales[canal]
         .ingresos += precio;
-
 
     // ==========================================
     // FECHA Y HORA
@@ -549,12 +543,10 @@ function registrarVenta(texto) {
     const ahora =
         new Date();
 
-
     const fecha =
         ahora.toLocaleDateString(
             "es-CO"
         );
-
 
     const hora =
         ahora.toLocaleTimeString(
@@ -566,10 +558,8 @@ function registrarVenta(texto) {
             }
         );
 
-
     const id =
         Date.now().toString();
-
 
     // ==========================================
     // GUARDAR VENTA
@@ -599,13 +589,11 @@ function registrarVenta(texto) {
 
     ].join(",") + "\n";
 
-
     fs.appendFileSync(
         archivoVentas,
         fila,
         "utf8"
     );
-
 
     // ==========================================
     // GUARDAR
@@ -616,12 +604,10 @@ function registrarVenta(texto) {
         productos
     );
 
-
     guardarJSON(
         archivoInventario,
         inventario
     );
-
 
     // ==========================================
     // RESULTADO
@@ -637,6 +623,8 @@ function registrarVenta(texto) {
 
         talla,
 
+        tieneTalla,
+
         canal,
 
         precio,
@@ -651,7 +639,6 @@ function registrarVenta(texto) {
             inventario[producto][talla]
     };
 }
-
 
 // ==========================================
 // COMPLETAR COSTO
@@ -857,7 +844,6 @@ function completarCosto(
     };
 }
 
-
 function entradaInventario(texto) {
 
     inicializar();
@@ -868,12 +854,14 @@ function entradaInventario(texto) {
             .split(/\s+/);
 
     if (partes.length < 3) {
+
         return {
             ok: false,
             mensaje:
                 "Formato: ENTRADA PARIST38 20\n" +
                 "O: ENTRADA AF1B 1/33 2/34\n" +
-                "O: ENTRADA AF1B 33 34 34 40"
+                "O: ENTRADA AF1B 33 34 34 40\n" +
+                "O: ENTRADA KYROARNICAPLUS 2"
         };
     }
 
@@ -887,28 +875,35 @@ function entradaInventario(texto) {
 
     if (partes.length === 3) {
 
-        const datosProducto =
-            interpretarProducto(partes[1]);
+        const codigo =
+            String(partes[1])
+                .trim()
+                .toUpperCase();
 
         const cantidad =
             Number(partes[2]);
 
         if (
-            datosProducto &&
             Number.isInteger(cantidad) &&
             cantidad > 0
         ) {
 
-            producto =
-                datosProducto.producto;
+            const datosProducto =
+                interpretarProducto(codigo);
 
-            const talla =
-                datosProducto.talla;
+            if (datosProducto) {
 
-            entradas.push({
-                talla,
-                cantidad
-            });
+                producto =
+                    datosProducto.producto;
+
+                entradas.push({
+
+                    talla:
+                        datosProducto.talla,
+
+                    cantidad
+                });
+            }
         }
     }
 
@@ -931,6 +926,7 @@ function entradaInventario(texto) {
             partes.slice(2);
 
         if (!producto || datos.length === 0) {
+
             return {
                 ok: false,
                 mensaje:
@@ -941,6 +937,38 @@ function entradaInventario(texto) {
         const cantidades = {};
 
         for (const dato of datos) {
+
+            // ==========================================
+            // PRODUCTO SIN TALLA
+            //
+            // ENTRADA KYROARNICAPLUS 2
+            // ==========================================
+
+            if (
+                datos.length === 1 &&
+                /^\d+$/.test(dato)
+            ) {
+
+                const cantidad =
+                    Number(dato);
+
+                if (
+                    !Number.isInteger(cantidad) ||
+                    cantidad <= 0
+                ) {
+
+                    return {
+                        ok: false,
+                        mensaje:
+                            `Cantidad inválida: ${dato}`
+                    };
+                }
+
+                cantidades["UNICA"] =
+                    cantidad;
+
+                continue;
+            }
 
             // ==========================================
             // FORMATO CANTIDAD/TALLA
@@ -959,6 +987,7 @@ function entradaInventario(texto) {
                     !Number.isInteger(cantidad) ||
                     cantidad <= 0
                 ) {
+
                     return {
                         ok: false,
                         mensaje:
@@ -1004,8 +1033,11 @@ function entradaInventario(texto) {
         entradas =
             Object.keys(cantidades)
                 .map(talla => ({
+
                     talla,
-                    cantidad: cantidades[talla]
+
+                    cantidad:
+                        cantidades[talla]
                 }));
     }
 
@@ -1013,6 +1045,7 @@ function entradaInventario(texto) {
         !producto ||
         entradas.length === 0
     ) {
+
         return {
             ok: false,
             mensaje:
@@ -1047,6 +1080,7 @@ function entradaInventario(texto) {
     // ==========================================
 
     if (!inventario[producto]) {
+
         inventario[producto] = {};
     }
 
@@ -1123,7 +1157,6 @@ function entradaInventario(texto) {
 // ==========================================
 // SALIDA MANUAL DE INVENTARIO
 // ==========================================
-
 function salidaInventario(texto) {
 
     inicializar();
@@ -1134,12 +1167,14 @@ function salidaInventario(texto) {
             .split(/\s+/);
 
     if (partes.length < 3) {
+
         return {
             ok: false,
             mensaje:
                 "Formato: SALIDA PARIST38 2\n" +
                 "O: SALIDA AF1B 1/33 2/34\n" +
-                "O: SALIDA AF1B 33 34 34 40"
+                "O: SALIDA AF1B 33 34 34 40\n" +
+                "O: SALIDA KYROARNICAPLUS 2"
         };
     }
 
@@ -1149,32 +1184,40 @@ function salidaInventario(texto) {
     // ==========================================
     // FORMA 1
     // SALIDA AF1BT40 2
+    // SALIDA KYROARNICAPLUS 2
     // ==========================================
 
     if (partes.length === 3) {
 
-        const datosProducto =
-            interpretarProducto(partes[1]);
+        const codigo =
+            String(partes[1])
+                .trim()
+                .toUpperCase();
 
         const cantidad =
             Number(partes[2]);
 
         if (
-            datosProducto &&
             Number.isInteger(cantidad) &&
             cantidad > 0
         ) {
 
-            producto =
-                datosProducto.producto;
+            const datosProducto =
+                interpretarProducto(codigo);
 
-            const talla =
-                datosProducto.talla;
+            if (datosProducto) {
 
-            entradas.push({
-                talla,
-                cantidad
-            });
+                producto =
+                    datosProducto.producto;
+
+                entradas.push({
+
+                    talla:
+                        datosProducto.talla,
+
+                    cantidad
+                });
+            }
         }
     }
 
@@ -1193,9 +1236,11 @@ function salidaInventario(texto) {
             partes.slice(2);
 
         if (!producto || datos.length === 0) {
+
             return {
                 ok: false,
-                mensaje: "Formato inválido."
+                mensaje:
+                    "Formato inválido."
             };
         }
 
@@ -1203,7 +1248,41 @@ function salidaInventario(texto) {
 
         for (const dato of datos) {
 
+            // ==========================================
+            // PRODUCTO SIN TALLA
+            // SALIDA KYROARNICAPLUS 2
+            // ==========================================
+
+            if (
+                datos.length === 1 &&
+                /^\d+$/.test(dato)
+            ) {
+
+                const cantidad =
+                    Number(dato);
+
+                if (
+                    !Number.isInteger(cantidad) ||
+                    cantidad <= 0
+                ) {
+
+                    return {
+                        ok: false,
+                        mensaje:
+                            `Cantidad inválida: ${dato}`
+                    };
+                }
+
+                cantidades["UNICA"] =
+                    cantidad;
+
+                continue;
+            }
+
+            // ==========================================
             // FORMATO 2/40
+            // ==========================================
+
             if (/^\d+\/\d+$/.test(dato)) {
 
                 const [cantidadTexto, talla] =
@@ -1216,6 +1295,7 @@ function salidaInventario(texto) {
                     !Number.isInteger(cantidad) ||
                     cantidad <= 0
                 ) {
+
                     return {
                         ok: false,
                         mensaje:
@@ -1232,7 +1312,10 @@ function salidaInventario(texto) {
                 continue;
             }
 
+            // ==========================================
             // FORMATO 40 44 44 40
+            // ==========================================
+
             if (/^\d+$/.test(dato)) {
 
                 const talla = dato;
@@ -1256,8 +1339,11 @@ function salidaInventario(texto) {
         entradas =
             Object.keys(cantidades)
                 .map(talla => ({
+
                     talla,
-                    cantidad: cantidades[talla]
+
+                    cantidad:
+                        cantidades[talla]
                 }));
     }
 
@@ -1265,9 +1351,11 @@ function salidaInventario(texto) {
         !producto ||
         entradas.length === 0
     ) {
+
         return {
             ok: false,
-            mensaje: "Formato inválido."
+            mensaje:
+                "Formato inválido."
         };
     }
 
@@ -1275,11 +1363,12 @@ function salidaInventario(texto) {
         cargarJSON(archivoInventario);
 
     if (!inventario[producto]) {
+
         inventario[producto] = {};
     }
 
     // ==========================================
-    // RESTAR TODAS LAS TALLAS
+    // RESTAR
     // ==========================================
 
     for (const entrada of entradas) {
@@ -1293,6 +1382,7 @@ function salidaInventario(texto) {
         if (
             inventario[producto][talla] === undefined
         ) {
+
             inventario[producto][talla] = 0;
         }
 
@@ -1304,10 +1394,6 @@ function salidaInventario(texto) {
         archivoInventario,
         inventario
     );
-
-    // ==========================================
-    // RESULTADO
-    // ==========================================
 
     return {
 
@@ -1333,60 +1419,48 @@ function obtenerStock(texto) {
 
     inicializar();
 
-
     const partes =
         texto
             .trim()
             .split(/\s+/);
 
-
     if (partes.length !== 2) {
 
         return {
-
             ok: false,
-
             mensaje:
-                "Formato: STOCK PARIST38"
+                "Formato: STOCK PARIST38\n" +
+                "O: STOCK KYROARNICAPLUS"
         };
     }
-
 
     const datosProducto =
         interpretarProducto(
             partes[1]
         );
 
-
     if (!datosProducto) {
 
         return {
-
             ok: false,
-
             mensaje:
-                "Formato: STOCK PARIST38"
+                "Producto inválido."
         };
     }
-
 
     const inventario =
         cargarJSON(
             archivoInventario
         );
 
-
     const producto =
         datosProducto.producto;
-
 
     const talla =
         datosProducto.talla;
 
-
     const stock =
         inventario[producto]?.[talla] ?? 0;
-
 
     return {
 
@@ -1395,6 +1469,9 @@ function obtenerStock(texto) {
         producto,
 
         talla,
+
+        tieneTalla:
+            datosProducto.tieneTalla,
 
         stock
     };

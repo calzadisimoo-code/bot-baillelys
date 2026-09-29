@@ -1220,7 +1220,6 @@ if (/^#entrada\s+/i.test(texto)) {
 // #STOCK
 // Ver inventario completo
 // ==========================================
-
 if (/^#stock$/i.test(texto.trim())) {
 
     const inventario =
@@ -1229,20 +1228,54 @@ if (/^#stock$/i.test(texto.trim())) {
     let mensaje =
         "📦 INVENTARIO\n";
 
-    if (!inventario.ok || inventario.productos.length === 0) {
+    if (
+        !inventario.ok ||
+        inventario.productos.length === 0
+    ) {
 
-        mensaje += "\nNo hay inventario registrado.";
+        mensaje +=
+            "\nNo hay inventario registrado.";
 
     } else {
 
-        for (const producto of inventario.productos) {
+        for (
+            const producto
+            of inventario.productos
+        ) {
 
             mensaje += "\n";
 
-            for (const talla of producto.tallas) {
+            for (
+                const talla
+                of producto.tallas
+            ) {
 
                 const cantidad =
                     producto.stock[talla];
+
+                // ==========================================
+                // PRODUCTO SIN TALLA
+                // ==========================================
+
+                if (talla === "UNICA") {
+
+                    if (cantidad === 0) {
+
+                        mensaje +=
+                            `🔴 ${producto.nombre} — AGOTADO\n`;
+
+                    } else {
+
+                        mensaje +=
+                            `${producto.nombre} ${cantidad}\n`;
+                    }
+
+                    continue;
+                }
+
+                // ==========================================
+                // PRODUCTO CON TALLA
+                // ==========================================
 
                 if (cantidad === 0) {
 
@@ -1257,12 +1290,16 @@ if (/^#stock$/i.test(texto.trim())) {
             }
         }
 
-        mensaje = mensaje.trimEnd();
+        mensaje =
+            mensaje.trimEnd();
     }
 
-    await sock.sendMessage(usuario, {
-        text: mensaje
-    });
+    await sock.sendMessage(
+        usuario,
+        {
+            text: mensaje
+        }
+    );
 
     return true;
 }
