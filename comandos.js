@@ -8,6 +8,7 @@ const {
 
 const fs = require("fs");
 const path = require("path");
+const ventas = require("./ventas/ventas");
 
 const carpetaRespuestas = path.join(
     __dirname,
@@ -295,6 +296,93 @@ module.exports = async function comandos(
     usuario,
     sock
 ) {
+	
+	    // ==========================================
+    // VENTAS E INVENTARIO
+    // ==========================================
+
+    const textoVenta = texto.trim();
+
+    // ------------------------------------------
+    // ENTRADA DE INVENTARIO
+    // Ejemplo:
+    // ENTRADA PARIST38 20
+    // ------------------------------------------
+
+    if (/^ENTRADA\s+/i.test(textoVenta)) {
+
+        const resultado =
+            ventas.entradaInventario(textoVenta);
+
+        await sock.sendMessage(usuario, {
+            text: resultado.ok
+                ? `✅ INVENTARIO ACTUALIZADO
+
+📦 Producto: ${resultado.producto}
+📏 Talla: ${resultado.talla}
+➕ Entrada: ${resultado.cantidad}
+📊 Stock actual: ${resultado.stock}`
+                : `❌ ${resultado.mensaje}`
+        });
+
+        return true;
+    }
+
+
+    // ------------------------------------------
+    // CONSULTAR STOCK
+    // Ejemplo:
+    // STOCK PARIST38
+    // ------------------------------------------
+
+    if (/^STOCK\s+/i.test(textoVenta)) {
+
+        const resultado =
+            ventas.obtenerStock(textoVenta);
+
+        await sock.sendMessage(usuario, {
+            text: resultado.ok
+                ? `📦 STOCK
+
+Producto: ${resultado.producto}
+Talla: ${resultado.talla}
+Disponible: ${resultado.stock}`
+                : `❌ ${resultado.mensaje}`
+        });
+
+        return true;
+    }
+
+
+    // ------------------------------------------
+    // REGISTRAR VENTA
+    // Ejemplo:
+    // PARIST38 ANUNCIO 12
+    // ------------------------------------------
+
+    if (
+        /^[A-Z0-9]+T\d+\s+\S+\s+\d+(?:[.,]\d+)?$/i
+            .test(textoVenta)
+    ) {
+
+        const resultado =
+            ventas.registrarVenta(textoVenta);
+
+        await sock.sendMessage(usuario, {
+            text: resultado.ok
+                ? `✅ VENTA REGISTRADA
+
+👟 Producto: ${resultado.producto}
+📏 Talla: ${resultado.talla}
+📢 Canal: ${resultado.canal}
+
+💰 Venta: $${resultado.precio.toLocaleString("es-CO")}
+📦 Stock: ${resultado.stock}`
+                : `❌ ${resultado.mensaje}`
+        });
+
+        return true;
+    }
 	
 	// ==========================================
 // AGREGAR ACTIVADOR
