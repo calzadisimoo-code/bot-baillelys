@@ -96,57 +96,57 @@ for (const letra of Object.keys(respuestas)) {
         }
 
     }
-// Fase inicial: reparto equilibrado (A, B, C, D, E, F...)
+// Fase inicial: TODAS las variantes deben probarse 3 veces
+// Reparto equilibrado: A → B → C → D → E → F → A → B...
 
 let elegida;
 
-// 1. Probar siempre primero las variantes sin envíos
-
-const sinProbar = letras.filter(
-    l => datos[nombre][l].enviados === 0
+// Buscar variantes que todavía no han completado sus 3 pruebas
+const pendientesPrueba = letras.filter(
+    l => datos[nombre][l].enviados < 3
 );
 
-if (sinProbar.length > 0) {
+if (pendientesPrueba.length > 0) {
 
-    elegida = sinProbar[0];
+    // Elegir primero la variante con menos envíos.
+    // Si hay empate, respeta el orden A, B, C, D, E, F...
+    pendientesPrueba.sort((a, b) => {
 
-} else {
+        const enviadosA = datos[nombre][a].enviados;
+        const enviadosB = datos[nombre][b].enviados;
 
-// Buscar ganador por mejor porcentaje
+        if (enviadosA !== enviadosB) {
+            return enviadosA - enviadosB;
+        }
 
-const ranking = [...letras].sort((a, b) => {
+        return letras.indexOf(a) - letras.indexOf(b);
+    });
 
-    const ea = datos[nombre][a].enviados;
-    const eb = datos[nombre][b].enviados;
-
-    const da = datos[nombre][a].direcciones || 0;
-    const db = datos[nombre][b].direcciones || 0;
-
-const scoreA =
-    ea === 0 ? 0 : da / ea;
-
-const scoreB =
-    eb === 0 ? 0 : db / eb;
-
-return scoreB - scoreA;
-
-});
-
-const ganador = ranking[0];
-
-if (
-    ranking.length > 1 &&
-    Math.random() < 0.05
-) {
-
-    elegida = ranking[1];
+    elegida = pendientesPrueba[0];
 
 } else {
 
-    elegida = ganador;
+    // Todas las variantes ya tienen mínimo 3 envíos.
+    // Ahora se elige la variante con mayor porcentaje.
 
-}
+    const ranking = [...letras].sort((a, b) => {
 
+        const ea = datos[nombre][a].enviados;
+        const eb = datos[nombre][b].enviados;
+
+        const da = datos[nombre][a].direcciones || 0;
+        const db = datos[nombre][b].direcciones || 0;
+
+        const scoreA =
+            ea === 0 ? 0 : da / ea;
+
+        const scoreB =
+            eb === 0 ? 0 : db / eb;
+
+        return scoreB - scoreA;
+    });
+
+    elegida = ranking[0];
 }
 
     datos[nombre][elegida].enviados++;
