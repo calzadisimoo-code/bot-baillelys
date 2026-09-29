@@ -26,7 +26,8 @@ module.exports = function (texto, usuario) {
             texto.includes("importada") ||
             texto.includes("importadas")
         )
-    ) {
+     ||
+        texto.includes("Tienen disponibles las airfoce one blancas originales")) {
 
         registrarProducto(usuario);
 

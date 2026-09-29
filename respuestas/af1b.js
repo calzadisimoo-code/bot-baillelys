@@ -33,7 +33,9 @@ module.exports = function (texto, usuario) {
         texto.includes("air force") ||
         texto.includes("airforce") ||
         texto.includes("force 1") ||
-        texto.includes("af1");
+        texto.includes("af1") ||
+        texto.includes("Quiero las air force blancas de 60mil") ||
+        texto.includes("Y las airfoce one");
 
     if (!mencionaAF1) {
         return null;
