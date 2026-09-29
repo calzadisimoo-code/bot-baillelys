@@ -1464,8 +1464,8 @@ function obtenerInventarioCompleto() {
                     inventario[producto] || {}
                 ).some(talla => {
 
-                    return inventario[producto][talla] !== 0;
-                });
+    return inventario[producto][talla] !== undefined;
+});
             })
             .sort((a, b) => {
 
@@ -1492,8 +1492,8 @@ function obtenerInventarioCompleto() {
             )
             .filter(talla => {
 
-                return inventario[producto][talla] !== 0;
-            })
+    return inventario[producto][talla] !== undefined;
+})
             .sort((a, b) => {
 
                 return Number(a) - Number(b);
