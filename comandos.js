@@ -298,79 +298,85 @@ module.exports = async function comandos(
 ) {
 	
 	    // ==========================================
-    // VENTAS E INVENTARIO
-    // ==========================================
+  
+// ==========================================
+// VENTAS E INVENTARIO
+// ==========================================
 
-    const textoVenta = texto.trim();
+// ------------------------------------------
+// #entrada
+// Ejemplo:
+// #entrada PARIST38 20
+// ------------------------------------------
 
-    // ------------------------------------------
-    // ENTRADA DE INVENTARIO
-    // Ejemplo:
-    // ENTRADA PARIST38 20
-    // ------------------------------------------
+if (/^#entrada\s+/i.test(texto)) {
 
-    if (/^ENTRADA\s+/i.test(textoVenta)) {
+    const textoEntrada = texto
+        .replace(/^#entrada\s+/i, "ENTRADA ");
 
-        const resultado =
-            ventas.entradaInventario(textoVenta);
+    const resultado =
+        ventas.entradaInventario(textoEntrada);
 
-        await sock.sendMessage(usuario, {
-            text: resultado.ok
-                ? `✅ INVENTARIO ACTUALIZADO
+    await sock.sendMessage(usuario, {
+        text: resultado.ok
+            ? `✅ INVENTARIO ACTUALIZADO
 
 📦 Producto: ${resultado.producto}
 📏 Talla: ${resultado.talla}
 ➕ Entrada: ${resultado.cantidad}
 📊 Stock actual: ${resultado.stock}`
-                : `❌ ${resultado.mensaje}`
-        });
+            : `❌ ${resultado.mensaje}`
+    });
 
-        return true;
-    }
+    return true;
+}
 
 
-    // ------------------------------------------
-    // CONSULTAR STOCK
-    // Ejemplo:
-    // STOCK PARIST38
-    // ------------------------------------------
+// ------------------------------------------
+// #stock
+// Ejemplo:
+// #stock PARIST38
+// ------------------------------------------
 
-    if (/^STOCK\s+/i.test(textoVenta)) {
+if (/^#stock\s+/i.test(texto)) {
 
-        const resultado =
-            ventas.obtenerStock(textoVenta);
+    const textoStock = texto
+        .replace(/^#stock\s+/i, "STOCK ");
 
-        await sock.sendMessage(usuario, {
-            text: resultado.ok
-                ? `📦 STOCK
+    const resultado =
+        ventas.obtenerStock(textoStock);
+
+    await sock.sendMessage(usuario, {
+        text: resultado.ok
+            ? `📦 STOCK
 
 Producto: ${resultado.producto}
 Talla: ${resultado.talla}
 Disponible: ${resultado.stock}`
-                : `❌ ${resultado.mensaje}`
-        });
+            : `❌ ${resultado.mensaje}`
+    });
 
-        return true;
-    }
+    return true;
+}
 
 
-    // ------------------------------------------
-    // REGISTRAR VENTA
-    // Ejemplo:
-    // PARIST38 ANUNCIO 12
-    // ------------------------------------------
+// ------------------------------------------
+// #venta
+// Ejemplo:
+// #venta PARIST38 ANUNCIO 12
+// ------------------------------------------
 
-    if (
-        /^[A-Z0-9]+T\d+\s+\S+\s+\d+(?:[.,]\d+)?$/i
-            .test(textoVenta)
-    ) {
+if (/^#venta\s+/i.test(texto)) {
 
-        const resultado =
-            ventas.registrarVenta(textoVenta);
+    const textoVenta = texto
+        .replace(/^#venta\s+/i, "");
 
-        await sock.sendMessage(usuario, {
-            text: resultado.ok
-                ? `✅ VENTA REGISTRADA
+    const resultado =
+        ventas.registrarVenta(textoVenta);
+
+    await sock.sendMessage(usuario, {
+        text: resultado.ok
+            ? `✅ VENTA REGISTRADA
 
 👟 Producto: ${resultado.producto}
 📏 Talla: ${resultado.talla}
@@ -378,12 +384,11 @@ Disponible: ${resultado.stock}`
 
 💰 Venta: $${resultado.precio.toLocaleString("es-CO")}
 📦 Stock: ${resultado.stock}`
-                : `❌ ${resultado.mensaje}`
-        });
+            : `❌ ${resultado.mensaje}`
+    });
 
-        return true;
-    }
-	
+    return true;
+}
 	// ==========================================
 // AGREGAR ACTIVADOR
 // ==========================================
