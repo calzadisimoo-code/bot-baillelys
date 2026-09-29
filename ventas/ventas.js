@@ -1190,13 +1190,272 @@ function obtenerInventarioCompleto() {
     };
 }
 
+// ==========================================
+// VENTAS DE HOY PARA ELIMINAR
+// ==========================================
+
+function obtenerVentasHoyParaEliminar() {
+
+    inicializar();
+
+    if (!fs.existsSync(archivoVentas)) {
+        return [];
+    }
+
+    const contenido =
+        fs.readFileSync(
+            archivoVentas,
+            "utf8"
+        );
+
+    const lineas =
+        contenido.split("\n");
+
+    const hoy =
+        new Date().toLocaleDateString("es-CO");
+
+    const ventasHoy = [];
+
+    for (let i = 1; i < lineas.length; i++) {
+
+        if (!lineas[i].trim()) {
+            continue;
+        }
+
+        const columnas =
+            lineas[i].split(",");
+
+        const id = columnas[0];
+        const fecha = columnas[1];
+        const producto = columnas[3];
+        const talla = columnas[4];
+        const canal = columnas[5];
+        const precio = Number(columnas[6]) || 0;
+        const estado = columnas[9];
+
+        if (fecha !== hoy) {
+            continue;
+        }
+
+        if (
+            estado &&
+            estado.toUpperCase() !== "VENDIDO"
+        ) {
+            continue;
+        }
+
+        ventasHoy.push({
+            id,
+            fecha,
+            producto,
+            talla,
+            canal,
+            precio
+        });
+    }
+
+    return ventasHoy;
+}
+
+
+// ==========================================
+// ELIMINAR VENTA
+// ==========================================
+
+function eliminarVenta(idVenta) {
+
+    inicializar();
+
+    if (!fs.existsSync(archivoVentas)) {
+        return {
+            ok: false,
+            mensaje: "No existe el archivo de ventas."
+        };
+    }
+
+    const contenido =
+        fs.readFileSync(
+            archivoVentas,
+            "utf8"
+        );
+
+    const lineas =
+        contenido.split("\n");
+
+    let ventaEncontrada = null;
+    let indiceVenta = -1;
+
+    for (let i = 1; i < lineas.length; i++) {
+
+        if (!lineas[i].trim()) {
+            continue;
+        }
+
+        const columnas =
+            lineas[i].split(",");
+
+        if (
+            columnas[0] ===
+            String(idVenta)
+        ) {
+
+            ventaEncontrada = {
+                id: columnas[0],
+                fecha: columnas[1],
+                producto: columnas[3],
+                talla: columnas[4],
+                canal: columnas[5],
+                precio: Number(columnas[6]) || 0,
+                costo: Number(columnas[7]) || 0,
+                utilidad: Number(columnas[8]) || 0,
+                estado: columnas[9]
+            };
+
+            indiceVenta = i;
+
+            break;
+        }
+    }
+
+    if (!ventaEncontrada) {
+
+        return {
+            ok: false,
+            mensaje: "Venta no encontrada."
+        };
+    }
+
+    if (
+        ventaEncontrada.estado &&
+        ventaEncontrada.estado.toUpperCase() !== "VENDIDO"
+    ) {
+
+        return {
+            ok: false,
+            mensaje: "Esa venta ya no está activa."
+        };
+    }
+
+
+    // ==========================================
+    // RESTAURAR INVENTARIO
+    // ==========================================
+
+    const inventario =
+        cargarJSON(archivoInventario);
+
+    if (!inventario[ventaEncontrada.producto]) {
+        inventario[ventaEncontrada.producto] = {};
+    }
+
+    if (
+        inventario[
+            ventaEncontrada.producto
+        ][ventaEncontrada.talla] === undefined
+    ) {
+
+        inventario[
+            ventaEncontrada.producto
+        ][ventaEncontrada.talla] = 0;
+    }
+
+    inventario[
+        ventaEncontrada.producto
+    ][ventaEncontrada.talla] += 1;
+
+
+    // ==========================================
+    // CORREGIR ESTADÍSTICAS DEL PRODUCTO/CANAL
+    // ==========================================
+
+    const productos =
+        cargarJSON(archivoProductos);
+
+    const producto =
+        ventaEncontrada.producto;
+
+    const canal =
+        ventaEncontrada.canal;
+
+    if (
+        productos[producto] &&
+        productos[producto].canales &&
+        productos[producto].canales[canal]
+    ) {
+
+        productos[producto]
+            .canales[canal]
+            .ventas = Math.max(
+                0,
+                Number(
+                    productos[producto]
+                        .canales[canal]
+                        .ventas
+                ) - 1
+            );
+
+        productos[producto]
+            .canales[canal]
+            .ingresos = Number(
+                productos[producto]
+                    .canales[canal]
+                    .ingresos
+            ) - ventaEncontrada.precio;
+    }
+
+
+    // ==========================================
+    // ELIMINAR DEL CSV
+    // ==========================================
+
+    lineas.splice(indiceVenta, 1);
+
+    fs.writeFileSync(
+        archivoVentas,
+        lineas.join("\n"),
+        "utf8"
+    );
+
+
+    // ==========================================
+    // GUARDAR CAMBIOS
+    // ==========================================
+
+    guardarJSON(
+        archivoInventario,
+        inventario
+    );
+
+    guardarJSON(
+        archivoProductos,
+        productos
+    );
+
+
+    return {
+        ok: true,
+        id: ventaEncontrada.id,
+        producto: ventaEncontrada.producto,
+        talla: ventaEncontrada.talla,
+        canal: ventaEncontrada.canal,
+        precio: ventaEncontrada.precio,
+        stock:
+            inventario[
+                ventaEncontrada.producto
+            ][ventaEncontrada.talla]
+    };
+}
+
+
 module.exports = {
     inicializar,
     registrarVenta,
     completarCosto,
     entradaInventario,
     obtenerStock,
-    obtenerInventarioCompleto
+    obtenerInventarioCompleto,
+    obtenerVentasHoyParaEliminar,
+    eliminarVenta
 };
 
 

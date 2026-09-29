@@ -441,6 +441,139 @@ if (/^#ventasproductos$/i.test(texto.trim())) {
 // RESPUESTA DE COSTO PENDIENTE
 // ==========================================
 
+// ==========================================
+// #DELETEVENTA
+// Eliminar una venta de hoy
+// ==========================================
+
+if (/^#deleteventa$/i.test(texto.trim())) {
+
+    const ventasHoy =
+        ventas.obtenerVentasHoyParaEliminar();
+
+    if (ventasHoy.length === 0) {
+
+        await sock.sendMessage(usuario, {
+            text:
+                "🗑️ VENTAS DE HOY\n\n" +
+                "No hay ventas para eliminar."
+        });
+
+        return true;
+    }
+
+
+    eliminacionesAB.set(
+        usuario,
+        ventasHoy
+    );
+
+
+    let mensaje =
+        "🗑️ VENTAS DE HOY\n\n";
+
+    ventasHoy.forEach(
+        (venta, indice) => {
+
+            mensaje +=
+                `${indice + 1}. ` +
+                `${venta.producto}T${venta.talla} ` +
+                `${venta.canal} ` +
+                `$${venta.precio.toLocaleString("es-CO")}\n`;
+        }
+    );
+
+    mensaje +=
+        "\nEscribe el número de la venta que quieres eliminar.";
+
+    await sock.sendMessage(usuario, {
+        text: mensaje
+    });
+
+    return true;
+}
+
+
+// ==========================================
+// RESPUESTA DE ELIMINACIÓN
+// ==========================================
+
+if (
+    eliminacionesAB.has(usuario) &&
+    !texto.startsWith("#")
+) {
+
+    const ventasHoy =
+        eliminacionesAB.get(usuario);
+
+    const numero =
+        Number(texto.trim());
+
+    if (
+        !Number.isInteger(numero) ||
+        numero < 1 ||
+        numero > ventasHoy.length
+    ) {
+
+        await sock.sendMessage(usuario, {
+            text:
+                "❌ Número inválido.\n\n" +
+                `Escribe un número entre 1 y ${ventasHoy.length}.`
+        });
+
+        return true;
+    }
+
+
+    const ventaSeleccionada =
+        ventasHoy[numero - 1];
+
+
+    const resultado =
+        ventas.eliminarVenta(
+            ventaSeleccionada.id
+        );
+
+
+    eliminacionesAB.delete(usuario);
+
+
+    // Si esta venta todavía tenía costo pendiente,
+    // también cancelamos esa solicitud.
+    const costoPendiente =
+        costosPendientes.get(usuario);
+
+    if (
+        costoPendiente &&
+        costoPendiente.id === ventaSeleccionada.id
+    ) {
+        costosPendientes.delete(usuario);
+    }
+
+
+    if (!resultado.ok) {
+
+        await sock.sendMessage(usuario, {
+            text:
+                `❌ ${resultado.mensaje}`
+        });
+
+        return true;
+    }
+
+
+    await sock.sendMessage(usuario, {
+        text:
+            `✅ VENTA ${numero} ELIMINADA\n\n` +
+            `👟 ${resultado.producto}T${resultado.talla}\n` +
+            `📢 ${resultado.canal}\n` +
+            `💰 $${resultado.precio.toLocaleString("es-CO")}\n\n` +
+            `📦 Stock restaurado: ${resultado.stock}`
+    });
+
+    return true;
+}
+
 if (
     costosPendientes.has(usuario) &&
     !texto.startsWith("#")
