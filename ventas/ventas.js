@@ -1124,18 +1124,150 @@ function entradaInventario(texto) {
 // SALIDA MANUAL DE INVENTARIO
 // ==========================================
 
-function salidaInventario(producto, talla, cantidad) {
+function salidaInventario(texto) {
 
     inicializar();
 
-    producto = String(producto).toUpperCase().trim();
-    talla = String(talla).trim();
-    cantidad = Number(cantidad);
+    const partes =
+        String(texto)
+            .trim()
+            .split(/\s+/);
 
-    if (!producto || !talla || !Number.isFinite(cantidad) || cantidad <= 0) {
+    if (partes.length < 3) {
         return {
             ok: false,
-            mensaje: "Datos inválidos."
+            mensaje:
+                "Formato: SALIDA PARIST38 2\n" +
+                "O: SALIDA AF1B 1/33 2/34\n" +
+                "O: SALIDA AF1B 33 34 34 40"
+        };
+    }
+
+    let producto;
+    let entradas = [];
+
+    // ==========================================
+    // FORMA 1
+    // SALIDA AF1BT40 2
+    // ==========================================
+
+    if (partes.length === 3) {
+
+        const datosProducto =
+            interpretarProducto(partes[1]);
+
+        const cantidad =
+            Number(partes[2]);
+
+        if (
+            datosProducto &&
+            Number.isInteger(cantidad) &&
+            cantidad > 0
+        ) {
+
+            producto =
+                datosProducto.producto;
+
+            const talla =
+                datosProducto.talla;
+
+            entradas.push({
+                talla,
+                cantidad
+            });
+        }
+    }
+
+    // ==========================================
+    // FORMAS MASIVAS
+    // ==========================================
+
+    if (entradas.length === 0) {
+
+        producto =
+            String(partes[1])
+                .trim()
+                .toUpperCase();
+
+        const datos =
+            partes.slice(2);
+
+        if (!producto || datos.length === 0) {
+            return {
+                ok: false,
+                mensaje: "Formato inválido."
+            };
+        }
+
+        const cantidades = {};
+
+        for (const dato of datos) {
+
+            // FORMATO 2/40
+            if (/^\d+\/\d+$/.test(dato)) {
+
+                const [cantidadTexto, talla] =
+                    dato.split("/");
+
+                const cantidad =
+                    Number(cantidadTexto);
+
+                if (
+                    !Number.isInteger(cantidad) ||
+                    cantidad <= 0
+                ) {
+                    return {
+                        ok: false,
+                        mensaje:
+                            `Cantidad inválida: ${dato}`
+                    };
+                }
+
+                if (!cantidades[talla]) {
+                    cantidades[talla] = 0;
+                }
+
+                cantidades[talla] += cantidad;
+
+                continue;
+            }
+
+            // FORMATO 40 44 44 40
+            if (/^\d+$/.test(dato)) {
+
+                const talla = dato;
+
+                if (!cantidades[talla]) {
+                    cantidades[talla] = 0;
+                }
+
+                cantidades[talla] += 1;
+
+                continue;
+            }
+
+            return {
+                ok: false,
+                mensaje:
+                    `Dato inválido: ${dato}`
+            };
+        }
+
+        entradas =
+            Object.keys(cantidades)
+                .map(talla => ({
+                    talla,
+                    cantidad: cantidades[talla]
+                }));
+    }
+
+    if (
+        !producto ||
+        entradas.length === 0
+    ) {
+        return {
+            ok: false,
+            mensaje: "Formato inválido."
         };
     }
 
@@ -1146,26 +1278,53 @@ function salidaInventario(producto, talla, cantidad) {
         inventario[producto] = {};
     }
 
-    if (inventario[producto][talla] === undefined) {
-        inventario[producto][talla] = 0;
-    }
+    // ==========================================
+    // RESTAR TODAS LAS TALLAS
+    // ==========================================
 
-    inventario[producto][talla] -= cantidad;
+    for (const entrada of entradas) {
+
+        const talla =
+            entrada.talla;
+
+        const cantidad =
+            entrada.cantidad;
+
+        if (
+            inventario[producto][talla] === undefined
+        ) {
+            inventario[producto][talla] = 0;
+        }
+
+        inventario[producto][talla] -=
+            cantidad;
+    }
 
     guardarJSON(
         archivoInventario,
         inventario
     );
 
+    // ==========================================
+    // RESULTADO
+    // ==========================================
+
     return {
+
         ok: true,
+
         producto,
-        talla,
-        cantidad,
-        stock: inventario[producto][talla]
+
+        entradas,
+
+        total:
+            entradas.reduce(
+                (suma, entrada) =>
+                    suma + entrada.cantidad,
+                0
+            )
     };
 }
-
 // ==========================================
 // CONSULTAR STOCK
 // ==========================================

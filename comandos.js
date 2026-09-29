@@ -1067,69 +1067,66 @@ La próxima vez ya conoceré este costo.`
 
 // ==========================================
 // #SALIDA
-// Restar stock manualmente
+// Ejemplos:
+// #salida AF1BT40 2
+// #salida AF1B 1/33 2/34 3/40
+// #salida AF1B 40 44 44 43 40
 // ==========================================
 
-if (
-    /^#salida\s+[a-z0-9]+t\d+\s+\d+(?:[.,]\d+)?$/i
-        .test(texto.trim())
-) {
+if (/^#salida\s+/i.test(texto)) {
 
-    const partes =
-        texto
-            .trim()
-            .replace(/^#salida\s+/i, "")
-            .split(/\s+/);
-
-    const productoTalla =
-        partes[0];
-
-    const cantidad =
-        Number(
-            partes[1].replace(",", ".")
+    const textoSalida =
+        texto.replace(
+            /^#salida\s+/i,
+            "SALIDA "
         );
-
-    const coincidencia =
-        productoTalla.match(
-            /^(.+)t(\d+)$/i
-        );
-
-    if (!coincidencia) {
-        await sock.sendMessage(usuario, {
-            text: "❌ Producto/talla inválido."
-        });
-
-        return true;
-    }
-
-    const producto =
-        coincidencia[1].toUpperCase();
-
-    const talla =
-        coincidencia[2];
 
     const resultado =
         ventas.salidaInventario(
-            producto,
-            talla,
-            cantidad
+            textoSalida
         );
 
     if (!resultado.ok) {
+
         await sock.sendMessage(usuario, {
-            text: `❌ ${resultado.mensaje}`
+            text:
+                `❌ ${resultado.mensaje}`
         });
 
         return true;
     }
 
-    await sock.sendMessage(usuario, {
-        text:
-            `📤 SALIDA DE INVENTARIO\n\n` +
-            `${resultado.producto}T${resultado.talla}\n` +
-            `Cantidad retirada: ${resultado.cantidad}\n\n` +
-            `📦 Stock actual: ${resultado.stock}`
-    });
+    // ==========================================
+    // MOSTRAR SALIDA MASIVA
+    // ==========================================
+
+    if (resultado.entradas) {
+
+        let mensaje =
+            `✅ INVENTARIO ACTUALIZADO\n\n` +
+            `📦 Producto: ${resultado.producto}\n\n`;
+
+        for (const entrada of resultado.entradas) {
+
+            const stockActual =
+                ventas.obtenerStock(
+                    `STOCK ${resultado.producto}T${entrada.talla}`
+                );
+
+            mensaje +=
+                `📏 Talla ${entrada.talla}: -${entrada.cantidad}\n` +
+                `📊 Stock actual: ${stockActual.stock}\n\n`;
+        }
+
+        mensaje +=
+            `➖ Total retirado: ${resultado.total}`;
+
+        await sock.sendMessage(usuario, {
+            text: mensaje
+        });
+
+        return true;
+    }
 
     return true;
 }
