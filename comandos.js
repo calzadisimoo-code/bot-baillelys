@@ -1134,11 +1134,12 @@ if (
     return true;
 }
 
-
 // ==========================================
 // #ENTRADA
-// Ejemplo:
+// Ejemplos:
 // #entrada PARIST38 20
+// #entrada AF1B 1/33 1/34 2/35
+// #entrada AF1B 40 44 44 43 40
 // ==========================================
 
 if (/^#entrada\s+/i.test(texto)) {
@@ -1154,20 +1155,62 @@ if (/^#entrada\s+/i.test(texto)) {
             textoEntrada
         );
 
-    await sock.sendMessage(usuario, {
-        text: resultado.ok
-            ? `✅ INVENTARIO ACTUALIZADO
+    if (!resultado.ok) {
 
-📦 Producto: ${resultado.producto}
-📏 Talla: ${resultado.talla}
-➕ Entrada: ${resultado.cantidad}
-📊 Stock actual: ${resultado.stock}`
-            : `❌ ${resultado.mensaje}`
+        await sock.sendMessage(usuario, {
+            text:
+                `❌ ${resultado.mensaje}`
+        });
+
+        return true;
+    }
+
+    // ==========================================
+    // MOSTRAR ENTRADA MASIVA
+    // ==========================================
+
+    if (resultado.entradas) {
+
+        let mensaje =
+            `✅ INVENTARIO ACTUALIZADO\n\n` +
+            `📦 Producto: ${resultado.producto}\n\n`;
+
+        for (const entrada of resultado.entradas) {
+
+            mensaje +=
+                `📏 Talla ${entrada.talla}: +${entrada.cantidad}\n` +
+                `📊 Stock actual: ${
+                    ventas.obtenerStock(
+                        `STOCK ${resultado.producto}T${entrada.talla}`
+                    ).stock
+                }\n\n`;
+        }
+
+        mensaje +=
+            `➕ Total agregado: ${resultado.total}`;
+
+        await sock.sendMessage(usuario, {
+            text: mensaje
+        });
+
+        return true;
+    }
+
+    // ==========================================
+    // ENTRADA NORMAL
+    // ==========================================
+
+    await sock.sendMessage(usuario, {
+        text:
+            `✅ INVENTARIO ACTUALIZADO\n\n` +
+            `📦 Producto: ${resultado.producto}\n` +
+            `📏 Talla: ${resultado.talla}\n` +
+            `➕ Entrada: ${resultado.cantidad}\n` +
+            `📊 Stock actual: ${resultado.stock}`
     });
 
     return true;
 }
-
 
 // ==========================================
 // #STOCK
