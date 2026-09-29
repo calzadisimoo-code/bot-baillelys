@@ -1086,18 +1086,75 @@ function obtenerInventarioCompleto() {
     const inventario =
         cargarJSON(archivoInventario);
 
+    const ventasPorProducto = {};
+
+    if (fs.existsSync(archivoVentas)) {
+
+        const contenido =
+            fs.readFileSync(
+                archivoVentas,
+                "utf8"
+            );
+
+        const lineas =
+            contenido.split("\n");
+
+        for (let i = 1; i < lineas.length; i++) {
+
+            if (!lineas[i].trim()) {
+                continue;
+            }
+
+            const columnas =
+                lineas[i].split(",");
+
+            const producto =
+                columnas[3];
+
+            const estado =
+                columnas[9];
+
+            if (!producto) {
+                continue;
+            }
+
+            if (
+                estado &&
+                estado.toUpperCase() !== "VENDIDO"
+            ) {
+                continue;
+            }
+
+            ventasPorProducto[producto] =
+                (ventasPorProducto[producto] || 0) + 1;
+        }
+    }
+
     const productos =
         Object.keys(inventario)
             .filter(producto => {
+
                 return Object.keys(
                     inventario[producto] || {}
                 ).some(talla => {
-                    return inventario[producto][talla] > 0;
+
+                    return inventario[producto][talla] !== 0;
                 });
             })
-            .sort((a, b) =>
-                a.localeCompare(b)
-            );
+            .sort((a, b) => {
+
+                const ventasA =
+                    ventasPorProducto[a] || 0;
+
+                const ventasB =
+                    ventasPorProducto[b] || 0;
+
+                if (ventasB !== ventasA) {
+                    return ventasB - ventasA;
+                }
+
+                return a.localeCompare(b);
+            });
 
     const resultado = [];
 
@@ -1108,11 +1165,13 @@ function obtenerInventarioCompleto() {
                 inventario[producto]
             )
             .filter(talla => {
-                return inventario[producto][talla] > 0;
+
+                return inventario[producto][talla] !== 0;
             })
-            .sort((a, b) =>
-                Number(a) - Number(b)
-            );
+            .sort((a, b) => {
+
+                return Number(a) - Number(b);
+            });
 
         if (tallas.length === 0) {
             continue;
@@ -1120,7 +1179,8 @@ function obtenerInventarioCompleto() {
 
         resultado.push({
             nombre: producto,
-            tallas
+            tallas,
+            stock: inventario[producto]
         });
     }
 
@@ -1129,7 +1189,6 @@ function obtenerInventarioCompleto() {
         productos: resultado
     };
 }
-
 
 module.exports = {
     inicializar,

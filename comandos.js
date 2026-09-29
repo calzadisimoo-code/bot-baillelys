@@ -573,8 +573,11 @@ if (/^#stock$/i.test(texto.trim())) {
 
             for (const talla of producto.tallas) {
 
+                const cantidad =
+                    producto.stock[talla];
+
                 mensaje +=
-                    `${producto.nombre}T${talla}\n`;
+                    `${producto.nombre}T${talla} ${cantidad}\n`;
             }
         }
 
