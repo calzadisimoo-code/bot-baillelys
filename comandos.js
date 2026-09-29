@@ -336,12 +336,7 @@ Ejemplo:
 
     await sock.sendMessage(usuario, {
         text: resultado.ok
-            ? `✅ ACTIVADOR AGREGADO CORRECTAMENTE
-
-📦 ${nombre.toUpperCase()}
-
-🔑 Activador:
-texto.includes("${palabra}")`
+            ? `✅ ACTIVADOR AGREGADO CORRECTAMENTE 📦 ${nombre.toUpperCase()}`
             : resultado.mensaje
     });
 
@@ -389,17 +384,9 @@ respuestas/${nombre}.js`
 
     await sock.sendMessage(usuario, {
         text:
-`➕ AGREGAR ACTIVADOR
+`➕${nombre.toUpperCase()}
 
-📦 Producto: ${nombre.toUpperCase()}
-
-¿Qué activador vas a agregar?
-
-Escribe solamente la palabra o frase.
-
-Ejemplo:
-
-120w`
+¿Qué activador vas a agregar?`
     });
 
     return true;
@@ -520,9 +507,7 @@ if (texto === "#direcciones") {
 
     await sock.sendMessage(usuario, {
         text:
-`📦 DIRECCIONES DE HOY
-
-📍 Hoy se han enviado ${datos.total} direcciones.`
+`Camilo Hoy se han enviado ${datos.total} direcciones`
     });
 
     return true;
