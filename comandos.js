@@ -25,6 +25,7 @@ const {
 
 const edicionesAB = new Map();
 const costosPendientes = new Map();
+const eliminacionesGastos = new Map();
 
 // ==========================================
 // DIRECCIONES DEL DÍA
@@ -700,6 +701,223 @@ if (/^#deleteventa$/i.test(texto.trim())) {
     return true;
 }
 
+// ==========================================
+// ELIMINAR GASTO
+// ==========================================
+
+if (/^#deletegasto$/i.test(texto.trim())) {
+
+    const gastos =
+        estadisticasVentas
+            .gastosHoy()
+            .filter(gasto =>
+                gasto.tipo === "GASTO"
+            );
+
+    if (!gastos.length) {
+
+        await sock.sendMessage(usuario, {
+            text:
+                "📭 No hay gastos registrados hoy."
+        });
+
+        return true;
+    }
+
+    eliminacionesGastos.set(
+        usuario,
+        {
+            tipo: "GASTO",
+            gastos
+        }
+    );
+
+    let mensaje =
+        "🗑️ ELIMINAR GASTO\n\n";
+
+    gastos.forEach((gasto, indice) => {
+
+        mensaje +=
+            `${indice + 1}. ${gasto.nombre} - ` +
+            `${estadisticasVentas.dinero(gasto.valor)}\n`;
+    });
+
+    mensaje +=
+        "\nResponde con el número del gasto que quieres eliminar.";
+
+    await sock.sendMessage(usuario, {
+        text: mensaje
+    });
+
+    return true;
+}
+
+
+// ==========================================
+// ELIMINAR ANUNCIO
+// ==========================================
+
+if (/^#deleteanuncio$/i.test(texto.trim())) {
+
+    const gastos =
+        estadisticasVentas
+            .gastosHoy()
+            .filter(gasto =>
+                gasto.tipo === "PUBLICIDAD"
+            );
+
+    if (!gastos.length) {
+
+        await sock.sendMessage(usuario, {
+            text:
+                "📭 No hay anuncios registrados hoy."
+        });
+
+        return true;
+    }
+
+    eliminacionesGastos.set(
+        usuario,
+        {
+            tipo: "PUBLICIDAD",
+            gastos
+        }
+    );
+
+    let mensaje =
+        "🗑️ ELIMINAR ANUNCIO\n\n";
+
+    gastos.forEach((gasto, indice) => {
+
+        mensaje +=
+            `${indice + 1}. ${gasto.nombre} - ` +
+            `${estadisticasVentas.dinero(gasto.valor)}\n`;
+    });
+
+    mensaje +=
+        "\nResponde con el número del anuncio que quieres eliminar.";
+
+    await sock.sendMessage(usuario, {
+        text: mensaje
+    });
+
+    return true;
+}
+
+
+// ==========================================
+// ELIMINAR NÓMINA
+// ==========================================
+
+if (/^#deletenomina$/i.test(texto.trim())) {
+
+    const gastos =
+        estadisticasVentas
+            .gastosHoy()
+            .filter(gasto =>
+                gasto.tipo === "NOMINA"
+            );
+
+    if (!gastos.length) {
+
+        await sock.sendMessage(usuario, {
+            text:
+                "📭 No hay nóminas registradas hoy."
+        });
+
+        return true;
+    }
+
+    eliminacionesGastos.set(
+        usuario,
+        {
+            tipo: "NOMINA",
+            gastos
+        }
+    );
+
+    let mensaje =
+        "🗑️ ELIMINAR NÓMINA\n\n";
+
+    gastos.forEach((gasto, indice) => {
+
+        mensaje +=
+            `${indice + 1}. ${gasto.nombre} - ` +
+            `${estadisticasVentas.dinero(gasto.valor)}\n`;
+    });
+
+    mensaje +=
+        "\nResponde con el número de la nómina que quieres eliminar.";
+
+    await sock.sendMessage(usuario, {
+        text: mensaje
+    });
+
+    return true;
+}
+
+// ==========================================
+// CONFIRMAR ELIMINACIÓN DE GASTO
+// ==========================================
+
+if (eliminacionesGastos.has(usuario)) {
+
+    const numero =
+        Number(texto.trim());
+
+    if (!Number.isInteger(numero)) {
+
+        await sock.sendMessage(usuario, {
+            text:
+                "❌ Responde únicamente con el número del registro."
+        });
+
+        return true;
+    }
+
+    const datos =
+        eliminacionesGastos.get(usuario);
+
+    const gasto =
+        datos.gastos[numero - 1];
+
+    if (!gasto) {
+
+        await sock.sendMessage(usuario, {
+            text:
+                "❌ Ese número no corresponde a ningún registro."
+        });
+
+        return true;
+    }
+
+    const resultado =
+        estadisticasVentas.eliminarGasto(
+            gasto.id,
+            datos.tipo
+        );
+
+    eliminacionesGastos.delete(usuario);
+
+    if (!resultado.ok) {
+
+        await sock.sendMessage(usuario, {
+            text:
+                `❌ ${resultado.mensaje}`
+        });
+
+        return true;
+    }
+
+    await sock.sendMessage(usuario, {
+        text:
+            `✅ REGISTRO ELIMINADO\n\n` +
+            `📌 ${resultado.gasto.nombre}\n` +
+            `💰 ${estadisticasVentas.dinero(resultado.gasto.valor)}`
+    });
+
+    return true;
+}
 
 // ==========================================
 // RESPUESTA DE ELIMINACIÓN

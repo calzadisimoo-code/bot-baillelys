@@ -396,6 +396,93 @@ function gastosAnio() {
 // RESUMEN DE VENTAS
 // ==========================================
 
+// ==========================================
+// ELIMINAR GASTO
+// ==========================================
+
+function eliminarGasto(id, tipo = null) {
+
+    if (!fs.existsSync(archivoGastos)) {
+        return {
+            ok: false,
+            mensaje: "No existe el archivo de gastos."
+        };
+    }
+
+    const contenido =
+        fs.readFileSync(
+            archivoGastos,
+            "utf8"
+        );
+
+    const lineas =
+        contenido
+            .split("\n")
+            .filter(linea => linea.trim());
+
+    if (lineas.length <= 1) {
+        return {
+            ok: false,
+            mensaje: "No hay gastos registrados."
+        };
+    }
+
+    const encabezado =
+        lineas[0];
+
+    const registros =
+        lineas.slice(1);
+
+    const indice =
+        registros.findIndex(linea => {
+
+            const partes =
+                linea.split(",");
+
+            return (
+                partes[0] === String(id) &&
+                (
+                    !tipo ||
+                    partes[3] === tipo
+                )
+            );
+        });
+
+    if (indice === -1) {
+        return {
+            ok: false,
+            mensaje: "No encontré ese gasto."
+        };
+    }
+
+    const partes =
+        registros[indice].split(",");
+
+    const gasto = {
+        id: partes[0],
+        fecha: partes[1],
+        hora: partes[2],
+        tipo: partes[3],
+        nombre: partes[4],
+        valor: Number(partes[5]) || 0
+    };
+
+    registros.splice(indice, 1);
+
+    fs.writeFileSync(
+        archivoGastos,
+        encabezado + "\n" +
+        registros.join("\n") +
+        (registros.length ? "\n" : ""),
+        "utf8"
+    );
+
+    return {
+        ok: true,
+        gasto
+    };
+}
+
 function resumen(ventas) {
 
     const cantidad =
@@ -672,9 +759,10 @@ module.exports = {
     ventasMes,
     ventasAnio,
 
-    gastosHoy,
-    gastosMes,
-    gastosAnio,
+gastosHoy,
+gastosMes,
+gastosAnio,
+eliminarGasto,
 
     resumen,
     resumenGastos,
