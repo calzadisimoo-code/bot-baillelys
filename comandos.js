@@ -925,6 +925,7 @@ if (eliminacionesGastos.has(usuario)) {
 
 if (
     eliminacionesAB.has(usuario) &&
+    !costosPendientes.has(usuario) &&
     !texto.startsWith("#")
 ) {
 
@@ -1336,11 +1337,13 @@ if (
 
     if (!resultado.costoConocido) {
 
-        costosPendientes.set(usuario, {
-            id: resultado.id,
-            producto: resultado.producto,
-            talla: resultado.talla
-        });
+eliminacionesAB.delete(usuario);
+
+costosPendientes.set(usuario, {
+    id: resultado.id,
+    producto: resultado.producto,
+    talla: resultado.talla
+});
 
         await sock.sendMessage(usuario, {
             text:
