@@ -306,20 +306,25 @@ module.exports = async function comandos(
 
 if (/^#ventashoy$/i.test(texto.trim())) {
 
-    const lista =
+    const ventas =
         estadisticasVentas.ventasHoy();
 
+    const gastos =
+        estadisticasVentas.gastosHoy();
+
+    const mensaje =
+        estadisticasVentas.formatoResumenCompleto(
+            "VENTAS DE HOY",
+            ventas,
+            gastos
+        );
+
     await sock.sendMessage(usuario, {
-        text:
-            estadisticasVentas.formatoResumen(
-                "VENTAS DE HOY",
-                lista
-            )
+        text: mensaje
     });
 
     return true;
 }
-
 
 // ==========================================
 // #ventasmes
@@ -327,15 +332,21 @@ if (/^#ventashoy$/i.test(texto.trim())) {
 
 if (/^#ventasmes$/i.test(texto.trim())) {
 
-    const lista =
+    const ventas =
         estadisticasVentas.ventasMes();
 
+    const gastos =
+        estadisticasVentas.gastosMes();
+
+    const mensaje =
+        estadisticasVentas.formatoResumenCompleto(
+            "VENTAS DEL MES",
+            ventas,
+            gastos
+        );
+
     await sock.sendMessage(usuario, {
-        text:
-            estadisticasVentas.formatoResumen(
-                "VENTAS DEL MES",
-                lista
-            )
+        text: mensaje
     });
 
     return true;
@@ -348,15 +359,21 @@ if (/^#ventasmes$/i.test(texto.trim())) {
 
 if (/^#ventasanio$/i.test(texto.trim())) {
 
-    const lista =
+    const ventas =
         estadisticasVentas.ventasAnio();
 
+    const gastos =
+        estadisticasVentas.gastosAnio();
+
+    const mensaje =
+        estadisticasVentas.formatoResumenCompleto(
+            "VENTAS DEL AÑO",
+            ventas,
+            gastos
+        );
+
     await sock.sendMessage(usuario, {
-        text:
-            estadisticasVentas.formatoResumen(
-                "VENTAS DEL AÑO",
-                lista
-            )
+        text: mensaje
     });
 
     return true;
@@ -435,6 +452,196 @@ if (/^#ventasproductos$/i.test(texto.trim())) {
 // ==========================================
 // VENTAS E INVENTARIO
 // ==========================================
+
+// ==========================================
+// #PAGO ANUNCIO
+// ==========================================
+
+if (
+    /^#pago\s+anuncio\s+-?\d+(?:[.,]\d+)?$/i
+        .test(texto.trim())
+) {
+
+    const partes =
+        texto.trim().split(/\s+/);
+
+    const valor =
+        Number(
+            partes[2].replace(",", ".")
+        );
+
+    const resultado =
+        estadisticasVentas.registrarGasto(
+            "PUBLICIDAD",
+            "Anuncio",
+            valor
+        );
+
+    if (!resultado.ok) {
+
+        await sock.sendMessage(usuario, {
+            text: `❌ ${resultado.mensaje}`
+        });
+
+        return true;
+    }
+
+    await sock.sendMessage(usuario, {
+        text:
+            `📢 PUBLICIDAD REGISTRADA\n\n` +
+            `Anuncio: -$${resultado.valor}\n` +
+            `📅 ${resultado.fecha}`
+    });
+
+    return true;
+}
+
+// ==========================================
+// #GASTO
+// ==========================================
+
+if (
+    /^#gasto\s+\S+(?:\s+\S+)*\s+-?\d+(?:[.,]\d+)?$/i
+        .test(texto.trim())
+) {
+
+    const partes =
+        texto.trim().split(/\s+/);
+
+    const valor =
+        Number(
+            partes[partes.length - 1]
+                .replace(",", ".")
+        );
+
+    const nombre =
+        partes
+            .slice(1, -1)
+            .join(" ");
+
+    const resultado =
+        estadisticasVentas.registrarGasto(
+            "GASTO",
+            nombre,
+            valor
+        );
+
+    if (!resultado.ok) {
+
+        await sock.sendMessage(usuario, {
+            text: `❌ ${resultado.mensaje}`
+        });
+
+        return true;
+    }
+
+    await sock.sendMessage(usuario, {
+        text:
+            `💸 GASTO REGISTRADO\n\n` +
+            `${resultado.nombre}: -$${resultado.valor}\n` +
+            `📅 ${resultado.fecha}`
+    });
+
+    return true;
+}
+
+// ==========================================
+// #NOMINA
+// ==========================================
+
+if (
+    /^#nomina\s+\S+(?:\s+\S+)*\s+-?\d+(?:[.,]\d+)?$/i
+        .test(texto.trim())
+) {
+
+    const partes =
+        texto.trim().split(/\s+/);
+
+    const valor =
+        Number(
+            partes[partes.length - 1]
+                .replace(",", ".")
+        );
+
+    const nombre =
+        partes
+            .slice(1, -1)
+            .join(" ");
+
+    const resultado =
+        estadisticasVentas.registrarGasto(
+            "NOMINA",
+            nombre,
+            valor
+        );
+
+    if (!resultado.ok) {
+
+        await sock.sendMessage(usuario, {
+            text: `❌ ${resultado.mensaje}`
+        });
+
+        return true;
+    }
+
+    await sock.sendMessage(usuario, {
+        text:
+            `👤 NÓMINA REGISTRADA\n\n` +
+            `${resultado.nombre}: -$${resultado.valor}\n` +
+            `📅 ${resultado.fecha}`
+    });
+
+    return true;
+}
+
+// ==========================================
+// #GASTOS
+// ==========================================
+
+if (/^#gastos$/i.test(texto.trim())) {
+
+    const hoy =
+        estadisticasVentas.resumenGastos(
+            estadisticasVentas.gastosHoy()
+        );
+
+    const mes =
+        estadisticasVentas.resumenGastos(
+            estadisticasVentas.gastosMes()
+        );
+
+    const anio =
+        estadisticasVentas.resumenGastos(
+            estadisticasVentas.gastosAnio()
+        );
+
+    const mensaje =
+        `📉 GASTOS\n\n` +
+
+        `📅 HOY\n` +
+        `📢 Publicidad: -${estadisticasVentas.dinero(hoy.publicidad)}\n` +
+        `💸 Otros: -${estadisticasVentas.dinero(hoy.otros)}\n` +
+        `👤 Nómina: -${estadisticasVentas.dinero(hoy.nomina)}\n` +
+        `Total: -${estadisticasVentas.dinero(hoy.total)}\n\n` +
+
+        `📆 MES\n` +
+        `📢 Publicidad: -${estadisticasVentas.dinero(mes.publicidad)}\n` +
+        `💸 Otros: -${estadisticasVentas.dinero(mes.otros)}\n` +
+        `👤 Nómina: -${estadisticasVentas.dinero(mes.nomina)}\n` +
+        `Total: -${estadisticasVentas.dinero(mes.total)}\n\n` +
+
+        `📆 AÑO\n` +
+        `📢 Publicidad: -${estadisticasVentas.dinero(anio.publicidad)}\n` +
+        `💸 Otros: -${estadisticasVentas.dinero(anio.otros)}\n` +
+        `👤 Nómina: -${estadisticasVentas.dinero(anio.nomina)}\n` +
+        `Total: -${estadisticasVentas.dinero(anio.total)}`;
+
+    await sock.sendMessage(usuario, {
+        text: mensaje
+    });
+
+    return true;
+}
 
 
 // ==========================================
