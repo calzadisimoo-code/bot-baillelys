@@ -22,6 +22,75 @@ const {
 
 const edicionesAB = new Map();
 
+// ==========================================
+// DIRECCIONES DEL DÍA
+// ==========================================
+
+const archivoDirecciones =
+    path.join(__dirname, "estadisticas", "direccionesHoy.json");
+
+function cargarDireccionesHoy() {
+
+    if (!fs.existsSync(archivoDirecciones)) {
+
+        fs.writeFileSync(
+            archivoDirecciones,
+            JSON.stringify({
+                fecha: new Date().toLocaleDateString("es-CO"),
+                total: 0
+            }, null, 4)
+        );
+    }
+
+    const datos =
+        JSON.parse(
+            fs.readFileSync(
+                archivoDirecciones,
+                "utf8"
+            )
+        );
+
+    const hoy =
+        new Date().toLocaleDateString("es-CO");
+
+    // Si cambió el día, reiniciar automáticamente
+    if (datos.fecha !== hoy) {
+
+        datos.fecha = hoy;
+        datos.total = 0;
+
+        fs.writeFileSync(
+            archivoDirecciones,
+            JSON.stringify(
+                datos,
+                null,
+                4
+            )
+        );
+    }
+
+    return datos;
+}
+
+function sumarDireccionHoy() {
+
+    const datos =
+        cargarDireccionesHoy();
+
+    datos.total++;
+
+    fs.writeFileSync(
+        archivoDirecciones,
+        JSON.stringify(
+            datos,
+            null,
+            4
+        )
+    );
+
+    return datos.total;
+}
+
 function agregarActivadorAlJS(nombre, palabra) {
 
     const archivo = path.join(
@@ -438,6 +507,25 @@ if (texto.startsWith("#resetab")) {
 
     return true;
 
+}
+
+// ==========================================
+// #DIRECCIONES
+// ==========================================
+
+if (texto === "#direcciones") {
+
+    const datos =
+        cargarDireccionesHoy();
+
+    await sock.sendMessage(usuario, {
+        text:
+`📦 DIRECCIONES DE HOY
+
+📍 Hoy se han enviado ${datos.total} direcciones.`
+    });
+
+    return true;
 }
 
     // ... resto del código

@@ -8,6 +8,77 @@ const {
     registrarDireccionAB
 } = require("./estadisticas/ab");
 
+const fs = require("fs");
+const path = require("path");
+
+const archivoDirecciones =
+    path.join(
+        __dirname,
+        "estadisticas",
+        "direccionesHoy.json"
+    );
+
+function cargarDireccionesHoy() {
+
+    if (!fs.existsSync(archivoDirecciones)) {
+
+        fs.writeFileSync(
+            archivoDirecciones,
+            JSON.stringify({
+                fecha: new Date().toLocaleDateString("es-CO"),
+                total: 0
+            }, null, 4)
+        );
+    }
+
+    const datos =
+        JSON.parse(
+            fs.readFileSync(
+                archivoDirecciones,
+                "utf8"
+            )
+        );
+
+    const hoy =
+        new Date().toLocaleDateString("es-CO");
+
+    if (datos.fecha !== hoy) {
+
+        datos.fecha = hoy;
+        datos.total = 0;
+
+        fs.writeFileSync(
+            archivoDirecciones,
+            JSON.stringify(
+                datos,
+                null,
+                4
+            )
+        );
+    }
+
+    return datos;
+}
+
+function sumarDireccionHoy() {
+
+    const datos =
+        cargarDireccionesHoy();
+
+    datos.total++;
+
+    fs.writeFileSync(
+        archivoDirecciones,
+        JSON.stringify(
+            datos,
+            null,
+            4
+        )
+    );
+
+    return datos.total;
+}
+
 const PALABRAS_DIRECCION = [
 
     "calle",
@@ -90,6 +161,7 @@ for (const numero of destinatarios) {
 }
 
 registrarDireccionAB(usuario);
+sumarDireccionHoy();
 
 guardar(usuario, {
 
