@@ -22,6 +22,7 @@ const {
 } = require("./estadisticas/hoy");
 
 const edicionesAB = new Map();
+const costosPendientes = new Map();
 
 // ==========================================
 // DIRECCIONES DEL DÍA
@@ -297,25 +298,100 @@ module.exports = async function comandos(
     sock
 ) {
 	
-	    // ==========================================
-  
 // ==========================================
 // VENTAS E INVENTARIO
 // ==========================================
 
-// ------------------------------------------
-// #entrada
+
+// ==========================================
+// RESPUESTA DE COSTO PENDIENTE
+// ==========================================
+
+if (
+    costosPendientes.has(usuario) &&
+    !texto.startsWith("#")
+) {
+
+    const pendiente =
+        costosPendientes.get(usuario);
+
+    const costoTexto =
+        texto.trim().replace(",", ".");
+
+    const costo =
+        Number(costoTexto);
+
+    if (
+        !Number.isFinite(costo) ||
+        costo <= 0
+    ) {
+
+        await sock.sendMessage(usuario, {
+            text:
+                "❌ Ese costo no es válido.\n\n" +
+                "Escribe solamente el costo.\n\n" +
+                "Ejemplo:\n7"
+        });
+
+        return true;
+    }
+
+    const resultado =
+        ventas.completarCosto(
+            pendiente.id,
+            pendiente.producto,
+            pendiente.talla,
+            costo
+        );
+
+    costosPendientes.delete(usuario);
+
+    if (!resultado.ok) {
+
+        await sock.sendMessage(usuario, {
+            text:
+                `❌ ${resultado.mensaje}`
+        });
+
+        return true;
+    }
+
+    await sock.sendMessage(usuario, {
+        text:
+            `✅ COSTO GUARDADO
+
+👟 Producto: ${resultado.producto}
+📏 Talla: ${resultado.talla}
+
+💰 Venta: $${resultado.precio.toLocaleString("es-CO")}
+💵 Costo: $${resultado.costo.toLocaleString("es-CO")}
+📈 Utilidad: $${resultado.utilidad.toLocaleString("es-CO")}
+
+La próxima vez ya conoceré este costo.`
+    });
+
+    return true;
+}
+
+
+// ==========================================
+// #ENTRADA
 // Ejemplo:
 // #entrada PARIST38 20
-// ------------------------------------------
+// ==========================================
 
 if (/^#entrada\s+/i.test(texto)) {
 
-    const textoEntrada = texto
-        .replace(/^#entrada\s+/i, "ENTRADA ");
+    const textoEntrada =
+        texto.replace(
+            /^#entrada\s+/i,
+            "ENTRADA "
+        );
 
     const resultado =
-        ventas.entradaInventario(textoEntrada);
+        ventas.entradaInventario(
+            textoEntrada
+        );
 
     await sock.sendMessage(usuario, {
         text: resultado.ok
@@ -332,19 +408,24 @@ if (/^#entrada\s+/i.test(texto)) {
 }
 
 
-// ------------------------------------------
-// #stock
+// ==========================================
+// #STOCK
 // Ejemplo:
 // #stock PARIST38
-// ------------------------------------------
+// ==========================================
 
 if (/^#stock\s+/i.test(texto)) {
 
-    const textoStock = texto
-        .replace(/^#stock\s+/i, "STOCK ");
+    const textoStock =
+        texto.replace(
+            /^#stock\s+/i,
+            "STOCK "
+        );
 
     const resultado =
-        ventas.obtenerStock(textoStock);
+        ventas.obtenerStock(
+            textoStock
+        );
 
     await sock.sendMessage(usuario, {
         text: resultado.ok
@@ -360,31 +441,90 @@ Disponible: ${resultado.stock}`
 }
 
 
-// ------------------------------------------
-// #venta
+// ==========================================
+// #VENTA
 // Ejemplo:
 // #venta PARIST38 ANUNCIO 12
-// ------------------------------------------
+// ==========================================
 
 if (/^#venta\s+/i.test(texto)) {
 
-    const textoVenta = texto
-        .replace(/^#venta\s+/i, "");
+    const textoVenta =
+        texto.replace(
+            /^#venta\s+/i,
+            ""
+        );
 
     const resultado =
-        ventas.registrarVenta(textoVenta);
+        ventas.registrarVenta(
+            textoVenta
+        );
 
-    await sock.sendMessage(usuario, {
-        text: resultado.ok
-            ? `✅ VENTA REGISTRADA
+    if (!resultado.ok) {
+
+        await sock.sendMessage(usuario, {
+            text:
+                `❌ ${resultado.mensaje}`
+        });
+
+        return true;
+    }
+
+
+    // ======================================
+    // COSTO DESCONOCIDO
+    // ======================================
+
+    if (!resultado.costoConocido) {
+
+        costosPendientes.set(
+            usuario,
+            {
+                id: resultado.id,
+                producto: resultado.producto,
+                talla: resultado.talla
+            }
+        );
+
+        await sock.sendMessage(usuario, {
+            text:
+                `⚠️ VENTA REGISTRADA
 
 👟 Producto: ${resultado.producto}
 📏 Talla: ${resultado.talla}
 📢 Canal: ${resultado.canal}
 
 💰 Venta: $${resultado.precio.toLocaleString("es-CO")}
+📦 Stock: ${resultado.stock}
+
+❓ No conozco el costo de este producto.
+
+¿Cuál es el costo?
+
+Ejemplo:
+7`
+        });
+
+        return true;
+    }
+
+
+    // ======================================
+    // COSTO YA CONOCIDO
+    // ======================================
+
+    await sock.sendMessage(usuario, {
+        text:
+            `✅ VENTA REGISTRADA
+
+👟 Producto: ${resultado.producto}
+📏 Talla: ${resultado.talla}
+📢 Canal: ${resultado.canal}
+
+💰 Venta: $${resultado.precio.toLocaleString("es-CO")}
+💵 Costo: $${resultado.costo.toLocaleString("es-CO")}
+📈 Utilidad: $${resultado.utilidad.toLocaleString("es-CO")}
 📦 Stock: ${resultado.stock}`
-            : `❌ ${resultado.mensaje}`
     });
 
     return true;

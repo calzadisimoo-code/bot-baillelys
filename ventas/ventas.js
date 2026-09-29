@@ -14,7 +14,9 @@ function asegurarArchivo(archivo, contenido) {
 
 function cargarJSON(archivo) {
     try {
-        return JSON.parse(fs.readFileSync(archivo, "utf8"));
+        return JSON.parse(
+            fs.readFileSync(archivo, "utf8")
+        );
     } catch {
         return {};
     }
@@ -46,12 +48,9 @@ function inicializar() {
 }
 
 function interpretarProducto(codigo) {
-    const limpio = String(codigo).trim().toUpperCase();
-
-    // Ejemplo:
-    // PARIST38
-    // Producto: PARIS
-    // Talla: 38
+    const limpio = String(codigo)
+        .trim()
+        .toUpperCase();
 
     const match = limpio.match(/^(.+)T(\d+)$/);
 
@@ -74,13 +73,17 @@ function normalizarDinero(valor) {
         return null;
     }
 
-    // 12 = $12.000
+    // 65 = $65.000
+    // 7 = $7.000
     // 0.5 = $500
-    // 1 = $1.000
-    // 100 = $100.000
 
     return numero * 1000;
 }
+
+
+// ==========================================
+// REGISTRAR VENTA
+// ==========================================
 
 function registrarVenta(texto) {
     inicializar();
@@ -90,16 +93,17 @@ function registrarVenta(texto) {
     if (partes.length !== 3) {
         return {
             ok: false,
-            mensaje: "Formato: PARIST38 ANUNCIO 12"
+            mensaje: "Formato: #venta PARIST38 ANUNCIO 12"
         };
     }
 
-    const datosProducto = interpretarProducto(partes[0]);
+    const datosProducto =
+        interpretarProducto(partes[0]);
 
     if (!datosProducto) {
         return {
             ok: false,
-            mensaje: "No entendí el producto/talla. Ejemplo: PARIST38"
+            mensaje: "Producto/talla inválido. Ejemplo: PARIST38"
         };
     }
 
@@ -115,10 +119,17 @@ function registrarVenta(texto) {
         };
     }
 
-    const productos = cargarJSON(archivoProductos);
-    const inventario = cargarJSON(archivoInventario);
+    const productos =
+        cargarJSON(archivoProductos);
 
-    // Crear producto automáticamente
+    const inventario =
+        cargarJSON(archivoInventario);
+
+
+    // ==========================================
+    // CREAR PRODUCTO AUTOMÁTICAMENTE
+    // ==========================================
+
     if (!productos[producto]) {
         productos[producto] = {
             nombre: producto,
@@ -127,14 +138,22 @@ function registrarVenta(texto) {
         };
     }
 
-    // Crear talla automáticamente
+
+    // ==========================================
+    // CREAR TALLA AUTOMÁTICAMENTE
+    // ==========================================
+
     if (!productos[producto].tallas[talla]) {
         productos[producto].tallas[talla] = {
             costo: 0
         };
     }
 
-    // Crear canal automáticamente
+
+    // ==========================================
+    // CREAR CANAL AUTOMÁTICAMENTE
+    // ==========================================
+
     if (!productos[producto].canales[canal]) {
         productos[producto].canales[canal] = {
             ventas: 0,
@@ -142,42 +161,77 @@ function registrarVenta(texto) {
         };
     }
 
-    // Crear producto en inventario
+
+    // ==========================================
+    // INVENTARIO
+    // ==========================================
+
     if (!inventario[producto]) {
         inventario[producto] = {};
     }
 
-    // Crear talla en inventario
     if (inventario[producto][talla] === undefined) {
         inventario[producto][talla] = 0;
     }
 
-    // Descontar una unidad
-    const stockAnterior = inventario[producto][talla];
+    inventario[producto][talla] -= 1;
 
-    inventario[producto][talla] = stockAnterior - 1;
 
-    // Obtener costo guardado del producto
+    // ==========================================
+    // COSTO
+    // ==========================================
+
     const costo =
-        Number(productos[producto].tallas[talla].costo) || 0;
+        Number(
+            productos[producto]
+                .tallas[talla]
+                .costo
+        ) || 0;
 
-    const utilidad = precio - costo;
+    const costoConocido = costo > 0;
 
-    // Actualizar estadísticas del canal
-    productos[producto].canales[canal].ventas += 1;
-    productos[producto].canales[canal].ingresos += precio;
+    const utilidad =
+        costoConocido
+            ? precio - costo
+            : 0;
+
+
+    // ==========================================
+    // ESTADÍSTICAS DEL PRODUCTO/CANAL
+    // ==========================================
+
+    productos[producto]
+        .canales[canal]
+        .ventas += 1;
+
+    productos[producto]
+        .canales[canal]
+        .ingresos += precio;
+
+
+    // ==========================================
+    // FECHA Y HORA
+    // ==========================================
 
     const ahora = new Date();
 
-    const fecha = ahora.toLocaleDateString("es-CO");
+    const fecha =
+        ahora.toLocaleDateString("es-CO");
 
-    const hora = ahora.toLocaleTimeString("es-CO", {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit"
-    });
+    const hora =
+        ahora.toLocaleTimeString("es-CO", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
 
-    const id = Date.now().toString();
+    const id =
+        Date.now().toString();
+
+
+    // ==========================================
+    // GUARDAR VENTA
+    // ==========================================
 
     const fila = [
         id,
@@ -198,6 +252,7 @@ function registrarVenta(texto) {
         "utf8"
     );
 
+
     guardarJSON(
         archivoProductos,
         productos
@@ -208,6 +263,7 @@ function registrarVenta(texto) {
         inventario
     );
 
+
     return {
         ok: true,
         id,
@@ -217,14 +273,137 @@ function registrarVenta(texto) {
         precio,
         costo,
         utilidad,
+        costoConocido,
         stock: inventario[producto][talla]
     };
 }
 
+
+// ==========================================
+// GUARDAR COSTO Y COMPLETAR VENTA
+// ==========================================
+
+function completarCosto(idVenta, producto, talla, costoIngresado) {
+    inicializar();
+
+    const costo = normalizarDinero(costoIngresado);
+
+    if (costo === null || costo <= 0) {
+        return {
+            ok: false,
+            mensaje: "El costo debe ser mayor que 0."
+        };
+    }
+
+    const productos =
+        cargarJSON(archivoProductos);
+
+    if (!productos[producto]) {
+        productos[producto] = {
+            nombre: producto,
+            tallas: {},
+            canales: {}
+        };
+    }
+
+    if (!productos[producto].tallas[talla]) {
+        productos[producto].tallas[talla] = {
+            costo: 0
+        };
+    }
+
+    // Guardar costo para futuras ventas
+    productos[producto]
+        .tallas[talla]
+        .costo = costo;
+
+    guardarJSON(
+        archivoProductos,
+        productos
+    );
+
+
+    // ==========================================
+    // ACTUALIZAR LA VENTA EN CSV
+    // ==========================================
+
+    const contenido =
+        fs.readFileSync(
+            archivoVentas,
+            "utf8"
+        );
+
+    const lineas =
+        contenido.split("\n");
+
+    let ventaEncontrada = false;
+    let resultado = null;
+
+    for (let i = 1; i < lineas.length; i++) {
+
+        if (!lineas[i].trim()) {
+            continue;
+        }
+
+        const columnas =
+            lineas[i].split(",");
+
+        if (columnas[0] !== String(idVenta)) {
+            continue;
+        }
+
+        const precio =
+            Number(columnas[6]) || 0;
+
+        const utilidad =
+            precio - costo;
+
+        columnas[7] = costo;
+        columnas[8] = utilidad;
+
+        lineas[i] =
+            columnas.join(",");
+
+        ventaEncontrada = true;
+
+        resultado = {
+            precio,
+            costo,
+            utilidad
+        };
+
+        break;
+    }
+
+    if (ventaEncontrada) {
+
+        fs.writeFileSync(
+            archivoVentas,
+            lineas.join("\n"),
+            "utf8"
+        );
+    }
+
+    return {
+        ok: true,
+        producto,
+        talla,
+        costo,
+        precio: resultado?.precio || 0,
+        utilidad: resultado?.utilidad || 0
+    };
+}
+
+
+// ==========================================
+// ENTRADA INVENTARIO
+// ==========================================
+
 function entradaInventario(texto) {
     inicializar();
 
-    const partes = texto.trim().split(/\s+/);
+    const partes =
+        texto.trim().split(/\s+/);
 
     if (partes.length !== 3) {
         return {
@@ -236,7 +415,8 @@ function entradaInventario(texto) {
     const datosProducto =
         interpretarProducto(partes[1]);
 
-    const cantidad = Number(partes[2]);
+    const cantidad =
+        Number(partes[2]);
 
     if (
         !datosProducto ||
@@ -249,8 +429,11 @@ function entradaInventario(texto) {
         };
     }
 
-    const producto = datosProducto.producto;
-    const talla = datosProducto.talla;
+    const producto =
+        datosProducto.producto;
+
+    const talla =
+        datosProducto.talla;
 
     const productos =
         cargarJSON(archivoProductos);
@@ -258,7 +441,7 @@ function entradaInventario(texto) {
     const inventario =
         cargarJSON(archivoInventario);
 
-    // Crear producto automáticamente
+
     if (!productos[producto]) {
         productos[producto] = {
             nombre: producto,
@@ -267,7 +450,6 @@ function entradaInventario(texto) {
         };
     }
 
-    // Crear talla automáticamente
     if (!productos[producto].tallas[talla]) {
         productos[producto].tallas[talla] = {
             costo: 0
@@ -282,7 +464,6 @@ function entradaInventario(texto) {
         inventario[producto][talla] = 0;
     }
 
-    // Agregar inventario
     inventario[producto][talla] += cantidad;
 
     guardarJSON(
@@ -304,10 +485,16 @@ function entradaInventario(texto) {
     };
 }
 
+
+// ==========================================
+// CONSULTAR STOCK
+// ==========================================
+
 function obtenerStock(texto) {
     inicializar();
 
-    const partes = texto.trim().split(/\s+/);
+    const partes =
+        texto.trim().split(/\s+/);
 
     if (partes.length !== 2) {
         return {
@@ -346,9 +533,11 @@ function obtenerStock(texto) {
     };
 }
 
+
 module.exports = {
     inicializar,
     registrarVenta,
+    completarCosto,
     entradaInventario,
     obtenerStock
 };
