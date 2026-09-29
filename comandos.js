@@ -9,6 +9,8 @@ const {
 const fs = require("fs");
 const path = require("path");
 const ventas = require("./ventas/ventas");
+const estadisticasVentas =
+    require("./ventas/estadisticasVentas");
 
 const carpetaRespuestas = path.join(
     __dirname,
@@ -297,6 +299,138 @@ module.exports = async function comandos(
     usuario,
     sock
 ) {
+	
+	// ==========================================
+// #ventashoy
+// ==========================================
+
+if (/^#ventashoy$/i.test(texto.trim())) {
+
+    const lista =
+        estadisticasVentas.ventasHoy();
+
+    await sock.sendMessage(usuario, {
+        text:
+            estadisticasVentas.formatoResumen(
+                "VENTAS DE HOY",
+                lista
+            )
+    });
+
+    return true;
+}
+
+
+// ==========================================
+// #ventasmes
+// ==========================================
+
+if (/^#ventasmes$/i.test(texto.trim())) {
+
+    const lista =
+        estadisticasVentas.ventasMes();
+
+    await sock.sendMessage(usuario, {
+        text:
+            estadisticasVentas.formatoResumen(
+                "VENTAS DEL MES",
+                lista
+            )
+    });
+
+    return true;
+}
+
+
+// ==========================================
+// #ventasanio
+// ==========================================
+
+if (/^#ventasanio$/i.test(texto.trim())) {
+
+    const lista =
+        estadisticasVentas.ventasAnio();
+
+    await sock.sendMessage(usuario, {
+        text:
+            estadisticasVentas.formatoResumen(
+                "VENTAS DEL AÑO",
+                lista
+            )
+    });
+
+    return true;
+}
+
+// ==========================================
+// #ventascanales
+// ==========================================
+
+if (/^#ventascanales$/i.test(texto.trim())) {
+
+    const lista =
+        estadisticasVentas.ventasAnio();
+
+    const canales =
+        estadisticasVentas.ventasPorCanal(lista);
+
+    let mensaje =
+        "📊 VENTAS POR CANAL\n";
+
+    for (const canal of Object.keys(canales)) {
+
+        const datos = canales[canal];
+
+        mensaje += `
+
+📢 ${canal}
+🧾 Ventas: ${datos.cantidad}
+💰 Ingresos: ${estadisticasVentas.dinero(datos.ingresos)}
+📈 Utilidad: ${estadisticasVentas.dinero(datos.utilidad)}`;
+    }
+
+    await sock.sendMessage(usuario, {
+        text: mensaje
+    });
+
+    return true;
+}
+
+
+// ==========================================
+// #ventasproductos
+// ==========================================
+
+if (/^#ventasproductos$/i.test(texto.trim())) {
+
+    const lista =
+        estadisticasVentas.ventasAnio();
+
+    const productos =
+        estadisticasVentas.ventasPorProducto(lista);
+
+    let mensaje =
+        "📦 VENTAS POR PRODUCTO\n";
+
+    for (const producto of Object.keys(productos)) {
+
+        const datos =
+            productos[producto];
+
+        mensaje += `
+
+👟 ${producto}
+🧾 Ventas: ${datos.cantidad}
+💰 Ingresos: ${estadisticasVentas.dinero(datos.ingresos)}
+📈 Utilidad: ${estadisticasVentas.dinero(datos.utilidad)}`;
+    }
+
+    await sock.sendMessage(usuario, {
+        text: mensaje
+    });
+
+    return true;
+}
 	
 // ==========================================
 // VENTAS E INVENTARIO
