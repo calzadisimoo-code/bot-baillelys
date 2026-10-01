@@ -7,6 +7,9 @@ const archivoVentas =
 const archivoGastos =
     path.join(__dirname, "gastos.csv");
 
+const archivoDomicilios =
+    path.join(__dirname, "domicilios.csv");
+
 
 // ==========================================
 // CARGAR VENTAS
@@ -391,6 +394,223 @@ function gastosAnio() {
     });
 }
 
+// ==========================================
+// DOMICILIOS
+// ==========================================
+
+function cargarDomicilios() {
+
+    if (!fs.existsSync(archivoDomicilios)) {
+
+        fs.writeFileSync(
+            archivoDomicilios,
+            "id,fecha,hora,valor\n",
+            "utf8"
+        );
+
+        return [];
+    }
+
+    const contenido =
+        fs.readFileSync(
+            archivoDomicilios,
+            "utf8"
+        ).trim();
+
+    if (!contenido) {
+        return [];
+    }
+
+    const lineas =
+        contenido.split("\n");
+
+    lineas.shift();
+
+    return lineas
+        .filter(linea => linea.trim())
+        .map(linea => {
+
+            const partes =
+                linea.split(",");
+
+            return {
+                id: partes[0],
+                fecha: partes[1],
+                hora: partes[2],
+                valor: Number(partes[3]) || 0
+            };
+        });
+}
+
+
+function registrarDomicilio(valor) {
+
+    valor =
+        Math.abs(
+            Number(valor)
+        );
+
+    if (
+        !Number.isFinite(valor) ||
+        valor <= 0
+    ) {
+
+        return {
+            ok: false,
+            mensaje: "Valor inválido."
+        };
+    }
+
+    if (!fs.existsSync(archivoDomicilios)) {
+
+        fs.writeFileSync(
+            archivoDomicilios,
+            "id,fecha,hora,valor\n",
+            "utf8"
+        );
+    }
+
+    const id =
+        Date.now().toString();
+
+    const ahora =
+        new Date();
+
+    const fecha =
+        ahora.toLocaleDateString("es-CO");
+
+    const hora =
+        ahora.toLocaleTimeString(
+            "es-CO",
+            {
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            }
+        );
+
+    const linea =
+        [
+            id,
+            fecha,
+            hora,
+            valor
+        ].join(",") + "\n";
+
+    let separador = "";
+
+    const contenidoActual =
+        fs.readFileSync(
+            archivoDomicilios,
+            "utf8"
+        );
+
+    if (
+        contenidoActual.length > 0 &&
+        !contenidoActual.endsWith("\n")
+    ) {
+        separador = "\n";
+    }
+
+    fs.appendFileSync(
+        archivoDomicilios,
+        separador + linea,
+        "utf8"
+    );
+
+    return {
+        ok: true,
+        id,
+        fecha,
+        hora,
+        valor
+    };
+}
+
+
+function domiciliosHoy() {
+
+    const domicilios =
+        cargarDomicilios();
+
+    const hoy =
+        fechaColombia();
+
+    return domicilios.filter(
+        domicilio =>
+            domicilio.fecha === hoy
+    );
+}
+
+
+function domiciliosMes() {
+
+    const domicilios =
+        cargarDomicilios();
+
+    const ahora =
+        new Date();
+
+    const mes =
+        ahora.getMonth();
+
+    const año =
+        ahora.getFullYear();
+
+    return domicilios.filter(domicilio => {
+
+        const [
+            dia,
+            mesDomicilio,
+            añoDomicilio
+        ] =
+            domicilio.fecha
+                .split("/")
+                .map(Number);
+
+        return (
+            mesDomicilio - 1 === mes &&
+            añoDomicilio === año
+        );
+    });
+}
+
+
+function domiciliosAnio() {
+
+    const domicilios =
+        cargarDomicilios();
+
+    const año =
+        new Date()
+            .getFullYear();
+
+    return domicilios.filter(domicilio => {
+
+        const partes =
+            domicilio.fecha.split("/");
+
+        return (
+            Number(partes[2]) === año
+        );
+    });
+}
+
+
+function resumenDomicilios(domicilios) {
+
+    const total =
+        domicilios.reduce(
+            (total, domicilio) =>
+                total + domicilio.valor,
+            0
+        );
+
+    return {
+        total
+    };
+}
+
 
 // ==========================================
 // RESUMEN DE VENTAS
@@ -582,7 +802,8 @@ function resumenGastos(gastos) {
 
 function resumenCompleto(
     ventas,
-    gastos
+    gastos,
+    domicilios
 ) {
 
     const datosVentas =
@@ -591,13 +812,18 @@ function resumenCompleto(
     const datosGastos =
         resumenGastos(gastos);
 
+    const datosDomicilios =
+        resumenDomicilios(domicilios);
+
     const utilidadNeta =
-        datosVentas.utilidad -
+        datosVentas.utilidad +
+        datosDomicilios.total -
         datosGastos.total;
 
     return {
         ventas: datosVentas,
         gastos: datosGastos,
+        domicilios: datosDomicilios,
         utilidadNeta
     };
 }
@@ -714,13 +940,15 @@ function formatoResumen(
 function formatoResumenCompleto(
     titulo,
     ventas,
-    gastos
+    gastos,
+    domicilios
 ) {
 
     const datos =
         resumenCompleto(
             ventas,
-            gastos
+            gastos,
+            domicilios
         );
 
     return `📊 ${titulo}
@@ -730,6 +958,8 @@ function formatoResumenCompleto(
 💰 Ingresos: ${dinero(datos.ventas.ingresos)}
 💵 Costos: ${dinero(datos.ventas.costos)}
 📈 Utilidad ventas: ${dinero(datos.ventas.utilidad)}
+
+🚴 Domicilios: +${dinero(datos.domicilios.total)}
 
 📉 GASTOS
 
@@ -741,7 +971,6 @@ function formatoResumenCompleto(
 
 💰 UTILIDAD NETA: ${dinero(datos.utilidadNeta)}`;
 }
-
 
 // ==========================================
 // EXPORTAR
@@ -762,6 +991,12 @@ module.exports = {
 gastosHoy,
 gastosMes,
 gastosAnio,
+cargarDomicilios,
+registrarDomicilio,
+domiciliosHoy,
+domiciliosMes,
+domiciliosAnio,
+resumenDomicilios,
 eliminarGasto,
 
     resumen,
