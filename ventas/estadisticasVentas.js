@@ -313,6 +313,34 @@ function ventasAnio() {
     });
 }
 
+function ventasPorMes(mes, año = null) {
+
+    const ventas =
+        cargarVentas();
+
+    const añoConsulta =
+        año || new Date().getFullYear();
+
+    return ventas.filter(venta => {
+
+        const partes =
+            venta.fecha.split("/");
+
+        const mesVenta =
+            Number(partes[1]);
+
+        const añoVenta =
+            Number(partes[2]);
+
+        return (
+            mesVenta === mes &&
+            añoVenta === añoConsulta &&
+            (!venta.estado ||
+             venta.estado.toUpperCase() === "VENDIDO")
+        );
+    });
+}
+
 
 // ==========================================
 // GASTOS DE HOY
@@ -390,6 +418,32 @@ function gastosAnio() {
 
         return (
             Number(partes[2]) === año
+        );
+    });
+}
+
+function gastosPorMes(mes, año = null) {
+
+    const gastos =
+        cargarGastos();
+
+    const añoConsulta =
+        año || new Date().getFullYear();
+
+    return gastos.filter(gasto => {
+
+        const partes =
+            gasto.fecha.split("/");
+
+        const mesGasto =
+            Number(partes[1]);
+
+        const añoGasto =
+            Number(partes[2]);
+
+        return (
+            mesGasto === mes &&
+            añoGasto === añoConsulta
         );
     });
 }
@@ -592,6 +646,32 @@ function domiciliosAnio() {
 
         return (
             Number(partes[2]) === año
+        );
+    });
+}
+
+function domiciliosPorMes(mes, año = null) {
+
+    const domicilios =
+        cargarDomicilios();
+
+    const añoConsulta =
+        año || new Date().getFullYear();
+
+    return domicilios.filter(domicilio => {
+
+        const partes =
+            domicilio.fecha.split("/");
+
+        const mesDomicilio =
+            Number(partes[1]);
+
+        const añoDomicilio =
+            Number(partes[2]);
+
+        return (
+            mesDomicilio === mes &&
+            añoDomicilio === añoConsulta
         );
     });
 }
@@ -987,6 +1067,10 @@ module.exports = {
     ventasHoy,
     ventasMes,
     ventasAnio,
+	
+	ventasPorMes,
+gastosPorMes,
+domiciliosPorMes,
  
 gastosHoy,
 gastosMes,

@@ -390,6 +390,80 @@ if (/^#ventasanio$/i.test(texto.trim())) {
 
     return true;
 }
+
+// ==========================================
+// #VENTAS POR MES
+// Ejemplos:
+// #ventasseptiembre
+// #ventasmesseptiembre
+// ==========================================
+
+const mesesVentas = {
+    enero: 1,
+    febrero: 2,
+    marzo: 3,
+    abril: 4,
+    mayo: 5,
+    junio: 6,
+    julio: 7,
+    agosto: 8,
+    septiembre: 9,
+    octubre: 10,
+    noviembre: 11,
+    diciembre: 12
+};
+
+const matchVentasMes =
+    texto.trim().match(
+        /^#ventas(?:mes)?(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)$/i
+    );
+
+if (matchVentasMes) {
+
+    const nombreMes =
+        matchVentasMes[1].toLowerCase();
+
+    const numeroMes =
+        mesesVentas[nombreMes];
+
+    const año =
+        new Date().getFullYear();
+
+    const listaVentas =
+        estadisticasVentas.ventasPorMes(
+            numeroMes,
+            año
+        );
+
+    const listaGastos =
+        estadisticasVentas.gastosPorMes(
+            numeroMes,
+            año
+        );
+
+    const listaDomicilios =
+        estadisticasVentas.domiciliosPorMes(
+            numeroMes,
+            año
+        );
+
+    const titulo =
+        `VENTAS DE ${nombreMes.toUpperCase()} ${año}`;
+
+    const mensaje =
+        estadisticasVentas.formatoResumenCompleto(
+            titulo,
+            listaVentas,
+            listaGastos,
+            listaDomicilios
+        );
+
+    await sock.sendMessage(usuario, {
+        text: mensaje
+    });
+
+    return true;
+}
 // ==========================================
 // #ventascanales
 // ==========================================
