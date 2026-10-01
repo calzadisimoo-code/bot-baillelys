@@ -301,7 +301,7 @@ module.exports = async function comandos(
     sock
 ) {
 	
-	// ==========================================
+// ==========================================
 // #ventashoy
 // ==========================================
 
@@ -313,11 +313,15 @@ if (/^#(?:ventashoy|ventas)$/i.test(texto.trim())) {
     const gastos =
         estadisticasVentas.gastosHoy();
 
+    const domicilios =
+        estadisticasVentas.domiciliosHoy();
+
     const mensaje =
         estadisticasVentas.formatoResumenCompleto(
             "VENTAS DE HOY",
             ventas,
-            gastos
+            gastos,
+            domicilios
         );
 
     await sock.sendMessage(usuario, {
@@ -339,11 +343,15 @@ if (/^#ventasmes$/i.test(texto.trim())) {
     const gastos =
         estadisticasVentas.gastosMes();
 
+    const domicilios =
+        estadisticasVentas.domiciliosMes();
+
     const mensaje =
         estadisticasVentas.formatoResumenCompleto(
             "VENTAS DEL MES",
             ventas,
-            gastos
+            gastos,
+            domicilios
         );
 
     await sock.sendMessage(usuario, {
@@ -352,7 +360,6 @@ if (/^#ventasmes$/i.test(texto.trim())) {
 
     return true;
 }
-
 
 // ==========================================
 // #ventasanio
@@ -366,11 +373,15 @@ if (/^#ventasanio$/i.test(texto.trim())) {
     const gastos =
         estadisticasVentas.gastosAnio();
 
+    const domicilios =
+        estadisticasVentas.domiciliosAnio();
+
     const mensaje =
         estadisticasVentas.formatoResumenCompleto(
             "VENTAS DEL AÑO",
             ventas,
-            gastos
+            gastos,
+            domicilios
         );
 
     await sock.sendMessage(usuario, {
@@ -379,7 +390,6 @@ if (/^#ventasanio$/i.test(texto.trim())) {
 
     return true;
 }
-
 // ==========================================
 // #ventascanales
 // ==========================================
@@ -644,6 +654,120 @@ if (/^#gastos$/i.test(texto.trim())) {
     return true;
 }
 
+
+
+// ==========================================
+// #DOMICILIO
+// ==========================================
+
+if (
+    /^#domicilio\s+-?\d+(?:[.,]\d+)?$/i
+        .test(texto.trim())
+) {
+
+    const partes =
+        texto.trim().split(/\s+/);
+
+    const valor =
+        Number(
+            partes[1].replace(",", ".")
+        );
+
+    const resultado =
+        estadisticasVentas.registrarDomicilio(
+            valor
+        );
+
+    if (!resultado.ok) {
+
+        await sock.sendMessage(usuario, {
+            text: `❌ ${resultado.mensaje}`
+        });
+
+        return true;
+    }
+
+    await sock.sendMessage(usuario, {
+        text:
+            `🚴 DOMICILIO REGISTRADO\n\n` +
+            `💰 +${estadisticasVentas.dinero(resultado.valor)}\n` +
+            `📅 ${resultado.fecha}`
+    });
+
+    return true;
+}
+
+
+// ==========================================
+// #DOMICILIOS
+// ==========================================
+
+if (/^#domicilios$/i.test(texto.trim())) {
+
+    const domicilios =
+        estadisticasVentas.domiciliosHoy();
+
+    const resumen =
+        estadisticasVentas.resumenDomicilios(
+            domicilios
+        );
+
+    await sock.sendMessage(usuario, {
+        text:
+            `🚴 DOMICILIOS DE HOY\n\n` +
+            `💰 Total: +${estadisticasVentas.dinero(resumen.total)}`
+    });
+
+    return true;
+}
+
+
+// ==========================================
+// #DOMICILIOSMES
+// ==========================================
+
+if (/^#domiciliosmes$/i.test(texto.trim())) {
+
+    const domicilios =
+        estadisticasVentas.domiciliosMes();
+
+    const resumen =
+        estadisticasVentas.resumenDomicilios(
+            domicilios
+        );
+
+    await sock.sendMessage(usuario, {
+        text:
+            `🚴 DOMICILIOS DEL MES\n\n` +
+            `💰 Total: +${estadisticasVentas.dinero(resumen.total)}`
+    });
+
+    return true;
+}
+
+
+// ==========================================
+// #DOMICILIOSANIO
+// ==========================================
+
+if (/^#domiciliosanio$/i.test(texto.trim())) {
+
+    const domicilios =
+        estadisticasVentas.domiciliosAnio();
+
+    const resumen =
+        estadisticasVentas.resumenDomicilios(
+            domicilios
+        );
+
+    await sock.sendMessage(usuario, {
+        text:
+            `🚴 DOMICILIOS DEL AÑO\n\n` +
+            `💰 Total: +${estadisticasVentas.dinero(resumen.total)}`
+    });
+
+    return true;
+}
 
 // ==========================================
 // RESPUESTA DE COSTO PENDIENTE
