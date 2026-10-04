@@ -279,6 +279,139 @@ else if (
 
 texto = texto.trim();
 
+// ======================================================
+// COMANDO: #addwebcatalogo
+// ======================================================
+if (texto.toLowerCase().startsWith("#addwebcatalogo")) {
+    try {
+        const lineas = texto
+            .split("\n")
+            .map(l => l.trim())
+            .filter(Boolean);
+
+        if (!msg.message.imageMessage) {
+            await sock.sendMessage(usuario, {
+                text: "⚠️ Para agregar un producto al catálogo debes enviar una FOTO con el siguiente formato:\n\n#addwebcatalogo\nNombre del producto\nPrecio"
+            });
+            continue;
+        }
+
+        if (lineas.length < 3) {
+            await sock.sendMessage(usuario, {
+                text: "⚠️ Formato incorrecto.\n\nDebes enviar:\n\n#addwebcatalogo\nNombre del producto\nPrecio"
+            });
+            continue;
+        }
+
+        const nombreProducto = lineas[1];
+        const precioProducto = lineas[2];
+
+        const precioNumero = precioProducto.replace(/[^\d]/g, "");
+
+        if (!precioNumero) {
+            await sock.sendMessage(usuario, {
+                text: "⚠️ El precio no es válido."
+            });
+            continue;
+        }
+
+        const buffer = await downloadMediaMessage(
+            msg,
+            "buffer",
+            {},
+            {
+                logger: console
+            }
+        );
+
+        const carpetaImg = path.join(__dirname, "WEB CATALOGO", "img");
+
+        if (!fs.existsSync(carpetaImg)) {
+            fs.mkdirSync(carpetaImg, { recursive: true });
+        }
+
+        const nombreArchivo =
+            nombreProducto
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/^-|-$/g, "") +
+            "-" +
+            Date.now() +
+            ".jpeg";
+
+        const rutaImagen = path.join(carpetaImg, nombreArchivo);
+
+        fs.writeFileSync(rutaImagen, buffer);
+
+        const rutaIndex = path.join(__dirname, "WEB CATALOGO", "index.html");
+
+        let html = fs.readFileSync(rutaIndex, "utf8");
+
+        const nuevoProducto = `
+<div class="product-card" id="${Date.now()}" data-category="todos">
+    <h2>${nombreProducto}</h2>
+
+    <div class="imgContainer">
+        <img src="img/${nombreArchivo}" alt="${nombreProducto}">
+    </div>
+
+    <div class="product-info">
+        <p class="price">$${Number(precioNumero).toLocaleString("es-CO")}</p>
+        <button class="productsButton">AGREGAR A MI PEDIDO</button>
+    </div>
+</div>
+`;
+
+        const posicion = html.lastIndexOf("</main>");
+
+        if (posicion === -1) {
+            throw new Error("No se encontró </main> en index.html");
+        }
+
+        html =
+            html.slice(0, posicion) +
+            nuevoProducto +
+            html.slice(posicion);
+
+        fs.writeFileSync(rutaIndex, html, "utf8");
+
+        // Copiar catálogo actualizado al directorio servido por Nginx
+        const destinoWeb = "/var/www/catalogo";
+
+        fs.copyFileSync(
+            rutaIndex,
+            path.join(destinoWeb, "index.html")
+        );
+
+        fs.copyFileSync(
+            rutaImagen,
+            path.join(destinoWeb, "img", nombreArchivo)
+        );
+
+        await sock.sendMessage(usuario, {
+            text:
+                "✅ PRODUCTO AGREGADO AL CATÁLOGO\n\n" +
+                `👟 Producto: ${nombreProducto}\n` +
+                `💰 Precio: $${Number(precioNumero).toLocaleString("es-CO")}\n` +
+                `🖼️ Imagen: ${nombreArchivo}\n\n` +
+                "🌐 El catálogo ya fue actualizado."
+        });
+
+        continue;
+
+    } catch (error) {
+        console.error("❌ Error en #addwebcatalogo:", error);
+
+        await sock.sendMessage(usuario, {
+            text: "❌ No pude agregar el producto al catálogo.\n\nRevisa los logs del bot."
+        });
+
+        continue;
+    }
+}
+
 // AGREGAR PRODUCTO AL CATÁLOGO WEB
 if (texto.toLowerCase().startsWith("#addwebbcatalogo")) {
 
