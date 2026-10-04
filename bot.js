@@ -37,7 +37,8 @@ const {
     default: makeWASocket,
     DisconnectReason,
     fetchLatestBaileysVersion,
-    useMultiFileAuthState
+    useMultiFileAuthState,
+    downloadMediaMessage
 } = require("@whiskeysockets/baileys");
 
 const {
@@ -242,14 +243,33 @@ guardarContacto(
 
                 }
 
-                else if (
-                    msg.message.extendedTextMessage?.text
-                ) {
+else if (
+    msg.message.extendedTextMessage?.text
+) {
 
-                    texto =
-                        msg.message.extendedTextMessage.text;
+    texto =
+        msg.message.extendedTextMessage.text;
 
-                }
+}
+
+
+else if (
+    msg.message.imageMessage?.caption
+) {
+
+    texto =
+        msg.message.imageMessage.caption;
+
+}
+
+else if (
+    msg.message.imageMessage?.caption
+) {
+
+    texto =
+        msg.message.imageMessage.caption;
+
+}
 
                 else {
 
@@ -258,6 +278,273 @@ guardarContacto(
                 }
 
 texto = texto.trim();
+
+// AGREGAR PRODUCTO AL CATÁLOGO WEB
+if (texto.toLowerCase().startsWith("#addwebbcatalogo")) {
+
+    try {
+
+        const lineas = texto
+            .split("\n")
+            .map(linea => linea.trim())
+            .filter(Boolean);
+
+        if (lineas.length < 3) {
+            await sock.sendMessage(usuario, {
+                text: "❌ Formato incorrecto.\n\nEnvía una foto con:\n#addwebbcatalogo\nNombre del producto\nPrecio"
+            });
+            continue;
+        }
+
+        const nombreProducto = lineas[1];
+        const precioProducto = lineas[2];
+
+        if (!msg.message.imageMessage) {
+            await sock.sendMessage(usuario, {
+                text: "❌ Debes enviar la foto junto con el comando."
+            });
+            continue;
+        }
+
+        const catalogo = path.join(__dirname, "WEB CATALOGO");
+        const carpetaImagenes = path.join(catalogo, "img");
+        const indexCatalogo = path.join(catalogo, "index.html");
+
+        if (!fs.existsSync(carpetaImagenes)) {
+            fs.mkdirSync(carpetaImagenes, { recursive: true });
+        }
+
+        let html = fs.readFileSync(indexCatalogo, "utf8");
+
+        const ids = [...html.matchAll(/class="product-card" id="(\d+)"/g)]
+            .map(match => parseInt(match[1], 10))
+            .filter(Number.isFinite);
+
+        const nuevoId = ids.length > 0 ? Math.max(...ids) + 1 : 1;
+
+        const nombreImagen = nombreProducto
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "");
+
+        const extension =
+            msg.message.imageMessage.mimetype?.includes("png")
+                ? "png"
+                : "jpg";
+
+        const archivoImagen = `${nombreImagen}-${nuevoId}.${extension}`;
+
+        const rutaImagen = path.join(
+            carpetaImagenes,
+            archivoImagen
+        );
+
+        const buffer = await downloadMediaMessage(
+            msg,
+            "buffer",
+            {}
+        );
+
+        fs.writeFileSync(rutaImagen, buffer);
+
+        const nuevoProducto = `
+
+      <div class="product-card" id="${nuevoId}" data-categoria="1">
+        <h2>${nombreProducto}</h2>
+        <div class="imgContainer"><img src="img/${archivoImagen}" loading="lazy"></div>
+        <p class="productCardDescription">Disponible</p>
+        <div class="productCardEnd">
+          <a class="precio">$${precioProducto}</a>
+          <button class="productsButton" data-product-id="${nuevoId}">AGREGAR A MI PEDIDO</button>
+        </div>
+      </div>
+`;
+
+        html = html.replace(
+            "</main>",
+            nuevoProducto + "\n    </main>"
+        );
+
+        fs.writeFileSync(indexCatalogo, html, "utf8");
+
+        const catalogoWeb = "/var/www/catalogo";
+
+        fs.copyFileSync(
+            indexCatalogo,
+            path.join(catalogoWeb, "index.html")
+        );
+
+        fs.copyFileSync(
+            rutaImagen,
+            path.join(catalogoWeb, "img", archivoImagen)
+        );
+
+        await sock.sendMessage(usuario, {
+            text:
+                "✅ Producto agregado al catálogo.\n\n" +
+                `📦 ${nombreProducto}\n` +
+                `💰 $${precioProducto}\n` +
+                `🆔 ID: ${nuevoId}`
+        });
+
+        console.log(
+            `✅ Producto web agregado: ${nombreProducto} | ID ${nuevoId}`
+        );
+
+        continue;
+
+    } catch (error) {
+
+        console.error("❌ Error agregando producto al catálogo:", error);
+
+        await sock.sendMessage(usuario, {
+            text: "❌ No se pudo agregar el producto al catálogo. Revisa la consola del bot."
+        });
+
+        continue;
+    }
+}
+
+// AGREGAR PRODUCTO AL CATÁLOGO WEB
+if (texto.toLowerCase().startsWith("#addwebbcatalogo")) {
+
+    try {
+
+        const lineas = texto
+            .split("\n")
+            .map(linea => linea.trim())
+            .filter(Boolean);
+
+        if (lineas.length < 3) {
+            await sock.sendMessage(usuario, {
+                text: "❌ Formato incorrecto.\n\nEnvía una foto con:\n#addwebbcatalogo\nNombre del producto\nPrecio"
+            });
+            continue;
+        }
+
+        const nombreProducto = lineas[1];
+        const precioProducto = lineas[2];
+
+        // Verificar que realmente haya una foto
+        if (!msg.message.imageMessage) {
+            await sock.sendMessage(usuario, {
+                text: "❌ Debes enviar la foto junto con el comando."
+            });
+            continue;
+        }
+
+        // Rutas del catálogo
+        const catalogo = path.join(__dirname, "WEB CATALOGO");
+        const carpetaImagenes = path.join(catalogo, "img");
+        const indexCatalogo = path.join(catalogo, "index.html");
+
+        // Crear carpeta de imágenes si no existe
+        if (!fs.existsSync(carpetaImagenes)) {
+            fs.mkdirSync(carpetaImagenes, { recursive: true });
+        }
+
+        // Leer index.html
+        let html = fs.readFileSync(indexCatalogo, "utf8");
+
+        // Buscar el siguiente ID disponible
+        const ids = [...html.matchAll(/class="product-card" id="(\d+)"/g)]
+            .map(match => parseInt(match[1], 10))
+            .filter(Number.isFinite);
+
+        const nuevoId = ids.length > 0 ? Math.max(...ids) + 1 : 1;
+
+        // Nombre seguro para la imagen
+        const nombreImagen = nombreProducto
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "");
+
+        const extension =
+            msg.message.imageMessage.mimetype?.includes("png")
+                ? "png"
+                : "jpg";
+
+        const archivoImagen = `${nombreImagen}-${nuevoId}.${extension}`;
+
+        const rutaImagen = path.join(
+            carpetaImagenes,
+            archivoImagen
+        );
+
+        // Descargar la foto de WhatsApp
+        const buffer = await downloadMediaMessage(
+            msg,
+            "buffer",
+            {}
+        );
+
+        fs.writeFileSync(rutaImagen, buffer);
+
+        // Crear el nuevo producto
+        const nuevoProducto = `
+
+      <div class="product-card" id="${nuevoId}" data-categoria="1">
+        <h2>${nombreProducto}</h2>
+        <div class="imgContainer"><img src="img/${archivoImagen}" loading="lazy"></div>
+        <p class="productCardDescription">Disponible</p>
+        <div class="productCardEnd">
+          <a class="precio">$${precioProducto}</a>
+          <button class="productsButton" data-product-id="${nuevoId}">AGREGAR A MI PEDIDO</button>
+        </div>
+      </div>
+`;
+
+        // Insertar antes de cerrar MAIN
+        html = html.replace(
+            "</main>",
+            nuevoProducto + "\n    </main>"
+        );
+
+        // Guardar catálogo
+        fs.writeFileSync(indexCatalogo, html, "utf8");
+
+        // Actualizar inmediatamente la versión que sirve Nginx
+        const catalogoWeb = "/var/www/catalogo";
+
+        fs.copyFileSync(
+            indexCatalogo,
+            path.join(catalogoWeb, "index.html")
+        );
+
+        fs.copyFileSync(
+            rutaImagen,
+            path.join(catalogoWeb, "img", archivoImagen)
+        );
+
+        await sock.sendMessage(usuario, {
+            text:
+                "✅ Producto agregado al catálogo.\n\n" +
+                `📦 ${nombreProducto}\n` +
+                `💰 $${precioProducto}\n` +
+                `🆔 ID: ${nuevoId}`
+        });
+
+        console.log(
+            `✅ Producto web agregado: ${nombreProducto} | ID ${nuevoId}`
+        );
+
+        continue;
+
+    } catch (error) {
+
+        console.error("❌ Error agregando producto al catálogo:", error);
+
+        await sock.sendMessage(usuario, {
+            text: "❌ No se pudo agregar el producto al catálogo. Revisa la consola del bot."
+        });
+
+        continue;
+    }
+}
 cancelarSiEsDireccion(usuario, texto);
 	
 	const fuePedido = await revisarPedido(
