@@ -428,12 +428,15 @@ if (currentTimeInMinutes >= aperturaTimeInMinutes && currentTimeInMinutes <= cie
 newProduct.find('.eliminar').on('click', function() {
     $(this).closest('.product').remove();
     delete products[productId];
-    updateTotal(); // Actualizar el total cuando se elimina un producto
+    updateTotal();
 
-    // Si no quedan productos, volver automáticamente al catálogo
+    // Si no quedan productos, cerrar MI PEDIDO y desbloquear la página
     if (Object.keys(products).length === 0) {
         $('#orderModal').hide();
         $('#product-container').show();
+
+        // Desbloquear el desplazamiento de la página
+        $('body').css('overflow', 'auto');
     }
 });
 
