@@ -403,9 +403,9 @@ if (currentTimeInMinutes >= aperturaTimeInMinutes && currentTimeInMinutes <= cie
                            '</div>' +
                            '</div>' +
                            '</div>' +
-                           '<div class="productRight">' +
-                           '<img src="' + productInfo.productImage + '" alt="' + productInfo.productName + '" loading="lazy">' +
-                           '</div>' +
+'<div class="productRight">' +
+'<img src="' + productInfo.productImage + '" alt="' + productInfo.productName + '" loading="lazy" class="orderProductImage">' +
+'</div>' +
                            '</div>');
 
         $('.productsContainer').append(newProduct);
@@ -636,6 +636,15 @@ $('#closeImageModal, #imageModal').on('click', function(event) {
         $('body').css('overflow', 'auto');
     }
 });
+
+
+
+
+$(document).on('click', '.orderProductImage', function() {
+    window.open($(this).attr('src'), '_blank');
+});
+
+
 
 
 

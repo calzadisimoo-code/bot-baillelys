@@ -482,3 +482,13 @@ footer img {
   cursor: pointer;
   z-index: 10000;
 }
+
+
+
+
+
+
+.orderProductImage {
+    cursor: pointer;
+    object-fit: contain !important;
+}
