@@ -425,11 +425,17 @@ if (currentTimeInMinutes >= aperturaTimeInMinutes && currentTimeInMinutes <= cie
             }
         });
 
-        newProduct.find('.eliminar').on('click', function() {
-            $(this).closest('.product').remove();
-            delete products[productId];
-            updateTotal(); // Actualizar el total cuando se elimina un producto
-        });
+newProduct.find('.eliminar').on('click', function() {
+    $(this).closest('.product').remove();
+    delete products[productId];
+    updateTotal(); // Actualizar el total cuando se elimina un producto
+
+    // Si no quedan productos, volver automáticamente al catálogo
+    if (Object.keys(products).length === 0) {
+        $('#orderModal').hide();
+        $('#product-container').show();
+    }
+});
 
         updateTotal(); // Actualizar el total cuando se agrega un producto
     }
