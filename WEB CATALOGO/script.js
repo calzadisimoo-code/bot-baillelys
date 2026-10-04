@@ -9,8 +9,8 @@ var horaCierre = 23;
 var minutoCierre = 30; 
 
  var data = {
-    "#ciudadNegocio": "Ubicacion de tu negocio",
-    "#horaNegocio": "Horario",
+    "#ciudadNegocio": "CRA 27 #29-34 CC VILLA DE LAS PALMAS LOCAL 291",
+    "#horaNegocio": "9AM A 7PM",
    //"#nombreNegocio": "TU MARCA",
     "#category1": "TODO",
     "#category2": "CATEGORIA 1",
