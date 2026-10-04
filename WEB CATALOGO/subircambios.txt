@@ -1,0 +1,11 @@
+cd "C:\Users\kyro\Desktop\bot-baillelys"
+git add "WEB CATALOGO"
+git commit -m "Actualiza catalogo web"
+git push
+powershell
+
+
+cd /root/bot-baillelys && git fetch origin && git checkout origin/main -- "WEB CATALOGO"
+cp -r "/root/bot-baillelys/WEB CATALOGO/." /var/www/catalogo/
+chown -R www-data:www-data /var/www/catalogo
+servidor
