@@ -664,6 +664,18 @@ $('#imageModal').on('click', function(event) {
 
 
 
+$(document).on('click', '.product-card', function(event) {
+    // Si se hizo clic en el botón AGREGAR A MI PEDIDO, no ejecutar esto
+    if ($(event.target).closest('.productsButton').length) {
+        return;
+    }
+
+    $('#orderModal').show();
+    $('body').css('overflow', 'hidden');
+});
+
+
+
 
 
 
