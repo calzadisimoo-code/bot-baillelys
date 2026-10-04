@@ -647,6 +647,38 @@ $(document).on('click', '.orderProductImage', function() {
 
 
 
+// AMPLIAR SOLO LA IMAGEN DEL PEDIDO
+$(document).on('click', '.productRight img', function(event) {
+    event.stopPropagation();
+
+    const imageSrc = $(this).attr('src');
+
+    $('#expandedImage').attr('src', imageSrc);
+    $('#imageModal').css('display', 'flex');
+    $('body').css('overflow', 'hidden');
+});
+
+// CERRAR EL MODAL
+$('#closeImageModal').on('click', function() {
+    $('#imageModal').hide();
+    $('#expandedImage').attr('src', '');
+    $('body').css('overflow', 'auto');
+});
+
+// Cerrar tocando fuera de la imagen
+$('#imageModal').on('click', function(event) {
+    if (event.target === this) {
+        $('#imageModal').hide();
+        $('#expandedImage').attr('src', '');
+        $('body').css('overflow', 'auto');
+    }
+});
+
+
+
+
+
+
 
 
 

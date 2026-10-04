@@ -492,3 +492,40 @@ footer img {
     cursor: pointer;
     object-fit: contain !important;
 }
+
+
+
+
+
+/* VISOR DE IMAGEN DEL PEDIDO */
+#imageModal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  justify-content: center;
+  align-items: center;
+}
+
+#expandedImage {
+  max-width: 95%;
+  max-height: 90%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+#closeImageModal {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: white;
+  font-size: 45px;
+  font-weight: bold;
+  cursor: pointer;
+}
