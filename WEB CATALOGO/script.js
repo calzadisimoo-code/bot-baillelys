@@ -621,14 +621,17 @@ $('#detallesButton').on('click', function(event) {
 
 
 // AMPLIAR SOLO LA IMAGEN DEL PEDIDO
-$(document).on('click', '.productRight img', function(event) {
-    event.stopPropagation();
+$(document).on('click', '.orderProductImage', function(event) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
 
     const imageSrc = $(this).attr('src');
 
     $('#expandedImage').attr('src', imageSrc);
     $('#imageModal').css('display', 'flex');
     $('body').css('overflow', 'hidden');
+
+    return false;
 });
 
 // CERRAR EL MODAL
