@@ -665,15 +665,30 @@ $('#imageModal').on('click', function(event) {
 
 
 $(document).on('click', '.product-card', function(event) {
-    // Si se hizo clic en el botón AGREGAR A MI PEDIDO, no ejecutar esto
+    // Si se hizo clic directamente en AGREGAR A MI PEDIDO,
+    // dejamos que funcione su comportamiento normal.
     if ($(event.target).closest('.productsButton').length) {
         return;
     }
 
+    var productId = $(this).attr('id');
+
+    // Agregar el producto exactamente igual que con AGREGAR A MI PEDIDO
+    if (products.hasOwnProperty(productId)) {
+        products[productId].cantidad++;
+        updateProductView(productId);
+    } else {
+        products[productId] = {
+            cantidad: 1,
+            productInfo: getProductInfo(productId)
+        };
+        createProductView(productId);
+    }
+
+    // Abrir MI PEDIDO
     $('#orderModal').show();
     $('body').css('overflow', 'hidden');
 });
-
 
 
 
