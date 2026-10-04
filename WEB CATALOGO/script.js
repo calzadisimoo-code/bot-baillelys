@@ -620,6 +620,26 @@ $('#detallesButton').on('click', function(event) {
 
 
 
+// AMPLIAR IMAGEN DEL PRODUCTO
+$('.imgContainer img').on('click', function() {
+    const imageSrc = $(this).attr('src');
+
+    $('#expandedImage').attr('src', imageSrc);
+    $('#imageModal').css('display', 'flex');
+    $('body').css('overflow', 'hidden');
+});
+
+// CERRAR IMAGEN
+$('#closeImageModal, #imageModal').on('click', function(event) {
+    if (event.target === this || event.target.id === 'closeImageModal') {
+        $('#imageModal').hide();
+        $('body').css('overflow', 'auto');
+    }
+});
+
+
+
+
 
 
 });
