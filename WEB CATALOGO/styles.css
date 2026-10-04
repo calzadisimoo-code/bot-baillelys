@@ -1,0 +1,449 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+body, #orderModal{
+    background: black;
+}
+
+a{
+    display: none;
+}
+
+
+/*----------------------------------------------HEADER-------------------------------------*/
+#header{
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+
+#detallesButton{
+    border-radius: 0 20px 20px 20px;
+    font-size: 11px;
+    height: 31px;
+    width: 105px;
+    border: 2px solid #33B8FF;
+    background: var(--blue);
+    color: white;
+    font-weight: bold;
+    margin: 0 8% 0 0;
+  
+}
+
+#status{
+    margin: 0 0 0 8%;
+    border-radius: 20px 0 20px 20px;
+    font-size: 11px;
+    height: 32px;
+    width: 110px;
+    } 
+/*
+ #categoryButton{
+    border-radius: 0 0 20px 20px;
+    font-size: 11px;
+    height: 28px;
+    width: 100px;
+    border: none;
+    background: orange;
+    color: white;
+    font-weight: bold;
+}*/
+    
+
+#nombreNegocio{
+    font-size: 32px;
+    color: white;
+    margin: 25px 0 25px 0;
+}
+
+    
+#ciudadNegocio, #horaNegocio{
+    font-size: 13px;
+}
+
+
+/*----------------------------------CATEGORY CONTAINER-------------------------------------
+.category-container{
+    display: none;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin: 0 0 20px 0;
+}
+
+.category {
+    height: 40px;
+    min-width: 110px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin: 0 0 5px 0;
+}
+
+.category.active {
+  background-color: var(--blue);
+  color: white;
+} */
+
+#detalles{
+    background: #ffffcc; /*#f5f5dc*/
+    margin: 0 0 30px 0;
+    width: 90%;
+    max-width: 650px;
+    padding: 20px;
+    height: auto;
+    display: none;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    box-sizing: border-box; /* Esto asegura que el margen no afecte el ancho*/
+}
+
+/*-----------------------------------PRODUCT CARD------------------------------------*/
+#product-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  padding: 20px 10px;
+  margin: auto;
+  margin-bottom: 30px;
+  text-align: center;
+  width: 90%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  height: auto;
+  box-sizing: border-box; /* Esto asegura que el margen no afecte el ancho total */
+background: white;
+}
+
+.product-card h2{
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+.productCardDescription{
+    text-transform: uppercase;
+    margin: 15px 0 15px 0;
+}
+
+.imgContainer {
+  width: 300px;
+  height: 150px;
+  margin:auto;
+  margin-top: 15px;
+}
+
+.imgContainer img {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+}
+
+.productCardEnd {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center;
+  height: 40px;
+}
+
+.productsButton {
+  background-color: var(--green); 
+  height: 100%;
+  font-size: 15px;
+  margin: 0 0 0 20px;
+  padding: 0 10px 0 10px;
+  font-weight: bold;
+  border-radius: 5px;
+  color: white;
+}
+
+.precio {
+  font-size: 23px;
+  font-family: serif;
+  display: block;
+}
+
+/*---------------------------------------------ORDER MODAL-----------------------------------------------*/
+#orderModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1; /* Asegura que el modal esté por encima de los demás elementos */
+}
+
+.orderContainer{
+  height: auto;
+  max-height: 100%;
+  overflow: auto;
+  padding: 0;
+}
+
+.orderContainerData{
+  width: 75%;
+  max-width: 500px;
+    margin: auto;
+    margin-bottom: 110px;
+}
+
+.orderModalHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+    color: white;
+    margin: 0 0 15px 0;
+}
+
+.product{
+    height: 80px;
+    width: 88%;
+    margin: auto;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 15px;
+    align-items: center;
+}
+
+.productbu{
+    display: flex;
+    align-items: center;
+    height:20px;
+    padding: 0;
+}
+
+.productLeft{
+    width: 250px;
+    height: auto;
+}
+
+.productRight{
+    width: 80px;
+    height: 80px;
+}
+
+.productRight img{
+    width: 100%;
+    height: 100%;
+}
+
+.form {
+  width: auto;
+  padding: 20px 10px 15px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  background: red;
+  border-radius: 7px 7px 0 0;
+}
+
+
+.form label{
+    width: 38%;
+    display: flex;
+    align-items: center;
+    margin: 5px 0 0 0;
+}
+
+.form input{
+    padding: 8px;
+    margin: 8px 0 0 0;
+    width: 41%;
+    border: 1px solid black;
+    text-transform: uppercase;
+    color: black;
+    outline: none;
+}
+
+#city{
+    width: 48%;
+    padding: 8px;
+    max-width: 210px;
+    color: black;
+    outline: none;
+}
+
+.validation{
+    display: none;
+    width: 25px;
+    height: 25px;
+    margin: 10px 0 0 5px;
+}
+
+.payment-method{
+    width: auto;
+    padding: 0 20px 15px 0;
+    display:flex;
+    justify-content: space-between;
+    border-radius: 0 0 7px 7PX;
+}
+
+.myOrderEnd{
+    display: flex;
+    justify-content: space-between;
+    height: 43px;
+    position: fixed;
+    width: auto;
+    bottom: 3%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.total{
+      font-size: 30px;
+      height: 100%;
+      min-width: 120px;
+      max-width: 200%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+}
+
+.buy{
+      font-size: 15px;
+      height: 100%;
+      width: 150px;
+      color: white;
+      cursor: pointer;
+}
+
+/* CSS */
+.button-gray {
+    background-color: #505050;
+}
+
+.button-green {
+    background-color: var(--green);
+}
+
+.moreProduct{
+    background-color: var(--green);
+    border-bottom: 4px solid white;
+    height: 50px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+    margin: 0 40px 0 0;
+    cursor: pointer;
+}
+
+.product p{
+    overflow: auto;
+    height: auto;
+    margin: 0 0 3px 0;
+   text-transform: uppercase;
+   font-size: 12px;
+
+}
+
+.cantidad{
+    margin: 0 10px 0 0;
+    font-size: 25px;
+    display: block;
+}
+
+.menos{
+    margin: 0 5px 0 0;
+     background-color: var(--green);
+    padding: 0 5px 0 5px;
+    color: white;
+}
+
+.masButton{
+    background-color: var(--green);
+    color: white;
+}
+
+.valorP{
+   padding: 1px 15px 1px 15px;
+   border: 1px solid #3498db;
+   border-radius: 13px;
+   font-size: 13px;
+   margin: 0 10px 0 0;
+   display: block;
+}
+
+.eliminar{
+   padding: 1px 5px 1px 5px;
+   border: 1px solid red;
+   border-radius: 13px;
+   font-size: 13px;
+   cursor: pointer;
+   display: block;
+}
+
+.productDescription{
+    width: 70%;
+    height: auto;
+}
+
+.productDescription h3{
+    text-transform: uppercase;
+    font-size: 15px;
+    margin: 0 0 3px 0;
+}
+
+/*-------------------------FOOTER------------------------------------*/
+footer {
+  display: flex;
+  justify-content: space-between;
+  height: 30px;
+}
+
+footer a{
+    display: block;
+}
+
+footer img {
+  width: 30px;
+  height: 100%;
+}
+/*---------------------------------------------------------------*/
+
+/*
+#comments{
+    background: #ffffcc;
+    width: 100%;
+    height: 400px;
+    padding: 20px;
+    box-sizing: border-box;
+}*/
+
+
+
+/*----------------------------------COLORES------------------------*/
+.hidden {
+  display: none;
+}
+
+/* BACKGROUND WHITE*/
+.category, .product, .form, .payment-method, .myOrderEnd{
+    background: white;
+}
+
+/* TEXT COLOR BLACK*/
+.category, .product-card h2, .productCardDescription, .precio, .payment-method a, .form label, .product a, .product p, .productDescription h3, .total {
+    color: black;
+}
+
+/*BUTTON DECORATION NONE*/
+.category, .buy, .masButton, .menos, .productsButton {
+    border: none;
+}
+
+/*BORDER RADIUS*/
+.category-container, .buy, .product-card, .product, .productRight, .form input, #city, .myOrderEnd, .myOrderEnd, .moreProduct, .ok, footer {
+  border-radius: 7px;
+}
+
+:root {
+  --blue: #3498db;
+  --green: #66cc66; 
+}
+/*----------------------------------------------------------------*/
