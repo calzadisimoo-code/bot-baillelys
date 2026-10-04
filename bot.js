@@ -280,6 +280,479 @@ else if (
 texto = texto.trim();
 
 // ======================================================
+// CONFIRMAR ELIMINACIÓN DEL CATÁLOGO
+// ======================================================
+if (
+    global.catalogoEliminaciones &&
+    global.catalogoEliminaciones[usuario] &&
+    texto.toLowerCase() === "si"
+) {
+    try {
+        const pendiente =
+            global.catalogoEliminaciones[usuario];
+
+        const rutaIndex = path.join(
+            __dirname,
+            "WEB CATALOGO",
+            "index.html"
+        );
+
+        let html = fs.readFileSync(rutaIndex, "utf8");
+
+        const regexProductos =
+            /<div class="product-card"[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/gi;
+
+        let productos = html.match(regexProductos) || [];
+
+        const indiceEliminar = productos.findIndex(producto => {
+            const match = producto.match(
+                /<div class="product-card"[^>]*id="([^"]+)"/i
+            );
+
+            return match && match[1] === pendiente.id;
+        });
+
+        if (indiceEliminar === -1) {
+            delete global.catalogoEliminaciones[usuario];
+
+            await sock.sendMessage(usuario, {
+                text: "⚠️ Ese producto ya no existe."
+            });
+
+            continue;
+        }
+
+        const productoEliminado =
+            productos[indiceEliminar];
+
+        // Obtener imagen antes de eliminar
+        const imagenMatch =
+            productoEliminado.match(
+                /<img[^>]+src="img\/([^"]+)"/i
+            );
+
+        const imagenEliminar =
+            imagenMatch ? imagenMatch[1] : null;
+
+        // Eliminar producto
+        productos.splice(indiceEliminar, 1);
+
+        // Renumerar TODOS los productos
+        productos = productos.map((producto, index) => {
+
+            const nuevoId = index + 1;
+
+            producto = producto.replace(
+                /<div class="product-card"[^>]*>/i,
+                `<div class="product-card" id="${nuevoId}" data-categoria="1">`
+            );
+
+            producto = producto.replace(
+                /data-category="[^"]*"/i,
+                'data-categoria="1"'
+            );
+
+            producto = producto.replace(
+                /data-product-id="[^"]*"/i,
+                `data-product-id="${nuevoId}"`
+            );
+
+            return producto;
+        });
+
+        // Reconstruir el catálogo
+        const inicioProductos =
+            html.indexOf('<main id="product-container">');
+
+        const finProductos =
+            html.indexOf("</main>", inicioProductos);
+
+        if (
+            inicioProductos === -1 ||
+            finProductos === -1
+        ) {
+            throw new Error(
+                "No se encontró product-container"
+            );
+        }
+
+        const contenidoNuevo =
+            '<main id="product-container">\n' +
+            productos.join("\n") +
+            '\n</main>';
+
+        html =
+            html.substring(0, inicioProductos) +
+            contenidoNuevo +
+            html.substring(finProductos + "</main>".length);
+
+        fs.writeFileSync(
+            rutaIndex,
+            html,
+            "utf8"
+        );
+
+        // Eliminar imagen
+        if (imagenEliminar) {
+
+            const rutaImagen = path.join(
+                __dirname,
+                "WEB CATALOGO",
+                "img",
+                imagenEliminar
+            );
+
+            const rutaImagenWeb = path.join(
+                "/var/www/catalogo",
+                "img",
+                imagenEliminar
+            );
+
+            if (fs.existsSync(rutaImagen)) {
+                fs.unlinkSync(rutaImagen);
+            }
+
+            if (fs.existsSync(rutaImagenWeb)) {
+                fs.unlinkSync(rutaImagenWeb);
+            }
+        }
+
+        // Actualizar catálogo público
+        fs.copyFileSync(
+            rutaIndex,
+            "/var/www/catalogo/index.html"
+        );
+
+        delete global.catalogoEliminaciones[usuario];
+
+        await sock.sendMessage(usuario, {
+            text:
+                "✅ PRODUCTO ELIMINADO\n\n" +
+                `👟 ${pendiente.nombre}\n` +
+                `🆔 ID eliminado: ${pendiente.id}\n\n` +
+                "🔢 Los productos siguientes fueron renumerados automáticamente."
+        });
+
+        continue;
+
+    } catch (error) {
+
+        console.error(
+            "❌ Error eliminando producto:",
+            error
+        );
+
+        await sock.sendMessage(usuario, {
+            text:
+                "❌ No pude eliminar el producto."
+        });
+
+        continue;
+    }
+}
+
+// ======================================================
+// CONFIRMAR ELIMINACIÓN DE PRODUCTO DEL CATÁLOGO
+// ======================================================
+if (
+    global.productoEliminarPendiente &&
+    global.productoEliminarPendiente.usuario === usuario &&
+    texto.toLowerCase() === "si"
+) {
+    try {
+        const pendiente = global.productoEliminarPendiente;
+
+        const rutaIndex = path.join(
+            __dirname,
+            "WEB CATALOGO",
+            "index.html"
+        );
+
+        let html = fs.readFileSync(rutaIndex, "utf8");
+
+        const regexProducto = new RegExp(
+            `<div class="product-card" id="${pendiente.id}"[\\s\\S]*?<\\/div>\\s*<\\/div>\\s*<\\/div>`,
+            "i"
+        );
+
+        if (!regexProducto.test(html)) {
+            delete global.productoEliminarPendiente;
+
+            await sock.sendMessage(usuario, {
+                text: "⚠️ El producto ya no existe en el catálogo."
+            });
+
+            continue;
+        }
+
+        html = html.replace(regexProducto, "");
+
+        fs.writeFileSync(rutaIndex, html, "utf8");
+
+        // Eliminar imagen
+        if (pendiente.imagen) {
+            const rutaImagen = path.join(
+                __dirname,
+                "WEB CATALOGO",
+                "img",
+                pendiente.imagen
+            );
+
+            if (fs.existsSync(rutaImagen)) {
+                fs.unlinkSync(rutaImagen);
+            }
+        }
+
+        // Actualizar catálogo servido por Nginx
+        const destinoWeb = "/var/www/catalogo";
+
+        fs.copyFileSync(
+            rutaIndex,
+            path.join(destinoWeb, "index.html")
+        );
+
+        if (pendiente.imagen) {
+            const rutaImagen = path.join(
+                __dirname,
+                "WEB CATALOGO",
+                "img",
+                pendiente.imagen
+            );
+
+            const destinoImagen = path.join(
+                destinoWeb,
+                "img",
+                pendiente.imagen
+            );
+
+            if (fs.existsSync(destinoImagen)) {
+                fs.unlinkSync(destinoImagen);
+            }
+        }
+
+        delete global.productoEliminarPendiente;
+
+        await sock.sendMessage(usuario, {
+            text:
+                `✅ PRODUCTO ELIMINADO DEL CATÁLOGO\n\n` +
+                `👟 Producto: ${pendiente.nombre}\n` +
+                `🆔 ID: ${pendiente.id}`
+        });
+
+        continue;
+
+    } catch (error) {
+        console.error(
+            "❌ Error confirmando eliminación:",
+            error
+        );
+
+        await sock.sendMessage(usuario, {
+            text: "❌ No pude eliminar el producto."
+        });
+
+        continue;
+    }
+}
+
+// ======================================================
+// COMANDO: #deletewebcatalogo
+// ======================================================
+if (texto.toLowerCase().startsWith("#deletewebcatalogo")) {
+    try {
+        const lineas = texto
+            .split("\n")
+            .map(l => l.trim())
+            .filter(Boolean);
+
+        if (lineas.length < 2) {
+            await sock.sendMessage(usuario, {
+                text: "⚠️ Formato incorrecto.\n\nUsa:\n\n#deletewebcatalogo\nID"
+            });
+            continue;
+        }
+
+        const idEliminar = lineas[1];
+
+        const rutaIndex = path.join(
+            __dirname,
+            "WEB CATALOGO",
+            "index.html"
+        );
+
+        let html = fs.readFileSync(rutaIndex, "utf8");
+
+        // Buscar el producto completo por su ID
+        const regexProducto = new RegExp(
+            `<div class="product-card" id="${idEliminar}"[\\s\\S]*?<\\/div>\\s*<\\/div>\\s*<\\/div>`,
+            "i"
+        );
+
+        const coincidencia = html.match(regexProducto);
+
+        if (!coincidencia) {
+            await sock.sendMessage(usuario, {
+                text: `⚠️ No encontré ningún producto con ID ${idEliminar}.`
+            });
+            continue;
+        }
+
+        const productoHTML = coincidencia[0];
+
+        // Obtener nombre del producto
+        const nombreMatch = productoHTML.match(/<h2>(.*?)<\/h2>/i);
+        const nombreProducto = nombreMatch
+            ? nombreMatch[1].trim()
+            : "Producto";
+
+        // Obtener imagen
+        const imagenMatch = productoHTML.match(
+            /<img[^>]+src="img\/([^"]+)"/i
+        );
+
+        const nombreImagen = imagenMatch
+            ? imagenMatch[1]
+            : null;
+
+        // Obtener precio
+const precioMatch = productoHTML.match(
+    /class="precio">([^<]+)<\/a>/i
+);
+
+        const precioProducto = precioMatch
+            ? precioMatch[1].trim()
+            : "Sin precio";
+
+        // PRIMERA RESPUESTA: pedir confirmación
+        await sock.sendMessage(usuario, {
+            text:
+                `⚠️ CONFIRMAR ELIMINACIÓN\n\n` +
+                `👟 Producto: ${nombreProducto}\n` +
+                `💰 Precio: ${precioProducto}\n` +
+                `🆔 ID: ${idEliminar}\n\n` +
+                `Responde exactamente:\n\n` +
+                `SI\n\n` +
+                `para eliminarlo.`
+        });
+
+        // Guardar producto pendiente de eliminación
+        global.productoEliminarPendiente = {
+            usuario,
+            id: idEliminar,
+            nombre: nombreProducto,
+            imagen: nombreImagen
+        };
+
+        continue;
+
+    } catch (error) {
+        console.error("❌ Error en #deletewebcatalogo:", error);
+
+        await sock.sendMessage(usuario, {
+            text: "❌ Ocurrió un error al buscar el producto."
+        });
+
+        continue;
+    }
+}
+
+// ======================================================
+// COMANDO: #deletewebcatalogo
+// ======================================================
+if (texto.toLowerCase().startsWith("#deletewebcatalogo")) {
+    try {
+        const lineas = texto
+            .split("\n")
+            .map(l => l.trim())
+            .filter(Boolean);
+
+        if (lineas.length < 2) {
+            await sock.sendMessage(usuario, {
+                text:
+                    "⚠️ Formato incorrecto.\n\n" +
+                    "Usa:\n\n" +
+                    "#deletewebcatalogo\n" +
+                    "ID"
+            });
+            continue;
+        }
+
+        const idEliminar = lineas[1];
+
+        const rutaIndex = path.join(
+            __dirname,
+            "WEB CATALOGO",
+            "index.html"
+        );
+
+        let html = fs.readFileSync(rutaIndex, "utf8");
+
+        const regexProductos =
+            /<div class="product-card"[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/gi;
+
+        const productos = html.match(regexProductos) || [];
+
+        const productoEncontrado = productos.find(producto => {
+            const match = producto.match(
+                /<div class="product-card"[^>]*id="([^"]+)"/i
+            );
+
+            return match && match[1] === idEliminar;
+        });
+
+        if (!productoEncontrado) {
+            await sock.sendMessage(usuario, {
+                text:
+                    `⚠️ No encontré ningún producto con ID ${idEliminar}.`
+            });
+
+            continue;
+        }
+
+        const nombreMatch =
+            productoEncontrado.match(/<h2>(.*?)<\/h2>/i);
+
+        const nombreProducto = nombreMatch
+            ? nombreMatch[1].trim()
+            : "Producto";
+
+        // Guardamos la eliminación pendiente
+        if (!global.catalogoEliminaciones) {
+            global.catalogoEliminaciones = {};
+        }
+
+        global.catalogoEliminaciones[usuario] = {
+            id: idEliminar,
+            nombre: nombreProducto
+        };
+
+        await sock.sendMessage(usuario, {
+            text:
+                "⚠️ CONFIRMAR ELIMINACIÓN\n\n" +
+                `👟 Producto: ${nombreProducto}\n` +
+                `🆔 ID: ${idEliminar}\n\n` +
+                "Responde exactamente:\n\n" +
+                "SI\n\n" +
+                "para eliminarlo."
+        });
+
+        continue;
+
+    } catch (error) {
+        console.error(
+            "❌ Error en #deletewebcatalogo:",
+            error
+        );
+
+        await sock.sendMessage(usuario, {
+            text: "❌ No pude procesar la eliminación."
+        });
+
+        continue;
+    }
+}
+
+// ======================================================
 // COMANDO: #addwebcatalogo
 // ======================================================
 if (texto.toLowerCase().startsWith("#addwebcatalogo")) {
@@ -349,17 +822,27 @@ if (texto.toLowerCase().startsWith("#addwebcatalogo")) {
 
         let html = fs.readFileSync(rutaIndex, "utf8");
 
-        const nuevoProducto = `
-<div class="product-card" id="${Date.now()}" data-category="todos">
+        // Buscar el último ID numérico utilizado en los productos
+const idsExistentes = [...html.matchAll(/class="product-card"\s+id="(\d+)"/g)]
+    .map(m => Number(m[1]));
+
+const nuevoId = idsExistentes.length > 0
+    ? Math.max(...idsExistentes) + 1
+    : 1;
+
+const nuevoProducto = `
+<div class="product-card" id="${nuevoId}" data-categoria="1">
     <h2>${nombreProducto}</h2>
 
     <div class="imgContainer">
-        <img src="img/${nombreArchivo}" alt="${nombreProducto}">
+        <img src="img/${nombreArchivo}" loading="lazy">
     </div>
 
-    <div class="product-info">
-        <p class="price">$${Number(precioNumero).toLocaleString("es-CO")}</p>
-        <button class="productsButton">AGREGAR A MI PEDIDO</button>
+    <p class="productCardDescription"></p>
+
+    <div class="productCardEnd">
+        <a class="precio">$${Number(precioNumero).toLocaleString("es-CO")}</a>
+        <button class="productsButton" data-product-id="${nuevoId}">AGREGAR A MI PEDIDO</button>
     </div>
 </div>
 `;
