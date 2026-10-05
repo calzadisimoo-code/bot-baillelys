@@ -494,41 +494,24 @@ footer img {
 
 
 
-.masVendidosTitulo {
-    background: #111;
-    border: 2px solid white;
-    border-radius: 12px;
-    padding: 12px 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+.masVendidosTitulo div {
+    display: block !important;
+    color: white !important;
 }
 
 .masVendidosTitulo strong {
     display: block !important;
-    color: #ffffff !important;
-    font-size: 20px;
-    letter-spacing: 1px;
+    color: white !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 .masVendidosTitulo small {
     display: block !important;
-    color: #cccccc !important;
-    font-size: 12px;
-    margin-top: 3px;
-}
-
-.masVendidosTitulo span {
-    font-size: 25px;
-}
-
-.masVendidosTitulo,
-.masVendidosTitulo strong,
-.masVendidosTitulo small {
     color: white !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
-
 
 
 
