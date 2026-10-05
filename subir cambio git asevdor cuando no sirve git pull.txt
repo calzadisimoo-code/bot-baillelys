@@ -3,6 +3,11 @@ git stash push -m "catalogo antes de pull"
 git pull
 
 
+cd /root/bot-baillelys
+git stash push -u -m "respaldo antes de actualizar"
+git pull
+git stash pop
+
 
 
 cd /root/bot-baillelys
