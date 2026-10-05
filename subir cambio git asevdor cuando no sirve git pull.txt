@@ -8,3 +8,9 @@ git pull
 cd /root/bot-baillelys
 git status --short
 git diff --stat
+pm2 restart kyrobot
+
+
+node --check reconstruir-catalogo.js
+node reconstruir-catalogo.js
+pm2 restart kyrobot
