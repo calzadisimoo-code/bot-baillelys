@@ -411,27 +411,26 @@ if (texto.toLowerCase().startsWith("#addwebcatalogo")) {
             productosGuardados = [];
         }
 
-        // ==================================================
-        // BUSCAR PRIMER ID DISPONIBLE
-        // ==================================================
+// ==================================================
+// BUSCAR PRIMER ID DISPONIBLE
+// ==================================================
 
-        const idsExistentes = productosGuardados
-            .map(producto => Number(producto.id))
-            .filter(id =>
-                Number.isInteger(id) && id > 0
-            )
-            .sort((a, b) => a - b);
+let nuevoId = 1;
 
-        let nuevoId = 1;
+const idsUsados =
+    productosGuardados
+        .map(producto => Number(producto.id))
+        .filter(id => Number.isInteger(id) && id > 0)
+        .sort((a, b) => a - b);
 
-        for (const id of idsExistentes) {
+for (const id of idsUsados) {
 
-            if (id === nuevoId) {
-                nuevoId++;
-            } else if (id > nuevoId) {
-                break;
-            }
-        }
+    if (id === nuevoId) {
+        nuevoId++;
+    } else if (id > nuevoId) {
+        break;
+    }
+}
 
         // ==================================================
         // NOMBRE DE IMAGEN

@@ -1,0 +1,1 @@
+git stash push -u -m "catalogo antes de pull" && git pull
