@@ -303,14 +303,6 @@ texto = texto.trim();
 // CATÁLOGO WEB - AGREGAR Y ELIMINAR PRODUCTOS
 // ======================================================
 
-// ======================================================
-// COMANDO: #addwebcatalogo
-// Formato:
-// #addwebcatalogo
-// Nombre del producto
-// Precio
-// + FOTO
-// ======================================================
 if (texto.toLowerCase().startsWith("#addwebcatalogo")) {
     try {
 
@@ -327,6 +319,7 @@ if (texto.toLowerCase().startsWith("#addwebcatalogo")) {
                     "Nombre del producto\n" +
                     "Precio"
             });
+
             continue;
         }
 
@@ -339,24 +332,27 @@ if (texto.toLowerCase().startsWith("#addwebcatalogo")) {
                     "Nombre del producto\n" +
                     "Precio"
             });
+
             continue;
         }
 
         const nombreProducto = lineas[1];
         const precioProducto = lineas[2];
 
-        const precioNumero = precioProducto.replace(/[^\d]/g, "");
+        const precioNumero =
+            precioProducto.replace(/[^\d]/g, "");
 
         if (!precioNumero) {
             await sock.sendMessage(usuario, {
                 text: "⚠️ El precio no es válido."
             });
+
             continue;
         }
 
-        // Si escribes 75 -> $75.000
-        // Si escribes 79 -> $79.000
-        // Si escribes 75000 -> $75.000
+        // 75 -> $75.000
+        // 79 -> $79.000
+        // 75000 -> $75.000
         const precioBase = Number(precioNumero);
 
         const precioFinal =
@@ -367,15 +363,9 @@ if (texto.toLowerCase().startsWith("#addwebcatalogo")) {
         const precioFormateado =
             precioFinal.toLocaleString("es-CO");
 
-        // Descargar imagen
-        const buffer = await downloadMediaMessage(
-            msg,
-            "buffer",
-            {},
-            {
-                logger: console
-            }
-        );
+        // ==================================================
+        // RUTAS
+        // ==================================================
 
         const catalogo = path.join(
             __dirname,
@@ -387,15 +377,10 @@ if (texto.toLowerCase().startsWith("#addwebcatalogo")) {
             "img"
         );
 
-        const rutaIndex = path.join(
+        const rutaProductos = path.join(
             catalogo,
-            "index.html"
+            "productos.json"
         );
-		
-		const rutaProductos = path.join(
-    catalogo,
-    "productos.json"
-);
 
         if (!fs.existsSync(carpetaImagenes)) {
             fs.mkdirSync(carpetaImagenes, {
@@ -403,26 +388,44 @@ if (texto.toLowerCase().startsWith("#addwebcatalogo")) {
             });
         }
 
-        let html = fs.readFileSync(
-            rutaIndex,
-            "utf8"
-        );
+        // ==================================================
+        // LEER PRODUCTOS PERMANENTES
+        // ==================================================
 
-        // Obtener IDs existentes
-        const idsExistentes = [
-            ...html.matchAll(
-                /class="product-card"[^>]*id="(\d+)"/gi
+        let productosGuardados = [];
+
+        if (fs.existsSync(rutaProductos)) {
+            try {
+                productosGuardados = JSON.parse(
+                    fs.readFileSync(
+                        rutaProductos,
+                        "utf8"
+                    )
+                );
+            } catch (error) {
+                productosGuardados = [];
+            }
+        }
+
+        if (!Array.isArray(productosGuardados)) {
+            productosGuardados = [];
+        }
+
+        // ==================================================
+        // BUSCAR PRIMER ID DISPONIBLE
+        // ==================================================
+
+        const idsExistentes = productosGuardados
+            .map(producto => Number(producto.id))
+            .filter(id =>
+                Number.isInteger(id) && id > 0
             )
-        ]
-            .map(m => Number(m[1]))
-            .filter(n => Number.isInteger(n) && n > 0)
             .sort((a, b) => a - b);
 
-        // Buscar el primer ID disponible.
-        // Ejemplo: 1,2,3,5 -> nuevo ID = 4
         let nuevoId = 1;
 
         for (const id of idsExistentes) {
+
             if (id === nuevoId) {
                 nuevoId++;
             } else if (id > nuevoId) {
@@ -430,7 +433,10 @@ if (texto.toLowerCase().startsWith("#addwebcatalogo")) {
             }
         }
 
-        // Nombre seguro para la imagen
+        // ==================================================
+        // NOMBRE DE IMAGEN
+        // ==================================================
+
         const nombreImagen = nombreProducto
             .toLowerCase()
             .normalize("NFD")
@@ -446,89 +452,60 @@ if (texto.toLowerCase().startsWith("#addwebcatalogo")) {
             archivoImagen
         );
 
+        // ==================================================
+        // DESCARGAR IMAGEN
+        // ==================================================
+
+        const buffer = await downloadMediaMessage(
+            msg,
+            "buffer",
+            {},
+            {
+                logger: console
+            }
+        );
+
         fs.writeFileSync(
             rutaImagen,
             buffer
         );
 
-        // Crear producto con exactamente la estructura del catálogo
-        const nuevoProducto = `
-<div class="product-card" id="${nuevoId}" data-categoria="1">
-    <h2>${nombreProducto}</h2>
-    <div class="imgContainer"><img src="img/${archivoImagen}" loading="lazy"></div>
-    <p class="productCardDescription"></p>
-    <div class="productCardEnd">
-        <a class="precio">$${precioFormateado}</a>
-        <button class="productsButton" data-product-id="${nuevoId}">AGREGAR A MI PEDIDO</button>
-    </div>
-</div>
-`;
+        // ==================================================
+        // GUARDAR PRODUCTO EN productos.json
+        // ==================================================
 
-        const posicion = html.lastIndexOf("</main>");
-
-        if (posicion === -1) {
-            throw new Error(
-                "No se encontró </main> en index.html"
-            );
-        }
-
-        html =
-            html.slice(0, posicion) +
-            nuevoProducto +
-            html.slice(posicion);
+        productosGuardados.push({
+            id: nuevoId,
+            nombre: nombreProducto,
+            precio: precioFormateado,
+            imagen: archivoImagen,
+            dataCategoria: "1",
+            descripcion: ""
+        });
 
         fs.writeFileSync(
-            rutaIndex,
-            html,
+            rutaProductos,
+            JSON.stringify(
+                productosGuardados,
+                null,
+                2
+            ),
             "utf8"
         );
-		
-		// Guardar producto de forma permanente
-let productosGuardados = [];
 
-if (fs.existsSync(rutaProductos)) {
-    try {
-        productosGuardados = JSON.parse(
-            fs.readFileSync(rutaProductos, "utf8")
-        );
-    } catch (error) {
-        productosGuardados = [];
-    }
-}
+        // ==================================================
+        // RECONSTRUIR CATÁLOGO
+        // ==================================================
 
-productosGuardados.push({
-    id: nuevoId,
-    nombre: nombreProducto,
-    precio: precioFormateado,
-    imagen: archivoImagen,
-    dataCategoria: "1"
-});
+        delete require.cache[
+            require.resolve("./reconstruir-catalogo.js")
+        ];
 
-fs.writeFileSync(
-    rutaProductos,
-    JSON.stringify(productosGuardados, null, 2),
-    "utf8"
-);
+        require("./reconstruir-catalogo.js");
 
-        // Actualizar catálogo público
-        const destinoWeb = "/var/www/catalogo";
-
-        fs.copyFileSync(
-            rutaIndex,
-            path.join(
-                destinoWeb,
-                "index.html"
-            )
-        );
-
-        fs.copyFileSync(
-            rutaImagen,
-            path.join(
-                destinoWeb,
-                "img",
-                archivoImagen
-            )
-        );
+        // ==================================================
+        // CONFIRMACIÓN
+        // ==================================================
 
         await sock.sendMessage(usuario, {
             text:
@@ -557,7 +534,6 @@ fs.writeFileSync(
         continue;
     }
 }
-
 
 // ======================================================
 // COMANDO: #deletewebcatalogo
