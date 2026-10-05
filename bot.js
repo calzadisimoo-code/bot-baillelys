@@ -391,6 +391,11 @@ if (texto.toLowerCase().startsWith("#addwebcatalogo")) {
             catalogo,
             "index.html"
         );
+		
+		const rutaProductos = path.join(
+    catalogo,
+    "productos.json"
+);
 
         if (!fs.existsSync(carpetaImagenes)) {
             fs.mkdirSync(carpetaImagenes, {
@@ -477,6 +482,33 @@ if (texto.toLowerCase().startsWith("#addwebcatalogo")) {
             html,
             "utf8"
         );
+		
+		// Guardar producto de forma permanente
+let productosGuardados = [];
+
+if (fs.existsSync(rutaProductos)) {
+    try {
+        productosGuardados = JSON.parse(
+            fs.readFileSync(rutaProductos, "utf8")
+        );
+    } catch (error) {
+        productosGuardados = [];
+    }
+}
+
+productosGuardados.push({
+    id: nuevoId,
+    nombre: nombreProducto,
+    precio: precioFormateado,
+    imagen: archivoImagen,
+    dataCategoria: "1"
+});
+
+fs.writeFileSync(
+    rutaProductos,
+    JSON.stringify(productosGuardados, null, 2),
+    "utf8"
+);
 
         // Actualizar catálogo público
         const destinoWeb = "/var/www/catalogo";
