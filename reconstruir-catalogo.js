@@ -84,7 +84,7 @@ const tarjetas = productos.map((producto, index) => {
         <a class="precio">$${producto.precio}</a>
     </div>
 
-    <p class="tocarParaComprar">🛒 TOCAR PARA COMPRAR</p>
+    <p class="tocarParaComprar">👆 TOCAR PARA COMPRAR</p>
 </div>`;
 }).join("\n");
 

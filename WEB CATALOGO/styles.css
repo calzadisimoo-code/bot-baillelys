@@ -506,21 +506,27 @@ footer img {
 }
 
 .masVendidosTitulo strong {
-    display: block;
-    color: white;
+    display: block !important;
+    color: #ffffff !important;
     font-size: 20px;
     letter-spacing: 1px;
 }
 
 .masVendidosTitulo small {
-    display: block;
-    color: #ccc;
+    display: block !important;
+    color: #cccccc !important;
     font-size: 12px;
     margin-top: 3px;
 }
 
 .masVendidosTitulo span {
     font-size: 25px;
+}
+
+.masVendidosTitulo,
+.masVendidosTitulo strong,
+.masVendidosTitulo small {
+    color: white !important;
 }
 
 
