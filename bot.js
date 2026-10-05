@@ -277,10 +277,465 @@ else if (
 
                 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 texto = texto.trim();
 
 // ======================================================
-// CONFIRMAR ELIMINACIÓN DEL CATÁLOGO
+// CATÁLOGO WEB - AGREGAR Y ELIMINAR PRODUCTOS
+// ======================================================
+
+// ======================================================
+// COMANDO: #addwebcatalogo
+// Formato:
+// #addwebcatalogo
+// Nombre del producto
+// Precio
+// + FOTO
+// ======================================================
+if (texto.toLowerCase().startsWith("#addwebcatalogo")) {
+    try {
+
+        const lineas = texto
+            .split("\n")
+            .map(l => l.trim())
+            .filter(Boolean);
+
+        if (!msg.message.imageMessage) {
+            await sock.sendMessage(usuario, {
+                text:
+                    "⚠️ Debes enviar una FOTO con este formato:\n\n" +
+                    "#addwebcatalogo\n" +
+                    "Nombre del producto\n" +
+                    "Precio"
+            });
+            continue;
+        }
+
+        if (lineas.length < 3) {
+            await sock.sendMessage(usuario, {
+                text:
+                    "⚠️ Formato incorrecto.\n\n" +
+                    "Debes enviar:\n\n" +
+                    "#addwebcatalogo\n" +
+                    "Nombre del producto\n" +
+                    "Precio"
+            });
+            continue;
+        }
+
+        const nombreProducto = lineas[1];
+        const precioProducto = lineas[2];
+
+        const precioNumero = precioProducto.replace(/[^\d]/g, "");
+
+        if (!precioNumero) {
+            await sock.sendMessage(usuario, {
+                text: "⚠️ El precio no es válido."
+            });
+            continue;
+        }
+
+        // Si escribes 75 -> $75.000
+        // Si escribes 79 -> $79.000
+        // Si escribes 75000 -> $75.000
+        const precioBase = Number(precioNumero);
+
+        const precioFinal =
+            precioBase < 1000
+                ? precioBase * 1000
+                : precioBase;
+
+        const precioFormateado =
+            precioFinal.toLocaleString("es-CO");
+
+        // Descargar imagen
+        const buffer = await downloadMediaMessage(
+            msg,
+            "buffer",
+            {},
+            {
+                logger: console
+            }
+        );
+
+        const catalogo = path.join(
+            __dirname,
+            "WEB CATALOGO"
+        );
+
+        const carpetaImagenes = path.join(
+            catalogo,
+            "img"
+        );
+
+        const rutaIndex = path.join(
+            catalogo,
+            "index.html"
+        );
+
+        if (!fs.existsSync(carpetaImagenes)) {
+            fs.mkdirSync(carpetaImagenes, {
+                recursive: true
+            });
+        }
+
+        let html = fs.readFileSync(
+            rutaIndex,
+            "utf8"
+        );
+
+        // Obtener IDs existentes
+        const idsExistentes = [
+            ...html.matchAll(
+                /class="product-card"[^>]*id="(\d+)"/gi
+            )
+        ]
+            .map(m => Number(m[1]))
+            .filter(n => Number.isInteger(n) && n > 0)
+            .sort((a, b) => a - b);
+
+        // Buscar el primer ID disponible.
+        // Ejemplo: 1,2,3,5 -> nuevo ID = 4
+        let nuevoId = 1;
+
+        for (const id of idsExistentes) {
+            if (id === nuevoId) {
+                nuevoId++;
+            } else if (id > nuevoId) {
+                break;
+            }
+        }
+
+        // Nombre seguro para la imagen
+        const nombreImagen = nombreProducto
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "");
+
+        const archivoImagen =
+            `${nombreImagen}-${nuevoId}-${Date.now()}.jpeg`;
+
+        const rutaImagen = path.join(
+            carpetaImagenes,
+            archivoImagen
+        );
+
+        fs.writeFileSync(
+            rutaImagen,
+            buffer
+        );
+
+        // Crear producto con exactamente la estructura del catálogo
+        const nuevoProducto = `
+<div class="product-card" id="${nuevoId}" data-categoria="1">
+    <h2>${nombreProducto}</h2>
+    <div class="imgContainer"><img src="img/${archivoImagen}" loading="lazy"></div>
+    <p class="productCardDescription"></p>
+    <div class="productCardEnd">
+        <a class="precio">$${precioFormateado}</a>
+        <button class="productsButton" data-product-id="${nuevoId}">AGREGAR A MI PEDIDO</button>
+    </div>
+</div>
+`;
+
+        const posicion = html.lastIndexOf("</main>");
+
+        if (posicion === -1) {
+            throw new Error(
+                "No se encontró </main> en index.html"
+            );
+        }
+
+        html =
+            html.slice(0, posicion) +
+            nuevoProducto +
+            html.slice(posicion);
+
+        fs.writeFileSync(
+            rutaIndex,
+            html,
+            "utf8"
+        );
+
+        // Actualizar catálogo público
+        const destinoWeb = "/var/www/catalogo";
+
+        fs.copyFileSync(
+            rutaIndex,
+            path.join(
+                destinoWeb,
+                "index.html"
+            )
+        );
+
+        fs.copyFileSync(
+            rutaImagen,
+            path.join(
+                destinoWeb,
+                "img",
+                archivoImagen
+            )
+        );
+
+        await sock.sendMessage(usuario, {
+            text:
+                "✅ PRODUCTO AGREGADO AL CATÁLOGO\n\n" +
+                `👟 Producto: ${nombreProducto}\n` +
+                `💰 Precio: $${precioFormateado}\n` +
+                `🔢 ID: ${nuevoId}\n\n` +
+                "🌐 El catálogo ya fue actualizado."
+        });
+
+        continue;
+
+    } catch (error) {
+
+        console.error(
+            "❌ Error en #addwebcatalogo:",
+            error
+        );
+
+        await sock.sendMessage(usuario, {
+            text:
+                "❌ No pude agregar el producto al catálogo.\n\n" +
+                "Revisa los logs del bot."
+        });
+
+        continue;
+    }
+}
+
+
+// ======================================================
+// COMANDO: #deletewebcatalogo
+// ======================================================
+if (texto.toLowerCase() === "#deletewebcatalogo") {
+    try {
+
+        const rutaIndex = path.join(
+            __dirname,
+            "WEB CATALOGO",
+            "index.html"
+        );
+
+        const html = fs.readFileSync(
+            rutaIndex,
+            "utf8"
+        );
+
+        const inicio = html.indexOf(
+            '<main id="product-container">'
+        );
+
+        const fin = html.indexOf(
+            "</main>",
+            inicio
+        );
+
+        if (inicio === -1 || fin === -1) {
+            throw new Error(
+                "No se encontró product-container."
+            );
+        }
+
+        const contenido = html.substring(
+            inicio + '<main id="product-container">'.length,
+            fin
+        );
+
+        const productos =
+            contenido.match(
+                /<div class="product-card"[\s\S]*?(?=\s*<div class="product-card"|$)/gi
+            ) || [];
+
+        if (productos.length === 0) {
+            await sock.sendMessage(usuario, {
+                text:
+                    "⚠️ No hay productos en el catálogo."
+            });
+            continue;
+        }
+
+        global.catalogoSeleccion =
+            global.catalogoSeleccion || {};
+
+        global.catalogoSeleccion[usuario] =
+            productos.map((producto, indice) => {
+
+                const idMatch =
+                    producto.match(
+                        /<div class="product-card"[^>]*id="([^"]+)"/i
+                    );
+
+                const nombreMatch =
+                    producto.match(
+                        /<h2>([\s\S]*?)<\/h2>/i
+                    );
+
+                const precioMatch =
+                    producto.match(
+                        /class="precio"[^>]*>\s*([^<]+)|class="price"[^>]*>\s*([^<]+)/i
+                    );
+
+                const imagenMatch =
+                    producto.match(
+                        /<img[^>]+src="([^"]+)"/i
+                    );
+
+                return {
+                    indice,
+                    idOriginal: idMatch
+                        ? idMatch[1]
+                        : null,
+                    nombre: nombreMatch
+                        ? nombreMatch[1].trim()
+                        : "Sin nombre",
+                    precio: precioMatch
+                        ? (
+                            precioMatch[1] ||
+                            precioMatch[2] ||
+                            ""
+                        ).trim()
+                        : "Sin precio",
+                    imagen: imagenMatch
+                        ? imagenMatch[1]
+                            .replace(/^img\//i, "")
+                        : null
+                };
+            });
+
+        let mensaje =
+            "🗑️ PRODUCTOS DEL CATÁLOGO\n\n";
+
+        global.catalogoSeleccion[usuario]
+            .forEach((producto, i) => {
+
+                mensaje +=
+                    `${i + 1}. ${producto.nombre}\n` +
+                    `   💰 ${producto.precio}\n\n`;
+            });
+
+        mensaje +=
+            "Responde solamente con el número del producto que deseas eliminar.";
+
+        await sock.sendMessage(usuario, {
+            text: mensaje
+        });
+
+        continue;
+
+    } catch (error) {
+
+        console.error(
+            "❌ Error mostrando catálogo para eliminar:",
+            error
+        );
+
+        await sock.sendMessage(usuario, {
+            text:
+                "❌ No pude cargar los productos del catálogo."
+        });
+
+        continue;
+    }
+}
+
+
+// ======================================================
+// SELECCIONAR PRODUCTO PARA ELIMINAR
+// ======================================================
+if (
+    global.catalogoSeleccion &&
+    global.catalogoSeleccion[usuario] &&
+    /^\d+$/.test(texto)
+) {
+    try {
+
+        const numero =
+            Number(texto);
+
+        const productos =
+            global.catalogoSeleccion[usuario];
+
+        const posicion =
+            numero - 1;
+
+        if (
+            posicion < 0 ||
+            posicion >= productos.length
+        ) {
+            await sock.sendMessage(usuario, {
+                text:
+                    "⚠️ Ese número no corresponde a ningún producto."
+            });
+            continue;
+        }
+
+        const producto =
+            productos[posicion];
+
+        global.catalogoEliminaciones =
+            global.catalogoEliminaciones || {};
+
+        global.catalogoEliminaciones[usuario] = {
+            indice: posicion,
+            idOriginal: producto.idOriginal,
+            nombre: producto.nombre,
+            precio: producto.precio,
+            imagen: producto.imagen
+        };
+
+        await sock.sendMessage(usuario, {
+            text:
+                "⚠️ VAS A ELIMINAR ESTE PRODUCTO\n\n" +
+                `👟 ${producto.nombre}\n` +
+                `💰 ${producto.precio}\n\n` +
+                "¿Confirmas la eliminación?\n\n" +
+                "Responde SI para confirmar."
+        });
+
+        continue;
+
+    } catch (error) {
+
+        console.error(
+            "❌ Error seleccionando producto:",
+            error
+        );
+
+        await sock.sendMessage(usuario, {
+            text:
+                "❌ No pude seleccionar el producto."
+        });
+
+        continue;
+    }
+}
+
+
+// ======================================================
+// CONFIRMAR ELIMINACIÓN
 // ======================================================
 if (
     global.catalogoEliminaciones &&
@@ -288,6 +743,7 @@ if (
     texto.toLowerCase() === "si"
 ) {
     try {
+
         const pendiente =
             global.catalogoEliminaciones[usuario];
 
@@ -297,94 +753,131 @@ if (
             "index.html"
         );
 
-        let html = fs.readFileSync(rutaIndex, "utf8");
+        let html = fs.readFileSync(
+            rutaIndex,
+            "utf8"
+        );
 
-        const regexProductos =
-            /<div class="product-card"[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/gi;
+        const inicio = html.indexOf(
+            '<main id="product-container">'
+        );
 
-        let productos = html.match(regexProductos) || [];
+        const fin = html.indexOf(
+            "</main>",
+            inicio
+        );
 
-        const indiceEliminar = productos.findIndex(producto => {
-            const match = producto.match(
-                /<div class="product-card"[^>]*id="([^"]+)"/i
+        if (inicio === -1 || fin === -1) {
+            throw new Error(
+                "No se encontró product-container."
             );
-
-            return match && match[1] === pendiente.id;
-        });
-
-        if (indiceEliminar === -1) {
-            delete global.catalogoEliminaciones[usuario];
-
-            await sock.sendMessage(usuario, {
-                text: "⚠️ Ese producto ya no existe."
-            });
-
-            continue;
         }
 
-        const productoEliminado =
-            productos[indiceEliminar];
+        const contenido = html.substring(
+            inicio + '<main id="product-container">'.length,
+            fin
+        );
 
-        // Obtener imagen antes de eliminar
-        const imagenMatch =
-            productoEliminado.match(
-                /<img[^>]+src="img\/([^"]+)"/i
-            );
-
-        const imagenEliminar =
-            imagenMatch ? imagenMatch[1] : null;
-
-        // Eliminar producto
-        productos.splice(indiceEliminar, 1);
-
-        // Renumerar TODOS los productos
-        productos = productos.map((producto, index) => {
-
-            const nuevoId = index + 1;
-
-            producto = producto.replace(
-                /<div class="product-card"[^>]*>/i,
-                `<div class="product-card" id="${nuevoId}" data-categoria="1">`
-            );
-
-            producto = producto.replace(
-                /data-category="[^"]*"/i,
-                'data-categoria="1"'
-            );
-
-            producto = producto.replace(
-                /data-product-id="[^"]*"/i,
-                `data-product-id="${nuevoId}"`
-            );
-
-            return producto;
-        });
-
-        // Reconstruir el catálogo
-        const inicioProductos =
-            html.indexOf('<main id="product-container">');
-
-        const finProductos =
-            html.indexOf("</main>", inicioProductos);
+        let productos =
+            contenido.match(
+                /<div class="product-card"[\s\S]*?(?=\s*<div class="product-card"|$)/gi
+            ) || [];
 
         if (
-            inicioProductos === -1 ||
-            finProductos === -1
+            pendiente.idOriginal !== null
+        ) {
+
+            const indiceReal =
+                productos.findIndex(producto => {
+
+                    const match =
+                        producto.match(
+                            /<div class="product-card"[^>]*id="([^"]+)"/i
+                        );
+
+                    return (
+                        match &&
+                        match[1] ===
+                            pendiente.idOriginal
+                    );
+                });
+
+            if (indiceReal !== -1) {
+                pendiente.indice =
+                    indiceReal;
+            }
+        }
+
+        if (
+            pendiente.indice < 0 ||
+            pendiente.indice >= productos.length
         ) {
             throw new Error(
-                "No se encontró product-container"
+                "Producto no encontrado."
             );
         }
 
-        const contenidoNuevo =
+        // Eliminar producto
+        productos.splice(
+            pendiente.indice,
+            1
+        );
+
+        // Renumerar sin modificar data-categoria
+        productos =
+            productos.map(
+                (producto, index) => {
+
+                    const nuevoId =
+                        index + 1;
+
+                    producto =
+                        producto.replace(
+                            /(<div class="product-card"[^>]*?)\sid="[^"]*"/i,
+                            `$1 id="${nuevoId}"`
+                        );
+
+                    if (
+                        /data-product-id="[^"]*"/i.test(
+                            producto
+                        )
+                    ) {
+                        producto =
+                            producto.replace(
+                                /data-product-id="[^"]*"/i,
+                                `data-product-id="${nuevoId}"`
+                            );
+                    } else {
+                        producto =
+                            producto.replace(
+                                /(<button[^>]*class="productsButton"[^>]*)>/i,
+                                `$1 data-product-id="${nuevoId}">`
+                            );
+                    }
+
+                    // Convertir cualquier data-category antiguo
+                    // a data-categoria sin cambiar su valor
+                    producto =
+                        producto.replace(
+                            /data-category="([^"]*)"/i,
+                            'data-categoria="$1"'
+                        );
+
+                    return producto;
+                }
+            );
+
+        const nuevoContenido =
             '<main id="product-container">\n' +
             productos.join("\n") +
             '\n</main>';
 
         html =
-            html.substring(0, inicioProductos) +
-            contenidoNuevo +
-            html.substring(finProductos + "</main>".length);
+            html.substring(0, inicio) +
+            nuevoContenido +
+            html.substring(
+                fin + "</main>".length
+            );
 
         fs.writeFileSync(
             rutaIndex,
@@ -393,26 +886,32 @@ if (
         );
 
         // Eliminar imagen
-        if (imagenEliminar) {
+        if (pendiente.imagen) {
 
-            const rutaImagen = path.join(
-                __dirname,
-                "WEB CATALOGO",
-                "img",
-                imagenEliminar
-            );
+            const rutaImagen =
+                path.join(
+                    __dirname,
+                    "WEB CATALOGO",
+                    "img",
+                    pendiente.imagen
+                );
 
-            const rutaImagenWeb = path.join(
-                "/var/www/catalogo",
-                "img",
-                imagenEliminar
-            );
+            const rutaImagenWeb =
+                path.join(
+                    "/var/www/catalogo",
+                    "img",
+                    pendiente.imagen
+                );
 
-            if (fs.existsSync(rutaImagen)) {
+            if (
+                fs.existsSync(rutaImagen)
+            ) {
                 fs.unlinkSync(rutaImagen);
             }
 
-            if (fs.existsSync(rutaImagenWeb)) {
+            if (
+                fs.existsSync(rutaImagenWeb)
+            ) {
                 fs.unlinkSync(rutaImagenWeb);
             }
         }
@@ -423,13 +922,19 @@ if (
             "/var/www/catalogo/index.html"
         );
 
-        delete global.catalogoEliminaciones[usuario];
+        delete global.catalogoEliminaciones[
+            usuario
+        ];
+
+        delete global.catalogoSeleccion[
+            usuario
+        ];
 
         await sock.sendMessage(usuario, {
             text:
                 "✅ PRODUCTO ELIMINADO\n\n" +
                 `👟 ${pendiente.nombre}\n` +
-                `🆔 ID eliminado: ${pendiente.id}\n\n` +
+                `💰 ${pendiente.precio}\n\n` +
                 "🔢 Los productos siguientes fueron renumerados automáticamente."
         });
 
@@ -450,718 +955,6 @@ if (
         continue;
     }
 }
-
-// ======================================================
-// CONFIRMAR ELIMINACIÓN DE PRODUCTO DEL CATÁLOGO
-// ======================================================
-if (
-    global.productoEliminarPendiente &&
-    global.productoEliminarPendiente.usuario === usuario &&
-    texto.toLowerCase() === "si"
-) {
-    try {
-        const pendiente = global.productoEliminarPendiente;
-
-        const rutaIndex = path.join(
-            __dirname,
-            "WEB CATALOGO",
-            "index.html"
-        );
-
-        let html = fs.readFileSync(rutaIndex, "utf8");
-
-        const regexProducto = new RegExp(
-            `<div class="product-card" id="${pendiente.id}"[\\s\\S]*?<\\/div>\\s*<\\/div>\\s*<\\/div>`,
-            "i"
-        );
-
-        if (!regexProducto.test(html)) {
-            delete global.productoEliminarPendiente;
-
-            await sock.sendMessage(usuario, {
-                text: "⚠️ El producto ya no existe en el catálogo."
-            });
-
-            continue;
-        }
-
-        html = html.replace(regexProducto, "");
-
-        fs.writeFileSync(rutaIndex, html, "utf8");
-
-        // Eliminar imagen
-        if (pendiente.imagen) {
-            const rutaImagen = path.join(
-                __dirname,
-                "WEB CATALOGO",
-                "img",
-                pendiente.imagen
-            );
-
-            if (fs.existsSync(rutaImagen)) {
-                fs.unlinkSync(rutaImagen);
-            }
-        }
-
-        // Actualizar catálogo servido por Nginx
-        const destinoWeb = "/var/www/catalogo";
-
-        fs.copyFileSync(
-            rutaIndex,
-            path.join(destinoWeb, "index.html")
-        );
-
-        if (pendiente.imagen) {
-            const rutaImagen = path.join(
-                __dirname,
-                "WEB CATALOGO",
-                "img",
-                pendiente.imagen
-            );
-
-            const destinoImagen = path.join(
-                destinoWeb,
-                "img",
-                pendiente.imagen
-            );
-
-            if (fs.existsSync(destinoImagen)) {
-                fs.unlinkSync(destinoImagen);
-            }
-        }
-
-        delete global.productoEliminarPendiente;
-
-        await sock.sendMessage(usuario, {
-            text:
-                `✅ PRODUCTO ELIMINADO DEL CATÁLOGO\n\n` +
-                `👟 Producto: ${pendiente.nombre}\n` +
-                `🆔 ID: ${pendiente.id}`
-        });
-
-        continue;
-
-    } catch (error) {
-        console.error(
-            "❌ Error confirmando eliminación:",
-            error
-        );
-
-        await sock.sendMessage(usuario, {
-            text: "❌ No pude eliminar el producto."
-        });
-
-        continue;
-    }
-}
-
-// ======================================================
-// COMANDO: #deletewebcatalogo
-// ======================================================
-if (texto.toLowerCase().startsWith("#deletewebcatalogo")) {
-    try {
-        const lineas = texto
-            .split("\n")
-            .map(l => l.trim())
-            .filter(Boolean);
-
-        if (lineas.length < 2) {
-            await sock.sendMessage(usuario, {
-                text: "⚠️ Formato incorrecto.\n\nUsa:\n\n#deletewebcatalogo\nID"
-            });
-            continue;
-        }
-
-        const idEliminar = lineas[1];
-
-        const rutaIndex = path.join(
-            __dirname,
-            "WEB CATALOGO",
-            "index.html"
-        );
-
-        let html = fs.readFileSync(rutaIndex, "utf8");
-
-        // Buscar el producto completo por su ID
-        const regexProducto = new RegExp(
-            `<div class="product-card" id="${idEliminar}"[\\s\\S]*?<\\/div>\\s*<\\/div>\\s*<\\/div>`,
-            "i"
-        );
-
-        const coincidencia = html.match(regexProducto);
-
-        if (!coincidencia) {
-            await sock.sendMessage(usuario, {
-                text: `⚠️ No encontré ningún producto con ID ${idEliminar}.`
-            });
-            continue;
-        }
-
-        const productoHTML = coincidencia[0];
-
-        // Obtener nombre del producto
-        const nombreMatch = productoHTML.match(/<h2>(.*?)<\/h2>/i);
-        const nombreProducto = nombreMatch
-            ? nombreMatch[1].trim()
-            : "Producto";
-
-        // Obtener imagen
-        const imagenMatch = productoHTML.match(
-            /<img[^>]+src="img\/([^"]+)"/i
-        );
-
-        const nombreImagen = imagenMatch
-            ? imagenMatch[1]
-            : null;
-
-        // Obtener precio
-const precioMatch = productoHTML.match(
-    /class="precio">([^<]+)<\/a>/i
-);
-
-        const precioProducto = precioMatch
-            ? precioMatch[1].trim()
-            : "Sin precio";
-
-        // PRIMERA RESPUESTA: pedir confirmación
-        await sock.sendMessage(usuario, {
-            text:
-                `⚠️ CONFIRMAR ELIMINACIÓN\n\n` +
-                `👟 Producto: ${nombreProducto}\n` +
-                `💰 Precio: ${precioProducto}\n` +
-                `🆔 ID: ${idEliminar}\n\n` +
-                `Responde exactamente:\n\n` +
-                `SI\n\n` +
-                `para eliminarlo.`
-        });
-
-        // Guardar producto pendiente de eliminación
-        global.productoEliminarPendiente = {
-            usuario,
-            id: idEliminar,
-            nombre: nombreProducto,
-            imagen: nombreImagen
-        };
-
-        continue;
-
-    } catch (error) {
-        console.error("❌ Error en #deletewebcatalogo:", error);
-
-        await sock.sendMessage(usuario, {
-            text: "❌ Ocurrió un error al buscar el producto."
-        });
-
-        continue;
-    }
-}
-
-// ======================================================
-// COMANDO: #deletewebcatalogo
-// ======================================================
-if (texto.toLowerCase().startsWith("#deletewebcatalogo")) {
-    try {
-        const lineas = texto
-            .split("\n")
-            .map(l => l.trim())
-            .filter(Boolean);
-
-        if (lineas.length < 2) {
-            await sock.sendMessage(usuario, {
-                text:
-                    "⚠️ Formato incorrecto.\n\n" +
-                    "Usa:\n\n" +
-                    "#deletewebcatalogo\n" +
-                    "ID"
-            });
-            continue;
-        }
-
-        const idEliminar = lineas[1];
-
-        const rutaIndex = path.join(
-            __dirname,
-            "WEB CATALOGO",
-            "index.html"
-        );
-
-        let html = fs.readFileSync(rutaIndex, "utf8");
-
-        const regexProductos =
-            /<div class="product-card"[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/gi;
-
-        const productos = html.match(regexProductos) || [];
-
-        const productoEncontrado = productos.find(producto => {
-            const match = producto.match(
-                /<div class="product-card"[^>]*id="([^"]+)"/i
-            );
-
-            return match && match[1] === idEliminar;
-        });
-
-        if (!productoEncontrado) {
-            await sock.sendMessage(usuario, {
-                text:
-                    `⚠️ No encontré ningún producto con ID ${idEliminar}.`
-            });
-
-            continue;
-        }
-
-        const nombreMatch =
-            productoEncontrado.match(/<h2>(.*?)<\/h2>/i);
-
-        const nombreProducto = nombreMatch
-            ? nombreMatch[1].trim()
-            : "Producto";
-
-        // Guardamos la eliminación pendiente
-        if (!global.catalogoEliminaciones) {
-            global.catalogoEliminaciones = {};
-        }
-
-        global.catalogoEliminaciones[usuario] = {
-            id: idEliminar,
-            nombre: nombreProducto
-        };
-
-        await sock.sendMessage(usuario, {
-            text:
-                "⚠️ CONFIRMAR ELIMINACIÓN\n\n" +
-                `👟 Producto: ${nombreProducto}\n` +
-                `🆔 ID: ${idEliminar}\n\n` +
-                "Responde exactamente:\n\n" +
-                "SI\n\n" +
-                "para eliminarlo."
-        });
-
-        continue;
-
-    } catch (error) {
-        console.error(
-            "❌ Error en #deletewebcatalogo:",
-            error
-        );
-
-        await sock.sendMessage(usuario, {
-            text: "❌ No pude procesar la eliminación."
-        });
-
-        continue;
-    }
-}
-
-// ======================================================
-// COMANDO: #addwebcatalogo
-// ======================================================
-if (texto.toLowerCase().startsWith("#addwebcatalogo")) {
-    try {
-        const lineas = texto
-            .split("\n")
-            .map(l => l.trim())
-            .filter(Boolean);
-
-        if (!msg.message.imageMessage) {
-            await sock.sendMessage(usuario, {
-                text: "⚠️ Para agregar un producto al catálogo debes enviar una FOTO con el siguiente formato:\n\n#addwebcatalogo\nNombre del producto\nPrecio"
-            });
-            continue;
-        }
-
-        if (lineas.length < 3) {
-            await sock.sendMessage(usuario, {
-                text: "⚠️ Formato incorrecto.\n\nDebes enviar:\n\n#addwebcatalogo\nNombre del producto\nPrecio"
-            });
-            continue;
-        }
-
-        const nombreProducto = lineas[1];
-        const precioProducto = lineas[2];
-
-        const precioNumero = precioProducto.replace(/[^\d]/g, "");
-
-        if (!precioNumero) {
-            await sock.sendMessage(usuario, {
-                text: "⚠️ El precio no es válido."
-            });
-            continue;
-        }
-
-        const buffer = await downloadMediaMessage(
-            msg,
-            "buffer",
-            {},
-            {
-                logger: console
-            }
-        );
-
-        const carpetaImg = path.join(__dirname, "WEB CATALOGO", "img");
-
-        if (!fs.existsSync(carpetaImg)) {
-            fs.mkdirSync(carpetaImg, { recursive: true });
-        }
-
-        const nombreArchivo =
-            nombreProducto
-                .toLowerCase()
-                .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, "")
-                .replace(/[^a-z0-9]+/g, "-")
-                .replace(/^-|-$/g, "") +
-            "-" +
-            Date.now() +
-            ".jpeg";
-
-        const rutaImagen = path.join(carpetaImg, nombreArchivo);
-
-        fs.writeFileSync(rutaImagen, buffer);
-
-        const rutaIndex = path.join(__dirname, "WEB CATALOGO", "index.html");
-
-        let html = fs.readFileSync(rutaIndex, "utf8");
-
-        // Buscar el último ID numérico utilizado en los productos
-const idsExistentes = [...html.matchAll(/class="product-card"\s+id="(\d+)"/g)]
-    .map(m => Number(m[1]));
-
-const nuevoId = idsExistentes.length > 0
-    ? Math.max(...idsExistentes) + 1
-    : 1;
-
-const nuevoProducto = `
-<div class="product-card" id="${nuevoId}" data-categoria="1">
-    <h2>${nombreProducto}</h2>
-
-    <div class="imgContainer">
-        <img src="img/${nombreArchivo}" loading="lazy">
-    </div>
-
-    <p class="productCardDescription"></p>
-
-    <div class="productCardEnd">
-        <a class="precio">$${Number(precioNumero).toLocaleString("es-CO")}</a>
-        <button class="productsButton" data-product-id="${nuevoId}">AGREGAR A MI PEDIDO</button>
-    </div>
-</div>
-`;
-
-        const posicion = html.lastIndexOf("</main>");
-
-        if (posicion === -1) {
-            throw new Error("No se encontró </main> en index.html");
-        }
-
-        html =
-            html.slice(0, posicion) +
-            nuevoProducto +
-            html.slice(posicion);
-
-        fs.writeFileSync(rutaIndex, html, "utf8");
-
-        // Copiar catálogo actualizado al directorio servido por Nginx
-        const destinoWeb = "/var/www/catalogo";
-
-        fs.copyFileSync(
-            rutaIndex,
-            path.join(destinoWeb, "index.html")
-        );
-
-        fs.copyFileSync(
-            rutaImagen,
-            path.join(destinoWeb, "img", nombreArchivo)
-        );
-
-        await sock.sendMessage(usuario, {
-            text:
-                "✅ PRODUCTO AGREGADO AL CATÁLOGO\n\n" +
-                `👟 Producto: ${nombreProducto}\n` +
-                `💰 Precio: $${Number(precioNumero).toLocaleString("es-CO")}\n` +
-                `🖼️ Imagen: ${nombreArchivo}\n\n` +
-                "🌐 El catálogo ya fue actualizado."
-        });
-
-        continue;
-
-    } catch (error) {
-        console.error("❌ Error en #addwebcatalogo:", error);
-
-        await sock.sendMessage(usuario, {
-            text: "❌ No pude agregar el producto al catálogo.\n\nRevisa los logs del bot."
-        });
-
-        continue;
-    }
-}
-
-// AGREGAR PRODUCTO AL CATÁLOGO WEB
-if (texto.toLowerCase().startsWith("#addwebbcatalogo")) {
-
-    try {
-
-        const lineas = texto
-            .split("\n")
-            .map(linea => linea.trim())
-            .filter(Boolean);
-
-        if (lineas.length < 3) {
-            await sock.sendMessage(usuario, {
-                text: "❌ Formato incorrecto.\n\nEnvía una foto con:\n#addwebbcatalogo\nNombre del producto\nPrecio"
-            });
-            continue;
-        }
-
-        const nombreProducto = lineas[1];
-        const precioProducto = lineas[2];
-
-        if (!msg.message.imageMessage) {
-            await sock.sendMessage(usuario, {
-                text: "❌ Debes enviar la foto junto con el comando."
-            });
-            continue;
-        }
-
-        const catalogo = path.join(__dirname, "WEB CATALOGO");
-        const carpetaImagenes = path.join(catalogo, "img");
-        const indexCatalogo = path.join(catalogo, "index.html");
-
-        if (!fs.existsSync(carpetaImagenes)) {
-            fs.mkdirSync(carpetaImagenes, { recursive: true });
-        }
-
-        let html = fs.readFileSync(indexCatalogo, "utf8");
-
-        const ids = [...html.matchAll(/class="product-card" id="(\d+)"/g)]
-            .map(match => parseInt(match[1], 10))
-            .filter(Number.isFinite);
-
-        const nuevoId = ids.length > 0 ? Math.max(...ids) + 1 : 1;
-
-        const nombreImagen = nombreProducto
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .replace(/[^a-z0-9]+/g, "-")
-            .replace(/^-+|-+$/g, "");
-
-        const extension =
-            msg.message.imageMessage.mimetype?.includes("png")
-                ? "png"
-                : "jpg";
-
-        const archivoImagen = `${nombreImagen}-${nuevoId}.${extension}`;
-
-        const rutaImagen = path.join(
-            carpetaImagenes,
-            archivoImagen
-        );
-
-        const buffer = await downloadMediaMessage(
-            msg,
-            "buffer",
-            {}
-        );
-
-        fs.writeFileSync(rutaImagen, buffer);
-
-        const nuevoProducto = `
-
-      <div class="product-card" id="${nuevoId}" data-categoria="1">
-        <h2>${nombreProducto}</h2>
-        <div class="imgContainer"><img src="img/${archivoImagen}" loading="lazy"></div>
-        <p class="productCardDescription">Disponible</p>
-        <div class="productCardEnd">
-          <a class="precio">$${precioProducto}</a>
-          <button class="productsButton" data-product-id="${nuevoId}">AGREGAR A MI PEDIDO</button>
-        </div>
-      </div>
-`;
-
-        html = html.replace(
-            "</main>",
-            nuevoProducto + "\n    </main>"
-        );
-
-        fs.writeFileSync(indexCatalogo, html, "utf8");
-
-        const catalogoWeb = "/var/www/catalogo";
-
-        fs.copyFileSync(
-            indexCatalogo,
-            path.join(catalogoWeb, "index.html")
-        );
-
-        fs.copyFileSync(
-            rutaImagen,
-            path.join(catalogoWeb, "img", archivoImagen)
-        );
-
-        await sock.sendMessage(usuario, {
-            text:
-                "✅ Producto agregado al catálogo.\n\n" +
-                `📦 ${nombreProducto}\n` +
-                `💰 $${precioProducto}\n` +
-                `🆔 ID: ${nuevoId}`
-        });
-
-        console.log(
-            `✅ Producto web agregado: ${nombreProducto} | ID ${nuevoId}`
-        );
-
-        continue;
-
-    } catch (error) {
-
-        console.error("❌ Error agregando producto al catálogo:", error);
-
-        await sock.sendMessage(usuario, {
-            text: "❌ No se pudo agregar el producto al catálogo. Revisa la consola del bot."
-        });
-
-        continue;
-    }
-}
-
-// AGREGAR PRODUCTO AL CATÁLOGO WEB
-if (texto.toLowerCase().startsWith("#addwebbcatalogo")) {
-
-    try {
-
-        const lineas = texto
-            .split("\n")
-            .map(linea => linea.trim())
-            .filter(Boolean);
-
-        if (lineas.length < 3) {
-            await sock.sendMessage(usuario, {
-                text: "❌ Formato incorrecto.\n\nEnvía una foto con:\n#addwebbcatalogo\nNombre del producto\nPrecio"
-            });
-            continue;
-        }
-
-        const nombreProducto = lineas[1];
-        const precioProducto = lineas[2];
-
-        // Verificar que realmente haya una foto
-        if (!msg.message.imageMessage) {
-            await sock.sendMessage(usuario, {
-                text: "❌ Debes enviar la foto junto con el comando."
-            });
-            continue;
-        }
-
-        // Rutas del catálogo
-        const catalogo = path.join(__dirname, "WEB CATALOGO");
-        const carpetaImagenes = path.join(catalogo, "img");
-        const indexCatalogo = path.join(catalogo, "index.html");
-
-        // Crear carpeta de imágenes si no existe
-        if (!fs.existsSync(carpetaImagenes)) {
-            fs.mkdirSync(carpetaImagenes, { recursive: true });
-        }
-
-        // Leer index.html
-        let html = fs.readFileSync(indexCatalogo, "utf8");
-
-        // Buscar el siguiente ID disponible
-        const ids = [...html.matchAll(/class="product-card" id="(\d+)"/g)]
-            .map(match => parseInt(match[1], 10))
-            .filter(Number.isFinite);
-
-        const nuevoId = ids.length > 0 ? Math.max(...ids) + 1 : 1;
-
-        // Nombre seguro para la imagen
-        const nombreImagen = nombreProducto
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .replace(/[^a-z0-9]+/g, "-")
-            .replace(/^-+|-+$/g, "");
-
-        const extension =
-            msg.message.imageMessage.mimetype?.includes("png")
-                ? "png"
-                : "jpg";
-
-        const archivoImagen = `${nombreImagen}-${nuevoId}.${extension}`;
-
-        const rutaImagen = path.join(
-            carpetaImagenes,
-            archivoImagen
-        );
-
-        // Descargar la foto de WhatsApp
-        const buffer = await downloadMediaMessage(
-            msg,
-            "buffer",
-            {}
-        );
-
-        fs.writeFileSync(rutaImagen, buffer);
-
-        // Crear el nuevo producto
-        const nuevoProducto = `
-
-      <div class="product-card" id="${nuevoId}" data-categoria="1">
-        <h2>${nombreProducto}</h2>
-        <div class="imgContainer"><img src="img/${archivoImagen}" loading="lazy"></div>
-        <p class="productCardDescription">Disponible</p>
-        <div class="productCardEnd">
-          <a class="precio">$${precioProducto}</a>
-          <button class="productsButton" data-product-id="${nuevoId}">AGREGAR A MI PEDIDO</button>
-        </div>
-      </div>
-`;
-
-        // Insertar antes de cerrar MAIN
-        html = html.replace(
-            "</main>",
-            nuevoProducto + "\n    </main>"
-        );
-
-        // Guardar catálogo
-        fs.writeFileSync(indexCatalogo, html, "utf8");
-
-        // Actualizar inmediatamente la versión que sirve Nginx
-        const catalogoWeb = "/var/www/catalogo";
-
-        fs.copyFileSync(
-            indexCatalogo,
-            path.join(catalogoWeb, "index.html")
-        );
-
-        fs.copyFileSync(
-            rutaImagen,
-            path.join(catalogoWeb, "img", archivoImagen)
-        );
-
-        await sock.sendMessage(usuario, {
-            text:
-                "✅ Producto agregado al catálogo.\n\n" +
-                `📦 ${nombreProducto}\n` +
-                `💰 $${precioProducto}\n` +
-                `🆔 ID: ${nuevoId}`
-        });
-
-        console.log(
-            `✅ Producto web agregado: ${nombreProducto} | ID ${nuevoId}`
-        );
-
-        continue;
-
-    } catch (error) {
-
-        console.error("❌ Error agregando producto al catálogo:", error);
-
-        await sock.sendMessage(usuario, {
-            text: "❌ No se pudo agregar el producto al catálogo. Revisa la consola del bot."
-        });
-
-        continue;
-    }
-}
-cancelarSiEsDireccion(usuario, texto);
 	
 	const fuePedido = await revisarPedido(
     sock,
