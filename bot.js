@@ -540,97 +540,58 @@ for (const id of idsUsados) {
 if (texto.toLowerCase() === "#deletewebcatalogo") {
     try {
 
-        const rutaIndex = path.join(
+        const rutaProductos = path.join(
             __dirname,
             "WEB CATALOGO",
-            "index.html"
+            "productos.json"
         );
 
-        const html = fs.readFileSync(
-            rutaIndex,
-            "utf8"
-        );
+        let productos = [];
 
-        const inicio = html.indexOf(
-            '<main id="product-container">'
-        );
-
-        const fin = html.indexOf(
-            "</main>",
-            inicio
-        );
-
-        if (inicio === -1 || fin === -1) {
-            throw new Error(
-                "No se encontró product-container."
-            );
+        if (fs.existsSync(rutaProductos)) {
+            try {
+                productos = JSON.parse(
+                    fs.readFileSync(
+                        rutaProductos,
+                        "utf8"
+                    )
+                );
+            } catch (error) {
+                productos = [];
+            }
         }
 
-        const contenido = html.substring(
-            inicio + '<main id="product-container">'.length,
-            fin
-        );
+        if (!Array.isArray(productos)) {
+            productos = [];
+        }
 
-        const productos =
-            contenido.match(
-                /<div class="product-card"[\s\S]*?(?=\s*<div class="product-card"|$)/gi
-            ) || [];
+        productos = productos
+            .sort((a, b) => Number(a.id) - Number(b.id));
 
         if (productos.length === 0) {
             await sock.sendMessage(usuario, {
                 text:
                     "⚠️ No hay productos en el catálogo."
             });
+
             continue;
         }
+
+        // ==================================================
+        // GUARDAR LISTA PARA EL USUARIO
+        // ==================================================
 
         global.catalogoSeleccion =
             global.catalogoSeleccion || {};
 
         global.catalogoSeleccion[usuario] =
-            productos.map((producto, indice) => {
-
-                const idMatch =
-                    producto.match(
-                        /<div class="product-card"[^>]*id="([^"]+)"/i
-                    );
-
-                const nombreMatch =
-                    producto.match(
-                        /<h2>([\s\S]*?)<\/h2>/i
-                    );
-
-                const precioMatch =
-                    producto.match(
-                        /class="precio"[^>]*>\s*([^<]+)|class="price"[^>]*>\s*([^<]+)/i
-                    );
-
-                const imagenMatch =
-                    producto.match(
-                        /<img[^>]+src="([^"]+)"/i
-                    );
-
-                return {
-                    indice,
-                    idOriginal: idMatch
-                        ? idMatch[1]
-                        : null,
-                    nombre: nombreMatch
-                        ? nombreMatch[1].trim()
-                        : "Sin nombre",
-                    precio: precioMatch
-                        ? (
-                            precioMatch[1] ||
-                            precioMatch[2] ||
-                            ""
-                        ).trim()
-                        : "Sin precio",
-                    imagen: imagenMatch
-                        ? imagenMatch[1]
-                            .replace(/^img\//i, "")
-                        : null
-                };
-            });
+            productos.map((producto, indice) => ({
+                indice,
+                id: Number(producto.id),
+                nombre: producto.nombre,
+                precio: producto.precio,
+                imagen: producto.imagen
+            }));
 
         let mensaje =
             "🗑️ PRODUCTOS DEL CATÁLOGO\n\n";
@@ -640,7 +601,8 @@ if (texto.toLowerCase() === "#deletewebcatalogo") {
 
                 mensaje +=
                     `${i + 1}. ${producto.nombre}\n` +
-                    `   💰 ${producto.precio}\n\n`;
+                    `   💰 $${producto.precio}\n` +
+                    `   🔢 ID: ${producto.id}\n\n`;
             });
 
         mensaje +=
@@ -696,6 +658,7 @@ if (
                 text:
                     "⚠️ Ese número no corresponde a ningún producto."
             });
+
             continue;
         }
 
@@ -706,8 +669,7 @@ if (
             global.catalogoEliminaciones || {};
 
         global.catalogoEliminaciones[usuario] = {
-            indice: posicion,
-            idOriginal: producto.idOriginal,
+            id: producto.id,
             nombre: producto.nombre,
             precio: producto.precio,
             imagen: producto.imagen
@@ -717,7 +679,8 @@ if (
             text:
                 "⚠️ VAS A ELIMINAR ESTE PRODUCTO\n\n" +
                 `👟 ${producto.nombre}\n` +
-                `💰 ${producto.precio}\n\n` +
+                `💰 $${producto.precio}\n` +
+                `🔢 ID: ${producto.id}\n\n` +
                 "¿Confirmas la eliminación?\n\n" +
                 "Responde SI para confirmar."
         });
@@ -754,180 +717,153 @@ if (
         const pendiente =
             global.catalogoEliminaciones[usuario];
 
-        const rutaIndex = path.join(
+        const rutaProductos = path.join(
             __dirname,
             "WEB CATALOGO",
-            "index.html"
+            "productos.json"
         );
 
-        let html = fs.readFileSync(
-            rutaIndex,
-            "utf8"
-        );
+        let productos = [];
 
-        const inicio = html.indexOf(
-            '<main id="product-container">'
-        );
-
-        const fin = html.indexOf(
-            "</main>",
-            inicio
-        );
-
-        if (inicio === -1 || fin === -1) {
-            throw new Error(
-                "No se encontró product-container."
-            );
-        }
-
-        const contenido = html.substring(
-            inicio + '<main id="product-container">'.length,
-            fin
-        );
-
-        let productos =
-            contenido.match(
-                /<div class="product-card"[\s\S]*?(?=\s*<div class="product-card"|$)/gi
-            ) || [];
-
-        if (
-            pendiente.idOriginal !== null
-        ) {
-
-            const indiceReal =
-                productos.findIndex(producto => {
-
-                    const match =
-                        producto.match(
-                            /<div class="product-card"[^>]*id="([^"]+)"/i
-                        );
-
-                    return (
-                        match &&
-                        match[1] ===
-                            pendiente.idOriginal
-                    );
-                });
-
-            if (indiceReal !== -1) {
-                pendiente.indice =
-                    indiceReal;
+        if (fs.existsSync(rutaProductos)) {
+            try {
+                productos = JSON.parse(
+                    fs.readFileSync(
+                        rutaProductos,
+                        "utf8"
+                    )
+                );
+            } catch (error) {
+                productos = [];
             }
         }
 
-        if (
-            pendiente.indice < 0 ||
-            pendiente.indice >= productos.length
-        ) {
+        if (!Array.isArray(productos)) {
+            productos = [];
+        }
+
+        // ==================================================
+        // BUSCAR PRODUCTO REAL EN productos.json
+        // ==================================================
+
+        const indiceEliminar =
+            productos.findIndex(
+                producto =>
+                    Number(producto.id) ===
+                    Number(pendiente.id)
+            );
+
+        if (indiceEliminar === -1) {
+
             throw new Error(
-                "Producto no encontrado."
+                "El producto no existe en productos.json."
             );
         }
 
-        // Eliminar producto
+        // ==================================================
+        // GUARDAR DATOS DE LA IMAGEN
+        // ==================================================
+
+        const productoEliminado =
+            productos[indiceEliminar];
+
+        const imagenEliminada =
+            productoEliminado.imagen;
+
+        const nombreEliminado =
+            productoEliminado.nombre;
+
+        const precioEliminado =
+            productoEliminado.precio;
+
+        // ==================================================
+        // ELIMINAR PRODUCTO DE productos.json
+        // ==================================================
+
         productos.splice(
-            pendiente.indice,
+            indiceEliminar,
             1
         );
 
-        // Renumerar sin modificar data-categoria
+        // ==================================================
+        // RENOMBRAR IDS 1, 2, 3, 4...
+        // ==================================================
+
         productos =
             productos.map(
-                (producto, index) => {
-
-                    const nuevoId =
-                        index + 1;
-
-                    producto =
-                        producto.replace(
-                            /(<div class="product-card"[^>]*?)\sid="[^"]*"/i,
-                            `$1 id="${nuevoId}"`
-                        );
-
-                    if (
-                        /data-product-id="[^"]*"/i.test(
-                            producto
-                        )
-                    ) {
-                        producto =
-                            producto.replace(
-                                /data-product-id="[^"]*"/i,
-                                `data-product-id="${nuevoId}"`
-                            );
-                    } else {
-                        producto =
-                            producto.replace(
-                                /(<button[^>]*class="productsButton"[^>]*)>/i,
-                                `$1 data-product-id="${nuevoId}">`
-                            );
-                    }
-
-                    // Convertir cualquier data-category antiguo
-                    // a data-categoria sin cambiar su valor
-                    producto =
-                        producto.replace(
-                            /data-category="([^"]*)"/i,
-                            'data-categoria="$1"'
-                        );
-
-                    return producto;
-                }
+                (producto, index) => ({
+                    ...producto,
+                    id: index + 1
+                })
             );
 
-        const nuevoContenido =
-            '<main id="product-container">\n' +
-            productos.join("\n") +
-            '\n</main>';
-
-        html =
-            html.substring(0, inicio) +
-            nuevoContenido +
-            html.substring(
-                fin + "</main>".length
-            );
+        // ==================================================
+        // GUARDAR productos.json
+        // ==================================================
 
         fs.writeFileSync(
-            rutaIndex,
-            html,
+            rutaProductos,
+            JSON.stringify(
+                productos,
+                null,
+                2
+            ),
             "utf8"
         );
 
-        // Eliminar imagen
-        if (pendiente.imagen) {
+        // ==================================================
+        // ELIMINAR IMAGEN DEL SERVIDOR
+        // ==================================================
+
+        if (imagenEliminada) {
 
             const rutaImagen =
                 path.join(
                     __dirname,
                     "WEB CATALOGO",
                     "img",
-                    pendiente.imagen
+                    imagenEliminada
                 );
 
             const rutaImagenWeb =
                 path.join(
                     "/var/www/catalogo",
                     "img",
-                    pendiente.imagen
+                    imagenEliminada
                 );
 
             if (
                 fs.existsSync(rutaImagen)
             ) {
-                fs.unlinkSync(rutaImagen);
+                fs.unlinkSync(
+                    rutaImagen
+                );
             }
 
             if (
                 fs.existsSync(rutaImagenWeb)
             ) {
-                fs.unlinkSync(rutaImagenWeb);
+                fs.unlinkSync(
+                    rutaImagenWeb
+                );
             }
         }
 
-        // Actualizar catálogo público
-        fs.copyFileSync(
-            rutaIndex,
-            "/var/www/catalogo/index.html"
+        // ==================================================
+        // RECONSTRUIR CATÁLOGO DESDE productos.json
+        // ==================================================
+
+        delete require.cache[
+            require.resolve("./reconstruir-catalogo.js")
+        ];
+
+        require(
+            "./reconstruir-catalogo.js"
         );
+
+        // ==================================================
+        // LIMPIAR SELECCIONES
+        // ==================================================
 
         delete global.catalogoEliminaciones[
             usuario
@@ -937,12 +873,16 @@ if (
             usuario
         ];
 
+        // ==================================================
+        // CONFIRMACIÓN
+        // ==================================================
+
         await sock.sendMessage(usuario, {
             text:
                 "✅ PRODUCTO ELIMINADO\n\n" +
-                `👟 ${pendiente.nombre}\n` +
-                `💰 ${pendiente.precio}\n\n` +
-                "🔢 Los productos siguientes fueron renumerados automáticamente."
+                `👟 ${nombreEliminado}\n` +
+                `💰 $${precioEliminado}\n\n` +
+                "🔢 Los productos restantes fueron renumerados automáticamente."
         });
 
         continue;
@@ -962,7 +902,6 @@ if (
         continue;
     }
 }
-	
 	const fuePedido = await revisarPedido(
     sock,
     msg,
