@@ -440,6 +440,99 @@ if (/^#ventasmes$/i.test(texto.trim())) {
 }
 
 // ==========================================
+// #VENTAS PRODUCTOS POR MES
+// Ejemplos:
+// #ventasproductosseptiembre
+// #ventasproductosmesseptiembre
+// ==========================================
+
+const mesesVentasProductos = {
+    enero: 1,
+    febrero: 2,
+    marzo: 3,
+    abril: 4,
+    mayo: 5,
+    junio: 6,
+    julio: 7,
+    agosto: 8,
+    septiembre: 9,
+    octubre: 10,
+    noviembre: 11,
+    diciembre: 12
+};
+
+const matchVentasProductosMes =
+    texto.trim().match(
+        /^#ventasproductos(?:mes)?(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)$/i
+    );
+
+if (matchVentasProductosMes) {
+
+    const nombreMes =
+        matchVentasProductosMes[1].toLowerCase();
+
+    const numeroMes =
+        mesesVentasProductos[nombreMes];
+
+    const anio =
+        new Date().getFullYear();
+
+    const ventasMes =
+        ventas.obtenerVentasMes(
+            anio,
+            numeroMes
+        );
+
+    if (ventasMes.length === 0) {
+
+        await sock.sendMessage(usuario, {
+            text:
+                `📦 VENTAS DE ${nombreMes.toUpperCase()} ${anio}\n\n` +
+                "No hay ventas registradas."
+        });
+
+        return true;
+    }
+
+    let mensaje =
+        `📦 VENTAS DE ${nombreMes.toUpperCase()} ${anio}\n\n`;
+
+    let totalVentas = 0;
+    let totalDinero = 0;
+    let gananciaNeta = 0;
+
+    ventasMes.forEach(
+        (venta, indice) => {
+
+            totalVentas++;
+
+            totalDinero +=
+                Number(venta.precio) || 0;
+
+            gananciaNeta +=
+                Number(venta.utilidad) || 0;
+
+            mensaje +=
+                `${indice + 1}. ` +
+                `${venta.producto}T${venta.talla} ` +
+                `${venta.canal} ` +
+                `$${Number(venta.precio).toLocaleString("es-CO")}\n`;
+        }
+    );
+
+    mensaje +=
+        `\n📊 TOTAL VENTAS: ${totalVentas}` +
+        `\n💰 TOTAL VENDIDO: $${totalDinero.toLocaleString("es-CO")}` +
+        `\n📈 GANANCIA NETA: $${gananciaNeta.toLocaleString("es-CO")}`;
+
+    await sock.sendMessage(usuario, {
+        text: mensaje
+    });
+
+    return true;
+}
+
+// ==========================================
 // #ventasanio
 // ==========================================
 

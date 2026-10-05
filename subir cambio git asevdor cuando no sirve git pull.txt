@@ -1,1 +1,10 @@
-git stash push -u -m "catalogo antes de pull" && git pull
+cd /root/bot-baillelys
+git stash push -m "catalogo antes de pull"
+git pull
+
+
+
+
+cd /root/bot-baillelys
+git status --short
+git diff --stat
