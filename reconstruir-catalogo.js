@@ -66,21 +66,27 @@ function reconstruir() {
         );
     }
 
-    const tarjetas = productos.map((producto, index) => {
+const tarjetas = productos.map((producto, index) => {
 
-        const id = index + 1;
+    const id = index + 1;
 
-        return `
+    return `
 <div class="product-card" id="${id}" data-categoria="${producto.dataCategoria || "1"}">
     <h2>${producto.nombre}</h2>
-    <div class="imgContainer"><img src="img/${producto.imagen}" loading="lazy"></div>
+
+    <div class="imgContainer">
+        <img src="img/${producto.imagen}" loading="lazy">
+    </div>
+
     <p class="productCardDescription">${producto.descripcion || ""}</p>
+
     <div class="productCardEnd">
         <a class="precio">$${producto.precio}</a>
-        <button class="productsButton" data-product-id="${id}">AGREGAR A MI PEDIDO</button>
     </div>
+
+    <p class="tocarParaComprar">👆 TOCA AQUÍ PARA COMPRAR</p>
 </div>`;
-    }).join("\n");
+}).join("\n");
 
     html =
         html.substring(0, mainMatch.index) +
