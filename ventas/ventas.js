@@ -1660,6 +1660,99 @@ function obtenerVentasHoyParaEliminar() {
     return ventasHoy;
 }
 
+// ==========================================
+// VENTAS DE UN MES PARA REPORTE
+// ==========================================
+
+function obtenerVentasMes(anio, mes) {
+
+    inicializar();
+
+    if (!fs.existsSync(archivoVentas)) {
+        return [];
+    }
+
+    const contenido =
+        fs.readFileSync(
+            archivoVentas,
+            "utf8"
+        );
+
+    const lineas =
+        contenido.split("\n");
+
+    const ventasMes = [];
+
+    for (let i = 1; i < lineas.length; i++) {
+
+        if (!lineas[i].trim()) {
+            continue;
+        }
+
+        const columnas =
+            lineas[i].split(",");
+
+        const id = columnas[0];
+        const fecha = columnas[1];
+        const hora = columnas[2];
+        const producto = columnas[3];
+        const talla = columnas[4];
+        const canal = columnas[5];
+        const precio = Number(columnas[6]) || 0;
+        const costo = Number(columnas[7]) || 0;
+        const utilidad = Number(columnas[8]) || 0;
+        const estado = columnas[9];
+
+        if (
+            !fecha ||
+            !producto
+        ) {
+            continue;
+        }
+
+        // Fecha guardada como DD/MM/YYYY
+        const partesFecha =
+            fecha.split("/");
+
+        if (partesFecha.length !== 3) {
+            continue;
+        }
+
+        const dia = Number(partesFecha[0]);
+        const mesVenta = Number(partesFecha[1]);
+        const anioVenta = Number(partesFecha[2]);
+
+        if (
+            mesVenta !== Number(mes) ||
+            anioVenta !== Number(anio)
+        ) {
+            continue;
+        }
+
+        // Solo ventas activas
+        if (
+            estado &&
+            estado.toUpperCase() !== "VENDIDO"
+        ) {
+            continue;
+        }
+
+        ventasMes.push({
+            id,
+            fecha,
+            hora,
+            producto,
+            talla,
+            canal,
+            precio,
+            costo,
+            utilidad
+        });
+    }
+
+    return ventasMes;
+}
+
 
 // ==========================================
 // ELIMINAR VENTA
@@ -1859,6 +1952,7 @@ module.exports = {
     obtenerStock,
     obtenerInventarioCompleto,
     obtenerVentasHoyParaEliminar,
+    obtenerVentasMes,
     eliminarVenta
 };
 
