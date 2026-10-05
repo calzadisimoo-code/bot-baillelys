@@ -301,6 +301,84 @@ module.exports = async function comandos(
     sock
 ) {
 	
+	// ==========================================
+// #HELP
+// ==========================================
+
+if (/^#help$/i.test(texto.trim())) {
+
+    const mensaje =
+`📋 COMANDOS DEL BOT
+
+💰 VENTAS
+#ventashoy — Ventas de hoy
+#ventasmes — Ventas del mes
+#ventasanio — Ventas del año
+#ventasenero — Ventas de enero
+#ventasfebrero — Ventas de febrero
+#ventasmarzo — Ventas de marzo
+#ventasabril — Ventas de abril
+#ventasmayo — Ventas de mayo
+#ventasjunio — Ventas de junio
+#ventasjulio — Ventas de julio
+#ventasagosto — Ventas de agosto
+#ventasseptiembre — Ventas de septiembre
+#ventasoctubre — Ventas de octubre
+#ventasnoviembre — Ventas de noviembre
+#ventasdiciembre — Ventas de diciembre
+#ventascanales — Ventas por canal
+#ventasproductos — Ventas por producto
+
+💸 GASTOS
+#gasto NOMBRE VALOR — Registra un gasto
+#pago anuncio VALOR — Registra publicidad
+#nomina NOMBRE VALOR — Registra nómina
+#gastos — Resumen de gastos
+#deletegasto — Elimina un gasto
+#deleteanuncio — Elimina publicidad
+#deletenomina — Elimina nómina
+
+🚴 DOMICILIOS
+#domicilio VALOR — Registra un domicilio
+#domicilios — Domicilios de hoy
+#domiciliosmes — Domicilios del mes
+#domiciliosanio — Domicilios del año
+
+📦 INVENTARIO
+#entrada PRODUCTO TALLA CANTIDAD — Agrega inventario
+#salida PRODUCTO TALLA CANTIDAD — Retira inventario
+#stock — Muestra todo el inventario
+#stock PRODUCTO TALLA — Consulta stock
+
+🛒 VENTAS
+#PRODUCTO TALLA CANAL PRECIO — Registra una venta
+#deleteventa — Elimina una venta de hoy
+
+🌐 CATÁLOGO WEB
+#addwebcatalogo — Agrega producto con foto
+#deletewebcatalogo — Elimina producto del catálogo
+
+📊 ESTADÍSTICAS
+#hoy — Estadísticas de hoy
+#ab — Estadísticas A/B
+#resetabNOMBRE — Reinicia estadísticas A/B
+
+📝 RESPUESTAS
+#addresponseNOMBRE — Agrega un activador
+#editabNOMBRErespuestaX — Edita una respuesta
+#resetabNOMBRErespuestaX — Reinicia una respuesta
+
+📍 OTROS
+#direcciones — Cuenta las direcciones enviadas
+#help — Muestra esta ayuda`;
+
+    await sock.sendMessage(usuario, {
+        text: mensaje
+    });
+
+    return true;
+}
+	
 // ==========================================
 // #ventashoy
 // ==========================================
