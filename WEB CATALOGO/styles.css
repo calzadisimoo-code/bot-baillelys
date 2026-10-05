@@ -502,10 +502,36 @@ footer img {
 
 .masVendidosTitulo {
     background: #111111;
-    border: 2px solid white;
+    border: 2px solid transparent;
+background:
+    linear-gradient(#111111, #111111) padding-box,
+    linear-gradient(
+        90deg,
+        #ff0000,
+        #ff9900,
+        #ffff00,
+        #00ff00,
+        #00ffff,
+        #0088ff,
+        #9900ff,
+        #ff00aa,
+        #ff0000
+    ) border-box;
+background-size: 100% 100%, 300% 100%;
+animation: bordeColores 4s linear infinite;
     border-radius: 12px;
     padding: 12px 18px;
     text-align: center;
+}
+
+@keyframes bordeColores {
+    0% {
+        background-position: 0% 0%, 0% 50%;
+    }
+
+    100% {
+        background-position: 0% 0%, 300% 50%;
+    }
 }
 
 .masVendidosTitulo strong {
