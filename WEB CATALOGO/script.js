@@ -672,6 +672,8 @@ $(document).on('click', '.product-card', function(event) {
     }
 
     var productId = $(this).attr('id');
+	
+	registrarInteraccion(productId);
 
     // Agregar el producto exactamente igual que con AGREGAR A MI PEDIDO
     if (products.hasOwnProperty(productId)) {
@@ -691,6 +693,65 @@ $(document).on('click', '.product-card', function(event) {
 });
 
 
+
+
+
+function registrarInteraccion(productId) {
+    fetch('interacciones.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            productId: productId
+        })
+    });
+}
+
+async function ordenarProductosPorInteracciones() {
+
+    try {
+
+        const respuesta = await fetch('interacciones.json?t=' + Date.now());
+
+        const interacciones = await respuesta.json();
+
+        const contenedor = document.getElementById('product-container');
+
+        if (!contenedor) {
+            return;
+        }
+
+        const tarjetas = Array.from(
+            contenedor.querySelectorAll('.product-card')
+        );
+
+        tarjetas.sort(function(a, b) {
+
+            const idA = a.getAttribute('data-product-id');
+            const idB = b.getAttribute('data-product-id');
+
+            const clicksA = Number(interacciones[idA] || 0);
+            const clicksB = Number(interacciones[idB] || 0);
+
+            return clicksB - clicksA;
+        });
+
+        tarjetas.forEach(function(tarjeta) {
+            contenedor.appendChild(tarjeta);
+        });
+
+    } catch (error) {
+
+        console.error(
+            'Error ordenando productos:',
+            error
+        );
+
+    }
+}
+
+ordenarProductosPorInteracciones();
 
 
 

@@ -66,12 +66,15 @@ function reconstruir() {
         );
     }
 
-const tarjetas = productos.map((producto, index) => {
+const tarjetas = productos.map((producto) => {
 
-    const id = index + 1;
+    const id = producto.id;
 
     return `
-<div class="product-card" id="${id}" data-categoria="${producto.dataCategoria || "1"}">
+<div class="product-card"
+     id="${id}"
+     data-product-id="${id}"
+     data-categoria="${producto.dataCategoria || "1"}">
     <h2>${producto.nombre}</h2>
 
     <div class="imgContainer">
